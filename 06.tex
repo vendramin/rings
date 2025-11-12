@@ -1,11 +1,11 @@
-\section{Lecture -- Week 6}
-\label{6}
+%\section{Lecture -- Week 6}
+%\label{6}
 
 We will dedicate three lectures to the development of the character theory for complex representations 
 of finite groups. Our approach will remain entirely elementary, 
 relying solely on fundamental linear algebra principles over complex numbers.
 
-\subsection{Group algebras}
+\section{Group algebras}
 
 Fix a field $K$ (for example, $K=\C$). 
 For a finite group $G$, let $K[G]$ be the vector space (over $K$)
@@ -160,7 +160,7 @@ $\varphi|_G=f$.
 \end{example}
 
 
-\subsection{Group representations}
+\section{Group representations}
 
 \begin{definition}
 	\index{Representation}
@@ -241,7 +241,8 @@ The previous example demonstrates the power of group representations, even for i
 However, in this course, we will focus on complex finite-dimensional representations of finite groups.
 
 \begin{convention}
-    In Lectures \ref{6}, \ref{7}, and \ref{8}, we will focus on complex representations of finite groups, unless stated otherwise.
+    When studying representations of groups, 
+    we will focus on complex representations of finite groups, unless stated otherwise.
 \end{convention}
 
 \begin{example}
@@ -607,6 +608,64 @@ A representation is
 	\end{enumerate}	
 \end{exercise}
 
+\section{Tensor product of representations}
+
+Let $V$ be a vector space with basis $\{v_1,\dots,v_k\}$ and 
+$W$ be a vector space with basis $\{w_1,\dots,w_l\}$. A 
+\emph{tensor product} of $V$ and $W$ is a vector space $X$ with 
+together with a bilinear map 
+\[
+V\times W\to X,
+\quad
+(v,w)\mapsto v\otimes w,
+\]
+such that $\{v_i\otimes w_j:1\leq i\leq k,\,1\leq j\leq l\}$ is a  
+basis of $X$. The tensor product of $V$ and $W$ is unique up to isomorphism 
+and is denoted by $V\otimes W$. Note that
+\[
+\dim(V\otimes W)=(\dim V)(\dim W).
+\]
+Moreover, every element of $V\otimes W$ is a finite sum 
+of the form
+\[
+\sum_{i,j}\lambda_{ij}v_i\otimes v_j
+\]
+for some scalars $\lambda_{ij}\in\C$. It is important to remark that elements 
+of $V\otimes W$ are not always of the form $v\otimes w$ for $v\in V$ and $w\in W$. 
+
+The bilinearity of tensor products is crucial. 
+For example,
+\begin{align*}
+    (v_1+v_3)\otimes (3w_1+w_2) 
+    &=v_1\otimes (3w_1+w_2)+v_3\otimes (3w_1+w_2)\\
+    &=v_1\otimes (3w_1)+v_1\otimes w_2+v_3\otimes (3w_1)+v_3\otimes w_2\\
+    &=3v_1\otimes w_1+v_1\otimes w_2+3v_3\otimes w_1+v_3\otimes w_2.
+\end{align*}
+
+\begin{definition}
+	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be representations, and 
+    let $\{v_1,\dots,v_n\}$ be a basis of $V$ and $\{w_1,\dots,w_m\}$ a basis of $W$. 
+    The \emph{tensor product} of $\rho$ and $\psi$ is the representation of $G$ given by 
+	\begin{gather*}
+	\rho\otimes\psi\colon G\to\GL(V\otimes W),
+	\quad 
+	g\mapsto (\rho\otimes\psi)_g,
+	\shortintertext{where}
+	(\rho\otimes\psi)_g(v_i\otimes w_j)=\rho_g(v_i)\otimes \psi_g(w_j),\quad 
+    i\in\{1,\dots,n\},\, j\in\{1,\dots,m\}. 
+	\end{gather*} 	
+\end{definition}
+
+\begin{exercise}
+\label{xca:tensor}
+Prove that the tensor product of representations 
+is a representation.     
+\end{exercise}
+
+
+
+\section{Unitary representations}
+
 Since we are considering finite-dimensional vector spaces, our vector spaces admit 
 an \emph{inner product}, that is a map $V\times V\to\C$, $(v,w)\mapsto\langle v,w\rangle$, 
 that satisfies the following properties:
@@ -683,6 +742,8 @@ irreducible or decomposable.
 	since $\rho_g^{-1}(w)\in W$, as $W$ is an invariant subspace of $V$. This means that 
 	$\rho_g(v)\in W^\perp$ and hence $V=W\oplus W^{\perp}$ is decomposable.  
 \end{proof}
+
+\section{Weyl's trick} 
 
 The following theorem is known as the \emph{Weyl trick}. 
 
