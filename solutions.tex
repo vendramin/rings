@@ -45,11 +45,10 @@
 
  \begin{sol}{xca:units_R[X]}
      We claim that $\mathcal{U}(\R[X])=\mathcal{U}(\R)=\R\setminus\{0\}$.
-     
-     Let $f(X)\in\mathcal{U}(R[X])$, then there exists $g(X)\in \R[X]$ such that $fg=1=gf$.
+     Let $f\in\mathcal{U}(R[X])$. Then there exists $g\in \R[X]$ such that $fg=1$.
      In particular, since the degree of the product of two polynomials over a field is the sum of their degrees,
      $0=\deg(fg)=\deg(f)+\deg(g)$.
-     Thus $\deg(f)=\deg(g)=0$, so $f(X)$ is an invertible constant in $\R$, i.e. $f\in \mathcal{U}(\R)=\R\setminus\{0\}$.
+     Thus $\deg(f)=\deg(g)=0$ and hence $f$ is an invertible element of $\R$.
  \end{sol}
 
  \begin{sol}{xca:Qsqrt2}
@@ -63,17 +62,15 @@
  is the inverse of $x+y\sqrt{2}$ in $\Q[\sqrt{2}]$.
  \end{sol}
 
- \begin{sol}{xca:ideals}
+ \begin{sol}{xca:ideals}\
      \begin{enumerate}
          \item We first note that $(\cap_\alpha I_\alpha,+)$ is a subgroup of $(R,+)$, as 
          the intersection of subgroups is a subgroup.
-             
              Let now $r\in R$ and $y\in \cap_\alpha I_\alpha$.
              Then for every $\alpha$ we have that $y\in I_\alpha$, hence, since $I_\alpha$ is an ideal, $ry,yr\in I_\alpha$ for every $\alpha$.
-             Thus $ry,yr\in \cap_\alpha I_\alpha$.
+             Thus $ry\in \cap_\alpha I_\alpha$ and $yr\in \cap_\alpha I_\alpha$.
          \item    We first note that $(\cup_{i\geq 1} I_i,+)$ is a subgroup of $(R,+)$, as  
           the union of a sequence of subgroups is a subgroup.
-          
           Let now $r\in R$ and $y\in \cup_{i\geq 1} I_i$.
           Then, there exists $i\geq 1$ such that $y\in I_i$
           and so $ry,yr\in I_i$, since $I_i$ is an ideal of $R$. Thus $ry,yr\in \cup_{i\geq 1} I_i$.
@@ -170,10 +167,12 @@ Clearly $(g(X))\subseteq I$, since $g(X)\in I$.
 Conversely, consider $f(X)\in I$, then there exist 
 $q(X),r(X)\in \R[X]$ with $r(X)=0$ or $\deg(r(X))<\deg(g(X))$
 such that $f(X)=q(X)g(X)+r(X)$. 
-If we assume that $r(X)\neq 0$, since $r(X)=f(X)-q(X)g(X)\in I$,
-and by minimality of the degree of $g$, $\deg(r(X))\geq\deg(g(X))$, a contradiction.
-Therefore $r(X)$ has to be 0, i.e. $f(X)=q(X)g(X)\in (g(X))$ 
-and we proved that $I\subseteq (g(X))$.
+Assume that $r(X)\neq 0$. Since 
+\[
+r(X)=f(X)-q(X)g(X)\in I,
+\]
+the minimality of $\deg g(X)$ implies that  $\deg(r(X))\geq\deg(g(X))$, a contradiction.
+Thus $r(X)=0$ and hence $f(X)=q(X)g(X)\in (g(X))$. Therefore $I\subseteq (g(X))$.
 \end{sol}
  
 \begin{sol}{xca:x_unit}
