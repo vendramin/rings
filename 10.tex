@@ -240,54 +240,6 @@ where
 $R^k=\bigoplus_{i=1}^k R$. Since $R$ is noetherian, $R^k$ is noetherian. Thus $M$ is noetherian.	
 \end{proof}
 
-\section{Quotient fields}
-
-Let $R$ be an integral domain and $S=R\setminus\{0\}$. 
-On $R\times S$ we define the following relation:
-\[
-(r,s)\sim (r_1,s_1)\Longleftrightarrow rs_1-r_1s=0.
-\]
-
-\begin{exercise}
-Prove that $\sim$ is an equivalence relation.
-\end{exercise}
-
-The equivalence class of $(r,s)$ will be denoted by $r/s$ or $\frac{r}{s}$. 
-
-It is possible to prove that the set 
-$K(R)=(R\times S)/{\sim}$ of equivalence classes is a field 
-with the operations 
-\begin{equation}
-\label{eq:K(R)}
-\frac{r}{s}+\frac{r_1}{s_1}=\frac{rs_1+r_1s}{ss_1},
-\quad
-\frac{r}{s}\frac{r_1}{s_1}=\frac{rr_1}{ss_1}.
-\end{equation}
-
-\begin{definition}
-$K(R)$ is known as the \emph{quotient field} of $R$. 
-\end{definition}
-
-Simple example: $K(\Z)=\Q$.
-
-\begin{exercise}
-Let $R$ be an integral domain. 
-Prove that $K(R)$ is a field. 
-\end{exercise}
-
-To prove that $K(R)$ is a field, one first needs to prove that 
-the operations~\eqref{eq:K(R)} are well-defined. For example, let us check the addition is well-defined. 
-If $r/s\sim r'/s'$ and $r_1/s_1\sim r_1'/s_1'$, then
-$r/s+r_1/s_1\sim r'/s'+r_1'/s_1'$. In fact, 
-since $r/s\sim r'/s'$, it follows that $rs'-r's=0$. Similarly, $r_1s_1'-r_1's_1=0$, as $r_1/s_1\sim r_1'/s_1'$. Thus 
-\begin{gather*}
-\frac{rs_1+r_1s}{ss_1}=\frac{r's_1'+r_1's'}{s's_1'}
-\shortintertext{as}
-(rs_1+r_1s)s's_1'=rs_1s's_1'+r_1ss's_1'
-=r'ss_1s_1'+r_1's_1ss'
-=(r's_1'+r_1's)ss_1.
-\end{gather*}
-
 
 \section{Free modules}
 
