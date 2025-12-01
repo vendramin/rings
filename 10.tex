@@ -255,13 +255,13 @@ In any ring, the set $\{1\}$ is linearly independent.
 \begin{exercise}
 \label{xca:LI_finite}
     Let $R$ be a ring, $M$ a module over $R$ and $X$ a subset of $M$. Prove that 
-    $X$ is linearly independent if every finite subset of $X$ is linearly independent. 
+    $X$ is linearly independent if and only if every finite subset of $X$ is linearly independent. 
 \end{exercise}
 
 \begin{exercise}
     \label{xca:LI}
     Let $R$ be a ring, $M$ a module over $R$ and $m_1,\dots,m_k\in M$. Prove that 
-    $\{m_1,\dots,m_k\}$ is linearly independent if for each $m\in (m_1,\dots,m_k)$ there are unique 
+    $\{m_1,\dots,m_k\}$ is linearly independent if and only if for each $m\in (m_1,\dots,m_k)$ there are unique 
     coefficients $r_1,\dots,r_k\in R$ such that 
     $m=r_1\cdot m_1+\cdots+r_k\cdot m_n$. 
 \end{exercise}
@@ -270,8 +270,8 @@ The previous exercise also holds for infinite sets of linearly independent eleme
 
 \begin{bonus}
      Let $R$ be a ring, $M$ a module over $R$ and $X$ a subset of $M$. Prove that 
-     $X$ is linearly independent if for each $m\in (X)$ there are unique 
-     coefficients $\{r_x:x\in X\}$ with $r_x=0$ except finitely many $x$, such that 
+     $X$ is linearly independent if and only if for each $m\in (X)$ there are unique 
+     coefficients $\{r_x:x\in X\}$ with $r_x=0$ except for finitely many $x$, such that 
      $m=\sum r_x\cdot x$. 
 \end{bonus}
 
@@ -568,9 +568,10 @@ homomorphism.
 
 \begin{definition}
     \index{Module!projective}
+    \label{def:projective}
     Let $R$ be a ring and $P$ an $R$-module. We say that $P$ is \emph{projective} if 
     for every surjective module homomorphism $f\colon N\to T$ 
-    and every module homomorphism $f\colon P\to T$, 
+    and every module homomorphism $h\colon P\to T$, 
     there exists a module homomorphism $\varphi\colon P\to N$ such that
     the diagram 
     \[\begin{tikzcd}
@@ -584,6 +585,8 @@ homomorphism.
 \]
 commutes. 
 \end{definition}
+
+The map $\varphi$ of Definition~\ref{def:projective} is not necessarily unique. 
 
 \begin{proposition}
 \label{pro:split}
@@ -652,6 +655,8 @@ commutes.
 \end{proposition}
 
 \begin{proof}
+   Let $f\colon N\to T$ be a surjective module homomorphism and 
+   $h\colon M \to T$ an arbitrary module homormophism. 
     We will prove that 
     there exists a homomorphism $\varphi$ that makes
     the diagram
@@ -667,7 +672,9 @@ commutes.
 	Let $\{m_i:i\in I\}$ be a basis of $M$. Since $f$ is surjective, for each
 	$i\in I$ there exists $n_i\in N$ such that $f(n_i)=h(m_i)$. Since  $M$ is
 	free, there exists a unique homomorphism $\varphi\colon M\to N$ such that
-	$\varphi(m_i)=n_i$ for all $i\in I$. Thus homomorphism is such that
+    \begin{enumerate}
+        \item $\varphi(m_i)=n_i$ for all $i\in I$. This homomorphism is such that
+    \end{enumerate}
 	$f\varphi=h$. 
 \end{proof}
 
