@@ -252,6 +252,29 @@ $R^k=\bigoplus_{i=1}^k R$. Since $R$ is noetherian, $R^k$ is noetherian. Thus $M
 
 In any ring, the set $\{1\}$ is linearly independent. 
 
+\begin{exercise}
+\label{xca:LI_finite}
+    Let $R$ be a ring, $M$ a module over $R$ and $X$ a subset of $M$. Prove that 
+    $X$ is linearly independent if every finite subset of $X$ is linearly independent. 
+\end{exercise}
+
+\begin{exercise}
+    \label{xca:LI}
+    Let $R$ be a ring, $M$ a module over $R$ and $m_1,\dots,m_k\in M$. Prove that 
+    $\{m_1,\dots,m_k\}$ is linearly independent if for each $m\in (m_1,\dots,m_k)$ there are unique 
+    coefficients $r_1,\dots,r_k\in R$ such that 
+    $m=r_1\cdot m_1+\cdots+r_k\cdot m_n$. 
+\end{exercise}
+
+The previous exercise also holds for infinite sets of linearly independent elements. 
+
+\begin{bonus}
+     Let $R$ be a ring, $M$ a module over $R$ and $X$ a subset of $M$. Prove that 
+     $X$ is linearly independent if for each $m\in (X)$ there are unique 
+     coefficients $\{r_x:x\in X\}$ with $r_x=0$ except finitely many $x$, such that 
+     $m=\sum r_x\cdot x$. 
+\end{bonus}
+
 A set is said to be 
 \emph{linearly dependent} if it is not linearly independent.
     
@@ -296,6 +319,14 @@ However, one can prove that each module's basis is a minimal generating set.
     Let $M$ be a module and $B$ be a subset of $M$. Then $B$ is a \emph{basis} of $M$ if
     $B$ is linearly independent and $M=(B)$. A module $M$ is said to be \emph{free} if it admits a basis.   
 \end{definition}
+
+\begin{exercise}
+    \label{xca:free_uniqueness}
+    Let $M$ be a module. Prove that $M$ is free if and only if there is a subset $B$ of $M$ 
+    such that every element $m\in M$ can be written uniquely as finite sum of 
+    the form $m=\sum_{i=1}^k r_i\cdot b_i$ with $r_1,\dots,r_k\in R$ and 
+    $b_1,\dots,b_k\in B$. 
+\end{exercise}
 
 As a consequence of Zorn's lemma, 
 vector spaces are free. 
@@ -533,40 +564,26 @@ $\{m:m\in M\}$) and let $L=R^{(I)}$. Then $L$ is free and $f\colon R^{(I)}\to M$
 homomorphism.
 \end{proof}
 
-Another important property of free modules: free modules are
-\emph{projective}. 
+\section{Projective modules}
 
-\begin{proposition}
-	\label{pro:free=>projective}
-    Let $R$ be a ring and 
-    let $M$, $N$ and $T$ be $R$-modules. Assume that $M$ is free. 
-	If $f\in\Hom_R(N,T)$ be surjective and
-	$h\in\Hom_R(M,T)$, then there exists $\varphi\in\Hom_R(M,N)$ such that
-	$f\varphi=h$. 
-\end{proposition}
-
-\begin{proof}
-    We will prove that 
-    there exists a homomorphism $\varphi$ that makes
-    the diagram
+\begin{definition}
+    \index{Module!projective}
+    Let $R$ be a ring and $P$ an $R$-module. We say that $P$ is \emph{projective} if 
+    for every surjective module homomorphism $f\colon N\to T$ 
+    and every module homomorphism $f\colon P\to T$, 
+    there exists a module homomorphism $\varphi\colon P\to N$ such that
+    the diagram 
     \[\begin{tikzcd}
-	& M \\
+	& P \\
 	N & T & 0
 	\arrow["f"', from=2-1, to=2-2]
 	\arrow[from=2-2, to=2-3]
 	\arrow["h", from=1-2, to=2-2]
 	\arrow["\varphi"', dashed, from=1-2, to=2-1]
-\end{tikzcd}\]
-    commutative. 
-	Let $\{m_i:i\in I\}$ be a basis of $M$. Since $f$ is surjective, for each
-	$i\in I$ there exists $n_i\in N$ such that $f(n_i)=h(m_i)$. Since  $M$ is
-	free, there exists a unique homomorphism $\varphi\colon M\to N$ such that
-	$\varphi(m_i)=n_i$ for all $i\in I$. Thus homomorphism is such that
-	$f\varphi=h$. 
-\end{proof}
-
-A consequence of the previous proposition
-that we will use later:
+\end{tikzcd}
+\]
+commutes. 
+\end{definition}
 
 \begin{proposition}
 \label{pro:split}
@@ -580,7 +597,7 @@ that we will use later:
         \arrow[from=1-4, to=1-5]
     \end{tikzcd}
 	\]
-	be an exact sequence of $R$-modules.  If $C$ is free, then $A\oplus C\simeq B$. 
+	be an exact sequence of $R$-modules.  If $C$ is projective, then $A\oplus C\simeq B$. 
 \end{proposition}
 
 \begin{proof}
@@ -593,8 +610,7 @@ that we will use later:
 	\arrow[equal, no head, from=1-2, to=2-2]
 	\arrow["h"', dashed, from=1-2, to=2-1]
 \end{tikzcd}\]
-	the previous proposition 
-	yields a homomorphism $h\colon C\to B$
+	we get a homomorphism $h\colon C\to B$
 	such that $gh=\id_C$. 
     %In fact, let $\{c_i:i\in I\}$ be a basis of $C$.
 	%For each $i\in I$ let $b_i\in B$ be such that $g(b_i)=c_i$. The %map 
@@ -622,6 +638,41 @@ that we will use later:
 		\varphi(a,c)=f(a)+h(c)=b-h(c)+h(c)=b.\qedhere
 	\]
 \end{proof}
+
+% Another important property of free modules: free modules are
+% \emph{projective}. 
+
+\begin{proposition}
+	\label{pro:free=>projective}
+    Let $R$ be a ring and $M$ a free $R$-module. Then $M$ is projective. 
+    %let $M$, $N$ and $T$ be $R$-modules. Assume that $M$ is free. 
+	% If $f\in\Hom_R(N,T)$ be surjective and
+	% $h\in\Hom_R(M,T)$, then there exists $\varphi\in\Hom_R(M,N)$ such that
+	% $f\varphi=h$. 
+\end{proposition}
+
+\begin{proof}
+    We will prove that 
+    there exists a homomorphism $\varphi$ that makes
+    the diagram
+    \[\begin{tikzcd}
+	& M \\
+	N & T & 0
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow["h", from=1-2, to=2-2]
+	\arrow["\varphi"', dashed, from=1-2, to=2-1]
+\end{tikzcd}\]
+    commutative. 
+	Let $\{m_i:i\in I\}$ be a basis of $M$. Since $f$ is surjective, for each
+	$i\in I$ there exists $n_i\in N$ such that $f(n_i)=h(m_i)$. Since  $M$ is
+	free, there exists a unique homomorphism $\varphi\colon M\to N$ such that
+	$\varphi(m_i)=n_i$ for all $i\in I$. Thus homomorphism is such that
+	$f\varphi=h$. 
+\end{proof}
+
+% A consequence of the previous proposition
+% that we will use later:
 
 \section{Quotient fields}
 
@@ -672,7 +723,7 @@ since $r/s\sim r'/s'$, it follows that $rs'-r's=0$. Similarly, $r_1s_1'-r_1's_1=
 \end{gather*}
 
 
-
+/
 
 \section{Rank of a module}
 
