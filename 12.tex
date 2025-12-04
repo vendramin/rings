@@ -6,8 +6,8 @@ We finish the course with an algorithm that allows us to understand the
 structure of certain finitely generated modules.  We will discuss the case of
 modules over euclidean domains, as in this case the algorithm is constructive. 
 
-
-Let $M$ be a finitely generated module and $\{m_1,\dots,m_k\}$ be a set of
+Let $R$ be a euclidean domain, 
+$M$ be a finitely generated $R$-module and $\{m_1,\dots,m_k\}$ be a set of
 generators.  There exists a surjective module homomorphism 
 \[
 	\varphi\colon R^k\to M, 
@@ -17,18 +17,25 @@ generators.  There exists a surjective module homomorphism
 and hence 
 $M\simeq R^k/\ker\varphi$. 
 The submodule $\ker\varphi$ of $R^k$ is the \emph{relations module} of $M$. 
-Since $R$ is an euclidean domain, $R$ is a principal domain. Since 
-$M$ is finitely generated, then so is the submodule $\ker\varphi$ of $R^k$. Let 
-$\{e_1,\dots,e_l\}$ be a generating set of $\ker\varphi$, say 
-\begin{align*}
-e_1&=(a_{11},a_{12},\dots,a_{1k}),\\
-e_2&=(a_{21},a_{22},\dots,a_{2k}),\\
-&\vdots\\
-e_l&=(a_{l1},a_{l2},\dots,a_{lk}).	
-\end{align*}
-The matrix $A=(a_{ij})_{1\leq i\leq l,1\leq j\leq k}$ is the 
-\emph{relations matrix} of $M$ with respect to $\{m_1,\dots,m_k\}$ 
+Since $R$ is an euclidean domain, $R$ is noetherian. It follows that
+$\ker\varphi$ of $R^k$. Let 
+$\{e_1,\dots,e_l\}$ be a generating set of $\ker\varphi$. 
+The row matrix  
+\[
+A=\begin{pmatrix}
+e_1\\
+e_2\\
+\vdots\\
+e_l
+\end{pmatrix}
+\]
+has size $l\times k$ and 
+is the 
+\emph{relation matrix} of $M$ with respect to $\{m_1,\dots,m_k\}$ 
 and $\{e_1,\dots,e_l\}$. 
+
+Multiplying a relation matrix 
+on the left by an invertible matrix, changes the generators of the relation module: 
 
 \begin{claim}
 		If $P\in R^{l\times l}$ is invertible, then the rows
@@ -49,15 +56,23 @@ and $\{e_1,\dots,e_l\}$.
 %$AQ$ generate $\ker\varphi$. Moreover, $AQ$ is the relations matrix with respect to $\{n_1\dots,n_k\}$.  
 %\end{enumerate}
 
-Let us prove the claim. Assume that $P=(p_{ij})$. The rows of $PA$ are 
-%$f_1,\dots,f_l$, where 
-\begin{align*}
-f_1 &= p_{11}e_1+\cdots+p_{1l}e_l,\\
-f_2 &= p_{21}e_1+\cdots+p_{2l}e_l,\\
-&\phantom{=}\vdots\\
-f_l &= p_{l1}e_1+\cdots+p_{ll}e_l.	
-\end{align*}
-Moreover, $f_j\in\ker\varphi$ for all $j\in\{1,\dots,l\}$. 
+Let us prove the claim. Assume that $P=(p_{ij})$. Each row of $PA$ belongs to $\ker\varphi$, because
+\[
+PA\begin{pmatrix}
+    m_1\\
+    m_2\\
+    \vdots\\
+    m_k
+\end{pmatrix}=0
+\Longleftrightarrow 
+A\begin{pmatrix}
+    m_1\\
+    m_2\\
+    \vdots\\
+    m_k
+\end{pmatrix}=0,
+\]
+as $P$ is invertible. Therefore $f_j\in\ker\varphi$ for all $j\in\{1,\dots,l\}$. 
 Since $P$ is invertible, the set $\{f_1,\dots,f_l\}$ generates $\ker\varphi$. Indeed, each 
 $e_j$ is a linear combination of the $f_i$'s,  
 \[
@@ -77,11 +92,18 @@ f_l
 In particular, $PA$ is the relations matrix with respect to 
 $\{m_1,\dots,m_k\}$ and $\{f_1,\dots,f_l\}$.  
 
+Now multiplying a relation matrix on the right by an invertible matrix, 
+changes the original generating set of the module and the relation module: 
+
 \begin{claim}
-	If $Q\in R^{k\times k}$ is invertible and $Q^{-1}=(q_{ij})$ and for each
-	$j\in\{1,\dots,k\}$ we define $n_j=\sum_{i=1}^k q_{ji}\cdot m_i$, the set
+	Let $Q\in R^{k\times k}$ be invertible and 
+    $Q^{-1}=(q_{ij})$. Assume that for each
+	$j\in\{1,\dots,k\}$ we define $n_j=\sum_{i=1}^k q_{ji}\cdot m_i$. 
+    Let $\psi\colon R^k\to M$, $(r_1,\dots,r_k)\mapsto \sum_{i=1}^k r_i\cdot n_i$.
+    Then    
+    the set
 	$\{n_1,\dots,n_k\}$ generates $M$ and the rows of $AQ$ generate
-	$\ker\varphi$. Moreover, $AQ$ is the relations matrix with respect to
+	$\ker\psi$. Moreover, $AQ$ is the relation matrix with respect to
 	$\{n_1\dots,n_k\}$.  
 \end{claim}
 
@@ -98,93 +120,35 @@ m_1\\
 m_2\\
 \vdots\\
 m_k
-\end{pmatrix},
-\]
-it follows that 
-\begin{align*} 
-\begin{pmatrix}
-0\\
-0\\
-\vdots\\
-0	
-\end{pmatrix}
-=A\begin{pmatrix}
-m_1\\
-m_2\\
-\vdots\\
-m_k	
-\end{pmatrix}
-&=
-(AQ)\begin{pmatrix}
-	n_1\\
-	n_2\\
-	\vdots\\
-	n_k
 \end{pmatrix}.
-%=(AQ)Q^{-1}\begin{pmatrix}
-%	m_1\\
-%	m_2\\
-%	\vdots\\
-%	m_k
-%\end{pmatrix}
-%=\begin{pmatrix}
-%0\\
-%0\\
-%\vdots\\
-%0	
-%\end{pmatrix}.
-\end{align*}
-This implies that the rows of $AQ$ are relations with respect to the generating set 
-$\{n_1,\dots,n_k\}$. 
-Let $\psi\colon R^k\to M$, $(r_1,\dots,r_k)\mapsto \sum_{i=1}^k r_i\cdot n_i$.
-
-The rows of $AQ$ generate $\ker\psi$ with respect to $\{n_1,\dots,n_k\}$. 
-If $(r_1,\dots,r_k)\in \ker\psi$, then 
-$\sum_{i=1}^k r_i\cdot n_i=0$. Write 
-\[
-0=(r_1\cdots r_k)Q^{-1}\begin{pmatrix}
-m_1\\
-m_2\\
-\vdots\\
-m_k	
-\end{pmatrix}
-=(r_1\cdots r_k)\begin{pmatrix}
-    n_1\\
-    \vdots\\
-    n_k
-    \end{pmatrix}.
 \]
-We remark that each $e_j$ belongs to $R^k$. Thus 
-\[
-(r_1\cdots r_k)Q^{-1} = \left(\sum_{i=1}^k r_i q_{i1},\sum_{i=1}^k r_i q_{i2},\dots,\sum_{i=1}^k r_i q_{ik}\right)\in \ker\varphi.
-\]
-Since $\ker\varphi$ is generated by $\{e_1,\dots,e_l\}$, there exist 
-$s_1,\dots,s_l\in R$ such that 
-\[
-	(r_1\cdots r_k)Q^{-1}=\sum_{i=1}^l s_i\cdot e_i,
-\]
-that is 
-\[
-(r_1\dots r_k)Q^{-1}=(s_1\cdots s_l)\begin{pmatrix}e_1\\\vdots\\ e_l\end{pmatrix}
-=(s_1\cdots s_l)\begin{pmatrix}
-a_{11} & a_{12} & \cdots & a_{1k}\\
-\vdots & \vdots & \ddots & \vdots\\
-a_{l1} & a_{l2} & \cdots & a_{lk}	
-\end{pmatrix}
-.
-\]
-Rewriting this expression as 
-\[
-(r_1\cdots r_k)=(s_1\cdots s_l)AQ,
-\]
-we conclude that  $(r_1,\dots,r_k)$ is a linear combination of the rows of $AQ$, as 
+In particular, the elements 
 \begin{align*}
-(r_1,\dots,r_k)&=\left(\sum_{i=1}^l s_i\cdot x_{i1},\dots,\sum_{i=1}^l s_i\cdot x_{ik}\right)
-=\sum_{i=1}^l s_i\cdot (x_{i1},\dots,x_{ik}).
+&n_1=\psi(1,0,0,\dots,0),\\
+&n_2=\psi(0,1,0,\dots,0),\\
+&\quad\vdots\\
+&n_k=\psi(0,0,\dots,1) 
 \end{align*}
-Therefore $\{n_1,\dots,n_k\}$ generates $M$ and the rows of $AQ$ generate the
-corresponding relations submodule and $AQ$ is the relations matrix with respect
-to $\{n_1,\dots,n_k\}$ and $\{e_1,\dots,e_l\}$. 
+generate $M$. 
+
+We need to prove that the rows of $AQ$ generate $\ker\psi$. 
+Since $Q^{-1}$ is invertible, 
+\[
+\ker\psi=\{vQ:v\in\ker\varphi\}.
+\]
+In particular, $\{e_1Q,\dots,e_lQ\}$ generate $\ker\psi$, and
+the $e_jQ$ are exactly the rows of $AQ$. 
+
+We want to find a way of suitable matrices $P$ and $Q$ 
+such that $PAQ$ is a diagonal matrix, so we can 
+get a better description of our module $M$. 
+
+\begin{exercise}
+\label{xca:submodules}
+    Let $R$ be a ring and $M$ and $N$ be $R$-modules. 
+    If $S\subseteq M$ and $T\subseteq N$ are submodules, then 
+    $(M\oplus N)/(S\oplus T)\simeq M/S\oplus N/T$. 
+\end{exercise}
 
 \begin{proposition}
 	Let $A$ be the relations matrix of a finitely generated module $M$ with $k$ generators. 
@@ -212,28 +176,42 @@ to $\{n_1,\dots,n_k\}$ and $\{e_1,\dots,e_l\}$.
 \begin{proof}
 	The matrix $PAQ$ is the relations matrix with respect to 
 	the generating set $\{m_1,\dots,m_k\}$ of $M$ and respect to the relations submodule 
-	given by the rows of $PAQ$.  If 
-    \[ 
-    \varphi\colon R^k\to M,\quad 
-    (r_1,\dots,r_k)\mapsto \sum_{i=1}^k r_i\cdot m_i,
+	given by the rows of $PAQ$.  
+    Let 
+    \[
+    \gamma\colon R^k\xrightarrow{Q^{-1}} R^k\xrightarrow{P^{-1}} R^k\xrightarrow{\varphi} M,
     \]
-    then 
-	$R^k/\ker\varphi\simeq M$, as $\varphi$ is a surjective homomorphism. For each 
-	$j\in\{r+1,\dots,k\}$ let $a_j=0$.  Let 
-	\[
-		\psi\colon R^k\to R/(a_1)\oplus\cdots\oplus R/(a_k),\quad
-		(s_1,\dots,s_k)\mapsto (s_1+(a_1),\dots,s_k+(a_k)). 
-	\]
-	A straightforward calculation shows that 
-	\[
-		\ker\psi=(a_1)\oplus\cdots\oplus (a_k).
-	\]
-	Thus 
-	$R^k/\ker\psi\simeq \oplus_{i=1}^k R/(a_i)$. 
-	
-	It is an exercise to show that $\ker\varphi=\ker\psi$. 
-	
-% 	Veamos que $\ker\psi\subseteq\ker\varphi$. 
+    where... 
+    Since $\varphi$ is surjective, $\gamma$ is surjective. Moreover, 
+    \begin{align*}
+        \ker\gamma &= (Pe_1Q,\dots,Pe_lQ)\\
+        &=((a_1,0,\dots,0),(0,a_2,0,\dots,0),\dots,(0,\dots,a_r,\underbrace{0,\dots,0)}_{\text{$(k-r)$-times}})\\
+        &=(a_1)\oplus\cdots\oplus(a_r)\oplus \underbrace{0\oplus\cdots\oplus0}_{\text{$(k-r)$-times}}.
+    \end{align*}
+    By the isomorphism theorems and Exercise~\ref{xca:submodules},
+    \[
+    M\simeq R^k/\ker\gamma\simeq R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{k-r}.\qedhere 
+    \]
+ %    If 
+ %    \[ 
+ %    \varphi\colon R^k\to M,\quad 
+ %    (r_1,\dots,r_k)\mapsto \sum_{i=1}^k r_i\cdot m_i,
+ %    \]
+ %    then 
+	% $R^k/\ker\varphi\simeq M$, as $\varphi$ is a surjective homomorphism. For each 
+	% $j\in\{r+1,\dots,k\}$ let $a_j=0$.  Let 
+	% \[
+	% 	\psi\colon R^k\to R/(a_1)\oplus\cdots\oplus R/(a_k),\quad
+	% 	(s_1,\dots,s_k)\mapsto (s_1+(a_1),\dots,s_k+(a_k)). 
+	% \]
+	% A straightforward calculation shows that 
+	% \[
+	% 	\ker\psi=(a_1)\oplus\cdots\oplus (a_k).
+	% \]
+	% Thus 
+	% $R^k/\ker\psi\simeq \oplus_{i=1}^k R/(a_i)$. 
+		% It is an exercise to show that $\ker\varphi=\ker\psi$. 
+	% 	Veamos que $\ker\psi\subseteq\ker\varphi$. 
 % 	Si $(s_1\cdot a_1,\dots,s_k\cdot a_k)\in (a_1)\oplus\cdots\oplus (a_k)$, entonces
 % 	\[
 % 	\varphi(s_1\cdot a_1,\dots,s_k\cdot a_k)=\sum_{i=1}^k s_i\cdot (a_i\cdot m_i)=0,
@@ -244,9 +222,8 @@ to $\{n_1,\dots,n_k\}$ and $\{e_1,\dots,e_l\}$.
 % 	\psi(s_1,\dots,s_k)=(r_1+(a_1),\dots,r_k+(a_k))=(0,\dots,0)
 % 	\]
 % 	pues $PAQ$ es la matriz de relaciones de $M$ con respecto a $\{m_1,\dots,m_k\}$. 
-
-	Therefore $M\simeq R/(a_1)\oplus\cdots\oplus R/(a_k)$. To finish the proof
-	we need to note that $R/(a_i)\simeq R$ for all $i\in\{r+1,\dots,k\}$. 
+	% Therefore $M\simeq R/(a_1)\oplus\cdots\oplus R/(a_k)$. To finish the proof
+	% we need to note that $R/(a_i)\simeq R$ for all $i\in\{r+1,\dots,k\}$. 
 \end{proof}
 
 The decomposition given in the previous proposition is known as 
@@ -349,7 +326,7 @@ $(1,j)$.
 If every $a_{i1}$ is divisible by $a_{11}$, say $a_{i1}=a_{11}\lambda_i$, then
 apply $R_i\leftarrow \lambda_i R_1-R_i$. Similarly, if 
 every $a_{1j}$ is divisible by $a_{11}$, say $a_{1j}=a_{11}\mu_j$, then
-apply $C_j\leftarrow \mu_j C_1-C_j$. In this way we replace our matrix by 
+apply $C_j\leftarrow C_j-\mu_j C_1$. In this way we replace our matrix by 
 a matrix of the form 
 \[
 \begin{pmatrix}
