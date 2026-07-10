@@ -306,6 +306,28 @@ for all $x\in R$.
     \end{align*}
 \end{sol}
 
+\begin{sol}{xca:ring_iso}
+Let
+$\varphi:\Z[X]\to \Z[\sqrt{-5}]$ be the evaluation map
+$\varphi:f(X)\mapsto f(\sqrt{-5})$.
+Then $\varphi$ is a ring homomorphism and it is surjective by definition of $\Z[\sqrt{-5}]$.
+
+We claim that $\ker\varphi=(X^2+5)$.
+Clearly, every multiple of $X^2+5$ belongs to the kernel of $\varphi$.
+Thus $(X^2+5)\subseteq \ker\varphi$.
+
+Conversely, suppose that $f(X)\in \ker\varphi$.
+We can divide $f(X)$ by $X^2+5$ and obtain $q(X),r(X)\in\Z[X]$ with $r(X)=0$ or $\deg r(X)<\deg (X^2+5)=2$ such that
+$f(X)=q(X)(X^2+5)+r(X)$.
+Since$f(\sqrt{-5})=0$, we obtain that $r(\sqrt{-5})=0$. 
+But $r$ has degree at most 1, so necessarily $r(X)=0$.
+Hence $f(X)=q(X)(X^2+5)\in (X^2+5)$.
+
+With this, we proved that $\ker\varphi=(X^2+5)$.
+Hence, by the first isomorphism theorem, 
+$\Z[X]/(X^2+5)\simeq \Z[\sqrt{-5}]$.
+\end{sol}
+
 \begin{sol}{xca:sqrt2and3}
 Suppose there exists an isomorphism $f\colon \Q[\sqrt{2}]\to\Q[\sqrt{3}]$. 
 Since $f$ is additive and $f(1)=1$, $f(m)=m$ for all $m\in\Z$. Furthermore,
