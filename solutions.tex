@@ -349,6 +349,18 @@ Since $\sqrt{3}\not\in\Q$, either $a=0$ or $b=0$. Both cases yield
 a contradiction. 
 \end{sol}
 
+\begin{sol}{xca:matrices}
+Consider the map 
+$\varphi: M_n(R)\to M_n(R/I)$, $(a_{ij})\mapsto (a_{ij}+I)$.
+It is easy to check that $\varphi$ 
+is a surjective ring homomorphism.
+
+Moreover, $(a_{ij})\in\ker\varphi$ 
+if and only if $a_{ij}\in I$ for every $i,j\in\{1,\dots, n\}$, i.e. if and only if $(a_{ij})\in M_n(I)$.
+Hence $\ker\varphi = M_n(I)$ and it is an ideal on $M_n(R)$.
+Moreover, by the first isomorphism theorem, $M_n(R)/M_n(I)\simeq M_n(R/I)$.
+\end{sol}
+
 \begin{sol}{xca:Z[i]/(1+3i)}
     Let $\varphi\colon\Z\to\Z[i]\xrightarrow{\pi}\Z[i]/(1+3i)$, where $\pi$ denotes the canonical map. 
     We claim that $\varphi$ is a surjective ring homomorphism with kernel $\ker\varphi=10\Z$. Then
