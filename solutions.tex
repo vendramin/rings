@@ -306,6 +306,28 @@ for all $x\in R$.
     \end{align*}
 \end{sol}
 
+\begin{sol}{xca:ring_iso}
+Let
+$\varphi:\Z[X]\to \Z[\sqrt{-5}]$ be the evaluation map
+$\varphi:f(X)\mapsto f(\sqrt{-5})$.
+Then $\varphi$ is a ring homomorphism and it is surjective by definition of $\Z[\sqrt{-5}]$.
+
+We claim that $\ker\varphi=(X^2+5)$.
+Clearly, every multiple of $X^2+5$ belongs to the kernel of $\varphi$.
+Thus $(X^2+5)\subseteq \ker\varphi$.
+
+Conversely, suppose that $f(X)\in \ker\varphi$.
+We can divide $f(X)$ by $X^2+5$ and obtain $q(X),r(X)\in\Z[X]$ with $r(X)=0$ or $\deg r(X)<\deg (X^2+5)=2$ such that
+$f(X)=q(X)(X^2+5)+r(X)$.
+Since$f(\sqrt{-5})=0$, we obtain that $r(\sqrt{-5})=0$. 
+But $r$ has degree at most 1, so necessarily $r(X)=0$.
+Hence $f(X)=q(X)(X^2+5)\in (X^2+5)$.
+
+With this, we proved that $\ker\varphi=(X^2+5)$.
+Hence, by the first isomorphism theorem, 
+$\Z[X]/(X^2+5)\simeq \Z[\sqrt{-5}]$.
+\end{sol}
+
 \begin{sol}{xca:sqrt2and3}
 Suppose there exists an isomorphism $f\colon \Q[\sqrt{2}]\to\Q[\sqrt{3}]$. 
 Since $f$ is additive and $f(1)=1$, $f(m)=m$ for all $m\in\Z$. Furthermore,
@@ -325,6 +347,18 @@ $a,b\in\Q$, then
 \]
 Since $\sqrt{3}\not\in\Q$, either $a=0$ or $b=0$. Both cases yield 
 a contradiction. 
+\end{sol}
+
+\begin{sol}{xca:matrices}
+Consider the map 
+$\varphi: M_n(R)\to M_n(R/I)$, $(a_{ij})\mapsto (a_{ij}+I)$.
+It is easy to check that $\varphi$ 
+is a surjective ring homomorphism.
+
+Moreover, $(a_{ij})\in\ker\varphi$ 
+if and only if $a_{ij}\in I$ for every $i,j\in\{1,\dots, n\}$, i.e. if and only if $(a_{ij})\in M_n(I)$.
+Hence $\ker\varphi = M_n(I)$ and it is an ideal on $M_n(R)$.
+Moreover, by the first isomorphism theorem, $M_n(R)/M_n(I)\simeq M_n(R/I)$.
 \end{sol}
 
 \begin{sol}{xca:Z[i]/(1+3i)}
@@ -858,6 +892,27 @@ Let $T\colon V\to W$ be a bijective linear map such that $T\rho_g=\psi_gT$ for a
 	Take for example the $\Z$-module $\bigcup_{k\geq1}\Z/(p^k)$.
 \end{sol}
 
+\begin{sol}{xca:Q_not_free}
+    Suppose, by contradiction, that $\Q$ is free as a module over $\Z$
+    and let $B$ be a basis.
+    First, $B$ cannot contain only one element.
+    Indeed, suppose that $B={b}$, for some $b\in\Q\setminus\{0\}$.
+    Since $1\in\mathbb{Q}$, there exists $m\in\mathbb{Z}$ such that $1=mb$,
+    so $m\neq0$ and $b=\frac{1}{m}$. 
+    But then $\frac{1}{2}b\in\mathbb{Q}$ would have to be of the form $nb$
+    for some $n\in\mathbb{Z}$. Hence $n=\frac12$, a contradiction. 
+    
+    Thus $B$ contains distinct elements $b_1=\frac{a}{m}$ and $b_2=\frac{c}{n}$,
+    with $a,c\in\Z$ and $m,n>0$. Then
+    \[
+    an b_2-cm b_1
+    =an \frac{c}{n}-cm \frac{a}{m}
+    =0.
+    \]
+    giving a nontrivial $\Z$-linear relation between $b_1$ and $b_2$, contradicting the linear independence of $B$.
+    Therefore, $\Q$ is not free as a $\Z$-module.
+\end{sol}
+
 % \begin{sol}{xca:linear_algebra}
 % Para demostrar la primera afirmación procederemos por inducción en la cantidad de generadores de $M$. Si $M=(m)$, entonces
 % $\{m\}$ es base pues $\{m\}$ es linealmente independiente: si $r\cdot m=0$ y $r\ne 0$, entonces
@@ -923,11 +978,11 @@ Let $T\colon V\to W$ be a bijective linear map such that $T\rho_g=\psi_gT$ for a
 % la hipótesis inductiva impica que $k-1\leq l-1$, es decir $|X|\leq |Y|$.  
 % \end{sol}
 
-%\begin{sol}{xca:directa_noetherian}
-%	Use induction on $n$. This cannot extend to infinitely many
-%	modules, take for example sequences of integers with finite support, 
-%	that is maps $\Z_{>0}\to \Z$ with finitely many non-zero images.  
-%\end{sol}
+% \begin{sol}{xca:directa_noetherian}
+% 	Use induction on $n$. This cannot extend to infinitely many
+% 	modules, take for example sequences of integers with finite support, 
+% 	that is maps $\Z_{>0}\to \Z$ with finitely many non-zero images.  
+% \end{sol}
 
 % \begin{sol}{xca:cardinality}
 %     Let $E$ and $B$ be bases of $M$. Each $e\in E$ can be written as a finite linear combination
