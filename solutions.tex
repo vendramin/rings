@@ -892,6 +892,27 @@ Let $T\colon V\to W$ be a bijective linear map such that $T\rho_g=\psi_gT$ for a
 	Take for example the $\Z$-module $\bigcup_{k\geq1}\Z/(p^k)$.
 \end{sol}
 
+\begin{sol}{xca:Q_not_free}
+    Suppose, by contradiction, that $\Q$ is free as a module over $\Z$
+    and let $B$ be a basis.
+    First, $B$ cannot contain only one element.
+    Indeed, suppose that $B={b}$, for some $b\in\Q\setminus\{0\}$.
+    Since $1\in\mathbb{Q}$, there exists $m\in\mathbb{Z}$ such that $1=mb$,
+    so $m\neq0$ and $b=\frac{1}{m}$. 
+    But then $\frac{1}{2}b\in\mathbb{Q}$ would have to be of the form $nb$
+    for some $n\in\mathbb{Z}$. Hence $n=\frac12$, a contradiction. 
+    
+    Thus $B$ contains distinct elements $b_1=\frac{a}{m}$ and $b_2=\frac{c}{n}$,
+    with $a,c\in\Z$ and $m,n>0$. Then
+    \[
+    an b_2-cm b_1
+    =an \frac{c}{n}-cm \frac{a}{m}
+    =0.
+    \]
+    giving a nontrivial $\Z$-linear relation between $b_1$ and $b_2$, contradicting the linear independence of $B$.
+    Therefore, $\Q$ is not free as a $\Z$-module.
+\end{sol}
+
 % \begin{sol}{xca:linear_algebra}
 % Para demostrar la primera afirmación procederemos por inducción en la cantidad de generadores de $M$. Si $M=(m)$, entonces
 % $\{m\}$ es base pues $\{m\}$ es linealmente independiente: si $r\cdot m=0$ y $r\ne 0$, entonces
@@ -957,11 +978,11 @@ Let $T\colon V\to W$ be a bijective linear map such that $T\rho_g=\psi_gT$ for a
 % la hipótesis inductiva impica que $k-1\leq l-1$, es decir $|X|\leq |Y|$.  
 % \end{sol}
 
-%\begin{sol}{xca:directa_noetherian}
-%	Use induction on $n$. This cannot extend to infinitely many
-%	modules, take for example sequences of integers with finite support, 
-%	that is maps $\Z_{>0}\to \Z$ with finitely many non-zero images.  
-%\end{sol}
+% \begin{sol}{xca:directa_noetherian}
+% 	Use induction on $n$. This cannot extend to infinitely many
+% 	modules, take for example sequences of integers with finite support, 
+% 	that is maps $\Z_{>0}\to \Z$ with finitely many non-zero images.  
+% \end{sol}
 
 % \begin{sol}{xca:cardinality}
 %     Let $E$ and $B$ be bases of $M$. Each $e\in E$ can be written as a finite linear combination
