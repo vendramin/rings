@@ -138,10 +138,10 @@ a+b&b\\
     is a linear isomorphism of $K$-algebras. 
 \end{exercise}
 
-The group ring has the following property, which is left as an exercise. 
+The group algebra has the following property, which is left as an exercise. 
 Let $A$ be a $K$-algebra and
 $G$ be a finite group. If $f\colon G\to\mathcal{U}(A)$ is a group homomorphism, 
-then there exists a unique algebra homomorphism $\varphi\colon K[G]\to A$ such that
+then there exists a unique $K$-algebra homomorphism $\varphi\colon K[G]\to A$ such that
 $\varphi|_G=f$. 
 
 \begin{example}
@@ -402,6 +402,9 @@ $\rho\simeq\psi$.
         i&-i\\
         1&1
     \end{pmatrix}$.
+    Thus $T$ is an invariant isomorphism from $\psi$ to $\rho$;
+    equivalently, $T^{-1}$ is an invariant isomorphism from $\rho$
+    to $\psi$.
 \end{example}
 
 The following example explains why we can alternatively use
@@ -853,7 +856,7 @@ irreducible or decomposable.
     C_3=\langle g:g^3=1\rangle
     \]
     of order three. Note that the map $1\mapsto g$ yields an isomorphism 
-    $C_3\simeq \Z/3$. 
+    $\Z/3\simeq C_3$. 
         
     The map $C_3\to\GL_2(\C)$, $g\mapsto A$, is a group homomorphism. In particular, we have a representation $\rho\colon C_3\to\GL(V)$, where $V=\C^2$ with the usual inner product given by \eqref{eq:inner_product}, that is 
     \[

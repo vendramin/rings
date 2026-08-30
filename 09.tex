@@ -3,7 +3,7 @@
 \section{Modules}
 
 The rest of the course will be devoted to studying modules over rings. 
-We first start with the main definitions and basic examples.
+We start with the main definitions and basic examples.
 
 \begin{definition}
     Let $R$ be a ring. A \emph{module} (over $R$) is an abelian group (written additively) 
@@ -17,7 +17,7 @@ We first start with the main definitions and basic examples.
     \end{enumerate}
 \end{definition}
 
-Our definition is that of left module. Similarly, one defines right modules. We will always
+Our definition is that of a left module. Similarly, one defines right modules. We will always
 consider left modules (over $R$) 
 so that they will be referred to simply as $R$-modules (or just modules).
 
@@ -44,10 +44,13 @@ The module $\prescript{}{R}R$ is also known as the (left) regular representation
     \[
     g\cdot v=\rho_g(v)
     \]
-    for $g\in G$ and $v\in V$.
-    
-    Conversely, if $V$ is a $\C[G]$-module and $V$ is a complex 
-    finite-dimensional vector space, then 
+    for $g\in G$ and $v\in V$ .More explicitly,
+    \[
+      \left(\sum_{g\in G}\lambda_g g\right)\cdot v
+      =\sum_{g\in G}\lambda_g\rho_g(v).
+    \]
+
+    Conversely, if $V$ is a $\C[G]$-module, then 
     the map
     \[
     \rho\colon G\to\GL(V),\quad g\mapsto\rho_g,
@@ -63,10 +66,11 @@ $r\cdot (x_1,\dots,x_n)=(rx_1,\dots,rx_n)$.
 \end{example}
 
 \begin{example}
-If $R$ is a ring, then $M_{m,n}(R)$ is a module (over $R$) with usual matrix operations. 
+If $R$ is a ring, then $M_{m,n}(R)$ is a module (over $R$) with addition
+and scalar multiplication. 
 \end{example}
 
-Students usually ask why in the definition of a ring homomorphism, one needs
+Students usually ask why in the definition of a ring homomorphism one needs
 the condition $1\mapsto 1$. The following example provides a good explanation. 
 
 \begin{example}
@@ -91,7 +95,7 @@ is a module (over $R$), where we use the following notation: for $v\in V$, we wr
 \[
     T^0(v)=v,\quad 
     T^1(v)=T(v),\quad 
-    T^2(v)=T(T(v))\dots 
+    T^2(v)=T(T(v)),\dots 
 \]
 \end{example}
 
@@ -107,7 +111,7 @@ This module is the \emph{direct product} of the family $\{M_i:i\in I\}$.
 \end{example}
 %
 \begin{example}
-If $\{M_i:i\in I\}$ is family of $R$-modules, then   	
+If $\{M_i:i\in I\}$ is a family of $R$-modules, then   	
 \[
 \bigoplus_{i\in I}M_i=\{(m_i)_{i\in I}:m_i\in M_i\text{ for all $i\in I$ and $m_i=0$ except finitely many $i\in I$}\}
 \]
@@ -145,7 +149,7 @@ $N$ is a submodule of $M$ if and only if $N$ is a subspace of $M$.
 
 \begin{example}
 Let $R=\Z$ and $M$ be a module (over $R$). Then
-$N$ is a submodule of $M$ if and only if $N$ is a subgroup of $M$
+$N$ is a submodule of $M$ if and only if $N$ is a subgroup of $M$.
 \end{example}
 
 \begin{example}
@@ -163,7 +167,7 @@ A submodule is a subspace $W$
 of $V$ such that $T(W)\subseteq W$. 
 \end{example}
 
-Clearly, a subset $N$ of $M$ is a submodule if and only 
+Clearly, a non-empty subset $N$ of $M$ is a submodule if and only 
 if $r_1n_1+r_2n_2\in N$ for all
 $r_1,r_2\in R$ and $n_1,n_2\in N$. 	
 
@@ -206,7 +210,7 @@ Let $f\in\Hom_R(M,N)$. Prove that the following statements are equivalent:
 \item $f$ is a monomorphism.
 \item $\ker f=\{0\}$.
 \item For every module $V$ and every $g,h\in\Hom_R(V,M)$, $fg=fh\implies g=h$.
-\item For every module $V$ and every $g\in\Hom(V,M)$, $fg=0\implies g=0$.
+\item For every module $V$ and every $g\in\Hom_R(V,M)$, $fg=0\implies g=0$.
 \end{enumerate}
 \end{exercise}
 
@@ -272,15 +276,15 @@ Later we will see a similar exercise for surjective module homomorphisms.
 	a contradiction, as $f$ is injective.    
 \end{example}
 
-If $N$ and $N_1$ are submodules of $M$, we say that $M$ is the \emph{direct sum} of $N$ and $N_1$
-if $M=N+N_1$ and $N\cap N_1=\{0\}$. In this case, we write $M=N\oplus N_1$. Note that if
-$M=N\oplus N_1$, then each $m\in M$ can be written uniquely as $m=n+n_1$ for some
- $n\in N$ and $n_1\in N_1$. 
-Such a decomposition exists because $M=N+N_1$. If $m\in M$ can be written as 
-$m=n+n_1=n'+n_1'$ for some $n,n'\in N$ and $n_1,n_1'\in N_1$, then 
-$-n'+n=n_1'-n_1\in N\cap N_1=\{0\}$ and hence $n=n'$ and $n_1=n_1'$. If $M=N\oplus N_1$, the submodule
-$N$ (resp. $N_1$) is a \emph{direct summand} of $M$ and the submodule $N_1$ (resp $N$) is a \emph{complement} of $N$ 
-in $M$.   	
+If $N$ and $N_1$ are submodules of $M$, we say that $M$ is the \emph{direct
+sum} of $N$ and $N_1$ if $M=N+N_1$ and $N\cap N_1=\{0\}$. In this case, we
+write $M=N\oplus N_1$. Note that if $M=N\oplus N_1$, then each $m\in M$ can be
+written uniquely as $m=n+n_1$ for some $n\in N$ and $n_1\in N_1$.  Such a
+decomposition exists because $M=N+N_1$. If $m\in M$ can be written as
+$m=n+n_1=n'+n_1'$ for some $n,n'\in N$ and $n_1,n_1'\in N_1$, then
+$-n'+n=n_1'-n_1\in N\cap N_1=\{0\}$ and hence $n=n'$ and $n_1=n_1'$. If
+$M=N\oplus N_1$, the submodule $N$ (resp. $N_1$) is a \emph{direct summand} of
+$M$ and the submodule $N_1$ (resp. $N$) is a \emph{complement} of $N$ in $M$.   	
 
 \begin{example}
 If $M=\R^2$ is a vector space, then every subspace of $M$ is a direct summand of $M$.
@@ -288,9 +292,21 @@ If $M=\R^2$ is a vector space, then every subspace of $M$ is a direct summand of
 
 Clearly, the submodules $\{0\}$ and $M$ are direct summands of $M$.
 
+%\begin{example}
+%If $M=\Z$ as a module over $\Z$, then $m\Z$ is a direct summand of $M$ if and only if 
+%$m\in\{0,1\}$, as $n\Z\cap m\Z=\{0\}$ if and only if $nm=0$.
+%\end{example}
 \begin{example}
-If $M=\Z$ as a module over $\Z$, then $m\Z$ is a direct summand of $M$ if and only if 
-$m\in\{0,1\}$, as $n\Z\cap m\Z=\{0\}$ if and only if $nm=0$.
+Let $M=\Z$ as a module over $\Z$ and let $m\in\Z_{\geq0}$. Then
+$m\Z$ is a direct summand of $M$ if and only if $m\in\{0,1\}$.
+Indeed, suppose that
+\[
+\Z=m\Z\oplus n\Z
+\]
+for some $n\in\Z_{\geq0}$. Since
+$m\Z\cap n\Z=\{0\}$, it follows that $mn=0$. If $m\ne0$, then
+$n=0$, and hence $m\Z=\Z$, so $m=1$. Conversely, both $\{0\}$
+and $\Z$ are direct summands of $\Z$.
 \end{example}
 
 \begin{exercise}
@@ -350,7 +366,8 @@ Prove that any module homomorphism $g\colon V\to V$ commutes with $T$.
 
 \begin{exercise}
 \label{xca:Hom}
-Prove that $\Hom_R(M,N)$ is a module over $Z(R)$ with the following action: If $r\in R$ and
+Prove that $\Hom_R(M,N)$ is a module over $Z(R)$ with the following action: 
+If $r\in Z(R)$ and
 $f\in\Hom_R(M,N)$, then $r\cdot f\colon M\to N$, $m\mapsto f(r\cdot m)$. 
 \end{exercise}
 
@@ -420,8 +437,9 @@ As one does for groups, it is possible to show that if $M$ is a
 module and $N$ is a submodule of $M$, the pair 
 $(M/N,\pi\colon M\to M/N)$ has the following properties:
 \begin{enumerate}
-\item $N\subseteq \ker \pi$.
-\item If $f\colon M\to T$ is a homomorphism such that $N\subseteq \ker f$, then there exists a 
+\item $N=\ker \pi$.
+\item If $T$ is an $R$-module and $f\colon M\to T$ is a module 
+  homomorphism such that $N\subseteq \ker f$, then there exists a 
 unique module homomorphism $\varphi\colon M/N\to T$ such that 
 the diagram
 \[
@@ -448,7 +466,7 @@ The \emph{isomorphism theorems} hold:
 	\item If $f\in\Hom_R(M,N)$, then $M/\ker f\simeq f(M)$.
 	\item If $T\subseteq N\subseteq M$ are submodules, then  
 	\[
-	\frac{M/T}{N/T}\simeq M/N
+	\frac{M/T}{N/T}\simeq M/N.
 	\]
 	\item If $S$ and $T$ are submodules of $M$, then 
     \[
@@ -457,7 +475,8 @@ The \emph{isomorphism theorems} hold:
 \end{enumerate}
 
 \begin{example}
-If $K$ is a field and $V$ is a module over $K$, then $V$ is, by definition, a vector space over $K$. 
+If $K$ is a field and $V$ is a finite-dimensional 
+module over $K$, then $V$ is, by definition, a vector space over $K$. 
 If $S$ and $T$ are subspaces of $V$, then they are submodules of $V$. 
 By the isomorphism theorem, $(S+T)/S\simeq T/(S\cap T)$ 
 as vector spaces. By applying dimension,  

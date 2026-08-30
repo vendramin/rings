@@ -17,12 +17,17 @@ finite-dimensional representations of finite groups.
     If $\dim V=1$, the result is trivial, as degree-one representations are irreducible. Assume that
     the result holds for representations of degree $\leq n$. Suppose that $\rho$ has degree $n+1$. 
     If $\rho$ is irreducible, we are done. If not, use 
-    Proposition \ref{pro:irr_or_dec} to 
+    Corollary~\ref{cor:consequences} to 
     write $V=S\oplus T$, where $S$ and $T$
     are non-zero invariant subspaces of $V$. Since $\dim S<\dim V$ and $\dim T<\dim V$, it follows from
     the inductive hypothesis that
-    both $S$ and $T$ are spaces of completely reducible representations. 
-    Thus $\rho$ is completely reducible.
+    $\rho|_S$ and $\rho|_T$ are completely reducible. Since
+    \[
+    \rho=\rho|_S\oplus\rho|_T,
+    \]
+    it follows that $\rho$ is completely reducible.
+    %both $S$ and $T$ are spaces of completely reducible representations. 
+    %Thus $\rho$ is completely reducible.
 \end{proof}
 
 \begin{example}
@@ -56,8 +61,9 @@ finite-dimensional representations of finite groups.
     \end{pmatrix}
     \right\rangle,
     \]
-    are irreducible invariant subspaces of $V=\C^3$. A direct calculation shows that
-    in the orthogonal basis $\left\{\begin{pmatrix}
+    are invariant subspaces of $V=\C^3$, and the restricted
+    representations on $S$ and $T$ are irreducible. A direct calculation shows that
+    in the basis $\left\{\begin{pmatrix}
     1\\1\\1
     \end{pmatrix},
     \begin{pmatrix}
