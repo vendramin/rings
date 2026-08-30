@@ -17,8 +17,9 @@ generators.  There exists a surjective module homomorphism
 and hence 
 $M\simeq R^k/\ker\varphi$. 
 The submodule $\ker\varphi$ of $R^k$ is the \emph{relations module} of $M$. 
-Since $R$ is an euclidean domain, $R$ is noetherian. It follows that
-$\ker\varphi$ of $R^k$. Let 
+Since $R$ is an euclidean domain, $R$ is noetherian. Hence $R^k$ is a noetherian 
+module, so 
+$\ker\varphi$ is finitely generated. Let 
 $\{e_1,\dots,e_l\}$ be a generating set of $\ker\varphi$. 
 The row matrix  
 \[
@@ -104,7 +105,7 @@ changes the original generating set of the module and the relation module:
     the set
 	$\{n_1,\dots,n_k\}$ generates $M$ and the rows of $AQ$ generate
 	$\ker\psi$. Moreover, $AQ$ is the relation matrix with respect to
-	$\{n_1\dots,n_k\}$.  
+	$\{n_1,\dots,n_k\}$.  
 \end{claim}
 
 Now we prove the claim. Since 
@@ -139,7 +140,7 @@ Since $Q^{-1}$ is invertible,
 In particular, $\{e_1Q,\dots,e_lQ\}$ generate $\ker\psi$, and
 the $e_jQ$ are exactly the rows of $AQ$. 
 
-We want to find a way of suitable matrices $P$ and $Q$ 
+We want to find suitable matrices $P$ and $Q$ 
 such that $PAQ$ is a diagonal matrix, so we can 
 get a better description of our module $M$. 
 
@@ -174,60 +175,87 @@ get a better description of our module $M$.
 \end{proposition}
 
 \begin{proof}
-	The matrix $PAQ$ is the relations matrix with respect to 
-	the generating set $\{m_1,\dots,m_k\}$ of $M$ and respect to the relations submodule 
-	given by the rows of $PAQ$.  
-    Let 
-    \[
-    \gamma\colon R^k\xrightarrow{Q^{-1}} R^k\xrightarrow{P^{-1}} R^k\xrightarrow{\varphi} M,
-    \]
-    where... 
-    Since $\varphi$ is surjective, $\gamma$ is surjective. Moreover, 
-    \begin{align*}
-        \ker\gamma &= (Pe_1Q,\dots,Pe_lQ)\\
-        &=((a_1,0,\dots,0),(0,a_2,0,\dots,0),\dots,(0,\dots,a_r,\underbrace{0,\dots,0)}_{\text{$(k-r)$-times}})\\
-        &=(a_1)\oplus\cdots\oplus(a_r)\oplus \underbrace{0\oplus\cdots\oplus0}_{\text{$(k-r)$-times}}.
-    \end{align*}
-    By the isomorphism theorems and Exercise~\ref{xca:submodules},
-    \[
-    M\simeq R^k/\ker\gamma\simeq R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{k-r}.\qedhere 
-    \]
- %    If 
- %    \[ 
- %    \varphi\colon R^k\to M,\quad 
- %    (r_1,\dots,r_k)\mapsto \sum_{i=1}^k r_i\cdot m_i,
- %    \]
- %    then 
-	% $R^k/\ker\varphi\simeq M$, as $\varphi$ is a surjective homomorphism. For each 
-	% $j\in\{r+1,\dots,k\}$ let $a_j=0$.  Let 
-	% \[
-	% 	\psi\colon R^k\to R/(a_1)\oplus\cdots\oplus R/(a_k),\quad
-	% 	(s_1,\dots,s_k)\mapsto (s_1+(a_1),\dots,s_k+(a_k)). 
-	% \]
-	% A straightforward calculation shows that 
-	% \[
-	% 	\ker\psi=(a_1)\oplus\cdots\oplus (a_k).
-	% \]
-	% Thus 
-	% $R^k/\ker\psi\simeq \oplus_{i=1}^k R/(a_i)$. 
-		% It is an exercise to show that $\ker\varphi=\ker\psi$. 
-	% 	Veamos que $\ker\psi\subseteq\ker\varphi$. 
-% 	Si $(s_1\cdot a_1,\dots,s_k\cdot a_k)\in (a_1)\oplus\cdots\oplus (a_k)$, entonces
-% 	\[
-% 	\varphi(s_1\cdot a_1,\dots,s_k\cdot a_k)=\sum_{i=1}^k s_i\cdot (a_i\cdot m_i)=0,
-% 	\]
-% 	pues $PAQ$ es la matriz de relaciones de $M$ con respecto a $\{m_1,\dots,m_k\}$. 
-% 	Recíprocamente, si $(s_1,\dots,s_k)\in\ker\varphi, entonces
-% 	\[
-% 	\psi(s_1,\dots,s_k)=(r_1+(a_1),\dots,r_k+(a_k))=(0,\dots,0)
-% 	\]
-% 	pues $PAQ$ es la matriz de relaciones de $M$ con respecto a $\{m_1,\dots,m_k\}$. 
-	% Therefore $M\simeq R/(a_1)\oplus\cdots\oplus R/(a_k)$. To finish the proof
-	% we need to note that $R/(a_i)\simeq R$ for all $i\in\{r+1,\dots,k\}$. 
+Let $D=PAQ$. Then $D$ is a relation
+matrix for $M$ with respect to the generating set
+$\{n_1,\dots,n_k\}$ determined by $Q^{-1}$. Let
+\[
+\psi\colon R^k\to M,\qquad
+(r_1,\dots,r_k)\mapsto\sum_{i=1}^k r_i\cdot n_i.
+\]
+Then the rows of $D$ generate $\ker\psi$, and hence
+\[
+\ker\psi
+=
+(a_1)\oplus\cdots\oplus(a_r)\oplus\{0\}^{k-r}
+\subseteq R^k.
+\]
+Therefore
+\[
+M\simeq R^k/\ker\psi
+\simeq
+R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{k-r}.
+\qedhere
+\]
 \end{proof}
 
-The decomposition given in the previous proposition is known as 
-the \emph{Smith normal form} of the matrix $M$. 
+%\begin{proof}
+%	The matrix $PAQ$ is the relations matrix with respect to 
+%	the generating set $\{m_1,\dots,m_k\}$ of $M$ and respect to the relations submodule 
+%	given by the rows of $PAQ$.  
+%    Let 
+%    \[
+%    \gamma\colon R^k\xrightarrow{Q^{-1}} R^k\xrightarrow{P^{-1}} R^k\xrightarrow{\varphi} M,
+%    \]
+%    where... 
+%    Since $\varphi$ is surjective, $\gamma$ is surjective. Moreover, 
+%    \begin{align*}
+%        \ker\gamma &= (Pe_1Q,\dots,Pe_lQ)\\
+%        &=((a_1,0,\dots,0),(0,a_2,0,\dots,0),\dots,(0,\dots,a_r,\underbrace{0,\dots,0)}_{\text{$(k-r)$-times}})\\
+%        &=(a_1)\oplus\cdots\oplus(a_r)\oplus \underbrace{0\oplus\cdots\oplus0}_{\text{$(k-r)$-times}}.
+%    \end{align*}
+%    By the isomorphism theorems and Exercise~\ref{xca:submodules},
+%    \[
+%    M\simeq R^k/\ker\gamma\simeq R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{k-r}.\qedhere 
+%    \]
+% %    If 
+% %    \[ 
+% %    \varphi\colon R^k\to M,\quad 
+% %    (r_1,\dots,r_k)\mapsto \sum_{i=1}^k r_i\cdot m_i,
+% %    \]
+% %    then 
+%	% $R^k/\ker\varphi\simeq M$, as $\varphi$ is a surjective homomorphism. For each 
+%	% $j\in\{r+1,\dots,k\}$ let $a_j=0$.  Let 
+%	% \[
+%	% 	\psi\colon R^k\to R/(a_1)\oplus\cdots\oplus R/(a_k),\quad
+%	% 	(s_1,\dots,s_k)\mapsto (s_1+(a_1),\dots,s_k+(a_k)). 
+%	% \]
+%	% A straightforward calculation shows that 
+%	% \[
+%	% 	\ker\psi=(a_1)\oplus\cdots\oplus (a_k).
+%	% \]
+%	% Thus 
+%	% $R^k/\ker\psi\simeq \oplus_{i=1}^k R/(a_i)$. 
+%		% It is an exercise to show that $\ker\varphi=\ker\psi$. 
+%	% 	Veamos que $\ker\psi\subseteq\ker\varphi$. 
+%% 	Si $(s_1\cdot a_1,\dots,s_k\cdot a_k)\in (a_1)\oplus\cdots\oplus (a_k)$, entonces
+%% 	\[
+%% 	\varphi(s_1\cdot a_1,\dots,s_k\cdot a_k)=\sum_{i=1}^k s_i\cdot (a_i\cdot m_i)=0,
+%% 	\]
+%% 	pues $PAQ$ es la matriz de relaciones de $M$ con respecto a $\{m_1,\dots,m_k\}$. 
+%% 	Recíprocamente, si $(s_1,\dots,s_k)\in\ker\varphi, entonces
+%% 	\[
+%% 	\psi(s_1,\dots,s_k)=(r_1+(a_1),\dots,r_k+(a_k))=(0,\dots,0)
+%% 	\]
+%% 	pues $PAQ$ es la matriz de relaciones de $M$ con respecto a $\{m_1,\dots,m_k\}$. 
+%	% Therefore $M\simeq R/(a_1)\oplus\cdots\oplus R/(a_k)$. To finish the proof
+%	% we need to note that $R/(a_i)\simeq R$ for all $i\in\{r+1,\dots,k\}$. 
+%\end{proof}
+
+%The decomposition given in the previous proposition is known as 
+%the \emph{Smith normal form} of the matrix $A$. 
+The diagonal matrix $PAQ$ is a \emph{Smith normal form} of $A$.
+The decomposition in the previous proposition is the corresponding
+invariant-factor decomposition of $M$. 
 How can we find the matrices $P$ and $Q$? 
 Consider the following matrix operations: 
 \begin{enumerate}
@@ -270,7 +298,7 @@ either by a permutation matrix or a matrix of the form $I+\lambda E_{ij}$.
 \begin{theorem}[Smith's normal form]
 \index{Smith's normal form}
 Let $R$ be an euclidean domain. If $A\in R^{l\times k}$,  
-there exists invertible matrices $P\in R^{l\times l}$ and $Q\in R^{k\times k}$ such that 
+there exist invertible matrices $P\in R^{l\times l}$ and $Q\in R^{k\times k}$ such that 
 \[
 PAQ=\begin{pmatrix}
 a_1 & 0 & \cdots & \cdot & \cdot & \cdots & 0\\
@@ -288,7 +316,7 @@ units.
 \end{theorem}
 
 \begin{proof}[Sketch of the proof]
-	We only prove the existence. Assume that $(R,\varphi)$ be an euclidean domain.  
+	We only prove the existence. Let $(R,\varphi)$ be an euclidean domain.  
 	We need to show that $A$ can be turned into a matrix of the form 
 \begin{equation*}
 B=\begin{pmatrix}
@@ -309,9 +337,11 @@ to the submatrix
 \]
 and repeat the method until we cannot continue. 
 
-Let us show how to get the matrix $B$. 
-By applying row and column operations we may assume that the coefficient of $A$ 
-with minimal positive Euclidean norm appears in position
+Let us show how to get the matrix $B$. If $A=0$, there is nothing to prove. 
+Assume that $A\ne0$. By applying row and column operations we may assume that 
+a non-zero entry of $A$ having minimal Euclidean value 
+appears 
+in position
 $(1,1)$.  
 If some $a_{i1}$ is not divisible by $a_{11}$, we use the division algorithm to write   
 $a_{i1}=a_{11}u+r$ for some $u\in R$ and $r\in R$ with 
@@ -323,9 +353,13 @@ By applying
 $C_j\leftarrow C_j-vC_1$ our matrix turns into a matrix 
 that has $s$ in position 
 $(1,j)$.  
-If every $a_{i1}$ is divisible by $a_{11}$, say $a_{i1}=a_{11}\lambda_i$, then
+In either case, move the non-zero remainder to position $(1,1)$
+by a row or column interchange and repeat. The Euclidean value of
+the entry in position $(1,1)$ strictly decreases. 
+
+If every $a_{i1}$ with $i>1$ is divisible by $a_{11}$, say $a_{i1}=a_{11}\lambda_i$, then
 apply $R_i\leftarrow \lambda_i R_1-R_i$. Similarly, if 
-every $a_{1j}$ is divisible by $a_{11}$, say $a_{1j}=a_{11}\mu_j$, then
+every $a_{1j}$ with $j>1$ is divisible by $a_{11}$, say $a_{1j}=a_{11}\mu_j$, then
 apply $C_j\leftarrow C_j-\mu_j C_1$. In this way we replace our matrix by 
 a matrix of the form 
 \[
@@ -343,13 +377,18 @@ a matrix of the form
 If some entry of the matrix $A_1$ is not divisible by $a_{11}$, apply either 
 $R_1\leftarrow R_1+R_i$ or $C_1\leftarrow C_1+C_j$ and repeat 
 the procedure described before. 
+Since the Euclidean values are non-negative integers, this process
+terminates. We eventually obtain a non-zero entry $a_{11}$ that
+divides every entry of the matrix. We then clear the rest of the
+first row and first column and apply induction to the remaining
+submatrix.
 \end{proof}
 
 We refer to Artin's book \cite[\S14]{MR1129886} for 
-a detailed exposition of the Smith normal
+a detailed exposition of the Smith normal form 
 when the base ring $R$ is $\Z$ or
 $K[X]$ for any field $K$. For an application 
-of the Smith's normal to explicit calculations related to 
+of the Smith's normal form to explicit calculations related to 
 homology groups, see \cite[\S11]{MR755006}. 
 Here we will explain the algorithm with examples. 
 
@@ -384,7 +423,7 @@ $C_1\leftrightarrow C_2$ to transform $A$ into
 	5 & 2 & 3
 \end{pmatrix}.
 \]
-To obtain zeros in positions $(1,2)$, $(1,3)$, $(2,1)$ and $(2,3)$ we 
+To obtain zeros in positions $(1,2)$, $(1,3)$, $(2,1)$ and $(3,1)$ we 
 apply the transformations 
 $R_2\leftarrow 6R_1-R_2$, $R_3\leftarrow 5R_1-R_3$ and 
 $C_2\leftarrow 3C_1-C_2$. Then our matrix turns into   
@@ -404,9 +443,10 @@ by $-1$:
 	0 & 13 & 3
 \end{pmatrix}.
 \]
-We perform the same procedure to the submatrix $\begin{pmatrix}10&4\\13&3\end{pmatrix}$. 
-We want the smallest element of the submatrix in position 
-$(2,2)$. For that purpose, apply $R_1\leftrightarrow R_2$ and 
+We perform the same procedure to the submatrix
+$\begin{pmatrix}10&4\\13&3\end{pmatrix}$.  We want the smallest entry in the
+upper-left position of this submatrix, which is position $(2,2)$ in the
+original matrix.  For that purpose, apply $R_1\leftrightarrow R_2$ and
 $C_2\leftrightarrow C_1$:
 \[ 
 \begin{pmatrix}
@@ -419,7 +459,7 @@ $C_2\leftarrow C_2-4C_1$ to obtain $\begin{pmatrix}3&1\\4&-6\end{pmatrix}$. Inte
 the first two columns to obtain 
 $\begin{pmatrix}1&3\\-6&4\end{pmatrix}$. Apply now 
 $R_2\leftarrow 6R_1+R_2$. To the resulting matrix we apply
-$C_2\leftarrow 3C_1-C_2$:
+$C_2\leftarrow C_2-3C_1$:
 \[
 \begin{pmatrix}
     1 & 0\\
@@ -431,7 +471,7 @@ Hence we find the Smith's normal form of the matrix:
 \begin{pmatrix}
 	1 & 0 & 0\\
 	0 & 1 & 0\\
-	0 & 0 & -22	
+	0 & 0 & 22	
 \end{pmatrix}.
 \]
 \end{example}
@@ -451,23 +491,32 @@ S;
 true
 \end{lstlisting}
 How to interpret the Smith normal form if the matrix is not a square matrix? 
-To understand 
-the quotient \[
-M=\Z^n/\langle e_1,\dots,e_m\rangle
-\]
-with $m<n$, each 
-of the $n-m$ missing columns
-of the Smith's normal form of the matrix gives a factor isomorphic to $\Z$. Thus
+%To understand 
+%the quotient \[
+%M=\Z^n/\langle e_1,\dots,e_m\rangle
+%\]
+%with $m<n$, each 
+%of the $n-m$ missing columns
+%of the Smith's normal form of the matrix gives a factor isomorphic to $\Z$. Thus
+%\[
+%M\simeq\Z^{n-m}\times M_1
+%%\Z/a_1\times\cdots\times a_r,
+%\]
+%where $M_1$ is the module obtained from the Smith's normal form. 
+%% where $a_1,\dots,a_r$ are integers you get from the Smith's normal form, that 
+%% is $a_i\mid a_{i+1}$ for all $i\in\{1,\dots,r-1\}$.  
+%If 
+%$n<m$, then one only needs to ignore the $m-n$ last columns, which will all be 
+%zero columns. 
+Suppose that an $m\times n$ relation matrix has Smith normal form
+with non-zero diagonal entries $a_1,\dots,a_r$. Then
 \[
-M\simeq\Z^{n-m}\times M_1
-%\Z/a_1\times\cdots\times a_r,
+M\simeq
+\Z/(a_1)\oplus\cdots\oplus\Z/(a_r)\oplus\Z^{n-r}.
 \]
-where $M_1$ is the module obtained from the Smith's normal form. 
-% where $a_1,\dots,a_r$ are integers you get from the Smith's normal form, that 
-% is $a_i\mid a_{i+1}$ for all $i\in\{1,\dots,r-1\}$.  
-If 
-$n<m$, then one only needs to ignore the $m-n$ last columns, which will all be 
-zero columns. 
+Thus every zero column contributes a free factor $\Z$. If $m>n$,
+the additional rows in the Smith normal form are zero rows and
+correspond to redundant relations.
 
 \begin{example}
 Let $M$ be the abelian group with generators $m_1,m_2,m_3$ and relations 
@@ -483,7 +532,9 @@ A=\begin{pmatrix}
 4 & 8 & 4
 \end{pmatrix}.
 \]	
-We claim that $M\simeq\Z/4\times\Z/{12}$. Apply 
+We claim that 
+$M\simeq\Z\oplus\Z/4\oplus\Z/12$.
+Apply 
 $R_1\leftarrow 2R_2-R_1$ to obtain 
 \[
 \begin{pmatrix}
@@ -507,7 +558,7 @@ the matrix
 4 & 0 & 0	
 \end{pmatrix},
 \]
-which corresponds to generators $\{m_1+2m_2+m_3,m_2\}$ 
+which corresponds to generators $\{m_1+2m_2+m_3,m_2,m_3\}$ 
 and relations 
 \[ 
 12m_2=0,\quad 
@@ -533,15 +584,17 @@ the Smith's normal form of $A$:
 \end{pmatrix}.
 \]
 This matrix corresponds to 
-the set of generators $\{m_2,m_1+2m_2+m_3\}$ and relations 
+the set of generators $\{m_1+2m_2+m_3,m_2,m_3\}$ and relations 
 \[ 
 4(m_1+2m_2+m_3)=0,\quad 
 12m_2=0.
 \]
-The column operation used corresponds to left multiplication by the 
+There is no relation on the third generator $m_3$ in this new
+generating set, so it generates a free summand isomorphic to $\Z$. 
+The row operation used corresponds to left multiplication by the 
 permutation matrix 
 $\begin{pmatrix}0&1\\1&0\end{pmatrix}$. 
-Thus  $M\simeq\Z/4\times\Z/{12}$. We also obtained that
+Thus $M\simeq\Z\oplus\Z/4\oplus\Z/12$. We also obtained that
 \begin{align*}
 &P=
 \begin{pmatrix}
@@ -576,7 +629,8 @@ Thus  $M\simeq\Z/4\times\Z/{12}$. We also obtained that
 \end{align*}
 \end{example}
 
-Note that the matrices $P$ and $Q$ are not uniquely determined. Here is the Magma code that solves the previous exercise:
+Note that the matrices $P$ and $Q$ are not uniquely determined. Here is the
+Magma code that solves the previous example.
 \begin{lstlisting}
 > A := Matrix(Integers(), 2, 3, [8,4,8,4,8,4]);
 > S,P,Q := SmithForm(A);
@@ -588,7 +642,7 @@ Note that the matrices $P$ and $Q$ are not uniquely determined. Here is the Magm
 \end{lstlisting}
 
 \begin{example}
-Let $M$ be the abelian group generated by $\{m_1,\dots,m_4\}$ and let $K$
+Let $M$ be the free abelian group with basis $\{m_1,\dots,m_4\}$ and let $K$
 be the subgroup of $M$ generated by 
 $\{e_1,e_2,e_3\}$, where 
 \[
@@ -630,8 +684,9 @@ Apply $C_4\leftarrow C_4-C_2$ to get
 	0 & 0 & 22 & 0
 \end{pmatrix}. 
 \]
-Note that $4\nmid 22$. Apply $R_2\leftarrow R_2+R_3$, $C_3\leftarrow C_3-5C_2$, $C_3\leftarrow C_2$, $R_3\leftarrow R_3-11R_2$ and 
-$C_3\leftarrow C_3-C_2$ to get 
+Note that $4\nmid 22$. Apply $R_2\leftarrow R_2+R_3$, $C_3\leftarrow C_3-5C_2$,
+$C_2\leftarrow C_3$, $R_3\leftarrow R_3-11R_2$ and $C_3\leftarrow C_3-2C_2$ to
+get 
 \[
 \begin{pmatrix}
 	2 & 0 & 0 & 0\\
@@ -639,7 +694,7 @@ $C_3\leftarrow C_3-C_2$ to get
 	0 & 0 & -44 & 0
 \end{pmatrix}.
 \]
-The group $M/K$ has basis $\{n_1,n_2,n_3,n_4\}$ and relations 
+The group $M/K$ has generators $\{n_1,n_2,n_3,n_4\}$ and relations 
 $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)$. 
 \end{example}
 
@@ -675,7 +730,7 @@ $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)
 	matrices $P$ and $Q$. To solve $AX=b$ we proceed as follows. Let 
 	$Y=Q^{-1}X$. Then $AX=b$ implies that 
 	\[
-		SY=(PAQ)(Q^{-1}X)=Pb=\begin{pmatrix} 5 \\ 1\end{pmatrix}.
+		SY=(PAQ)(Q^{-1}X)=Pb=\begin{pmatrix} 5 \\ 6\end{pmatrix}.
 	\]	
 	Write $X=\begin{pmatrix}
 		x\\
@@ -690,7 +745,7 @@ $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)
 		x+2z\\
 		y+z\\
 		y
-	\end{pmatrix}$ and hence $SY=\begin{pmatrix}5\\1\end{pmatrix}$ turns into 
+	\end{pmatrix}$ and hence $SY=\begin{pmatrix}5\\6\end{pmatrix}$ turns into 
 	\[
 		\begin{pmatrix}
 			x+2z\\
@@ -707,7 +762,7 @@ $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)
 	\end{pmatrix}
 	=\begin{pmatrix}
 		5\\
-		1
+		6
 	\end{pmatrix}.
 	\]
 	It follows that the solution of $AX=b$ is then $X=\begin{pmatrix}
@@ -717,7 +772,7 @@ $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)
 	\end{pmatrix}
 	=\begin{pmatrix}
 		5-2z\\
-		1-z\\
+		6-z\\
 		z
 	\end{pmatrix}$ for $z\in\Z$. 
 \end{example}

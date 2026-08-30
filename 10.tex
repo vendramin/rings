@@ -2,7 +2,7 @@
 
 \section{Noetherian modules}
 
-We first start with a very easy exercise. 
+We start with a very easy exercise. 
 
 \begin{exercise}
 \label{xca:modules_intersection}
@@ -30,21 +30,23 @@ One can prove that
     A module $M$ is \emph{finitely generated} if $M=(X)$ for some finite subset $X$ of $M$.
 \end{definition}
 
-If $X=\{x_1,\dots,x_m\}$ one writes $(X)=(x_1,\dots,x_n)$.
+If $X=\{x_1,\dots,x_m\}$ one writes $(X)=(x_1,\dots,x_m)$.
 For example, $\Z=(1)=(2,3)$ and $\Z\ne (2)$.
 
 \begin{exercise}
-    Let $R$ be the ring of continuous maps $[0,1]\to\R$ with point-wise operations and 
+    Let $R$ be the ring of all maps $[0,1]\to\R$ with pointwise operations and 
     $M=\prescript{}{R}{R}$. Prove that
     \[ 
     N=\{f\in R:f(x)\ne0\text{ for finitely many $x$}\}
     \]
+    is a submodule of $M$ that 
     is not finitely generated. 
 \end{exercise}
 
 \begin{exercise}
-    Let $G=\{g_1,\dots,g_n\}$ be a finite group. Prove that if $M=\C[G]$ is finitely generated, then
-    $M$ is a finite-dimensional complex vector space. 
+    Let $G=\{g_1,\dots,g_n\}$ be a finite group. Prove that if $M$ is
+    a finitely generated $\C[G]$-module, 
+    then $M$ is a finite-dimensional complex vector space. 
 \end{exercise}
 
 \begin{example}
@@ -66,7 +68,7 @@ A sequence
 	\arrow[from=1-4, to=1-5]
     \end{tikzcd}
   	\end{equation}
-of modules and homomorphism is said to be \emph{exact} 
+of modules and homomorphisms is said to be \emph{exact} 
 if $f$ is injective, $g$ is surjective and $f(M)=\ker g$. For example,
 the sequence
 \[
@@ -92,7 +94,7 @@ where $f(m)=(m,0)$ and $g(m,n)=n$, is exact.
 \]
      be an exact sequence. Prove the following statements: 
      \begin{enumerate}
-     \item If $N$ if finitely generated, then $T$ is finitely generated. 
+     \item If $N$ is finitely generated, then $T$ is finitely generated. 
      \item If $M$ and $T$ are finitely generated, then $N$ is finitely generated. 	
      \end{enumerate}
 \end{exercise}
@@ -142,12 +144,15 @@ that is not finitely generated.
 \begin{definition}
     \index{Module!noetherian}
     A module $M$ is \emph{noetherian} if every sequence $M_1\subseteq M_2\subseteq\cdots$ of submodules of $M$ 
-    stabilizes, that is there exists an integer $n$ such that $M_n=M_{n+k}$ for all $k$. 	
+    stabilizes, that is there exists an integer $n$ such that $M_n=M_{n+k}$ for all $k\geq0$. 	
 \end{definition}
 
 Let $M$ be a module and $X$ be a non-empty 
 family of submodules of $M$. We say that $S\in X$ is a \emph{maximal 
-element} (with respect to the inclusion) if $S\subseteq T$ for some $T\in X$ implies $S=T$. 
+element} (with respect to the inclusion) 
+if, for every $T\in X$, the inclusion $S\subseteq T$ implies
+$S=T$.
+%$S\subseteq T$ for some $T\in X$ implies $S=T$. 
 
 \begin{proposition}
 Let $M$ be a module. The following statements are equivalent:
@@ -228,7 +233,8 @@ The previous exercise cannot be extended to infinitely many modules. Why?
 %For example, $\Z^{\Z}$ is not noetherian, as it is not finitely generated. 
 
 \begin{proposition}
-If $R$ is noetherian and $M$ is a finitely generated module, then $M$ is noetherian. 
+If $R$ is a commutative noetherian ring 
+and $M$ is a finitely generated module, then $M$ is noetherian. 
 \end{proposition}
 
 \begin{proof}
@@ -246,7 +252,7 @@ $R^k=\bigoplus_{i=1}^k R$. Since $R$ is noetherian, $R^k$ is noetherian. Thus $M
 \begin{definition}
     Let $R$ be a ring, $M$ be a module over $R$ and $X$ be a subset of $M$. We say that
     $X$ is \emph{linearly independent} if for each $k\in\Z_{>0}$, $r_1,\dots,r_k\in R$
-    and $m_1,\dots,m_k\in X$ such that $\sum_{i=1}^kr_i\cdot m_i=0$, then 
+    and distinct $m_1,\dots,m_k\in X$ such that $\sum_{i=1}^kr_i\cdot m_i=0$, then 
     $r_1=\cdots=r_k=0$.  
 \end{definition}
 
@@ -260,10 +266,10 @@ In any ring, the set $\{1\}$ is linearly independent.
 
 \begin{exercise}
     \label{xca:LI}
-    Let $R$ be a ring, $M$ a module over $R$ and $m_1,\dots,m_k\in M$. Prove that 
+    Let $R$ be a ring, $M$ a module over $R$ and distinct $m_1,\dots,m_k\in M$. Prove that 
     $\{m_1,\dots,m_k\}$ is linearly independent if and only if for each $m\in (m_1,\dots,m_k)$ there are unique 
     coefficients $r_1,\dots,r_k\in R$ such that 
-    $m=r_1\cdot m_1+\cdots+r_k\cdot m_n$. 
+    $m=r_1\cdot m_1+\cdots+r_k\cdot m_k$. 
 \end{exercise}
 
 The previous exercise also holds for infinite sets of linearly independent elements. 
@@ -302,14 +308,15 @@ Let $R=M_2(\R)$ and $M=\begin{pmatrix}
     set and it is not linearly independent. 
 \end{example}
 
-However, one can prove that each module's basis is a minimal generating set. 
+However, one can prove that if $R\ne\{0\}$ 
+every basis of an $R$-module is a minimal generating set. 
 % roman 4.4, page 116
 
 \begin{exercise}
 \label{xca:homLI}
     Let $f\in\Hom_R(M,N)$ and $X$ be a subset of $M$. 
     \begin{enumerate}
-        \item If $X$ is linearly dependent, then $f(X)$ is linearly dependent.
+        \item If $X$ is linearly dependent and $f$ is injective, then $f(X)$ is linearly dependent.
         \item If $X$ is linearly independent and $f$ is injective, then $f(X)$ is linearly independent. 
         \item If $M=(X)$ and $f$ is surjective, then $N=(f(X))$. 
     \end{enumerate}
@@ -320,12 +327,13 @@ However, one can prove that each module's basis is a minimal generating set.
     $B$ is linearly independent and $M=(B)$. A module $M$ is said to be \emph{free} if it admits a basis.   
 \end{definition}
 
+% check this!
 \begin{exercise}
     \label{xca:free_uniqueness}
     Let $M$ be a module. Prove that $M$ is free if and only if there is a subset $B$ of $M$ 
-    such that every element $m\in M$ can be written uniquely as finite sum of 
-    the form $m=\sum_{i=1}^k r_i\cdot b_i$ with $r_1,\dots,r_k\in R$ and 
-    $b_1,\dots,b_k\in B$. 
+    such that, for every $m\in M$, there exist finitely 
+    many non-zero elements $r_1,\dots,r_k\in R$ and $b_1,\dots,b_k\in B$ such that 
+    $m=\sum_{i=1}^k r_i\cdot b_i$.
 \end{exercise}
 
 As a consequence of Zorn's lemma, 
@@ -333,7 +341,8 @@ vector spaces are free.
 
 \begin{example}\
 \begin{enumerate}
-    \item If $R$ is a ring, then $\{1\}$ is a basis of $\prescript{}{R}{R}$, so $\prescript{}{R}{R}$ is free.
+    \item If $R$ is a ring, then $\{1\}$ is a basis of $\prescript{}{R}{R}$, so
+      $\prescript{}{R}{R}$ is free.
     \item If $R$ is a ring, then $R^n$ is free as a module over $R$. 
 \end{enumerate}
 \end{example}
@@ -422,7 +431,7 @@ $\{\delta_i:i\in I\}$, where
 \begin{example}
 If $R=M_2(\Z)$, then $M=\prescript{}{R}R$ is free with basis $\left\{\begin{pmatrix}
     1&0\\0&1\end{pmatrix}\right\}$. The submodule 
-$N=\begin{pmatrix}\Z&0\\\Z&0\end{pmatrix}$ does not admits a basis as a module over $R$.
+$N=\begin{pmatrix}\Z&0\\\Z&0\end{pmatrix}$ does not admit a basis as a module over $R$.
 \end{example}
 
 In modules, the size of a basis is not an invariant of the module.  
@@ -442,12 +451,12 @@ We claim that $M$ admits a basis with two elements. If
 $r,s\in R$ are such that 
 \begin{align*}
 &r(e_{2n})=e_n, && r(e_{2n+1})=0,\\
-&s(e_{2n})=0,&& s(e_{2n+1})=e_{2n},
+&s(e_{2n})=0,&& s(e_{2n+1})=e_{n},
 \end{align*}
 then $\{r,s\}$ is a basis of $M$. 
 If $f\in R$, then
 $f=\alpha r+\beta s$, where $\alpha\colon V\to V$, $e_n\mapsto f(e_{2n})$ for all $n$, and
-$\beta\in V\to V$, $e_n\mapsto f(e_{2n+1})$ for all $n$. In fact,
+$\beta\colon V\to V$, $e_n\mapsto f(e_{2n+1})$ for all $n$. In fact,
 \begin{align*}
 &(\alpha r+\beta s)(e_{2n})=\alpha(r(e_{2n}))+\beta(s(e_{2n}))=f(e_{2n}),\\
 &(\alpha r+\beta s)(e_{2n+1})=\alpha(r(e_{2n+1}))+\beta(s(e_{2n+1}))=f(e_{2n+1}).
@@ -493,7 +502,7 @@ such that $m=\sum r_i\cdot m_i$.
 
 \begin{proof}
 Since $M$ is free, there exists a basis $\{m_i:i\in I\}$ of $M$. If $m\in M$,
-$m=\sum r_i\cdot m_i$ (finite sum) for some $r_i\in I$. We claim that
+$m=\sum r_i\cdot m_i$ (finite sum) for some $r_i\in R$. We claim that
 the $r_i$'s are unique. If $m=\sum s_i\cdot m_i$, then
 $\sum (r_i-s_i)\cdot m_i=0$. Since $\{m_i:i\in I\}$ 
 is linearly independent, $r_i=s_i$ for all $i\in I$.  	
@@ -519,14 +528,15 @@ Another application:
 \begin{example}
 There is no surjective homomorphism $\Z\to\Z\times\Z$ (of modules over $\Z$). 
 If $f\colon\Z\to\Z\times\Z$ is a surjective homomorphism, 
-let $\{u,v\}$ a basis of $\Z\times\Z$. Then $f(k)=u$ and $f(l)=v$ for some $k,l\in\Z$. Proposition~\ref{pro:libre} implies 
+let $\{u,v\}$ be a basis of $\Z\times\Z$. Then $f(k)=u$ and $f(l)=v$ for some $k,l\in\Z$. Proposition~\ref{pro:libre} implies 
 that there exists a homomorphism $g\colon\Z\times\Z\to\Z$ such that $g(u)=k$ and $g(v)=l$. 
 In particular, $f g=\id_{\Z\times\Z}$ and hence 
 $g$ is injective. Since  
 \[
 g(lu-kv)=lg(u)-kg(v)=lk-kl=0,
 \]
-it follows that $lu-kv=0$ and thus $k=l=0$, as $\{u,v\}$ is linearly independent, a contradiction
+it follows that $lu-kv=0$ and thus $k=l=0$, as $\{u,v\}$ is linearly
+independent, a contradiction.
 \end{example}
 
 Another important property:
@@ -657,7 +667,7 @@ The map $\varphi$ of Definition~\ref{def:projective} is not necessarily unique.
 
 \begin{proof}
    Let $f\colon N\to T$ be a surjective module homomorphism and 
-   $h\colon M \to T$ an arbitrary module homormophism. 
+   $h\colon M \to T$ an arbitrary module homomorphism. 
     We will prove that 
     there exists a homomorphism $\varphi$ that makes
     the diagram
@@ -716,7 +726,8 @@ Prove that $K(R)$ is a field.
 \end{exercise}
 
 To prove that $K(R)$ is a field, one first needs to prove that 
-the operations~\eqref{eq:K(R)} are well-defined. For example, let us check the addition is well-defined. 
+the operations~\eqref{eq:K(R)} are well-defined. For example, let us check that
+addition is well-defined. 
 If $r/s\sim r'/s'$ and $r_1/s_1\sim r_1'/s_1'$, then
 $r/s+r_1/s_1\sim r'/s'+r_1'/s_1'$. In fact, 
 since $r/s\sim r'/s'$, it follows that $rs'-r's=0$. Similarly, $r_1s_1'-r_1's_1=0$, as $r_1/s_1\sim r_1'/s_1'$. Thus 
@@ -725,7 +736,7 @@ since $r/s\sim r'/s'$, it follows that $rs'-r's=0$. Similarly, $r_1s_1'-r_1's_1=
 \shortintertext{as}
 (rs_1+r_1s)s's_1'=rs_1s's_1'+r_1ss's_1'
 =r'ss_1s_1'+r_1's_1ss'
-=(r's_1'+r_1's)ss_1.
+=(r's_1'+r_1's')ss_1.
 \end{gather*}
 
 \section{Rank of a module}
@@ -773,7 +784,7 @@ e_j\mapsto\begin{cases}
 0 & \text{if $i\ne j$}.
 \end{cases}
 \]
-We claim that $\{f_1,\dots,f_n\}$ is basis of  $V$. It generates $V$, as  
+We claim that $\{f_1,\dots,f_n\}$ is a basis of  $V$. It generates $V$, as  
 if $f\in V$, then 
 \[
 f=\sum_{i=1}^n f(e_i)f_i,
@@ -795,14 +806,13 @@ The previous result can be proved for commutative rings.
 
 \begin{definition}
 Let $R$ be an integral domain. If $M$ is a free 
-finitely generated module, we define
-the \emph{rank} of $M$ as the size of a basis of $M$. If $M$ is not finitely generated, 
-we say that the rank of $M$ is infinite. 
+$R$-module, we define
+the \emph{rank} of $M$ as the cardinality of any basis of $M$.
 \end{definition}
 
 The rank of a module $M$ will be denoted by $\rank(M)$.   
 
 \begin{exercise}
     \label{xca:fg+free}
-    Prove that a finitely-generated free modules have a finite basis. 
+    Prove that every finitely generated free module has a finite basis. 
 \end{exercise}
