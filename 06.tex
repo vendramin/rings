@@ -20,7 +20,7 @@ Note that $K[G]$ is commutative if and only if $G$ is abelian.
     \[
     \Sym_3=\{\id,(12),(13),(23),(123),(132)\}
     \]
-    the symmetric group in three letters. Every element of $\C[\Sym_3]$
+    be the symmetric group in three letters. Every element of $\C[\Sym_3]$
     is of the form 
     \[
     a\id+b(12)+c(13)+d(23)+e(123)+f(132)
@@ -78,9 +78,9 @@ polynomial rings $\R[X]$ and $\R[X,Y]$ and the matrix rings $M_n(\R)$.
 
 \begin{example}
 	Let $G=\langle g:g^3=1\rangle=\{1,g,g^2\}\simeq C_3$ be the cyclic group of order three. 
-	If $\alpha=a_11+_2g+a_3g^2$ and $\beta=b_11+b_2g+b_3g^2$, then
+	If $\alpha=a_11+a_2g+a_3g^2$ and $\beta=b_11+b_2g+b_3g^2$, then
 	\[
-		\alpha\beta=(a_1b_1+a_2b_3+a_3b_2)1+(a_1b_2+a_2b_1+a_3b_3)g+a_1b_3+a_2b_2+a_3b_1)g^2.
+		\alpha\beta=(a_1b_1+a_2b_3+a_3b_2)1+(a_1b_2+a_2b_1+a_3b_3)g+(a_1b_3+a_2b_2+a_3b_1)g^2.
 	\]
 	One can check that $\C[G]\simeq\C[X]/(X^3-1)$. 
 \end{example}
@@ -97,33 +97,49 @@ is isomorphic to $\C[X]/(X^n-1)$.
 	Let $G=\{1,g\}\simeq C_2$ be the cyclic group of order two. The product
 	of $\C[G]$ is 
 	\[
-	(a1+bg)(c1+gd)=(ac+bd)1+(ad+bc)g.
+	(a1+bg)(c1+dg)=(ac+bd)1+(ad+bc)g.
 	\]
 	Prove that the map 
  \[
  \C[G]\to \C\times \C,\quad a1+bg\mapsto (a+b,a-b),
  \]
-	is a linear isomorphism of rings. 
+	is a linear isomorphism of $\C$-algebras. 
 \end{exercise}
 
 \begin{exercise}
 	Let $K=\Z/2$ and $G=\{1,g\}\simeq C_2$ be the cyclic group of order two. 
 	Prove that the map 
- \[
- K[G]\to\begin{pmatrix}
-		K&K\\
-		0&K
-	\end{pmatrix},\quad 
- a1+bg\mapsto\begin{pmatrix}
-		a+b&b\\
-		0&a+b		
-	\end{pmatrix},
-    \]
-    is a linear isomorphism of rings.
+\[
+K[G]\longrightarrow
+\left\{
+\begin{pmatrix}
+x&y\\
+0&x
+\end{pmatrix}
+:x,y\in K
+\right\},
+\qquad
+a1+bg\longmapsto
+\begin{pmatrix}
+a+b&b\\
+0&a+b
+\end{pmatrix},
+\]
+% \[
+% K[G]\to\begin{pmatrix}
+%		K&K\\
+%		0&K
+%	\end{pmatrix},\quad 
+% a1+bg\mapsto\begin{pmatrix}
+%		a+b&b\\
+%		0&a+b		
+%	\end{pmatrix},
+%    \]
+    is a linear isomorphism of $K$-algebras. 
 \end{exercise}
 
 The group ring has the following property, which is left as an exercise. 
-Let $A$ be an algebra and
+Let $A$ be a $K$-algebra and
 $G$ be a finite group. If $f\colon G\to\mathcal{U}(A)$ is a group homomorphism, 
 then there exists a unique algebra homomorphism $\varphi\colon K[G]\to A$ such that
 $\varphi|_G=f$. 
@@ -134,7 +150,9 @@ $\varphi|_G=f$.
 	\[
 	\C[\D_3]\simeq\C\times\C\times M_2(\C).
 	\]
-	Let $\omega$ be a primitive cubic root of one. Let 
+  Let 	
+  $\omega$ be a primitive cubic root of unity. Let 
+  $A=\C\times\C\times M_2(\C)$ and  
 	\[
 	R=\begin{pmatrix}
 		\omega&0\\
@@ -150,9 +168,39 @@ $\varphi|_G=f$.
 		1&0\\
 		0&1	
 	\end{pmatrix}$. It follows that there exists a group homomorphism
-	$G\to\C\times\C\times M_2(\C)$ such that
-	$r\mapsto (1,1,R)$ and $s\mapsto (1,-1,S)$. This group homomorphism
-	is a ring isomorphism.  
+  $\D_3\to\mathcal{U}(A)$ such that 
+	$r\mapsto (1,1,R)$ and $s\mapsto (1,-1,S)$. This homomorphism
+  extends uniquely to an algebra homomorphism $\C[\D_3]\to A$.  
+  A direct calculation shows that the images of
+  \[
+  1,r,r^2,s,rs,r^2s
+  \]
+  are linearly independent. Since both algebras have dimension six,
+  $\C[\D_3]\simeq A$. 
+%	Let $\D_3=\langle r,s:r^3=s^2=1,\,srs^{-1}=r^{-1}\rangle$ be the dihedral
+%	group of six elements. We claim that 
+%	\[
+%	\C[\D_3]\simeq\C\times\C\times M_2(\C).
+%	\]
+%	Let $\omega$ be a primitive cubic root of one. Let 
+%	\[
+%	R=\begin{pmatrix}
+%		\omega&0\\
+%		0&\omega^2	
+%	\end{pmatrix},
+%	\quad
+%	S=\begin{pmatrix}
+%		0&1\\
+%		1&0
+%	\end{pmatrix}.
+% 	\]
+% 	One easily checks that $SRS^{-1}=R^{-1}$ and $R^3=S^2=\begin{pmatrix}
+%		1&0\\
+%		0&1	
+%	\end{pmatrix}$. It follows that there exists a group homomorphism
+%	$G\to\C\times\C\times M_2(\C)$ such that
+%	$r\mapsto (1,1,R)$ and $s\mapsto (1,-1,S)$. This group homomorphism
+%	is a ring isomorphism.  
 \end{example}
 
 
@@ -166,7 +214,7 @@ $\varphi|_G=f$.
 \end{definition}
 
 \index{Representation!degree}
-The \emph{degree} of the representation $\rho\colon G\to\GL(V)$ will be the dimension of $V$. 
+The \emph{degree} of the representation $\rho\colon G\to\GL(V)$ is the dimension of $V$. 
 
 Note that a representation $\rho\colon G\to\GL(V)$
 satisfies the following properties:
@@ -204,7 +252,7 @@ $\rho\colon G\to\GL(V)\simeq\GL_n(K)$ of $G$. Depending on the context, we will 
 		1&0\\
 		0&1	
 	\end{pmatrix}$. We claim that the elements of the form $(xy)^n$ are
-	different for all $n$. It is enough to show that   
+	different for all $n$. It is enough to show that if 
 	$(xy)^n=(xy)^m$, then $n=m$. Note that
 	\[
 	\rho_{xy}=\rho_x\rho_y=\begin{pmatrix}
@@ -325,8 +373,8 @@ for all $v\in V$ and $g\in G$.
 \begin{definition}
 	\index{Representations!equivalence}
     The representations $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ are \emph{equivalent}
-    if there exists a bijective linear 
-    map $T\colon V\to W$ invariant. 
+    if there exists a bijective invariant linear 
+    map $T\colon V\to W$. 
 \end{definition}
 
 If the representations $\rho$ and 
@@ -369,8 +417,8 @@ T\colon V\to\C^n,
 \quad
 \sum_{i=1}^n\lambda_iv_i\mapsto (\lambda_1,\dots,\lambda_n),
 \]
-be the isomorphism that takes coordinates 
-for the basis $B$. For each $g\in G$, 
+be the coordinate isomorphism determined by 
+the basis $B$. For each $g\in G$, 
 the composition of linear maps 
 % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXENebiJdLFsyLDAsIlYiXSxbMSwwLCJWIl0sWzMsMCwiXFxDXm4iXSxbMCwyLCJUXnstMX0iXSxbMiwxLCJcXHJob19nIl0sWzEsMywiVCJdLFswLDMsIiIsMix7ImN1cnZlIjozfV1d
 \[\begin{tikzcd}
@@ -381,7 +429,7 @@ the composition of linear maps
 \end{tikzcd}
 \]
 produces a representation 
-$\psi\colon G\to\GL(C^n)$
+$\psi\colon G\to\GL(\C^n)$
 of $G$ equivalent to $\rho$.   
 \end{example}
 
@@ -458,7 +506,7 @@ Degree-one representations are irreducible.
 
 The irreducibility 
 of a representation, of course, depends on the base field. 
-In the following example, it is crucial using real representations.
+In the following example, it is crucial to use a real representation.
 
 \begin{example}
     Let $G=\langle g:g^3=1\rangle$ be the
@@ -483,7 +531,10 @@ In the following example, it is crucial using real representations.
     z
     \end{pmatrix}\in\R^3:x+y+z=0\right\}
     \]
-    is an invariant subspace of $\R^3$. We claim that $W$ 
+    is an invariant subspace of $\R^3$. We claim that the restricted representation 
+    \[
+      \rho|_W\colon G\to\GL(W)
+    \]
     is irreducible. Let $S$ be a non-zero invariant subspace of 
     $W$ and let $s=\begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}\in S$ be a non-zero element. Then
     \[
@@ -553,9 +604,8 @@ the \emph{direct sum} $\rho\oplus\psi$ of $\rho$ and $\psi$ is then
 \rho\oplus\psi\colon G\to\GL(V\oplus W),\quad
 g\mapsto (\rho\oplus\psi)_g,
 \]
-where $(\rho\oplus\psi)_g\colon V\oplus W\to V\oplus W$, 
-$(v,w)\mapsto (\rho_g(v),\psi_g(w))$. Note that both 
-$V\simeq V\oplus\{0\}$ and $W\simeq \{0\}\oplus W$ are
+where $(\rho\oplus\psi)_g\colon V\oplus W\to V\oplus W$, $(v,w)\mapsto
+(\rho_g(v),\psi_g(w))$. Note that both $V\oplus\{0\}$ and $\{0\}\oplus W$ are
 invariant subspaces of $V\oplus W$. 
 
 \begin{definition}
@@ -563,8 +613,18 @@ invariant subspaces of $V\oplus W$.
     A representation $\rho\colon G\to\GL(V)$ is said to be 
     \emph{completely reducible}
     if $\rho$ can be decomposed as
-    $\rho=\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible
-    representations $\rho_1,\dots,\rho_n$ of $G$. 
+    $\rho\simeq\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible
+    representations $\rho_1,\dots,\rho_n$ of $G$.
+Equivalently, 
+there exist invariant subspaces $V_1,\dots,V_n$ such that
+\[
+V=V_1\oplus\cdots\oplus V_n
+\]
+and every restricted representation
+\[
+\rho|_{V_i}\colon G\to\GL(V_i)
+\]
+is irreducible.
 \end{definition}
 
 Note that if $\rho\colon G\to\GL(V)$ is completely reducible and 
@@ -608,7 +668,7 @@ A representation is
 
 Let $V$ be a vector space with basis $\{v_1,\dots,v_k\}$ and 
 $W$ be a vector space with basis $\{w_1,\dots,w_l\}$. A 
-\emph{tensor product} of $V$ and $W$ is a vector space $X$ with 
+\emph{tensor product} of $V$ and $W$ is a vector space $X$ 
 together with a bilinear map 
 \[
 V\times W\to X,
@@ -624,7 +684,7 @@ and is denoted by $V\otimes W$. Note that
 Moreover, every element of $V\otimes W$ is a finite sum 
 of the form
 \[
-\sum_{i,j}\lambda_{ij}v_i\otimes v_j
+\sum_{i,j}\lambda_{ij}v_i\otimes w_j
 \]
 for some scalars $\lambda_{ij}\in\C$. It is important to remark that elements 
 of $V\otimes W$ are not always of the form $v\otimes w$ for $v\in V$ and $w\in W$. 
@@ -647,8 +707,7 @@ For example,
 	\quad 
 	g\mapsto (\rho\otimes\psi)_g,
 	\shortintertext{where}
-	(\rho\otimes\psi)_g\left (\sum_{i,j}\lambda_{ij} v_i\otimes w_j\right)=\sum_{i,j}\lambda_{ij} \rho_g(v_i)\otimes \psi_g(w_j),\quad 
-    i\in\{1,\dots,n\},\, j\in\{1,\dots,m\}. 
+	(\rho\otimes\psi)_g\left (\sum_{i,j}\lambda_{ij} v_i\otimes w_j\right)=\sum_{i,j}\lambda_{ij} \rho_g(v_i)\otimes \psi_g(w_j).
 	\end{gather*} 	
 \end{definition}
 
@@ -668,7 +727,8 @@ that satisfies the following properties:
 \begin{enumerate}
     \item $\langle y,x\rangle=\overline{\langle x,y\rangle}$ for all $x,y\in V$, where $\overline{a+bi}=a-bi$ denotes the complex conjugate.
     \item $\langle ax+by,z\rangle=a\langle x,z\rangle+b\langle y,z\rangle$ for all $x,y,z\in V$ and $a,b\in\C$.
-    \item $\langle x,x\rangle>0$ for all $x\in V$ and $\langle x,x\rangle=0$ if $x=0$. 
+    \item $\langle x,x\rangle\geq0$ for all $x\in V$, and 
+      $\langle x,x\rangle=0$ if and only if $x=0$.
 \end{enumerate}
 
 For example, if $V=\C^n$, $v=\colvec{3}{v_1}{\vdots}{v_n}\in V$ and $w=\colvec{3}{w_1}{\vdots}{w_n}\in V$, 
@@ -711,7 +771,7 @@ the representation $L$ is unitary. Prove it!
 
 
 
-If $V$ is a vector space and $W$ is a subspace of $V$, 
+If $V$ is an inner-product vector space and $W$ is a subspace of $V$, 
 \[
 W^\perp = \{v\in V:\langle v,w\rangle=0\text{ for all $w\in W$}\}, 
 \]
@@ -736,24 +796,29 @@ irreducible or decomposable.
 	\langle \rho_g(v),w\rangle=\langle v,\rho_g^{-1}(w)\rangle=0   
 	\]
 	since $\rho_g^{-1}(w)\in W$, as $W$ is an invariant subspace of $V$. This means that 
-	$\rho_g(v)\in W^\perp$ and hence $V=W\oplus W^{\perp}$ is decomposable.  
+	$\rho_g(v)\in W^\perp$ and hence $\rho$ is decomposable. 
+  %$V=W\oplus W^{\perp}$ is decomposable.  
 \end{proof}
 
 \section{Weyl's trick} 
 
-The following theorem is known as the \emph{Weyl trick}. 
-
 \begin{theorem}[Weyl]
 \index{Weyl's!trick}
 \index{Weyl's!theorem}
-    Every representation $\rho\colon G\to\GL_n(\C)$ 
-    of a finite group is unitary.
+    Every representation $\rho\colon G\to\GL(V)$ 
+    of a finite group is unitarizable, that is 
+    $V$ admits an inner
+    product such that
+    \[
+    \langle\rho_gv,\rho_gw\rangle=\langle v,w\rangle
+    \]
+    for all $g\in G$ and $v,w\in V$.
 \end{theorem}
 
 \begin{proof}
-    Let $V=\C^n$ and 
-    $V\times V\to\C$, $(v,w)\mapsto v\cdot w$, be an\footnote{It does not matter which inner product we have chosen, we can safely use, for example, the usual inner product of \eqref{eq:inner_product}.} inner
-    product on $V$. 
+    Let $V\times V\to\C$, $(v,w)\mapsto v\cdot w$, be an\footnote{It does not
+    matter which inner product we have chosen, we can safely use, for example,
+  the usual inner product of \eqref{eq:inner_product}.} inner product on $V$. 
    
     A straightforward calculation shows that
     \[
@@ -763,7 +828,7 @@ The following theorem is known as the \emph{Weyl trick}.
     \begin{align*}
     \langle v,w+w_1\rangle&=\sum_{g\in G}\rho_gv\cdot\rho_g(w+w_1)\\
     &=\sum_{g\in G}\rho_gv\cdot \left(\rho_gw+\rho_gw_1\right)\\
-    &=\sum_{g\in G}\rho_gv\cdot \rho_gw+\rho_gv\cdot\rho_gw_1\\
+    &=\sum_{g\in G}\left(\rho_gv\cdot \rho_gw+\rho_gv\cdot\rho_gw_1\right)\\
     &=\sum_{g\in G}\rho_gv\cdot \rho_gw+\sum_{g\in G}\rho_gv\cdot \rho_gw_1\\
     &=\langle v,w\rangle+\langle v,w_1\rangle 
     \end{align*}
@@ -774,13 +839,14 @@ The following theorem is known as the \emph{Weyl trick}.
     \langle\rho_gv,\rho_gw\rangle&=\sum_{h\in G}(\rho_h\rho_gv)\cdot(\rho_h\rho_gw)\\
     &=\sum_{h\in G}(\rho_{hg}v)\cdot(\rho_{hg}w)=\sum_{x\in G}(\rho_xv)\cdot(\rho_xw)=\langle v,w\rangle,
     \end{align*}
-    the representation $\rho$ is unitary.
+    the representation $\rho$ is unitary with respect to the newly 
+    constructed inner product. 
 \end{proof}
 
 \begin{example}
     Let $A=\begin{pmatrix}
         -1 & -1\\
-        -1 & 0
+        1 & 0
     \end{pmatrix}$. Since $A^3=I$, we can use this matrix to 
     represent the (multiplicative) cyclic group 
     \[
@@ -828,10 +894,12 @@ Weyl's trick has several interesting consequences:
 \end{corollary}
 
 \begin{proof}
-	The first claim follows from Example \ref{xca:change_of_basis} and 
-	Weyl's trick. The second claim, from 1) and
-	Proposition \ref{pro:irr_or_dec}. Finally, 3) follows 
-	from Weyl's trick immediately, as unitary matrices are diagonalizable.  
+  The first assertion follows by choosing an orthonormal basis for the
+  invariant inner product supplied by Weyl's unitary trick.  The second follows
+  from 1), Proposition \ref{pro:irr_or_dec}, and Exercise
+  \ref{xca:equivalence}.  Finally, with respect to an orthonormal basis for the
+  invariant inner product, every $\rho_g$ is unitary and hence diagonalizable.
+  Therefore $\rho_g$ is diagonalizable. 
 \end{proof}
 
 \begin{exercise}
@@ -840,5 +908,5 @@ Weyl's trick has several interesting consequences:
     is either irreducible or decomposable. Find an example.
 \end{exercise}
 
-For the previous exercise. consider the representation $\Z\to\GL_2(\C)$, 
+For the previous exercise, consider the representation $\Z\to\GL_2(\C)$, 
 $1\mapsto\begin{pmatrix}1&1\\0&1\end{pmatrix}$. 

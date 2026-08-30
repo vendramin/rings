@@ -1,6 +1,5 @@
 %\section{Lecture -- Week 1}
 
-
 \section{Rings}
 
 The objective of the next five lectures is to extract certain properties inherent to integers and adapt them for broader applications. Initially, we will identify similarities between the ring of integers and the ring of real polynomials, 
@@ -125,7 +124,7 @@ Let $R$ be a ring. Prove the following facts:
     \[
     (ab)_{ij}=\sum_{k=1}^n a_{ik}b_{kj}.
     \]
-    Note that $M_n(\R)$ is conmutative if and only if $n=1$. 
+    Note that $M_n(\R)$ is commutative if and only if $n=1$. 
 \end{example}
 
 Similarly, for any ring $R$ one defines the ring $M_n(R)$ of $n\times n$ matrices
@@ -133,9 +132,9 @@ with coefficients in $R$.
 
 \begin{example}
 \label{exa:direct_rings}
-    \index{Product direct of rings}
+    \index{Direct product of rings}
     Let $R$ and $S$ be rings. Then 
-    $R\times S=(\{(r,s):r\in R,s\in S\}$ 
+    $R\times S=\{(r,s):r\in R,s\in S\}$ 
     is a ring with the operations 
     \[
     (r,s)+(r_1,s_1)=(r+r_1,s+s_1),\quad 
@@ -149,16 +148,16 @@ with coefficients in $R$.
 \begin{definition}
 \index{Subring}
     Let $R$ be a ring. A \emph{subring} $S$ of $R$ is a subset $S$ such that
-    $(S,+)$ is a subgroup of $(R,+)$ such that $1\in S$ and 
+    $(S,+)$ is a subgroup of $(R,+)$ with $1\in S$ and 
     if $x,y\in S$, then $xy\in S$. 
 \end{definition}
 
 For example, $\Z\subseteq\Q\subseteq\R\subseteq\C$ is a chain of subrings. 
 
 \begin{example}
-    \index{Gauss integers}
+    \index{Gaussian integers}
     $\Z[i]=\{a+bi:a,b\in\Z\}$ is a subring of $\C$. 
-    This is known as the ring of \emph{Gauss integers}.  
+    This is known as the ring of \emph{Gaussian integers}.  
 \end{example}
 
 A \emph{square-free} integer is an integer that is divisible by 
@@ -166,11 +165,11 @@ no perfect square other than 1. Some examples: 2, 3, 5, 6, 7, and 10.
 The numbers 4, 8, 9, and 12 are not square-free. 
 
 \begin{example}
-	Let $N$ be a square-free integer. Then $\Z[\sqrt{N}]$ is
+	Let $N>1$ be a square-free integer. Then $\Z[\sqrt{N}]$ is
 	a subring of $\C$.  	
 \end{example}
 
-If $N$ is a square-free integer, then 
+If $N>1$ is a square-free integer, then 
 $a+b\sqrt{N}=c+d\sqrt{N}$ in $\Z[\sqrt{N}]$ 
 if and only if $a=c$ and $b=d$. Why?
 
@@ -178,8 +177,10 @@ if and only if $a=c$ and $b=d$. Why?
     $\Q[\sqrt{2}]=\{a+b\sqrt{2}:a,b\in\Q\}$ is a subring of $\R$. 
 \end{example}
 
-Why in the ring $\Q[\sqrt{2}]$ 
-equality $a+b\sqrt{2}=c+d\sqrt{2}$ implies $a=c$ and $b=d$?
+Why does the 
+equality $a+b\sqrt{2}=c+d\sqrt{2}$ in 
+$\Q[\sqrt{2}]$
+imply $a=c$ and $b=d$? 
 
 \begin{example}
     \index{Center!of a ring}
@@ -211,13 +212,19 @@ is the additive inverse of $s$ as an element of $R$.
 	a \emph{unit} if there exists $y\in R$ such that $xy=yx=1$. 
 \end{definition}
 
-The set $\mathcal{U}(R)$ of units of a ring $R$ form 
-a group with the multiplication. For example, $\mathcal{U}(\Z)=\{-1,1\}$ and 
+The set $\mathcal{U}(R)$ of units of a ring $R$ forms  
+a group under multiplication. For example, $\mathcal{U}(\Z)=\{-1,1\}$ and 
 $\mathcal{U}(\Z/8)=\{1,3,5,7\}$. 
 
 \begin{exercise}
 \label{xca:units_R[X]}
 Compute $\mathcal{U}(\R[X])$.
+\end{exercise}
+
+\begin{exercise}
+  \label{xca:units}
+  Let $R$ be a commutative ring and $x_1,\dots,x_n\in R$.  Prove that if
+  $x_1\cdots x_n$ is a unit, then each $x_j$ is a unit. 
 \end{exercise}
 
 \begin{definition}
@@ -227,8 +234,8 @@ Compute $\mathcal{U}(\R[X])$.
 \end{definition}
 
 \index{Quaternions}
-The ring $H(\R)$ of \emph{real quaternions} is a non-commutative division ring. Find the inverse of
-an arbitrary element $a1+bi+cj+dk\in H(\R)$. 
+The ring $H(\R)$ of \emph{real quaternions} is a non-commutative division ring.
+Find the inverse of an arbitrary non-zero element $a1+bi+cj+dk\in H(\R)$. 
 
 \begin{definition}
 \index{Field}
@@ -261,8 +268,8 @@ is a field. What is the inverse of a non-zero element of the form $x+y\sqrt[3]{2
 \end{definition}
 
 \index{Ideal!right}
-Similarly, one defines \emph{right ideals}, one needs 
-to replace the condition $RI\subseteq I$ by 
+Similarly, one defines \emph{right ideals} replacing 
+the condition $RI\subseteq I$ by 
 the inclusion 
 $IR\subseteq I$. 
 
@@ -277,7 +284,7 @@ x & y\\
 0 & 0
 \end{array}\right):x,y\in\mathbb{R}\right\} 
 \]
-is a right ideal $R$ that is not a left ideal. 
+is a right ideal of $R$ that is not a left ideal. 
 \end{example}
 
 Can you find an 
@@ -465,9 +472,11 @@ $2\Z$ is an ideal of $\Z$ but not an ideal of $\Z[X]$.
 \end{example}
 
 \begin{example}
-    Let $R$ and $S$ be rings and $R\times S$ be the direct product (see Example~\ref{exa:direct_rings}). 
-    The map $R\to R\times S$, $r\mapsto (r,0)$ is an injective ring homomorphism. The 
-    map 
+    Let $R$ be a ring and $R\times R$ be the direct product (see
+    Example~\ref{exa:direct_rings}).  The map $R\to R\times R$, $r\mapsto
+    (r,r)$ is an injective ring homomorphism. 
+
+    For a ring $S$, the map 
     \[
     \pi_R\colon R\times S\to R,\quad (r,s)\mapsto r,
     \]
@@ -475,13 +484,13 @@ $2\Z$ is an ideal of $\Z$ but not an ideal of $\Z[X]$.
 \end{example}
 
 \begin{example}
-	The map $\C\to M_2(\R)$, $a+bi\mapsto\begin{pmatrix}a&b\\-b&a\end{pmatrix}$, is an injective
-	ring homomorphism. 	
+  The map $\C\to M_2(\R)$, $a+bi\mapsto\begin{pmatrix}a&b\\-b&a\end{pmatrix}$,
+  is an injective ring homomorphism. 	
 \end{example}
 
 \begin{example}
 The map $\Z[i]\to\Z/5$, $a+bi\mapsto a+2b\bmod 5$, is a ring homomorphism 
-with $\ker f=\{a+bi:a+2b\equiv 0\bmod 5\}$. 	
+with kernel $\{a+bi:a+2b\equiv 0\bmod 5\}$. 	
 \end{example}
 
 \begin{exercise}
@@ -493,7 +502,7 @@ There is no ring homomorphism $\Z/6\to\Z/15$. Why?
 \label{xca:evaluation_map}
 If $f\colon\R[X]\to\R$ is a ring homomorphism 
 such that the restriction $f|_{\R}$ of 
-$f$ onto $\R$ is the identity, then there exists $x_0\in\R$ such that 
+$f$ to $\R$ is the identity, then there exists $x_0\in\R$ such that 
 $f$ is the evaluation map at~$x_0$. 
 \end{exercise}
 

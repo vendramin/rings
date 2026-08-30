@@ -56,7 +56,7 @@ if every ideal of $R$ is finitely generated.
 	$\{0\}\subsetneq I_1\subsetneq I$. Let $x_2\in I\setminus I_1$. Then
 	$I_2=(x_1,x_2)$ is a finitely generated ideal such that 
 	$I_1\subsetneq I_2\subsetneq I$. We continue with this 
-	procedure. Once I have the ideals $I_1,\dots,I_{k-1}$, let 
+	procedure. Once we have the ideals $I_1,\dots,I_{k-1}$, let 
 	$x_k\in I\setminus I_{k-1}$ (such an element exists because $I_{k-1}$ is finitely generated
 	and $I$ is not) and $I_k=(I_{k-1},x_k)$. The sequence
 	$\{0\}\subsetneq I_1\subsetneq I_2\subsetneq\cdots$ does not stabilize.  
@@ -65,22 +65,28 @@ if every ideal of $R$ is finitely generated.
 	let $I_1\subseteq I_2\subseteq\cdots$ be a sequence of ideals of $R$. Then
 	$I=\cup_{i\geq1}I_i$ is an ideal of $R$, so it is finitely generated, say
 	$I=(x_1,\dots,x_n)$. We may assume that $x_j\in I_{i_j}$ for all $j$. Let 
-	$N=\max\{j_1,\dots,j_n\}$. Then 
+	$N=\max\{i_1,\dots,i_n\}$. Then 
 	$x_j\in I_N$ for all $j\in\{1,\dots,n\}$ 
 	and hence $I\subseteq I_N$. This implies that 
 	$I_m=I_N$ for all $m\geq N$. 
 \end{proof}
 
 \begin{exercise}
-	Let $R=\C[X_1,X_2,\cdots]$ be the ring of polynomial in an infinite number of 
-	commuting variables. 
+	Let $R=\C[X_1,X_2,\cdots]$ be the ring of polynomials in 
+  countably infinitely many commuting
+  variables. 
 	Every element of $R$ is a finite sum
 	of the form 
 	\[
 	\sum a_{i_1i_2\cdots i_k}X_{i_1}^{n_1}X_{i_2}^{n_2}\cdots X_{i_k}^{n_k}
 	\]
-	for some non-zero complex numbers 
-	$a_{i_1i_2\cdots i_k}$. 
+	for some complex numbers 
+	$a_{i_1i_2\cdots i_k}$. In particular, 
+  for every $f\in R$ there exists $n\geq1$
+  such that
+  \[
+  f\in\C[X_1,\dots,X_n].
+  \]
 	Prove that the ideal $I=(X_1,X_2,\dots)$ of polynomials 
 	with zero constant term is not finitely generated. 
 \end{exercise}
@@ -114,7 +120,7 @@ Since $\Z$ is noetherian, $\Z/n$ is noetherian for all $n\geq2$.
 Hint: Use the fact that $\R[X]$ is a principal domain (Exercise \ref{xca:R[X]_principal}).  
 
 \begin{theorem}[Hilbert]
-\index{Hilbert's theorem}
+\index{Hilbert's basis theorem}
 	Let $R$ be a commutative ring. If $R$ is a noetherian ring, then $R[X]$ is noetherian.	
 \end{theorem}
 
@@ -132,8 +138,9 @@ Hint: Use the fact that $\R[X]$ is a principal domain (Exercise \ref{xca:R[X]_pr
 	that such an $f_i(X)$ exists because $I$ is not finitely generated). 
 	Moreover, $n_i\geq n_{i-1}$. This happens because 
 	if $n_i<n_{i-1}$, then
-	$f_i(X)\not\in (f_1(X),\dots,f_{i-1}(X))$, which contradicts
+	$f_i(X)\not\in (f_1(X),\dots,f_{i-2}(X))$, which contradicts
 	the minimality of $n_{i-1}=\deg f_{i-1}(X)$. 
+
 	For each $i\geq1$ 
 	let $a_i$ be the leading coefficient of $f_i(X)$, that is
 	\[
@@ -145,7 +152,7 @@ Hint: Use the fact that $\R[X]$ is a principal domain (Exercise \ref{xca:R[X]_pr
 	
 	Let $J=(a_1,a_2,\dots)$. Since $R$ is noetherian, the sequence
 	\[
-	(a_1)\subseteq (a_1,a_2)\subseteq\cdots(a_1,a_2,\dots,a_k)\subseteq\cdots
+	(a_1)\subseteq (a_1,a_2)\subseteq\cdots\subseteq(a_1,a_2,\dots,a_k)\subseteq\cdots
 	\]
 	stabilizes, so we may assume that 
 	$J=(a_1,\dots,a_m)$ for some $m\in\Z_{>0}$. 
@@ -160,7 +167,7 @@ Hint: Use the fact that $\R[X]$ is a principal domain (Exercise \ref{xca:R[X]_pr
 	The leading coefficient of $g(X)$ is $\sum_{i=1}^mu_ia_i=a_{m+1}$ and, moreover, 
 	the degree of $g(X)$ is $n_{m+1}$. Thus $\deg(g(X)-f_{m+1}(X))<n_{m+1}$. 
 	
-	Since $f_{m+1}(X)\not\in (f_1(X)\dots,f_m(X))$, 
+	Since $f_{m+1}(X)\not\in (f_1(X),\dots,f_m(X))$, 
 	\[
 	g(X)-f_{m+1}(X)\not\in (f_1(X),\dots,f_m(X)),
 	\]
@@ -172,7 +179,7 @@ one proves that if $R$ is a commutative noetherian ring,
 then $R[X_1,\dots,X_n]$ is noetherian. 
  
 \begin{example}
-    Let $N>0$ be a square-free integer.  
+    Let $N>1$ be a square-free integer.  
 	Since $\Z$ is noetherian, so is $\Z[X]$ by Hilbert's theorem. Now 
 	$\Z[\sqrt{N}]$ is noetherian, as \[
     \Z[\sqrt{N}]\simeq\Z[X]/(X^2-N)
@@ -219,9 +226,9 @@ integers modulo 4 is not an integral domain.
     The ring $\Z/12$ is not a domain. Weird things can happen 
     when we work over these rings. For example, the degree-two  
     $f(X)=X^2-4\in(\Z/12)[X]$ has more than two roots, 
-    as $f(2)=f(8)=f(10)=0$. In fact, 
+    $f(2)=f(4)=f(8)=f(10)=0$. In fact,
     \[
-    f(X)=(X-2)(X-10)=(X-8)(X-10).
+    f(X)=(X-2)(X-10)=(X-4)(X-8)
     \]
 \end{example}
 
@@ -271,19 +278,19 @@ Note that $x$ and $y$ are associate if and only if $(x)=(y)$.
 	and $x=ab$ with $a,b\in R$ implies that $a\in\mathcal{U}(R)$ or $b\in\mathcal{U}(R)$. 
 \end{definition}
 
-Note that $x\in R$ is irreducible if and only if $(x)\ne R$ 
+Note that a non-zero $x\in R$ is irreducible if and only if $(x)\ne R$ 
 and there is no principal ideal $(y)$ such that 
 $(x)\subsetneq (y)\subsetneq R$.
 
 \begin{example}
-	Let $R=\R[X]$ and $f(X)\in R\setminus\{0\}$. Then the polynomial $f(X)$ is irreducible if 
-	$\lambda\in\R^{\times}$ or $\lambda f(X)$ for $\lambda\in\R^{\times}$ 
-	are the only divisors
-	of $f(X)$.  
+  Let $f(X)\in\R[X]$ be non-constant. Then $f(X)$ is irreducible if and only if
+  every divisor of $f(X)$ is either a non-zero constant or an associate
+  $\lambda f(X)$, where $\lambda\in\R^\times$.
 \end{example}
 
-The irreducibles of $\Z$ are the prime numbers. Note that $p\in \Z$
-is prime if and only if $p\mid xy$ then $p\mid x$ or $p\mid y$. 
+Up to associates, the irreducibles of $\Z$ are the prime numbers. Note that a
+non-zero non-unit $p\in \Z$ is prime if and only if $p\mid xy$ implies $p\mid x$
+or $p\mid y$. 
 
 \begin{example}
     The polynomial $X^4+1\in\Z[X]$ is irreducible. If not, 
@@ -338,14 +345,14 @@ $xy\in (p)$ implies that $x\in (p)$ or $y\in (p)$.
 	$xz=1$ and hence $x\in\mathcal{U}(R)$. 
 \end{proof}
 
-In $\Z$ primes and irreducible coincide. 
+In $\Z$ primes and irreducibles coincide. 
 This does not happen in full generality. 
 To show that there are rings where some irreducibles are not prime, 
 we need the following lemma. 
 
 \begin{lemma}
 \label{lem:norm}
-Let $N\in\Z$ be a non-zero square-free integer and $R=\Z[\sqrt{N}]$. Then 
+Let $N\ne1$ be a non-zero square-free integer and $R=\Z[\sqrt{N}]$. Then 
 the map 
 \[
 	\operatorname{norm}\colon R\to\Z_{\geq0},

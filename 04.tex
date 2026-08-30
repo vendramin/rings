@@ -34,7 +34,7 @@
   \[
   (1+\sqrt{-3})(1-\sqrt{-3})=4,
   \]
-  then 
+  so  
 		$x$ divides $4=2\cdot 2$. But $1+\sqrt{-3}\nmid 2$, as 
 		\[
 		(a-3b)+(a+b)\sqrt{-3}=(1+\sqrt{-3})(a+b\sqrt{-3})=2
@@ -65,7 +65,7 @@
 
 An ideal $I$ of the form $I=(x)$ for some $x$ is called a \emph{principal ideal}. 
 
-The rings $\Z$ and $\R[X]$ are both principal. 
+The rings $\Z$ and $\R[X]$ are both principal ideal domains. 
 
 \begin{example}
 	The ring $\Z[X]$ is not principal. For example, the ideal
@@ -73,11 +73,11 @@ The rings $\Z$ and $\R[X]$ are both principal.
 	
 	First note that $I\ne\Z[X]$. In fact, if $I=\Z[X]$, then 
 	$1=2f(X)+Xg(X)$ for some polynomials $f(X),g(X)\in\Z[X]$. Then 
-	$1=2f(0)$, which implies that $-1/2=f(0)\in\Z$, a contradiction. 
+	$1=2f(0)$, which implies that $1/2=f(0)\in\Z$, a contradiction. 
 	
 	If $I=(h(X))$ for some $h(X)\in\Z[X]$, then $2=h(X)g(X)$ for some $g(X)\in\Z[X]$. This
 	implies that $\deg(h(X))=0$, so $h(X)=h(1)\in\Z$. In particular, $2=h(1)g(1)$ and hence
-	$h(1)\in\{-1,1,2,2\}$. Since $I\ne\Z[X]$, it follows that $h(X)=h(1)\not\in\{-1,1\}$. Now      
+	$h(1)\in\{-1,1,-2,2\}$. Since $I\ne\Z[X]$, it follows that $h(X)=h(1)\not\in\{-1,1\}$. Now      
 	$X=h(X)f(X)$ for some $f(X)\in\Z[X]$. In particular, $\deg(f(X))=1$, so
 	we may assume that $f(X)=a_0+a_1X$ for $a_0,a_1\in\Z$ and $a_1\ne 0$. 	
 	It follows that 
@@ -135,11 +135,11 @@ Sometimes primes and irreducibles coincide.
 	in $R$. Thus $I=(x)=(a)$ and hence $xt=y$ for some $t\in R$, that is $x\mid y$.  
 \end{proof}
 
-In the integers primes and irreducible coincide. This happens 
+In the integers primes and irreducibles coincide. This happens 
 because $\Z$ is a principal domain.
 
 \begin{example}
-	Since $\Z[\sqrt{-3}]$ have irreducible elements that are not prime, 
+	Since $\Z[\sqrt{-3}]$ has irreducible elements that are not prime, 
 	$\Z[\sqrt{-3}]$ is not a principal domain.
 \end{example}
 
@@ -169,13 +169,20 @@ The previous examples suggest why for the definition of a euclidean domain one n
 consider a map $\varphi\colon R\setminus\{0\}\to\Z_{\geq0}$. 
 
 \begin{example}
-	Let $R=\Z[i]$. Then $R$ is a euclidean domain with $\varphi(a+bi)=a^2+b^2$. Note that
- in this case, $\varphi$ is a multiplicative function in $\C$, that is
- \[
- \varphi(\alpha\beta)=\varphi(\alpha)\varphi(\beta)
- \]
- for all $\alpha,\beta\in\C$. 
- 
+  Let $R=\Z[i]$. Define
+  \[
+    \varphi\colon\C\to\R_{\geq0},\quad
+    \varphi(a+bi)=a^2+b^2.
+  \]
+  Its restriction to $R\setminus\{0\}$ takes values in $\Z_{\geq0}$. 
+  We claim that $\varphi$ is a euclidean function on $R$. Note that 
+  $\varphi$ is multiplicative, 
+  that is
+  \[
+    \varphi(\alpha\beta)=\varphi(\alpha)\varphi(\beta)
+  \]
+  for all $\alpha,\beta\in\C$. 
+
  	Let $\alpha,\beta\in\Z[i]$ and assume that $\beta\ne0$. 
 	We want to find $\gamma,\delta\in\Z[i]$ such that 
 	\[
@@ -188,6 +195,25 @@ consider a map $\varphi\colon R\setminus\{0\}\to\Z_{\geq0}$.
     \quad 
     \varphi(\gamma/\beta)<1. 
     \]
+
+%Define
+%\[
+%N_{\C}\colon\C\to\R_{\geq0},\qquad N_{\C}(z)=|z|^2.
+%\]
+%Then $N_{\C}(zw)=N_{\C}(z)N_{\C}(w)$ for all $z,w\in\C$,
+%and the restriction of $N_{\C}$ to $\Z[i]\setminus\{0\}$ is the
+%Euclidean function
+%\[
+%\varphi(a+bi)=a^2+b^2.
+%\]
+%\begin{align*}
+%\varphi(\gamma)
+%&=\varphi(\beta)\,
+%  N_{\C}\left(\frac{\alpha}{\beta}-\delta\right)\\
+%&=\varphi(\beta)\bigl((r-m)^2+(s-n)^2\bigr)\\
+%&\leq\frac12\varphi(\beta)
+%<\varphi(\beta).
+%\end{align*}
     
     Note that every complex
 	number $z\in\C$ can be written\footnote{For example, 
@@ -243,13 +269,24 @@ consider a map $\varphi\colon R\setminus\{0\}\to\Z_{\geq0}$.
 	\end{align*}	
 \end{example}
 
-
-
 In $\Z[i]$ the division algorithm does not have uniqueness. In fact, 
-if $\alpha,\beta\in\Z[i]$ and $\alpha=\beta\delta+\gamma$ 
-for some $\delta,\gamma\in\Z[i]$, 
-then there are up to four possibilities 
-for the remainder $\gamma$.
+for fixed $\alpha,\beta\in\Z[i]$ with $\beta\ne0$, there are
+at most four pairs $\delta,\gamma\in\Z[i]$ satisfying
+\[
+\alpha=\beta\delta+\gamma
+\quad\text{and}\quad
+\varphi(\gamma)<\varphi(\beta).
+\]
+Indeed, write $\alpha/\beta=r+is$ and $\delta=m+in$, where
+$r,s\in\R$ and $m,n\in\Z$. Then
+\[
+\varphi\left(\frac{\alpha}{\beta}-\delta\right)
+=\frac{\varphi(\gamma)}{\varphi(\beta)}<1.
+\]
+Hence $|r-m|<1$ and $|s-n|<1$. There are at most two possible
+integers $m$ and at most two possible integers $n$. Moreover,
+$\gamma=\alpha-\beta\delta$ is determined by $\delta$. Thus there
+are at most four possible pairs $(\delta,\gamma)$.
 
 \begin{example}
 	Let $R=\Z[i]$ and 
@@ -260,7 +297,7 @@ for the remainder $\gamma$.
 	\]  
 	This allows us to draw the lattice of elements of $I$, 
 	that is the lattice formed by the multiples of $\beta$, see Figure~\ref{fig:Z[i]}. 
-	Since $\alpha-\gamma\in I=(\beta)$, there are at most four possibilities for writing
+	By the preceding observation, there are at most four possibilities for writing
 	the division algorithm. 
 	In our particular example, we find three possible cases:
 	\begin{enumerate}
@@ -275,7 +312,7 @@ for the remainder $\gamma$.
 			\[
 			-1+i=(1+2i)i+1
             \]
-			with $\norm(-1)=1<\norm(\beta)=5$. 
+			with $\norm(1)=1<\norm(\beta)=5$. 
 		\item If $\alpha-\gamma=\beta_2$, where $-1+3i=\beta_2=\beta (1+i)$, 
 			then $\gamma=-2i$ and  
 			\[
@@ -319,8 +356,12 @@ The following result takes advantage of this fact.
 	it is principal. So we may
 	assume that $I\ne\{0\}$. Let $y\in I\setminus\{0\}$ be such that
 	$\varphi(y)$ is minimal. We claim that $I=(y)$. 
-	If $z\in I$, then $z=yq+r$, where $r=0$ or $\varphi(r)<\varphi(y)$. 
-	The minimality of $\varphi(y)$ implies that $r=0$. Thus $z=yq\in (y)$ and 
+	If $z\in I$, then $z=yq+r$, where $r=0$ or $\varphi(r)<\varphi(y)$.
+  Since
+  \[
+  r=z-yq\in I,
+  \]
+	the minimality of $\varphi(y)$ implies that $r=0$. Thus $z=yq\in (y)$ and 
 	it follows that 
 	$I=(y)$. 
 \end{proof}
@@ -350,11 +391,11 @@ see \cite{MR967349}, \cite{MR3665445} or \cite{MR314831}.
 	\end{enumerate}
 \end{definition}
 
-It is important to remark that some rings 
-have factorizations and this factorization is not unique. 
-In fact, if $N$ is a square-free integer, $\Z[\sqrt{N}]$ is noetherian and hence it   
-has factorization. 
-However, not all these rings admit are unique factorization domains. 
+It is important to remark that some rings admit factorizations
+into irreducibles, but these factorizations need not be unique.
+Indeed, if $N$ is square-free, then $\Z[\sqrt{N}]$ is noetherian
+and hence admits factorizations into irreducibles. However, not
+all of these rings are unique factorization domains.
 
 \begin{example}
 	The ring $R=\Z[\sqrt{-6}]$ is not a unique factorization domain. In fact,
@@ -363,8 +404,10 @@ However, not all these rings admit are unique factorization domains.
 	\]	
 	Note that $\norm(a+b\sqrt{-6})=a^2+6b^2\ne 2$. This implies that $2$ is irreducible, as 
 	if $2=\alpha\beta$, then $4=\norm(2)=\norm(\alpha)\norm(\beta)$. 
-	Similarly, $5$ is irreducible. It is an exercise to prove that 
-	$2+\sqrt{-6}$ and $2-\sqrt{-6}$ are both irreducible. 
+	Similarly, $5$ is irreducible.
+  It remains to verify that $2+\sqrt{-6}$ and $2-\sqrt{-6}$ are
+  irreducible and that the two displayed factorizations are not equivalent
+  up to associates and reordering. We leave these details as an exercise. 
 \end{example}
 
 \begin{theorem}
@@ -384,17 +427,40 @@ However, not all these rings admit are unique factorization domains.
 	\begin{claim}
 		$R$ admits factorizations. 	
 	\end{claim}
+
+Suppose that some non-zero nonunit
+$x\in R$ cannot be written as a product of irreducibles.
+Then $x$ is not irreducible, so
+\[
+x=x_1y_1
+\]
+for nonunits $x_1$ and $y_1$. At least one of $x_1$ and $y_1$ cannot
+be written as a product of irreducibles, since otherwise $x$
+would admit such a factorization. After relabelling, assume that
+$x_1$ has no factorization into irreducibles.
+Then 
+\[
+(x)\subsetneq(x_1).
+\]
+The inclusion is strict: if not,  $x_1=xr=x_1y_1r$ for some $r\in R$. Then 
+$y_1r=1$, contradicting the fact that $y_1$ is a nonunit.
+
+Repeating the argument, we get a sequence 
+\[
+(x)\subsetneq(x_1)\subsetneq(x_2)\subsetneq\cdots
+\]
+that does not stabilize, a contradiction to the fact that $R$ is noetherian.
 	
-	Let $x\in R\setminus\{0\}$ be such that $x\not\in\mathcal{U}(R)$. If $x$ is irreducible, 
-	there is nothing to prove. If not, $x=x_1x_2$ with $x_1\not\in\mathcal{U}(R)$ and
-	$x_2\not\in\mathcal{U}(R)$. If $x_1$ and $x_2$ are both irreducibles, 
-	we are done. If not, say $x_1$ can be written as $x_1=x_{11}x_{12}$ with
-	$x_{11}\not\in\mathcal{U}(R)$ and $x_{12}\not\in\mathcal{U}(R)$. If this process
-	does not terminate, it means that there is a sequence of ideals
-	\[
-	(x)\subsetneq (x_1)\subsetneq (x_{11})\subsetneq\cdots 
-	\]
-	that does not stabilize, which contradicts the fact that $R$ is noetherian.  
+%	Let $x\in R\setminus\{0\}$ be such that $x\not\in\mathcal{U}(R)$. If $x$ is irreducible, 
+%	there is nothing to prove. If not, $x=x_1x_2$ with $x_1\not\in\mathcal{U}(R)$ and
+%	$x_2\not\in\mathcal{U}(R)$. If $x_1$ and $x_2$ are both irreducibles, 
+%	we are done. If not, say $x_1$ can be written as $x_1=x_{11}x_{12}$ with
+%	$x_{11}\not\in\mathcal{U}(R)$ and $x_{12}\not\in\mathcal{U}(R)$. If this process
+%	does not terminate, it means that there is a sequence of ideals
+%	\[
+%	(x)\subsetneq (x_1)\subsetneq (x_{11})\subsetneq\cdots 
+%	\]
+%	that does not stabilize, which contradicts the fact that $R$ is noetherian.  
 	
 	\begin{claim}
 		$R$ admits unique factorization.	
@@ -410,7 +476,13 @@ However, not all these rings admit are unique factorization domains.
 	$c_1\mid d_1\cdots d_m$, it follows that $c_1\mid d_j$ for some $j$, 
 	say $c_1\mid d_1$ (here is precisely where the permutation $\sigma$ appears). Since
 	$d_1$ is irreducible, $c_1$ and $d_1$ are associate, that is
-	$c_1=ud_1$ for some $u\in\mathcal{U}(R)$. Then
+	$c_1=ud_1$ for some $u\in\mathcal{U}(R)$. 
+  If $n=1$, then 
+  \[
+  u=d_2\cdots d_m, 
+  \]
+  a contradiction, since $u$ is a unit and $d_2,\dots,d_m$ are nonunits (see
+  Exercise~\ref{xca:units}). Thus $n>1$ and 
 	\[
 	c_1c_2\cdots c_n=(ud_1)c_2\cdots c_n=d_1d_2\cdots d_m. 
 	\]
@@ -418,9 +490,10 @@ However, not all these rings admit are unique factorization domains.
 	\[
 	d_1(uc_2\cdots c_n-d_2\cdots d_m)=0,
 	\]
-	which implies that $(uc_2)\cdots c_n=d_2\cdots d_m$ because $R$ is an integral domain. Note
-	that $uc_2$ is irreducible and hence 
-	the claim follows from the inductive hypothesis. 
+	which implies that $(uc_2)\cdots c_n=d_2\cdots d_m$ because $R$ is an integral domain.
+  Therefore $n\geq2$. Now
+  $uc_2$ is irreducible and hence the claim follows from the inductive
+  hypothesis. 
 \end{proof}
 
 It is interesting to remark that the proof 

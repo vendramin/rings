@@ -47,30 +47,35 @@ It is time to give a very nice number-theoretical application.
     \[
     (X-1)(X-2)\cdots (X-(p-1))=X^{p-1}-1=X^{4k}-1=(X^{2k}+1)(X^{2k}-1)
     \]
-    in $(\Z/p)[X]$. Since $p$ is prime, $\Z/p$ is a field, and hence 
-    $(\Z/p)[X]$ is a unique factorization domain (because it is euclidean). Thus 
-    there exists $\alpha\in\Z/p$ such that $\alpha^{2k}+1=0$. To finish the proof
-    take $a=\alpha^k$. 
+    in $(\Z/p)[X]$. Since $p$ is prime, $\Z/p$ is a field, and hence
+    $(\Z/p)[X]$ is a unique factorization domain (because it is euclidean).
+    Thus there exists $\alpha\in\Z/p$ such that $\alpha^{2k}+1=0$. To finish
+    the proof choose an integer $a$ whose residue modulo $p$ is $\alpha^k$.
+    Then $a^2\equiv-1\bmod p$.
     
     We now prove that $2)\implies 3)$. If $a^2\equiv-1\bmod p$, then $a^2+1=kp$ 
-    for some $k\in\Z$. Since $(a-i)(a+i)=a^2+1=kp$, then $p$ divides $(a-i)(a+i)$. Let us prove that $p$ is not prime in $\Z[i]$. 
+    for some $k\in\Z$. Since $(a-i)(a+i)=a^2+1=kp$, it follows that
+    $p$ divides $(a-i)(a+i)$. Let us prove that $p$ is not prime in $\Z[i]$. 
     We claim that $p$ does not divide $a-i$ in $\Z[i]$. Indeed, if $p\mid a-i$, then
-    $a-i=p(e+fi)$ for some $e,f\in\Z$ and this implies that $1=pf$, a contradiction. Similarly,
+    $a-i=p(e+fi)$ for some $e,f\in\Z$ and this implies that $-1=pf$, a contradiction. Similarly,
     $p$ does not divide $a+i$. Thus $p$ is not prime in $\Z[i]$ 
-    and hence it is not irreducible in $\Z[i]$ (because in $\Z[i]$ primes and irreducible coincide). 
+    and hence it is not irreducible in $\Z[i]$ (because in $\Z[i]$ primes and irreducibles coincide). 
     
-    We now prove that $3)\implies 4)$. If $p=(a+bi)(c+di)$ with $a+bi\not\in\mathcal{U}(\Z[i])$
-    and  $c+di\not\in\mathcal{U}(\Z[i])$, then
+    We now prove that $3)\implies 4)$. Assume that $p=(a+bi)(c+di)$.  Since
+    $a+bi\not\in\mathcal{U}(\Z[i])$ and $c+di\not\in\mathcal{U}(\Z[i])$, their
+    norms are greater than one.  Since 
     \[
-    p^2=\norm(p)=\norm(a+bi)\norm(c+di)=(a^2+b^2)(c^2+d^2)
+    p^2=(a^2+b^2)(c^2+d^2)
     \]
-    in $\Z$. Since $\Z$ has unique factorization, it follows that $p=a^2+b^2$. 
+    in $\Z$, unique factorization in $\Z$ implies that $p=a^2+b^2$. 
     
     Finally, we prove that $4)\implies 1)$. 
     The only possible remainders after division by four are $0,1,2$ and $3$.  
     For all $a$, either $a^2\equiv 0\bmod 4$ or $a^2\equiv 1\bmod 4$. 
     If $p\equiv3\bmod 4$, then $p$ is never a sum of two squares, as 
     $a^2+b^2\equiv 0\bmod 4$, $a^2+b^2\equiv 1\bmod 4$ or $a^2+b^2\equiv 2\bmod 4$. 
+    Therefore $p\not\equiv3\bmod4$. Since $p$ is prime, either
+    $p=2$ or $p\equiv1\bmod4$.
 \end{proof}
 
 \begin{optional}
@@ -78,7 +83,7 @@ An alternative proof of the implication
 $1)\implies 2)$ goes as follows: if $p=4k+1$ is prime, then 
 $x=(2k)!$ is such that $x^2\equiv -1\bmod p$. By Wilson's theorem, 
 \[
-(p-1)! = (4k)!\equiv \bmod p.
+(p-1)! = (4k)!\equiv -1\bmod p.
 \]
 Moreover,  
 \begin{align*}
@@ -93,7 +98,11 @@ Hence $x=(2k)!$ is such that $x^2\equiv -1\bmod p$.
     Decompose the prime 41 as a sum of two squares. 
 \end{exercise}
 
-In 1625, Girard stated without proof a result characterizing which integers can be expressed as the sum of two squares. Later, in a letter to Mersenne dated December 25, Fermat presented several improvements and claimed to have proved the result (this is the ``Christmas Letter''). Euler later published the first rigorous proof, explicitly acknowledging Fermat’s earlier work.
+In 1625, Girard stated without proof a result characterizing which integers can
+be expressed as the sum of two squares. Later, in a letter to Mersenne dated
+December 25, Fermat presented several improvements and claimed to have proved
+the result (this is the ``Christmas Letter''). Euler later published the first
+rigorous proof, explicitly acknowledging Fermat’s earlier work.
 
 \begin{optional}
 The previous exercise can be solved by using computers and 
@@ -131,10 +140,10 @@ the decomposition of a prime number $p=4k+1$ as the sum of two squares.
 Find the irreducible elements of $\Z[i]$. 
 \end{exercise}
 
-As a consequence of Theorem \ref{thm:Fermat}
-one can prove the following result: An integer $\geq2$ can be written as a sum of two squares if and only if its prime decomposition contains no factor $p^k$, where 
-$p\equiv 3\bmod 4$ 
-and $k$ is odd. 
+As a consequence of Theorem \ref{thm:Fermat} one can prove the following
+result: An integer $n\geq2$ can be written as a sum of two squares
+if and only if every prime $p\equiv3\bmod4$ occurs with even
+exponent in the prime factorization of $n$.
 
 \begin{optional}
 The numbers that can be represented as the sums of two squares form the integer sequence \href{https://oeis.org/A001481}{A001481}: 
@@ -158,23 +167,24 @@ They form the set of all norms of Gaussian integers.
         \[
         N\colon R\to\Z_{\geq0},
         \quad
-        \norm(a+b\omega)=a^2-ab+b^2,
+        N(a+b\omega)=a^2-ab+b^2,
         \]
         is multiplicative and 
-        satisfies $\norm(\alpha)=\alpha\overline{\alpha}$
+        satisfies $N(\alpha)=\alpha\overline{\alpha}$
         for all $\alpha\in R$. 
         \item $\mathcal{U}(R)=\{1,-1,\omega,-\omega,\omega^2,-\omega^2\}$.
         \item $R$ is a euclidean domain.
-        \item If $\norm(\alpha)$ is a prime number, then $\alpha$ is irreducible. 
-        \item If $\norm(\alpha)=p^2$ for some 
+        \item If $N(\alpha)$ is a prime number, then $\alpha$ is irreducible. 
+        \item If $N(\alpha)=p^2$ for some 
             prime number $p$ with $p\equiv 2\bmod 3$, then 
             $\alpha$ is irreducible. 
-        \item If $p\equiv 1\bmod 3$, then 
+        \item If $p$ is a prime number such that $p\equiv 1\bmod 3$, then 
             $p=\gamma\overline{\gamma}$ for some 
             irreducible $\gamma\in R$.
         \item Up to multiplication by units, 
-            the irreducible elements of $R$ are $1-2\omega$, 
-            $a+b\omega$ with $a^2-ab+b^2=p$ and $p\equiv 1\bmod 3$, 
+            the irreducible elements of $R$ are $1-\omega$, 
+            $a+b\omega$ with $a^2-ab+b^2=p$ for some prime number 
+            $p\equiv 1\bmod 3$, 
             and prime numbers $p\in\Z$ with $p\equiv 2\bmod 3$.
     \end{enumerate}
 \end{bonus}
@@ -216,7 +226,14 @@ if either $r\leq s$ or $s\leq r$.
 \end{example}
 
 \index{Hasse diagram}
-Is there a good pictorial representation of a poset? A \emph{Hasse diagram} is a common way to represent one. It is a graph in which the vertices represent the elements of the poset. Elements connected by an arrow are comparable, while elements not connected are incomparable. Specifically, if $x$ and $y$ are elements of a poset, we draw an arrow from $x$ to $y$ if and only if $x \neq y$ and there is no element $z$ such that $x < z < y$.
+Is there a good pictorial representation of a poset? A \emph{Hasse diagram} is
+a common way to represent one. It is a graph in which the vertices represent
+the elements of the poset. If $x$ and $y$ are elements of the poset, we draw an
+arrow from $x$ to $y$ when
+\[
+x<y
+\]
+and there is no $z$ such that $x<z<y$. 
 
 \begin{example}
    The \emph{Hasse diagram} of the set of all subsets of $\{a,b,c\}$, 
@@ -265,17 +282,17 @@ An upper bound for $S$ might not be an element of $S$.
 \begin{example}
     Let $S=\{6\Z,12\Z,24\Z\}$ be a subset of the set $X$ 
     of subgroups of $\Z$ partially ordered by 
-    the inclusion. Then 
-    $6\Z=6\Z\cup 12\Z\cup 24\Z$ is an upper bound of the subset~$S$ 
+    inclusion. Then 
+    $6\Z=6\Z\cup 12\Z\cup 24\Z$ is an upper bound for the subset~$S$ 
     that is not maximal in $X$. 
 \end{example}
 
 \begin{example}
-    Let $R=\{\emptyset, \{1\},\{2\},\{3\},\{1,2\}\}$ partially ordered with
-    the inclusion, where $R$ is considered as a subset
-    of the power set of $X=\{1,2,3\}$. 
-    Then $\{3\}$ and $\{1,2\}$ are maximal elements of $R$. Moreover, 
-    $X$ is an upper bound for $R$. 
+    Let $R=\{\emptyset, \{1\},\{2\},\{3\},\{1,2\}\}$ partially ordered by
+    inclusion, where $R$ is considered as a subset
+    of the power set $P$ of $X=\{1,2,3\}$. 
+    Then $\{3\}$ and $\{1,2\}$ are maximal elements of the subposet $R$. Moreover, 
+    $X$ is an upper bound for $R$ in the ambient poset $P$. 
 \end{example}
 
 
@@ -304,10 +321,14 @@ Then $R$ contains a maximal element.}}
 % The reason for calling Zorn’s lemma a lemma rather 
 % than an axiom is purely historical. 
 
-It may not be intuitive\footnote{The mathematician
-Jerry L. Bona has a nice joke about Zorn's lemma: 
-\textit{The Axiom of Choice is obviously true, 
-the well-ordering principle obviously false, and who can tell about Zorn's lemma?}}, but it is logically equivalent to a more intuitive statement in set theory: the \emph{Axiom of Choice}, which states that the Cartesian product of a collection of non-empty sets is non-empty. Zorn's lemma is an axiom, not a lemma. The reason it is called a lemma, rather than an axiom, is purely historical.
+It may not be intuitive\footnote{The mathematician Jerry L. Bona has a nice
+joke about Zorn's lemma: \textit{The Axiom of Choice is obviously true, the
+well-ordering principle obviously false, and who can tell about Zorn's
+lemma?}}, but it is logically equivalent to a more intuitive statement in set
+theory: the \emph{Axiom of Choice}, which states that the Cartesian product of
+a collection of non-empty sets is non-empty.  Zorn's lemma is equivalent to the
+Axiom of Choice, so it may be adopted as an equivalent form of that axiom.  The
+name is historical.
 
 \begin{definition}
 	\index{Ideal!maximal}
@@ -337,7 +358,7 @@ if $I\ne R$.
 \index{Krull's theorem}
 	Let $R$ be a ring. Each proper ideal $I$ of $R$ 
 	is contained in a maximal ideal. 
-	In particular, all rings have maximal ideals. 	
+	In particular, all non-zero rings have maximal ideals. 	
 \end{theorem}
 
 \begin{proof}
@@ -413,9 +434,9 @@ Let $R$ be a commutative ring.
 % \end{exercise}
 
 \begin{example}
-	Let $R=(\Z/2)[X]$ and $f(X)=X^2+X+1$. Since $f(X)$ is irreducible (because $\deg f(X)=2$ and
-	$f(X)$ has no roots in $\Z/2$, it follows that $(f(X))$ is a maximal ideal. 
-	Thus $R/I$ is a field. 
+  Let $R=(\Z/2)[X]$ and $f(X)=X^2+X+1$. Since $f(X)$ is irreducible (because
+  $\deg f(X)=2$ and $f(X)$ has no roots in $\Z/2$), it follows that $(f(X))$ is
+  a maximal ideal.  Thus $R/(f(X))$ is a field. 
 \end{example}
 
 \begin{exercise}
@@ -424,11 +445,11 @@ Let $R$ be a commutative ring.
 
 \begin{exercise}
 \label{xca:Jacobson}
-\index{Jacobson's radical}
-	Let $R$ be a commutative ring and $J(R)$ be the intersection of all maximal ideals 
+\index{Jacobson radical}
+	Let $R$ be a non-zero commutative ring and $J(R)$ be the intersection of all maximal ideals 
 	of $R$. Prove that $x\in J(R)$ 
 	if and only if $1-xy\in\mathcal{U}(R)$ for all $y\in R$. The ideal $J(R)$ is known
-	as the \emph{Jacobson's radical} of $R$. Note that $J(R)\ne R$.   
+	as the \emph{Jacobson radical} of $R$. Note that $J(R)\ne R$.   
 \end{exercise}
 
 We conclude the lecture with a different application of Zorn's lemma.  
@@ -468,7 +489,7 @@ containing $X$.
 
 \begin{bonus}
 \label{xca:Rn=R}
-    Prove that the abelian groups $\R^n$ and $\R$ are isomorphic.
+    Let $n\geq1$. Prove that the abelian groups $\R^n$ and $\R$ are isomorphic.
 \end{bonus}
 
 \begin{bonus}
@@ -487,7 +508,7 @@ then $R$ is of characteristic zero.
 Easy examples: $\ch\Z=0$ and $\ch\Z/n=n$.
 
 \begin{proposition}
-    Let $R$ be a ring such that $\ch R=n>0$,
+    Let $R$ be a ring such that $\ch R=n>0$.
     \begin{enumerate}
         \item The map $f\colon \Z\to R$, $m\mapsto m1$, is a ring homomorphism and $\ker f=n\Z$.  
         \item $n=\min\{k\in\Z_{>0}:k1=0\}$.
@@ -505,7 +526,10 @@ Easy examples: $\ch\Z=0$ and $\ch\Z/n=n$.
     \]
     and hence $n_1\geq n$. 
     
-    Finally, we prove 3). If $n$ is not prime, say
+    Finally, we prove 3). 
+    Since $R$ is a domain, $R\ne\{0\}$, and
+    therefore $n\ne1$. 
+    If $n$ is not prime, say
     $n=rs$ with $1<r,s<n$. Then 
     \[
     0=n1=(rs)1=(r1)(s1)
@@ -515,7 +539,7 @@ Easy examples: $\ch\Z=0$ and $\ch\Z/n=n$.
 
 \begin{exercise}
     Let $p$ be a prime number and 
-    $R=\Z/p\times\Z/p$ be a ring with the usual point-wise operations. 
+    $R=\Z/p\times\Z/p$ be a ring with the usual pointwise operations. 
     Prove that $\ch R=p$ and that $R$ has zero divisors. 
 \end{exercise}
 
@@ -546,11 +570,14 @@ $k\in\{1,2,\dots,p^n-1\}$.
 \begin{bonus}
 \index{Non-commutative binomial theorem}
     Let $R$ be a ring and $n\geq1$. 
-    For $a,b\in R$, let $A(x)=(a+b)x-xb$. 
+    For $a,b\in R$, let $A\colon R\to R$, $A(x)=(a+b)x-xb$. 
     Prove that
     if $a,b\in R$, then 
     \[
     (a+b)^n=\sum_{k=0}^n\binom{n}{k}A^k(1)b^{n-k}.
     \] 
 \end{bonus}
+
+The previous exercise was taken from Yaghoub Sharifi's 
+\href{https://ysharifi.wordpress.com}{blog}.
 
