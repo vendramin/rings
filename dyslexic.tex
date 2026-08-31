@@ -1,42 +1,64 @@
 \documentclass[12pt]{amsproc}
+\usepackage{mynotes-dyslexic}
 
-\newcommand{\course}{Ring and module theory}
-\input{mystuff}
+\renewcommand{\course}{Ring and module theory}
 
-\usepackage{fontspec}
-\setmainfont{OpenDyslexic}
-
-\usetikzlibrary{arrows,positioning,shapes}
+\title{\course}
+\author{Leandro Vendramin}
+\address{Department of Mathematics and Data
+Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
+\email{Leandro.Vendramin@vub.be}
+\thanks{}
+\date{}
 
 \begin{document}
 
+\begin{abstract}
+    The notes correspond to the bachelor
+    course \textbf{Ring and Module Theory} of the
+    Vrije Universiteit Brussel,
+    Faculty of Sciences,
+    Department of Mathematics and Data Sciences.
+\end{abstract}
+
 \maketitle
+
+%\begin{figure}[h]
+%    \includegraphics[scale=0.5]{hungerford.png}
+%\end{figure}
+
+\thispagestyle{empty}
+
 \setcounter{tocdepth}{1}
-\tableofcontents 
 
-\input{introduction}
+\newpage
+\thispagestyle{empty}
+\tableofcontents
 
-\include{01}
-\include{02}
-\include{03}
-\include{04}
-\include{05}
-\include{06}
-\include{07}
-\include{08}
-\include{09}
-\include{10}
-\include{11}
-\include{12}
+\newpage
+\pagenumbering{arabic}
 
-\include{solutions}
+\include{introduction}
 
-\fancyhf{}
-\fancyfoot[R]{\thepage}
-\fancyhead[L]{\course}
-%\fancyhead[R]{Some solutions}
-\setlength{\headheight}{14pt}
+% Rings 
+\input{01}
+\input{02}
+\input{03}
+\input{04}
+\input{05}
 
+% Representations 
+\input{06}
+\input{07}
+%\input{08}
+
+% Modules 
+\input{09}
+\input{10}
+\input{11}
+\input{12}
+
+\input{solutions}
 \bibliographystyle{abbrv}
 \bibliography{refs}
 

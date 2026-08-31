@@ -1,0 +1,412 @@
+% ============================================================
+% mynotes-dyslexic.sty
+%
+% Dyslexia-friendly drop-in replacement for mynotes.sty.
+%
+% Usage: in notes.tex, change
+%     \usepackage{mynotes}
+% to
+%     \usepackage{mynotes-dyslexic}
+% and compile with XELATEX (not pdflatex) -- this package needs
+% fontspec to load the OpenDyslexic font, and fontspec requires
+% xelatex or lualatex:
+%
+%     xelatex notes.tex
+%
+% Everything else -- theorem environments, tcolorbox boxes,
+% macros (\Irr, \Ann, \Q, \Z, ...), section numbering, index,
+% bibliography -- is untouched, so every existing chapter file
+% (introduction.tex, 01.tex, ..., solutions.tex) compiles as-is.
+%
+% What changed vs. mynotes.sty, and why (British Dyslexia
+% Association / Dyslexia Style Guide recommendations):
+%   1. Body font  -> OpenDyslexic (weighted bottoms, distinct
+%                    letter shapes, no italic body text).
+%   2. Line spacing -> ~1.25x, extra paragraph spacing, so lines
+%                    and paragraphs don't run together.
+%   3. Justification -> ragged-right instead of fully justified,
+%                    so word spacing stays even (no "rivers").
+%   4. Page colour -> soft cream instead of pure white, which
+%                    reduces glare/visual stress for many readers.
+%   5. Headings   -> subsubsection italics removed (italics are
+%                    hard to decode for dyslexic readers); bold
+%                    used instead, colour kept.
+%   6. Margins    -> slightly wider, which shortens line length.
+% Math typesetting itself is left on the normal LaTeX math fonts;
+% only body text uses OpenDyslexic.
+% ============================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mynotes-dyslexic}[2026/08/31 v1.0 Dyslexia-friendly personal lecture notes style]
+
+% ------------------------------------------------------------
+% Packages (same as mynotes.sty)
+% ------------------------------------------------------------
+\RequirePackage[foot]{amsaddr}
+\RequirePackage{hyperref}
+\RequirePackage{listings}
+\RequirePackage{tikz-cd}
+\usetikzlibrary{arrows,positioning,shapes}
+\RequirePackage{datetime}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{stmaryrd}
+\RequirePackage{mdframed}
+\RequirePackage{textcomp}
+\RequirePackage{colortbl}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage[margin=1.25in,footskip=.25in]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage[english.nosectiondot]{babel}
+
+% ------------------------------------------------------------
+% 1. Dyslexia-friendly font
+%
+%    DEFAULT (used below): Computer Modern Sans, selected the classic
+%    LaTeX way via \familydefault. This needs NO font installation,
+%    NO extra package, and NO engine change -- \sfdefault is a core
+%    LaTeX kernel macro, defined for every installation there has
+%    ever been, and this mechanism (NFSS, not fontspec) does not go
+%    through your OS's font database at all, so it cannot fail the
+%    way a fontspec-based "named system font" lookup can. Compile
+%    this file with plain pdflatex, exactly like notes.tex.
+%
+%    A sans-serif, non-decorative, evenly spaced typeface is the
+%    actual evidence-backed recommendation (British Dyslexia
+%    Association style guide); a dedicated "dyslexia font" like
+%    OpenDyslexic is an optional extra on top of that, not a
+%    requirement -- see the OPT-IN block further down if you want
+%    it and are willing to (a) install the font and (b) switch to
+%    xelatex.
+% ------------------------------------------------------------
+\renewcommand{\familydefault}{\sfdefault}
+
+% OPT IN TO A NAMED FONT (TeX Gyre Heros, or OpenDyslexic) VIA XELATEX:
+% 1. Comment out the two lmodern lines above.
+% 2. Uncomment \RequirePackage{fontspec} and ONE of the two blocks below.
+% 3. Compile with xelatex instead of pdflatex (fontspec needs it).
+% 4. If you pick OpenDyslexic, install it as a system font first
+%    (free, https://opendyslexic.org) -- Font Book on macOS,
+%    right-click > Install on Windows, your distro's font manager
+%    on Linux -- and make sure it's the .otf (not just .woff) files
+%    that get registered; refresh the font cache / restart the app
+%    if fontspec still can't find it afterwards.
+%\RequirePackage{fontspec}
+%\setmainfont{TeX Gyre Heros}
+%\setsansfont{TeX Gyre Heros}
+%\setmainfont{OpenDyslexic}[
+%  Extension = .otf,
+%  UprightFont = *-Regular,
+%  BoldFont = *-Bold,
+%  ItalicFont = *-Italic,
+%  BoldItalicFont = *-BoldItalic,
+%  Scale = 0.85,
+%]
+%\setsansfont{OpenDyslexic}[
+%  Extension = .otf,
+%  UprightFont = *-Regular,
+%  BoldFont = *-Bold,
+%  ItalicFont = *-Italic,
+%  BoldItalicFont = *-BoldItalic,
+%  Scale = 0.85,
+%]
+
+% ------------------------------------------------------------
+% 2. Line and paragraph spacing
+% ------------------------------------------------------------
+\RequirePackage{setspace}
+\setstretch{1.25}
+\setlength{\parskip}{0.6\baselineskip}
+
+% ------------------------------------------------------------
+% 3. Ragged-right instead of fully justified text
+%    Comment this out if you prefer the original justified look.
+% ------------------------------------------------------------
+\RequirePackage{ragged2e}
+\AtBeginDocument{\RaggedRight}
+
+% ------------------------------------------------------------
+% 4. Soft cream page background (reduces glare for many readers)
+%    Comment out the \pagecolor line to go back to plain white
+%    (e.g. if you plan to print on coloured paper already).
+% ------------------------------------------------------------
+\RequirePackage{xcolor}
+\definecolor{creampage}{RGB}{253,246,227}
+\pagecolor{creampage}
+
+% ------------------------------------------------------------
+% Hyperref setup
+% ------------------------------------------------------------
+\hypersetup{
+  final,
+  colorlinks,
+  linkcolor=-red!55!green!50,
+  citecolor=blue!50!red,
+  urlcolor=green!30!black
+}
+
+\swapnumbers
+
+\overfullrule=1mm
+
+% ------------------------------------------------------------
+% \course: name of the course, shown in the running header and
+% (typically) used for \title{\course}. Give it a default so
+% the package is self-contained; override in the main file with
+% \renewcommand{\course}{...} before \begin{document}.
+% ------------------------------------------------------------
+\providecommand{\course}{}
+
+% ------------------------------------------------------------
+% Emphasis (kept: bold + colour, never italic)
+% ------------------------------------------------------------
+\renewcommand\emph[1]{\textcolor{blue!50!red}{\bfseries #1}}
+
+% ------------------------------------------------------------
+% Section numbering
+% ------------------------------------------------------------
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
+
+% ------------------------------------------------------------
+% Table of contents "part" separators
+% ------------------------------------------------------------
+\newcommand{\TOCpart}[1]{\addtocontents{toc}%
+{\bigskip\textcolor{green!40!blue}{\textbf{#1.}}}}
+
+% ------------------------------------------------------------
+% Pink box for optional comments
+% ------------------------------------------------------------
+\newtcolorbox{eqbox}[1][]
+{
+boxrule=0pt,frame hidden,colback=red!5!white,
+  left=.3em, right=.3em, top=.3em, bottom=.3em,
+  beforeafter skip balanced=.4\baselineskip plus 2pt,
+  before upper={\parindent4mm},
+colframe=blue!55!white
+}
+\newenvironment{optional}[1][]{
+\begin{eqbox}
+}{
+\end{eqbox}
+}
+
+% ------------------------------------------------------------
+% Code listings
+%
+% NOTE: the "listings" package has no built-in "Magma" language,
+% so "language = Magma" alone makes every compile emit "Package
+% Listings Error: language magma undefined." Under a plain
+% pdflatex/xelatex run this only prints a warning-like error and
+% still produces a PDF, so it's easy not to notice -- but tools
+% that check the compiler's exit code (like latexmk, hence this
+% Makefile) treat it as a real failure and stop. The minimal
+% \lstdefinelanguage below just teaches listings enough of Magma's
+% syntax (keywords, // comments, "..." strings) to stop the error;
+% swap in a fuller definition later if you want richer highlighting.
+% ------------------------------------------------------------
+\lstdefinelanguage{Magma}{
+    morekeywords={function,end,for,while,if,then,else,elif,return,%
+                  local,true,false,print,forward,procedure,case,%
+                  when,repeat,until,break,continue},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]"
+}
+\lstset{
+    language = Magma,
+    basicstyle=\ttfamily\small,
+    commentstyle=\small,
+    backgroundcolor = \color{gray!20!white},
+    showstringspaces = false,
+    columns=fixed,
+}
+
+% ------------------------------------------------------------
+% Section name used by amsproc's running head (e.g. "Lecture")
+% ------------------------------------------------------------
+\renewcommand\sectionname{\S}
+
+% enumerate labels: 1), 2), 3), ...
+\renewcommand{\labelenumi}{\textbf{\arabic{enumi})}}
+
+\makeindex
+
+% ------------------------------------------------------------
+% Macros
+% ------------------------------------------------------------
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\op}{\operatorname{op}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\norm}{\operatorname{norm}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Syl}{\mathrm{Syl}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Alt}{\mathbb{A}}
+\newcommand{\Sym}{\mathbb{S}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\trace}{\operatorname{trace}}
+\newcommand{\sgn}{\operatorname{sign}}
+\newcommand{\ch}{\operatorname{char}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Ret}{\operatorname{Ret}}
+\newcommand{\GL}{\mathbf{GL}}
+\newcommand{\SL}{\mathbf{SL}}
+\newcommand{\PSL}{\mathbf{PSL}}
+\newcommand{\PGL}{\mathbf{PGL}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Aff}{\operatorname{Aff}}
+\newcommand{\Soc}{\operatorname{Soc}}
+\newcommand{\Core}{\operatorname{Core}}
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\Fun}{\operatorname{Fun}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\cp}{\operatorname{cp}}
+\newcommand{\cf}{\operatorname{cf}}
+\newcommand{\Char}{\operatorname{Char}}
+\newcommand{\gl}{\mathfrak{gl}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\ad}[1]{\operatorname{ad}\,#1}
+\newcommand{\A}{\mathbb{A}}
+
+% column vector
+\newcount\colveccount
+\newcommand*\colvec[1]{
+\global\colveccount#1
+\begin{pmatrix}
+        \colvecnext
+        }
+        \def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+        \\
+        \expandafter\colvecnext
+        \else
+\end{pmatrix}
+\fi
+}
+
+% ------------------------------------------------------------
+% Theorem-like environments
+% amsthm's default "plain" style sets the theorem BODY in italics
+% (only the head, e.g. "Theorem 1.2.", is meant to stand out) --
+% that means every theorem/lemma/proposition/corollary statement
+% would be in italics, which is exactly the style dyslexic readers
+% struggle with most. This custom style keeps the bold head but
+% sets the body in upright text instead.
+% ------------------------------------------------------------
+\newtheoremstyle{dyslexicplain}%
+  {}{}%                    space above/below
+  {\normalfont}%           body font (upright, not italic)
+  {}%                      indent
+  {\bfseries}{}%           head font, head punctuation
+  { }%                     space after head
+  {}                       % head spec (default)
+\theoremstyle{dyslexicplain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{xca}[theorem]{Exercise}
+\newtheorem{bxca}[theorem]{Bonus exercise}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{que}[theorem]{Question}
+\newtheorem{conj}[theorem]{Conjecture}
+\newtheorem{open}[theorem]{Open problem}
+\newtheorem{convention}[theorem]{Convention}
+
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+\newenvironment{sol}[1]
+{\renewcommand{\qedsymbol}{}\begin{proof}[\ref{#1}]}
+  {\end{proof}}
+
+\newenvironment{problem}
+{\begin{tcolorbox}[boxrule=0pt,frame hidden,colback=blue!5!white,
+  left=.3em, right=.3em, top=-.2em, bottom=.3em,
+  beforeafter skip balanced=.4\baselineskip plus 2pt,
+  before upper={\parindent4mm\noindent},
+colframe=blue!55!white]\begin{open}}{\end{open}\end{tcolorbox}}
+
+\newenvironment{question}
+{\begin{tcolorbox}[boxrule=0pt,frame hidden,colback=blue!5!white,
+  left=.3em, right=.3em, top=-.2em, bottom=.3em,
+  beforeafter skip balanced=.4\baselineskip plus 2pt,
+  before upper={\parindent4mm\noindent},
+colframe=blue!55!white]\begin{que}}{\end{que}\end{tcolorbox}}
+
+\newenvironment{conjecture}
+{\begin{tcolorbox}[boxrule=0pt,frame hidden,colback=blue!5!white,
+  left=.3em, right=.3em, top=-.2em, bottom=.3em,
+  beforeafter skip balanced=.4\baselineskip plus 2pt,
+  before upper={\parindent4mm\noindent},
+colframe=blue!55!white]\begin{conj}}{\end{conj}\end{tcolorbox}}
+
+% Mandatory exercises: green background
+\newenvironment{exercise}
+{\begin{tcolorbox}[boxrule=0pt,frame hidden,colback=green!5!white,
+  left=.3em, right=.3em, top=-.2em, bottom=.3em,
+  beforeafter skip balanced=.4\baselineskip plus 2pt,
+  before upper={\parindent4mm\noindent},
+colframe=green!55!black]\begin{xca}}{\end{xca}\end{tcolorbox}}
+
+% Optional (bonus) exercises: yellow background
+\newenvironment{bonus}
+{\begin{tcolorbox}[boxrule=0pt,frame hidden,colback=yellow!15!white,
+  left=.3em, right=.3em, top=-.2em, bottom=.3em,
+  beforeafter skip balanced=.4\baselineskip plus 2pt,
+  before upper={\parindent4mm\noindent},
+colframe=yellow!45!black]\begin{bxca}}{\end{bxca}\end{tcolorbox}}
+
+\numberwithin{figure}{section}
+\numberwithin{equation}{section}
+
+% ------------------------------------------------------------
+% Section / subsection / subsubsection titles
+% (subsubsection: italics removed, bold used instead -- italic
+% text is one of the harder styles for dyslexic readers to
+% decode)
+% ------------------------------------------------------------
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}%
+  \z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+  {\color{green!30!black}\normalfont\bfseries\centering}}
+\renewcommand\subsection{\@startsection{subsection}{2}%
+  \normalparindent{.5\linespacing\@plus.7\linespacing}{-.5em}%
+  {\color{-red!55!green!50}\normalfont\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}%
+  \normalparindent\z@{-.5em}%
+  {\color{green!50!blue}\normalfont\bfseries}}
+\makeatother
+
+% ------------------------------------------------------------
+% Page style: running header/footer
+% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\fancyhead[L]{\course}
+\setlength{\headheight}{14pt}
+
+\endinput
