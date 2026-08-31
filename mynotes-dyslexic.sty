@@ -147,7 +147,8 @@
 
 \swapnumbers
 
-\overfullrule=1mm
+%not needed in this version
+%\overfullrule=1mm
 
 % ------------------------------------------------------------
 % \course: name of the course, shown in the running header and
@@ -193,17 +194,6 @@ colframe=blue!55!white
 
 % ------------------------------------------------------------
 % Code listings
-%
-% NOTE: the "listings" package has no built-in "Magma" language,
-% so "language = Magma" alone makes every compile emit "Package
-% Listings Error: language magma undefined." Under a plain
-% pdflatex/xelatex run this only prints a warning-like error and
-% still produces a PDF, so it's easy not to notice -- but tools
-% that check the compiler's exit code (like latexmk, hence this
-% Makefile) treat it as a real failure and stop. The minimal
-% \lstdefinelanguage below just teaches listings enough of Magma's
-% syntax (keywords, // comments, "..." strings) to stop the error;
-% swap in a fuller definition later if you want richer highlighting.
 % ------------------------------------------------------------
 \lstdefinelanguage{Magma}{
     morekeywords={function,end,for,while,if,then,else,elif,return,%
@@ -214,11 +204,12 @@ colframe=blue!55!white
     morecomment=[s]{/*}{*/},
     morestring=[b]"
 }
+
 \lstset{
     language = Magma,
     basicstyle=\ttfamily\small,
     commentstyle=\small,
-    backgroundcolor = \color{gray!20!white},
+    backgroundcolor = \color{gray!8!white},
     showstringspaces = false,
     columns=fixed,
 }

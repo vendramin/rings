@@ -103,11 +103,21 @@ colframe=blue!55!white
 % ------------------------------------------------------------
 % Code listings
 % ------------------------------------------------------------
+\lstdefinelanguage{Magma}{
+    morekeywords={function,end,for,while,if,then,else,elif,return,%
+                  local,true,false,print,forward,procedure,case,%
+                  when,repeat,until,break,continue},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]"
+}
+
 \lstset{
     language = Magma,
     basicstyle=\ttfamily\small,
     commentstyle=\small,
-    backgroundcolor = \color{gray!20!white},
+    backgroundcolor = \color{gray!8!white},
     showstringspaces = false,
     columns=fixed,
 }
