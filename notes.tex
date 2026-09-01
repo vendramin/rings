@@ -1,11 +1,6 @@
 \documentclass[12pt]{amsproc}
 \usepackage{mynotes}
 
-\newcommand{\TOC}[1]{%
-  \addtocontents{toc}{\bigskip}%
-  \addtocontents{toc}{\textcolor{red!70!black}{\hspace{-0.6cm}\textbf{#1}}}
-}
-
 \renewcommand{\course}{Ring and module theory}
 
 \title{\course}
@@ -67,7 +62,9 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 
 \addtocontents{toc}{\bigskip}
 
-\input{solutions}
+\include{solutions}
+
+\newpage 
 \bibliographystyle{abbrv}
 \bibliography{refs}
 

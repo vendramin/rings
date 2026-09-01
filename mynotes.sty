@@ -169,6 +169,12 @@ colframe=blue!55!white
 \newcommand{\ad}[1]{\operatorname{ad}\,#1}
 \newcommand{\A}{\mathbb{A}}
 
+% To add nice titles in the TOC
+\newcommand{\TOC}[1]{
+  \addtocontents{toc}{\bigskip}
+  \addtocontents{toc}{\textcolor{red!70!black}{\hspace{-0.6cm}\textbf{#1}}}
+}
+
 % column vector
 \newcount\colveccount
 \newcommand*\colvec[1]{
