@@ -1,5 +1,3 @@
-%\section{Lecture -- Week 2}
-
 \section{Quotients}
 
 Let $R$ be a ring and $I$ be an ideal of $R$. 
@@ -93,11 +91,11 @@ in $R/I$ because it holds in $R$, that is
     \]
 	for some $a,b\in\Z/3$, 
 	so the quotient ring $R/I$ has 
-	nine elements.  Can you find an expression for the product 
+	nine elements. Why? Can you find an expression for the product 
 	$(aX+b)(cX+d)$ in $R/I$?
 \end{example}
 
-\index{Isomorphism}
+\index{Ring!isomorphism}
 An \emph{isomorphism} between the rings $R$ and $S$ is a bijective ring
 homomorphism $R\to S$. If such a homomorphism exists, then $R$ and $S$ are said
 to be isomorphic, and the notation is $R\simeq S$. 
@@ -107,8 +105,8 @@ to be isomorphic, and the notation is $R\simeq S$.
     Prove that ring isomorphism is an equivalence relation.
 \end{exercise}
 
-As it happens in the case of groups, 
-to understand quotient rings, one has 
+As in the case of groups, the main tool 
+for understanding quotient rings is 
 the first isomorphism theorem. 
 
 \begin{theorem}[First isomorphism theorem]
@@ -231,6 +229,8 @@ Thus $R/\ker f\simeq\Q$.
 \end{exercise}
 
 Similarly, if $N\ne1$ is a square-free integer, then 
+$\sqrt{N}\notin\Q$ and
+the same argument gives
 \[
 \Z[\sqrt{N}]\simeq\Z[X]/(X^2-N).
 \]
@@ -253,7 +253,7 @@ Are the rings $\Q[\sqrt{2}]$ and $\Q[\sqrt{3}]$ isomorphic?
 \end{exercise}
 
 \begin{exercise}
-\label{xca:continuos}
+\label{xca:continuous}
 	Let $R$ be the ring of continuous maps $[0,2]\to\R$, where the operations are given by 
 	\begin{align*}	    
 	(f+g)(x)&=f(x)+g(x),\\
@@ -344,7 +344,7 @@ We need to prove the following facts:
 \item $f(f^{-1}(J))=J$ and $f^{-1}(f(I))=I$. 
 \item If $f(I)=J$, then $R/I\simeq S/J$. 
 \end{enumerate}
-We only prove the fourth statement, the others are left as exercises. Note that
+We only prove the fourth statement; the others are left as exercises. Note that
 the third claim implies that $f(I)=J$ if and only if $I=f^{-1}(J)$. 
 Let 
 $\pi\colon S\to S/J$ be the canonical map. The composition
@@ -356,11 +356,10 @@ Then the first isomorphism theorem implies that $R/I\simeq S/J$.
 \end{proof}
 
 \begin{exercise}
-    Prove Theorem \ref{thm:ring_correspondence}.
+    Prove the remaining statements of Theorem~\ref{thm:ring_correspondence}.
 \end{exercise}
 
-As we did for groups, for the correspondence theorem, 
-it helps to have in mind the following diagram: 
+As for groups, it helps to keep the following diagram in mind:
 \[
 \begin{tikzcd}
         && R \\
@@ -379,13 +378,14 @@ it helps to have in mind the following diagram:
 
 \section{Direct products and direct sums}
 
-In Example~\ref{exa:direct_rings}, we defined the \emph{direct product} of rings. There is another similar, yet important, construction.
+In Example~\ref{exa:direct_rings}, we defined the \emph{direct product} of
+rings. There is a closely related construction.
 
 \begin{definition}
 \label{def:direct_ideals}
-\index{Direct sum of ideals}
+\index{Ideal!direct sum of}
 Let $R$ be a ring and $I$ and $J$ be ideals of $R$. We say that 
-$R=I\oplus J$ (that is, $R$ is a \emph{direct sum} of ideals) 
+$R=I\oplus J$ (that is, $R$ is the \emph{direct sum} of the ideals $I$ and $J$) 
 if $R=I+J$ and $I\cap J=\{0\}$.  
 \end{definition}
 
@@ -403,15 +403,14 @@ ring as a direct product of two rings and as a direct sum of two ideals:
 \begin{exercise}
 \label{xca:products}
     Let $R$ be a ring. Prove that $R$ admits a decomposition $R\simeq S\times
-    T$ as a direct product of rings if and only if $R$ admits a decomposition
-    $R=I\oplus J$ as a direct sum of ideals. 
+    T$ as a direct product of non-zero rings if and only if $R$ admits a
+    decomposition $R=I\oplus J$ as a direct sum of non-zero ideals. 
 \end{exercise}
 
-The constructions in Example~\ref{exa:direct_rings} and Definition~\ref{def:direct_ideals}
-can be generalized to a finite number of objects. 
-If $R$ is a ring and $I_1,\dots,I_n$ are ideals of $R$, we say 
-$R$ is the \emph{direct sum} of the ideals $I_1,\dots,I_n$, 
-that is 
+The constructions in Example~\ref{exa:direct_rings} and
+Definition~\ref{def:direct_ideals} can be generalized to a finite number of
+objects.  If $R$ is a ring and $I_1,\dots,I_n$ are ideals of $R$, we say $R$ is
+the \emph{direct sum} of the ideals $I_1,\dots,I_n$, that is 
 \[
 R=I_1\oplus\cdots\oplus I_n, 
 \]
@@ -426,13 +425,13 @@ I_1+\cdots+\widehat{I_i}+\cdots+I_n=I_1+\cdots+I_{i-1}+I_{i+1}+\cdots+I_n
 \]
 is typically used. 
 
-As we did in Exercise~\ref{xca:uniqueness}, one can prove that 
-$R=I_1\oplus\cdots\oplus I_n$ as a direct sum of ideals
-if and only if every $r\in R$ can be written uniquely 
-as $r=e_1+\cdots+e_n$ for $e_1\in I_1,\dots,e_n\in I_n$. Moreover, $R$ admits a
-decomposition $R\simeq R_1\times\cdots\times R_n$ as a direct product of rings
-if and only if $R$ admits a decomposition $R=I_1\oplus\cdots\oplus I_n$ as a
-direct sum of ideals. 
+As we did in Exercise~\ref{xca:uniqueness}, one can prove that
+$R=I_1\oplus\cdots\oplus I_n$ as a direct sum of ideals if and only if every
+$r\in R$ can be written uniquely as $r=u_1+\cdots+u_n$ for $u_1\in
+I_1,\dots,u_n\in I_n$. Moreover, $R$ admits a decomposition $R\simeq
+R_1\times\cdots\times R_n$ as a direct product of non-zero rings if and only if
+$R$ admits a decomposition $R=I_1\oplus\cdots\oplus I_n$ as a direct sum of
+non-zero ideals. 
 
 \section{The Chinese remainder theorem}
 
@@ -444,14 +443,14 @@ I+J=\{u+v:u\in I,\,v\in J\}
 is an ideal of $R$. The sum of ideals makes sense also in non-commutative rings.  
 
 \begin{definition}
-\index{Coprime ideals}
-\index{Comaximal ideals}
+\index{Ideal!coprime}
+\index{Ideal!comaximal}
 	Let $R$ be a commutative ring. The ideals $I$ and $J$ of $R$ are said to be
 	\emph{coprime} if $R=I+J$.  
 \end{definition}
 
 The terminology is motivated by the following example. If $I$ and $J$ are
-ideals of $\Z$, then $I=(a)$ and $J=(b)$ for some $a,b\in\Z$. Then Bézout's theorem 
+ideals of $\Z$, then $I=(a)$ and $J=(b)$ for some $a,b\in\Z$. Then Bézout's lemma  
 states that 
 \begin{align*}
 \text{$a$ and $b$ are coprime}
@@ -484,15 +483,17 @@ Note that $IJ\subseteq I\cap J$. Equality does not hold in general. Take
 for example $R=\Z$ and $I=J=(2)$. Then $IJ=(4)\subsetneq (2)=I\cap J$. 
 
 \begin{proposition}
-Let $R$ be a commutative ring. If $I$ and $J$ are coprime ideals, then $IJ=I\cap J$. 	
+Let $R$ be a commutative ring. If $I$ and $J$ are coprime ideals, then
+$IJ=I\cap J$. 	
 \end{proposition}
 
 \begin{proof}
 Let $x\in I\cap J$. Since $I$ and $J$ are coprime, 
-$1=u+v$ for some $u\in I$ and $v\in J$, 
+$1=u+v$ for some $u\in I$ and $v\in J$, and hence 
 \[ 
-x=x1=x(u+v)=xu+xv\in IJ\qedhere.
+x=x1=x(u+v)=xu+xv\in IJ.
 \]
+The inclusion $IJ\subseteq I\cap J$ follows because $I$ and $J$ are ideals. 
 \end{proof}
 
 \begin{bonus}
@@ -613,7 +614,7 @@ x_{jk}\in I_j
 \right\}
 \]
 is an ideal of $R$. For example, if $I_j=(x_j)$ for all $j\in\{1,\dots,n\}$, 
-then $I_1\cdots I_n=(x_1\dots x_n)$. 
+then $I_1\cdots I_n=(x_1\cdots x_n)$. 
 
 If $I_1$ and $I_j$ are coprime for all $j\in\{2,\dots,n\}$, 
 then $I_1$ and $I_2\cdots I_n$ are coprime. If $I_i$ and $I_j$ are coprime
@@ -631,7 +632,7 @@ of $n$ into powers of distinct primes, then
 as rings. 
 
 \begin{bonus}
-\index{Euler $\varphi$-function}
+\index{Euler totient function}
     Let $n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}$ be the factorization 
     of $n$ into powers of distinct primes. Prove that 
     $\varphi(n)=\varphi(p_1^{\alpha_1})\cdots \varphi(p_k^{\alpha_k})$, where $\varphi$ is the Euler $\varphi$-function. 
@@ -656,7 +657,7 @@ as rings.
 %	\end{enumerate}
 %\end{exercise}
 
-The story says that, 
+The story goes that, 
 instead of counting troops, 
 the Chinese generals would order them to 
 assemble in rows of different depths 
@@ -694,9 +695,9 @@ is divisible by a fourth power greater than 1.
 
 \begin{bonus}
 \label{xca:perfect_square}
-	Prove that 
-	for each $n>0$ there are $n$ consecutive integers such that 
-	each integer is divisible by a perfect square $\ne 1$. 	
+  Prove that for each $n>0$ there are $n$ consecutive integers such that each
+  integer is divisible by a perfect square greater than $1$.
+%	each integer is divisible by a perfect square $\ne 1$. 	
 \end{bonus}
 
 A special application of the Chinese remainder theorem leads to the

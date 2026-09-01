@@ -25,10 +25,10 @@ Let $R=\{f\colon [0,1]\to\R\}$ with
 f,g\in R,\,x\in [0,1].
 \]
 For $n\in\Z_{>0}$ let
-$I_n=\{f\in R:f|_{[0,1/n]}=0\}$. Then each $I_n$ is an ideal of $R$ and 
+$I_n=\{f\in R:f|_{[0,1/n]}=0\}$. Prove that each $I_n$ is an ideal of $R$ and 
 the sequence 
 $I_1\subsetneq I_2\subsetneq\cdots$ 
-does not stabilize. Thus $R$ is not noetherian. 
+does not stabilize. Conclude that $R$ is not noetherian. 
 \end{exercise}
 
 \begin{definition}
@@ -50,21 +50,22 @@ if every ideal of $R$ is finitely generated.
 \end{proposition}
 
 \begin{proof}
-	Assume first that $R$ is noetherian. Let $I$ be an ideal of $R$ that is not finitely generated. 
-	Thus $I\ne\{0\}$. Let $x_1\in I\setminus\{0\}$ and let $I_1=(x_1)$. Since $I$ is not finitely
-	generated, $I\ne I_1$ and hence   
-	$\{0\}\subsetneq I_1\subsetneq I$. Let $x_2\in I\setminus I_1$. Then
-	$I_2=(x_1,x_2)$ is a finitely generated ideal such that 
-	$I_1\subsetneq I_2\subsetneq I$. We continue with this 
-	procedure. Once we have the ideals $I_1,\dots,I_{k-1}$, let 
-	$x_k\in I\setminus I_{k-1}$ (such an element exists because $I_{k-1}$ is finitely generated
-	and $I$ is not) and $I_k=(I_{k-1},x_k)$. The sequence
-	$\{0\}\subsetneq I_1\subsetneq I_2\subsetneq\cdots$ does not stabilize.  
+  Assume first that $R$ is noetherian. Let $I$ be an ideal of $R$ that is not
+  finitely generated.  Thus $I\ne\{0\}$. Let $x_1\in I\setminus\{0\}$ and let
+  $I_1=(x_1)$. Since $I$ is not finitely generated, $I\ne I_1$ and hence
+  $\{0\}\subsetneq I_1\subsetneq I$. Let $x_2\in I\setminus I_1$. Then
+  $I_2=(x_1,x_2)$ is a finitely generated ideal such that $I_1\subsetneq
+  I_2\subsetneq I$. We continue with this procedure. Once we have the ideals
+  $I_1,\dots,I_{k-1}$, let $x_k\in I\setminus I_{k-1}$ (such an element exists
+  because $I_{k-1}$ is finitely generated and $I$ is not) and
+  $I_k=(I_{k-1},x_k)$. The sequence $\{0\}\subsetneq I_1\subsetneq
+  I_2\subsetneq\cdots$ does not stabilize, a contradiction to $R$ being 
+  noetherian. 
 	
 	Assume now that every ideal of $R$ is finitely generated and 
 	let $I_1\subseteq I_2\subseteq\cdots$ be a sequence of ideals of $R$. Then
-	$I=\cup_{i\geq1}I_i$ is an ideal of $R$, so it is finitely generated, say
-	$I=(x_1,\dots,x_n)$. We may assume that $x_j\in I_{i_j}$ for all $j$. Let 
+	$I=\bigcup_{i\geq1}I_i$ is an ideal of $R$, so it is finitely generated, say
+	$I=(x_1,\dots,x_n)$. We know that $x_j\in I_{i_j}$ for all $j$. Let 
 	$N=\max\{i_1,\dots,i_n\}$. Then 
 	$x_j\in I_N$ for all $j\in\{1,\dots,n\}$ 
 	and hence $I\subseteq I_N$. This implies that 
@@ -72,7 +73,7 @@ if every ideal of $R$ is finitely generated.
 \end{proof}
 
 \begin{exercise}
-	Let $R=\C[X_1,X_2,\cdots]$ be the ring of polynomials in 
+	Let $R=\C[X_1,X_2,\dots]$ be the ring of polynomials in 
   countably infinitely many commuting
   variables. 
 	Every element of $R$ is a finite sum
@@ -95,7 +96,8 @@ The correspondence theorem and the previous proposition
 allow us to prove easily the following result. 
 
 \begin{proposition}
-	Let $I$ be an ideal of $R$. If $R$ is noetherian, then $R/I$ is noetherian.
+	Let $R$ be a ring and
+  $I$ an ideal of $R$. If $R$ is noetherian, then $R/I$ is noetherian.
 \end{proposition}
 
 \begin{proof}
@@ -117,7 +119,8 @@ Since $\Z$ is noetherian, $\Z/n$ is noetherian for all $n\geq2$.
 	Prove that $\R[X]$ is noetherian. 	
 \end{exercise}
 
-Hint: Use the fact that $\R[X]$ is a principal domain (Exercise \ref{xca:R[X]_principal}).  
+Hint: Use the fact that every ideal of $\R[X]$ is principal
+(Exercise~\ref{xca:R[X]_principal}).  
 
 \section{Hilbert's basis theorem}
 
@@ -181,7 +184,7 @@ one proves that if $R$ is a commutative noetherian ring,
 then $R[X_1,\dots,X_n]$ is noetherian. 
  
 \begin{example}
-    Let $N>1$ be a square-free integer.  
+    Let $N\ne1$ be a square-free integer.  
 	Since $\Z$ is noetherian, so is $\Z[X]$ by Hilbert's theorem. Now 
 	$\Z[\sqrt{N}]$ is noetherian, as \[
     \Z[\sqrt{N}]\simeq\Z[X]/(X^2-N)
@@ -212,25 +215,23 @@ then $R[X_1,\dots,X_n]$ is noetherian.
 \section{Factorization}
 
 \begin{definition}
-\index{Integral domain}
+\index{Domain!integral}
 \index{Domain}
     A \emph{domain} is a ring $R\neq\{0\}$ such that $xy=0$ implies $x=0$ or $y=0$. 
     An \emph{integral domain} is a commutative ring that is also a domain. 
 \end{definition}
 
-The rings $\Z$ and $\Z[i]$ are both integral domains. 
-More generally, if $N$ is a square-free integer, 
-then the ring $\Z[\sqrt{N}]$ is an integral domain.  
-The ring $\Z/4$ of 
-integers modulo 4 is not an integral domain. 
+The rings $\Z$ and $\Z[i]$ are both integral domains.  More generally, if $N\ne1$
+is a square-free integer, then the ring $\Z[\sqrt{N}]$ is an integral domain.
+The ring $\Z/4$ of integers modulo 4 is not an integral domain. 
 
 \begin{example}
     The ring $\Z/12$ is not a domain. Weird things can happen 
-    when we work over these rings. For example, the degree-two  
+    when we work over these rings. For example, the degree-two polynomial 
     $f(X)=X^2-4\in(\Z/12)[X]$ has more than two roots, 
     $f(2)=f(4)=f(8)=f(10)=0$. In fact,
     \[
-    f(X)=(X-2)(X-10)=(X-4)(X-8)
+    f(X)=(X-2)(X-10)=(X-4)(X-8).
     \]
 \end{example}
 
@@ -248,7 +249,7 @@ to work over integral domains.
 Note that $x\mid y$ if and only if $(y)\subseteq (x)$.
 	
 \begin{definition}
-\index{Associate elements}
+\index{Element!associate}
 	Let $R$ be an integral domain and $x,y\in R$. Then $x$ and $y$ are
 	\emph{associate} in $R$ if $x=yu$ for some $u\in\mathcal{U}(R)$. 
 \end{definition}
@@ -270,11 +271,11 @@ Note that $x$ and $y$ are associate if and only if $(x)=(y)$.
 
 \begin{example}
 	Let $R=\R[X]$ and $f(X)\in R$. Then $f(X)$ and $\lambda f(X)$ are 
-	associate in $R$ for all $\lambda\in\R^{\times}$. 	
+	associate in $R$ for all $\lambda\in\R\setminus\{0\}$.  	
 \end{example}
 
 \begin{definition}
-\index{Irreducible elements}
+\index{Element!irreducible}
 	Let $R$ be an integral domain and $x\in R\setminus\{0\}$. Then $x$ is \emph{irreducible} 
 	if and only if $x\not\in\mathcal{U}(R)$ 
 	and $x=ab$ with $a,b\in R$ implies that $a\in\mathcal{U}(R)$ or $b\in\mathcal{U}(R)$. 
@@ -287,16 +288,17 @@ $(x)\subsetneq (y)\subsetneq R$.
 \begin{example}
   Let $f(X)\in\R[X]$ be non-constant. Then $f(X)$ is irreducible if and only if
   every divisor of $f(X)$ is either a non-zero constant or an associate
-  $\lambda f(X)$, where $\lambda\in\R^\times$.
+  $\lambda f(X)$, where $\lambda\in\R\setminus\{0\}$. 
 \end{example}
 
 Up to associates, the irreducibles of $\Z$ are the prime numbers. Note that a
-non-zero non-unit $p\in \Z$ is prime if and only if $p\mid xy$ implies $p\mid x$
-or $p\mid y$. 
+non-zero non-unit $p\in \Z$ is prime if and only if $p\mid xy$ implies $p\mid
+x$ or $p\mid y$. 
 
 \begin{example}
     The polynomial $X^4+1\in\Z[X]$ is irreducible. If not, 
-    since $X^4+1$ has no integer roots, there are 
+    since $X^4+1$ is monic and primitive and 
+    has no integer roots, there are 
     $a,b,c,d\in\Z$ such that
     \[
     X^4+1=(X^2+aX+b)(X^2+cX+d).
@@ -311,7 +313,9 @@ or $p\mid y$.
     a+c=0.
     \end{cases}
     \end{equation}
-    This is a contradiction, as \eqref{eq:system} has no integer solutions.
+    This is a contradiction, as \eqref{eq:system} has no integer solutions:
+    $bd=1$ forces $b=d=1$ or $b=d=-1$, and then the third equation gives
+    $a^2=2$ or $a^2=-2$.
 \end{example}
 
 If $p$ is a prime number, 
@@ -319,14 +323,14 @@ one can prove that $X^4+1\in(\Z/p)[X]$ is never irreducible. For example
 $X^4+1=(X^2+1)^2$ in $(\Z/2)[X]$. 
 
 \begin{definition}
-\index{Prime elements}
+\index{Element!prime}
 	Let $R$ be an integral domain and $p\in R\setminus\{0\}$. Then  
 	$p$ is \emph{prime} if $p\not\in\mathcal{U}(R)$ and 
 	$p\mid xy$ implies that $p\mid x$ or $p\mid y$. 
 %	$yz\in (p)$ implies that $y\in (p)$ or $z\in (p)$. 
 \end{definition}
 
-Note that a non-zero element $p\in R$ is prime 
+Note that an element $p\in R$ is prime 
 if and only if $p\neq 0$, $(p)\ne R$ and 
 $xy\in (p)$ implies that $x\in (p)$ or $y\in (p)$. 
 
@@ -347,38 +351,39 @@ $xy\in (p)$ implies that $x\in (p)$ or $y\in (p)$.
 	$xz=1$ and hence $x\in\mathcal{U}(R)$. 
 \end{proof}
 
-In $\Z$ primes and irreducibles coincide. 
-This does not happen in full generality. 
-To show that there are rings where some irreducibles are not prime, 
-we need the following lemma. 
+In $\Z$ primes and irreducibles coincide. This does not happen in full
+generality, as we will see later. To compute units and to recognize irreducible
+elements in $\Z[\sqrt{N}]$, we need the following lemma.
 
 \begin{lemma}
 \label{lem:norm}
-Let $N\ne1$ be a non-zero square-free integer and $R=\Z[\sqrt{N}]$. Then 
+Let $N\ne1$ be a square-free integer and $R=\Z[\sqrt{N}]$. Then 
 the map 
 \[
-	\operatorname{norm}\colon R\to\Z_{\geq0},
+	\norm\colon R\to\Z_{\geq0},
 \quad a+b\sqrt{N}\mapsto 
 |a^2-Nb^2|,
 \]
 satisfies the following properties:
 \begin{enumerate}
-	\item $\operatorname{norm}(\alpha)=0$ if and only if $\alpha=0$. 
-	\item $\operatorname{norm}(\alpha\beta)=\operatorname{norm}(\alpha)\operatorname{norm}(\beta)$ for all $\alpha,\beta\in R$. 
-	\item $\alpha\in\mathcal{U}(\Z[\sqrt{N}])$ if and only if $\operatorname{norm}(\alpha)=1$. 
-	\item If $\operatorname{norm}(\alpha)$ is prime in $\Z$, then $\alpha$ is irreducible in $R$. 
+	\item $\norm(\alpha)=0$ if and only if $\alpha=0$. 
+	\item $\norm(\alpha\beta)=\norm(\alpha)\norm(\beta)$ for all $\alpha,\beta\in R$. 
+	\item $\alpha\in\mathcal{U}(\Z[\sqrt{N}])$ if and only if $\norm(\alpha)=1$. 
+	\item If $\norm(\alpha)$ is prime in $\Z$, then $\alpha$ is irreducible in $R$. 
 \end{enumerate}	
 \end{lemma}
 
 \begin{proof}
-	The first three items are left as exercises. Let us prove 4). 
-	If $\alpha=\beta\gamma$ for some $\beta,\gamma\in R$, then
-	$\operatorname{norm}(\alpha)=\operatorname{norm}(\beta)\operatorname{norm}(\gamma)$. Since $\operatorname{norm}(\alpha)\in\Z$ is a prime number, it follows that
-	$\operatorname{norm}(\beta)=1$ or $\operatorname{norm}(\gamma)=1$. Thus $\beta\in\mathcal{U}(R)$ or $\gamma\in\mathcal{U}(R)$. 	
+  The first three items are left as exercises. Let us prove 4).  If
+  $\alpha=\beta\gamma$ for some $\beta,\gamma\in R$, then
+  $\norm(\alpha)=\norm(\beta)\norm(\gamma)$.
+  Since $\norm(\alpha)\in\Z$ is a prime number, it follows that
+  $\norm(\beta)=1$ or $\norm(\gamma)=1$. Thus
+  $\beta\in\mathcal{U}(R)$ or $\gamma\in\mathcal{U}(R)$. 	
 \end{proof}
 
 \begin{exercise}
-    Prove Lemma \ref{lem:norm}.
+  Prove the first three items of Lemma~\ref{lem:norm}.
 \end{exercise}
 
 \begin{bonus}

@@ -2,10 +2,16 @@
 
 \section{Rings}
 
-The objective of the next five lectures is to extract certain properties inherent to integers and adapt them for broader applications. Initially, we will identify similarities between the ring of integers and the ring of real polynomials, 
-followed by a more in-depth exploration of these specific attributes in more general contexts. A pivotal similarity between integers and real polynomials lies in the existence of the division algorithm. Nevertheless, it is essential to emphasize that $\Z$ and $\R[X]$ are fundamentally distinct entities, like apples and oranges. For instance, in $\R[X]$, 
-the presence of the variable $X$ allows us to utilize formal derivatives 
-(with respect to $X$), a feature absent in the ring of integers. 
+The objective of the next five lectures is to extract certain properties
+inherent to integers and adapt them for broader applications. Initially, we
+will identify similarities between the ring of integers and the ring of real
+polynomials, followed by a more in-depth exploration of these specific
+attributes in more general contexts. A pivotal similarity between integers and
+real polynomials lies in the existence of the division algorithm. Nevertheless,
+it is essential to emphasize that $\Z$ and $\R[X]$ are fundamentally distinct
+entities, like apples and oranges. For instance, in $\R[X]$, the presence of
+the variable $X$ allows us to utilize formal derivatives (with respect to $X$),
+a feature absent in the ring of integers. 
 
 
 \begin{definition}
@@ -35,11 +41,11 @@ A ring $R$ is said to be \emph{commutative} if $xy=yx$ for all $x,y\in R$.
 $\Z$, $\Q$, $\R$, and $\C$ are commutative rings.
 \end{example}
 
-Most of the students will have some familiarity with
+Most students will have some familiarity with
 real polynomials from their school days. 
 
 \begin{example}
-\index{Degree of a polynomial}
+\index{Polynomial!degree of}
     The set  
     \[
 		\R[X]=\left\{\sum_{i=0}^na_iX^i:n\in\Z_{\geq0},\,a_0,\dots,a_n\in \R\right\}
@@ -89,12 +95,13 @@ the size of $X$.
 Let $R$ be a ring. Prove the following facts: 
 \begin{enumerate}
     \item $x0=0x=0$ for all $x\in R$.
-    \item $x(-y)=-xy$ for all $x,y\in R$.
+    \item $(-x)y=x(-y)=-xy$ for all $x,y\in R$.
     \item If $1=0$, then $|R|=1$. 
 \end{enumerate}
 \end{exercise}
 
 \begin{example}
+\index{Ring!of quaternions}
     The real vector space $H(\R)=\{a1+bi+cj+dk:a,b,c,d\in\R\}$ with basis $\{1,i,j,k\}$ 
     is a ring with the multiplication induced by
     the formulas 
@@ -132,7 +139,7 @@ with coefficients in $R$.
 
 \begin{example}
 \label{exa:direct_rings}
-    \index{Direct product of rings}
+    \index{Ring!direct product of}
     Let $R$ and $S$ be rings. Then 
     $R\times S=\{(r,s):r\in R,s\in S\}$ 
     is a ring with the operations 
@@ -141,7 +148,7 @@ with coefficients in $R$.
     (r,s)(r_1,s_1)=(rr_1,ss_1).
     \]
     The zero of $R\times S$ is $(0_R,0_S)$ and 
-    the unit element of $R\times S$ is $(1_R,1_S)$. The ring 
+    the identity element of $R\times S$ is $(1_R,1_S)$. The ring 
     $R\times S$ is known as the \emph{direct product} of $R$ and $S$. 
 \end{example}
 
@@ -165,8 +172,12 @@ no perfect square other than 1. Some examples: 2, 3, 5, 6, 7, and 10.
 The numbers 4, 8, 9, and 12 are not square-free. 
 
 \begin{example}
-	Let $N>1$ be a square-free integer. Then $\Z[\sqrt{N}]$ is
-	a subring of $\C$.  	
+  Let $N>1$ be a square-free integer. Then 
+  \[
+    \Z[\sqrt{N}]=\{a+b\sqrt{N}:a,b\in\Z\}
+  \]
+  is
+	a subring of $\R$.  	
 \end{example}
 
 If $N>1$ is a square-free integer, then 
@@ -183,7 +194,7 @@ $\Q[\sqrt{2}]$
 imply $a=c$ and $b=d$? 
 
 \begin{example}
-    \index{Center!of a ring}
+    \index{Ring!center of}
     If $R$ is a ring, then the \emph{center} 
     \[
     Z(R)=\{x\in R:xy=yx\text{ for all $y\in R$}\}
@@ -196,22 +207,24 @@ of $S$ is the zero-element of $R$, i.e., $0_R=0_S$. Moreover,
 the additive inverse of an element $s\in S$ 
 is the additive inverse of $s$ as an element of $R$. 	
 
-\begin{exercise}\
-    \label{xca:subrings}
-\begin{enumerate}
-	\item If $S$ and $T$ are subrings of $R$, then $S\cap T$ is a subring of $R$.
-	\item If $R_1\subseteq R_2\subseteq\cdots$ is a sequence of subrings of $R$, then 
-	$\cup_{i\geq1}R_i$ is a subring of $R$. 
+\begin{exercise}
+  \leavevmode
+  \label{xca:subrings}
+  \begin{enumerate}
+    \item If $S$ and $T$ are subrings of $R$, then $S\cap T$ is a subring of $R$.
+    \item If $R_1\subseteq R_2\subseteq\cdots$ is a sequence of subrings of $R$, then 
+      $\bigcup_{i\geq1}R_i$ is a subring of $R$. 
     \item If $S$ and $T$ are subrings of $R$ such that $S\cup T$ is a subring, then $S\subseteq T$ or  $T\subseteq S$.
-\end{enumerate}
+  \end{enumerate}
 \end{exercise}
 
 \begin{definition}
-\index{Units}
+\index{Unit}
 	Let $R$ be a ring. An element $x\in R$ is 
 	a \emph{unit} if there exists $y\in R$ such that $xy=yx=1$. 
 \end{definition}
 
+\index{Group of units}
 The set $\mathcal{U}(R)$ of units of a ring $R$ forms  
 a group under multiplication. For example, $\mathcal{U}(\Z)=\{-1,1\}$ and 
 $\mathcal{U}(\Z/8)=\{1,3,5,7\}$. 
@@ -233,13 +246,12 @@ Compute $\mathcal{U}(\R[X])$.
 	such that $\mathcal{U}(R)=R\setminus\{0\}$.  	
 \end{definition}
 
-\index{Quaternions}
 The ring $H(\R)$ of \emph{real quaternions} is a non-commutative division ring.
 Find the inverse of an arbitrary non-zero element $a1+bi+cj+dk\in H(\R)$. 
 
 \begin{definition}
 \index{Field}
-	A \emph{field} is a commutative division ring (with $1\ne 0$). 
+	A \emph{field} is a commutative division ring with $1\ne 0$. 
 \end{definition}
 
 For example, $\Q$, $\R$, and $\C$ are fields. 
@@ -274,15 +286,15 @@ the inclusion
 $IR\subseteq I$. 
 
 \begin{example}
-Let $R=M_{2}(\mathbb{R})$. Then   
+Let $R=M_{2}(\R)$. Then   
 \[
 I=\left(\begin{array}{cc}
-\mathbb{R} & \mathbb{R}\\
+\R & \R\\
 0 & 0
 \end{array}\right)=\left\{ \left(\begin{array}{cc}
 x & y\\
 0 & 0
-\end{array}\right):x,y\in\mathbb{R}\right\} 
+\end{array}\right):x,y\in\R\right\} 
 \]
 is a right ideal of $R$ that is not a left ideal. 
 \end{example}
@@ -299,12 +311,12 @@ is a subset that is both a left and a right ideal of $R$.
 If $R$ is a ring, then $\{0\}$ and $R$ are both ideals of $R$. 
 
 \begin{exercise}
-\label{xca:ideals}
-Let $R$ be a ring. 
-\begin{enumerate}
-\item If $\{I_\alpha:\alpha\in\Lambda\}$ is a collection of ideals of $R$, then $\cap_{\alpha}I_\alpha$ is an ideal of $R$.  	
-\item If $I_1\subseteq I_2\subseteq\cdots$ is a sequence of ideals of $R$, then $\cup_{i\geq1}I_i$ is an ideal of $R$. 
-\end{enumerate}
+  \label{xca:ideals}
+  Let $R$ be a ring. 
+  \begin{enumerate}
+    \item If $\{I_\alpha:\alpha\in\Lambda\}$ is a collection of ideals of $R$, then $\bigcap_{\alpha}I_\alpha$ is an ideal of $R$.  	
+    \item If $I_1\subseteq I_2\subseteq\cdots$ is a sequence of ideals of $R$, then $\bigcup_{i\geq1}I_i$ is an ideal of $R$. 
+  \end{enumerate}
 \end{exercise}
 
 
@@ -317,8 +329,9 @@ of multiples of $f(X)$ is an ideal of $R$. One can prove that this is the smalle
 ideal of $R$ containing $f(X)$.  	
 \end{example}
 
+\index{Ideal!generated by a set}
 If $R$ is a ring and $X$ is a subset of $R$, one defines
-the ideal generated by $X$ as the smallest ideal of $R$ containing $X$, that is 
+the \emph{ideal generated} by $X$ as the smallest ideal of $R$ containing $X$, that is 
 \[
 (X)=\bigcap\{I:\text{$I$ ideal of $R$ such that $X\subseteq I$}\}.
 \]
@@ -326,8 +339,9 @@ One proves that
 \[
 (X)=\left\{\sum_{i=1}^mr_ix_is_i:m\in\Z_{\geq0},\,x_1,\dots,x_m\in X,\,r_1,\dots,r_m,s_1,\dots,s_m\in R\right\}, 
 \]
-where by convention, the empty sum is equal to zero. If $X=\{x_1,\dots,x_n\}$ is a finite
-set, then we write $(X)=(x_1,\dots,x_n)$. 
+where the elements $x_1,\dots,x_m$ are not necessarily distinct and, by
+convention, the empty sum is equal to zero. If $X=\{x_1,\dots,x_n\}$ is a
+finite set, then we write $(X)=(x_1,\dots,x_n)$. 
 
 \begin{exercise}
 \label{xca:ideals_Z}
@@ -348,9 +362,10 @@ A similar exercise is to find the ideals of any division ring.
 
 \begin{exercise}
 \label{xca:ideals_matrices}
-    Let $R$ be a commutative ring. Prove that every ideal of $M_n(R)$ is 
-    of the form $M_n(I)$ for some ideal $I$ of $R$. 
+    Let $n\geq1$ and let $R$ be a commutative ring. Prove that every ideal of
+    $M_n(R)$ is of the form $M_n(I)$ for some ideal $I$ of $R$. 
 \end{exercise}
+% I don't need commutativity here
 
 %\begin{sol}{xca:ideals}
 %    Recall the formula $E_{ij}E_{jk}=E_{ik}$ for elementary matrices.  
@@ -375,11 +390,12 @@ Let $R$ be a ring and $I$ be an ideal of $R$. Then $I$ is \emph{principal}
 if $I=(x)$ for some $x\in R$. 	
 \end{definition}
 
+\index{Division algorithm}
 The division algorithm shows that every ideal of $\Z$ is principal, 
 see Exercise~\ref{xca:ideals_Z}.  
 
-The ring $\R[X]$ of real polynomials also has a division algorithm. Given the polynomials 
-$f(X)\in\R[X]$ and $g(X)\in\R[X]$ with $g(X)\ne 0$, there are  
+The ring $\R[X]$ of real polynomials also has a division algorithm. Given the
+polynomials $f(X)\in\R[X]$ and $g(X)\in\R[X]$ with $g(X)\ne 0$, there are unique 
 polynomials $q(X)\in\R[X]$ and $r(X)\in\R[X]$ such that 
 \[
 f(X)=q(X)g(X)+r(X),
@@ -408,7 +424,7 @@ that every ideal of $K[X]$ is principal.
 	$(x)=R$. What happens if $R$ is non-commutative?
 \end{exercise}
 
-A division ring (and, in particular, a field) has only two ideals. 
+A division ring (and, in particular, a field) has exactly two ideals. 
 
 \section{Ring homomorphisms}
 
@@ -418,9 +434,8 @@ Let $R$ and $S$ be rings. A map $f\colon R\to S$ is a \emph{ring homomorphism}
 if $f(1)=1$, $f(x+y)=f(x)+f(y)$ and $f(xy)=f(x)f(y)$ for all $x,y\in R$. 	
 \end{definition}
 
-Our definition of a ring is that of a ring with identity. This means
-that the identity element $1$ of a ring $R$ 
-is part of the structure. For that reason, in 
+Since the identity element $1$ of a ring $R$ 
+is part of the structure, in 
 the definition
 of a ring homomorphism $f$ one needs $f(1)=1$.  
 
@@ -453,6 +468,8 @@ Let $x_0\in\R$. The evaluation map $\R[X]\to\R$, $f\mapsto f(x_0)$,
 is a ring homomorphism. 	
 \end{example}
 
+\index{Kernel}
+\index{Image}
 The \emph{kernel} of a ring homomorphism
 $f\colon R\to S$ is the subset
 \[
@@ -472,7 +489,7 @@ $2\Z$ is an ideal of $\Z$ but not an ideal of $\Z[X]$.
 \end{example}
 
 \begin{example}
-    Let $R$ be a ring and $R\times R$ be the direct product (see
+    Let $R$ be a non-zero ring and $R\times R$ be the direct product (see
     Example~\ref{exa:direct_rings}).  The map $R\to R\times R$, $r\mapsto
     (r,r)$ is an injective ring homomorphism. 
 
@@ -480,7 +497,8 @@ $2\Z$ is an ideal of $\Z$ but not an ideal of $\Z[X]$.
     \[
     \pi_R\colon R\times S\to R,\quad (r,s)\mapsto r,
     \]
-    is a surjective ring homomorphism with $\ker\pi_R=\{(0,s):s\in S\}=\{0\}\times S$. 
+    is a surjective ring homomorphism with $\ker\pi_R=\{(0,s):s\in
+    S\}=\{0\}\times S$. Note that $\ker\pi_R$ is not a subring of $R\times S$.
 \end{example}
 
 \begin{example}
@@ -495,7 +513,7 @@ with kernel $\{a+bi:a+2b\equiv 0\bmod 5\}$.
 
 \begin{exercise}
 \label{xca:Z6->Z15}
-There is no ring homomorphism $\Z/6\to\Z/15$. Why?	
+Prove that there is no ring homomorphism $\Z/6\to\Z/15$. 
 \end{exercise}
 
 \begin{exercise}
