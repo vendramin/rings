@@ -10,7 +10,6 @@
 %   ...
 %   \end{document}
 % ============================================================
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mynotes}[2026/08/30 v1.0 Personal lecture notes style]
 
@@ -33,15 +32,6 @@
 \RequirePackage[margin=1in,footskip=.25in]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage[english.nosectiondot]{babel}
-
-% For a dyslexia-friendly font, comment the three lines above
-% that load fontspec/OpenDyslexic-related settings are not
-% enabled by default; uncomment and load fontspec + mathptmx/
-% newtxtext instead if needed:
-%\RequirePackage{fontspec}
-%\setmainfont{OpenDyslexic}
-%\RequirePackage{mathptmx}
-%\RequirePackage{newtxtext}
 
 % ------------------------------------------------------------
 % Hyperref setup
@@ -77,11 +67,7 @@
 \renewcommand\thesection{\arabic{section}}
 \renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
 
-% ------------------------------------------------------------
-% Table of contents "part" separators
-% ------------------------------------------------------------
-\newcommand{\TOCpart}[1]{\addtocontents{toc}%
-{\bigskip\textcolor{green!40!blue}{\textbf{#1.}}}}
+% \def\l@part{\@tocline{1}{12pt plus2pt}{1pc}{}{\bfseries}}
 
 % ------------------------------------------------------------
 % Pink box for optional comments

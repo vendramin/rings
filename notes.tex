@@ -1,6 +1,10 @@
 \documentclass[12pt]{amsproc}
 \usepackage{mynotes}
-%\usepackage{lecturenotes}
+
+\newcommand{\TOC}[1]{%
+  \addtocontents{toc}{\bigskip}%
+  \addtocontents{toc}{\textcolor{red!70!black}{\hspace{-0.6cm}\textbf{#1}}}
+}
 
 \renewcommand{\course}{Ring and module theory}
 
@@ -15,11 +19,9 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \begin{document}
 
 \begin{abstract}
-    The notes correspond to the bachelor
-    course \textbf{Ring and Module Theory} of the
-    Vrije Universiteit Brussel,
-    Faculty of Sciences,
-    Department of Mathematics and Data Sciences.
+    The notes correspond to the bachelor course \textbf{Ring and Module Theory}
+    of the Vrije Universiteit Brussel, Faculty of Sciences, Department of
+    Mathematics and Data Sciences.
 \end{abstract}
 
 \maketitle
@@ -40,8 +42,10 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \pagenumbering{arabic}
 
 \include{introduction}
+%\addtocontents{toc}{\bigskip}
 
 % Rings 
+\TOC{Part 1. Rings}
 \input{01}
 \input{02}
 \input{03}
@@ -49,15 +53,19 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \input{05}
 
 % Representations 
-\input{06}
+\TOC{Part 2. Representations of groups}
+\include{06}
 \input{07}
 %\input{08}
 
 % Modules 
-\input{09}
+\TOC{Part 3. Modules over rings}
+\include{09}
 \input{10}
 \input{11}
 \input{12}
+
+\addtocontents{toc}{\bigskip}
 
 \input{solutions}
 \bibliographystyle{abbrv}
