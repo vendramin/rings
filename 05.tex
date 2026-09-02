@@ -29,7 +29,7 @@ reverse implications do not hold.
 It is time to give a very nice number-theoretical application.
 
 \begin{theorem}[Fermat]
-\index{Fermat's theorem}
+\index{Fermat's Christmas theorem}
 \label{thm:Fermat}
 	Let $p\in\Z_{>0}$ be a prime number. The following statements are equivalent:
 	\begin{enumerate}
@@ -40,9 +40,10 @@ It is time to give a very nice number-theoretical application.
 	\end{enumerate}
 \end{theorem}
 
+\index{Fermat's little theorem}
 \begin{proof}
-    We first prove that $1)\implies 2)$. If $p=2$, take $a=1$. If $p=4k+1$ for some $k\in\Z$, then
-    by Fermat's little theorem, the polynomial 
+    We first prove that $1)\implies 2)$. If $p=2$, take $a=1$. If $p=4k+1$ for
+    some $k\geq1$, then by Fermat's little theorem, the polynomial 
     $X^{p-1}-1\in(\Z/p)[X]$ has roots $1,2,\dots,p-1$. Write
     \[
     (X-1)(X-2)\cdots (X-(p-1))=X^{p-1}-1=X^{4k}-1=(X^{2k}+1)(X^{2k}-1)
@@ -81,7 +82,9 @@ It is time to give a very nice number-theoretical application.
 \begin{optional}
 An alternative proof of the implication 
 $1)\implies 2)$ goes as follows: if $p=4k+1$ is prime, then 
-$x=(2k)!$ is such that $x^2\equiv -1\bmod p$. By Wilson's theorem, 
+$x=(2k)!$ is such that $x^2\equiv -1\bmod p$. 
+By 
+Wilson's theorem, 
 \[
 (p-1)! = (4k)!\equiv -1\bmod p.
 \]
@@ -91,7 +94,7 @@ Moreover,
 &\equiv-1(-2)\cdots(-2k+1)(-2k)(2k)(2k-1)\cdots1\bmod p\\
 &\equiv(-1)^{2k}(2k)!(2k)!\bmod p.
 \end{align*}
-Hence $x=(2k)!$ is such that $x^2\equiv -1\bmod p$.
+%Hence $x=(2k)!$ is such that $x^2\equiv -1\bmod p$.
 \end{optional}
 
 \begin{exercise}
@@ -193,8 +196,8 @@ They form the set of all norms of Gaussian integers.
 \section{Zorn's lemma}
 
 \begin{definition}
-\index{Poset}
-\index{Partially ordered set}
+  \index{Partially ordered set}
+  \index{Poset|see{Partially ordered set}}
 A non-empty set $R$ is said to be a \emph{partially ordered set} (or \emph{poset}, for short) 
 if there is a subset $X\subseteq R\times R$ such that
 \begin{enumerate}
@@ -259,6 +262,7 @@ and there is no $z$ such that $x<z<y$.
 \end{example}
 
 \begin{definition}
+\index{Maximal element}
     Let $R$ be a poset and $r\in R$. Then $r$ is \emph{maximal} in $R$ if 
     $r\leq t$ implies $r=t$. 
 \end{definition}
@@ -273,6 +277,7 @@ $R$ is a poset and each $(x,0)$ is maximal. Thus $R$ has infinitely many maximal
 \end{example}
 
 \begin{definition}
+  \index{Upper bound}
     Let $R$ be a poset and $S$ be a non-empty subset of $R$. An \emph{upper bound}
     for $S$ is an element $u\in R$ such that $s\leq u$ for all $s\in S$. 
 \end{definition}
@@ -297,6 +302,7 @@ An upper bound for $S$ might not be an element of $S$.
 
 
 \begin{definition}
+  \index{Chain}
     Let $R$ be a poset. A \emph{chain} is a non-empty subset $S$ of $R$ such that
     any two elements of $S$ are comparable. 
 \end{definition}
@@ -305,7 +311,7 @@ We now state \emph{Zorn's lemma}:
 
 \begin{quote}
 \index{Zorn's lemma}
-\color{blue!50!black}{\textit{Let $R$ be a poset such that 
+\textcolor{blue!50!black}{\textit{Let $R$ be a poset such that 
 every chain in $R$ admits an upper bound in $R$. 
 Then $R$ contains a maximal element.}}
 \end{quote}
@@ -321,14 +327,14 @@ Then $R$ contains a maximal element.}}
 % The reason for calling Zorn’s lemma a lemma rather 
 % than an axiom is purely historical. 
 
+\index{Anxiom of Choice}
 It may not be intuitive\footnote{The mathematician Jerry L. Bona has a nice
 joke about Zorn's lemma: \textit{The Axiom of Choice is obviously true, the
 well-ordering principle obviously false, and who can tell about Zorn's
 lemma?}}, but it is logically equivalent to a more intuitive statement in set
 theory: the \emph{Axiom of Choice}, which states that the Cartesian product of
-a collection of non-empty sets is non-empty.  Zorn's lemma is equivalent to the
-Axiom of Choice, so it may be adopted as an equivalent form of that axiom.  The
-name is historical.
+a collection of non-empty sets is non-empty. Calling it a lemma rather than an
+axiom is purely historical.
 
 \begin{definition}
 	\index{Ideal!maximal}
@@ -369,13 +375,14 @@ if $I\ne R$.
 	\[
 	I_1\subseteq I_2\subseteq\cdots
 	\]
-	of proper ideals of $R$ containing $I$), then 
-	$\cup_{J\in C}J$ is an upper bound for $C$, as $\cup_{J\in C}J$ is an ideal and
-	$\cup_{J\in C}J\ne R$ because $1\not\in\cup_{J\in C}J$. 	Zorn's lemma implies that
-	there exists a maximal element $M\in X$. We claim that $M$ is a maximal ideal of $R$. The definition
-	of $X$ implies that $M$ is a proper ideal of $R$ that contains $I$. If $M_1$ is a proper ideal of $R$
-	such that $M\subseteq M_1$, it follows that $I\subseteq M_1$ and hence $M_1\in X$. The maximality
-	of $M$ implies that $M=M_1$.  
+  of proper ideals of $R$ containing $I$), then $\bigcup_{J\in C}J$ is an upper
+  bound for $C$, as $\bigcup_{J\in C}J$ is an ideal and $\bigcup_{J\in C}J\ne
+  R$ because $1\not\in\bigcup_{J\in C}J$. 	Zorn's lemma implies that there
+  exists a maximal element $M\in X$. We claim that $M$ is a maximal ideal of
+  $R$. The definition of $X$ implies that $M$ is a proper ideal of $R$ that
+  contains $I$. If $M_1$ is a proper ideal of $R$ such that $M\subseteq M_1$,
+  it follows that $I\subseteq M_1$ and hence $M_1\in X$. The maximality of $M$
+  implies that $M=M_1$.  
 \end{proof}
 
 In the proof of the previous theorem, we see that it is crucial to consider rings with 
@@ -500,6 +507,7 @@ containing $X$.
 \section{The characteristic of a ring}
 
 \begin{definition}
+\index{Characteristic of a ring}
 Let $R$ be a ring. If there is a least positive integer $n$ such that 
 $nx=0$ for all $x\in R$, then $R$ has \emph{characteristic} $n$, i.e. $\ch R=n$. If no such $n$ exists, 
 then $R$ is of characteristic zero. 
@@ -572,7 +580,6 @@ $k\in\{1,2,\dots,p^n-1\}$.
     Let $R$ be a ring and $n\geq1$. 
     For $a,b\in R$, let $A\colon R\to R$, $A(x)=(a+b)x-xb$. 
     Prove that
-    if $a,b\in R$, then 
     \[
     (a+b)^n=\sum_{k=0}^n\binom{n}{k}A^k(1)b^{n-k}.
     \] 

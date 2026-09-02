@@ -2,6 +2,7 @@
 %\label{6}
 
 \section{Group algebras}
+\index{Group algebra}
 
 Fix a field $K$ (for example, $K=\C$). 
 For a finite group $G$, let $K[G]$ be the vector space (over $K$)
@@ -76,6 +77,12 @@ polynomial rings $\R[X]$ and $\R[X,Y]$ and the matrix rings $M_n(\R)$.
     Let $G$ be a finite group and $K$ be a field. Then $K[G]$ is a $K$-algebra. 
 \end{example}
 
+\index{Algebra!homomorphism}
+\index{Algebra!isomorphism}
+An \emph{algebra homomorphism} is a ring homomorphism that is $K$-linear. An
+\emph{algebra isomorphism} is a bijective algebra homomorphism; we use the
+symbol $\simeq$ for isomorphisms, as we did for rings.
+
 \begin{example}
 	Let $G=\langle g:g^3=1\rangle=\{1,g,g^2\}\simeq C_3$ be the cyclic group of order three. 
 	If $\alpha=a_11+a_2g+a_3g^2$ and $\beta=b_11+b_2g+b_3g^2$, then
@@ -103,7 +110,7 @@ is isomorphic to $\C[X]/(X^n-1)$.
  \[
  \C[G]\to \C\times \C,\quad a1+bg\mapsto (a+b,a-b),
  \]
-	is a linear isomorphism of $\C$-algebras. 
+	is an isomorphism of $\C$-algebras. 
 \end{exercise}
 
 \begin{exercise}
@@ -135,14 +142,13 @@ a+b&b\\
 %		0&a+b		
 %	\end{pmatrix},
 %    \]
-    is a linear isomorphism of $K$-algebras. 
+    is an isomorphism of $K$-algebras. 
 \end{exercise}
 
-The group algebra has the following property, which is left as an exercise. 
-Let $A$ be a $K$-algebra and
-$G$ be a finite group. If $f\colon G\to\mathcal{U}(A)$ is a group homomorphism, 
-then there exists a unique $K$-algebra homomorphism $\varphi\colon K[G]\to A$ such that
-$\varphi|_G=f$. 
+The group algebra has the following property, which is left as an exercise.
+Let $A$ be a $K$-algebra and $G$ be a finite group. If $f\colon
+G\to\mathcal{U}(A)$ is a group homomorphism, then there exists a unique
+$K$-algebra homomorphism $\varphi\colon K[G]\to A$ such that $\varphi|_G=f$. 
 
 \begin{example}
 	Let $\D_3=\langle r,s:r^3=s^2=1,\,srs^{-1}=r^{-1}\rangle$ be the dihedral
@@ -225,6 +231,7 @@ satisfies the following properties:
     \item $\rho_g(\lambda v)=\lambda \rho_g(v)$ for all $v\in V$ and $\lambda\in K$. 
 \end{enumerate}
 
+\index{Representation!matrix}
 Since by assumption
 $V$ is finite-dimensional, say $\dim V=n$, after fixing a basis of $V$ we get a \emph{matrix representation} 
 $\rho\colon G\to\GL(V)\simeq\GL_n(K)$ of $G$. Depending on the context, we will use either representations on vector spaces or matrix representations.  
@@ -371,7 +378,7 @@ for all $v\in V$ and $g\in G$.
 %Although we use the same notation for different representations, there is no risk of confusion. 
 
 \begin{definition}
-	\index{Representations!equivalence}
+	\index{Representation!equivalence}
     The representations $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ are \emph{equivalent}
     if there exists a bijective invariant linear 
     map $T\colon V\to W$. 
@@ -411,7 +418,7 @@ The following example explains why we can alternatively use
 representations or matrix representations. 
 
 \begin{example}
-\label{xca:change_of_basis}
+\label{exa:change_of_basis}
 Let $\rho\colon G\to\GL(V)$ be a representation, say, of degree 
 $n=\dim V$. Choose a basis 
 $B=\{v_1,\dots,v_n\}$ of $V$ and let 
@@ -439,14 +446,16 @@ of $G$ equivalent to $\rho$.
 
 
 \begin{definition}
-	\index{Invariant!subspace}
+	\index{Invariant subspace}
     Let $\rho\colon G\to\GL(V)$ be a representation. 
     A subspace $W$ of $V$ is said to be \emph{invariant} (with respect to $\rho$)
     if $\rho_g(W)\subseteq W$ for all $g\in G$.
 \end{definition}
 
+\index{Representation!restriction}
 Let $\rho\colon G\to\GL(V)$ be a representation. Then $\{0\}$ and $V$ are always   
-invariant subspaces of~$V$. Moreover, if $W\subseteq V$ is invariant, then
+invariant subspaces of~$V$. Moreover, if $W\subseteq V$ is non-zero and 
+invariant, then
 the map $\rho|_W\colon G\to\GL(W)$, $g\mapsto (\rho_g)|_W$, is a representation. The
 map $\rho|_W$ is the \emph{restriction} of $\rho$ to $W$. 
 
@@ -501,7 +510,7 @@ map $\rho|_W$ is the \emph{restriction} of $\rho$ to $W$.
 
 \begin{definition}
     \index{Representation!irreducible}
-    A non-zero representation $\rho\colon G\to\GL(V)$ is \emph{irreducible} if
+    A representation $\rho\colon G\to\GL(V)$ is \emph{irreducible} if
     $\{0\}$ and $V$ are the only invariant subspaces of $V$.
 \end{definition}
 
@@ -581,6 +590,7 @@ is irreducible.
 
 \begin{example}
 \label{exa:direct_sum_reps}
+\index{Representation!direct sum of}
 Let $\rho\colon G\to\GL_n(\C)$ and $\psi\colon G\to\GL_m(\C)$ be representations. One defines
 the \emph{direct sum} $\rho\oplus\psi$ of $\rho$ and $\psi$ as 
 \[
@@ -668,7 +678,7 @@ A representation is
 \end{exercise}
 
 \section{Tensor product of representations}
-
+\index{Representation!tensor product of}
 Let $V$ be a vector space with basis $\{v_1,\dots,v_k\}$ and 
 $W$ be a vector space with basis $\{w_1,\dots,w_l\}$. A 
 \emph{tensor product} of $V$ and $W$ is a vector space $X$ 
@@ -724,6 +734,7 @@ is a representation.
 
 \section{Unitary representations}
 
+\index{Inner product}
 Since we are considering finite-dimensional vector spaces, our vector spaces admit 
 an \emph{inner product}, that is a map $V\times V\to\C$, $(v,w)\mapsto\langle v,w\rangle$, 
 that satisfies the following properties:
@@ -734,6 +745,7 @@ that satisfies the following properties:
       $\langle x,x\rangle=0$ if and only if $x=0$.
 \end{enumerate}
 
+\index{Inner product!usual}
 For example, if $V=\C^n$, $v=\colvec{3}{v_1}{\vdots}{v_n}\in V$ and $w=\colvec{3}{w_1}{\vdots}{w_n}\in V$, 
 then the \emph{usual inner product} between $v$ and $w$ 
 is given by
@@ -758,7 +770,7 @@ v^T=(v_1,\dots,v_n),\quad
 \begin{exercise}
 \index{Left regular representation}
 Let $G$ be a finite group and $V=\C[G]$ be the complex vector space with basis
-$\{g:g\in G\}$. The \emph{left regular representation}
+$\{g:g\in G\}$. The \emph{Representation!left regular}
 of $G$ is the representation
 \[
 L\colon G\to\GL(V),
@@ -772,8 +784,7 @@ where $L_g(h)=gh$. With respect to the inner product
 the representation $L$ is unitary. Prove it! 
 \end{exercise}
 
-
-
+\index{Orthogonal complement}
 If $V$ is an inner-product vector space and $W$ is a subspace of $V$, 
 \[
 W^\perp = \{v\in V:\langle v,w\rangle=0\text{ for all $w\in W$}\}, 
@@ -902,7 +913,6 @@ Weyl's trick has several interesting consequences:
   from 1), Proposition \ref{pro:irr_or_dec}, and Exercise
   \ref{xca:equivalence}.  Finally, with respect to an orthonormal basis for the
   invariant inner product, every $\rho_g$ is unitary and hence diagonalizable.
-  Therefore $\rho_g$ is diagonalizable. 
 \end{proof}
 
 \begin{exercise}
