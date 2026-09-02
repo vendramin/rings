@@ -48,7 +48,8 @@
 	Let $R=\Z[\sqrt{-5}]$. 
 	\begin{enumerate}
 		\item Prove that $1+\sqrt{-5}$ and $1-\sqrt{-5}$ are irreducible in $R$. 
-		\item Prove that $2,3,1+\sqrt{-5}$ and $1-\sqrt{-5}$ are not associate in $R$.
+		\item Prove that $2,3,1+\sqrt{-5}$ and $1-\sqrt{-5}$ are pairwise 
+      non-associate in $R$.
 	\end{enumerate}
 \end{exercise}
 
@@ -58,12 +59,13 @@
 \end{exercise}
 
 \begin{definition}
+  \index{Domain!principal}
 	Let $R$ be an integral domain. Then $R$ is a \emph{principal domain} 
 	(or a principal ideal domain) if
 	every ideal $I$ of $R$ is of the form $I=(x)$ for some $x\in R$.   
 \end{definition}
 
-An ideal $I$ of the form $I=(x)$ for some $x$ is called a \emph{principal ideal}. 
+Recall that an ideal $I$ of the form $I=(x)$ for some $x$ is called a \emph{principal ideal}. 
 
 The rings $\Z$ and $\R[X]$ are both principal ideal domains. 
 
@@ -71,18 +73,18 @@ The rings $\Z$ and $\R[X]$ are both principal ideal domains.
 	The ring $\Z[X]$ is not principal. For example, the ideal
 	$I=(2,X)$ is not principal. 
 	
-	First note that $I\ne\Z[X]$. In fact, if $I=\Z[X]$, then 
-	$1=2f(X)+Xg(X)$ for some polynomials $f(X),g(X)\in\Z[X]$. Then 
-	$1=2f(0)$, which implies that $1/2=f(0)\in\Z$, a contradiction. 
+  First note that $I\ne\Z[X]$. In fact, if $I=\Z[X]$, then $1=2f(X)+Xg(X)$ for
+  some polynomials $f(X),g(X)\in\Z[X]$. Then $1=2f(0)$, which implies that
+  $1/2=f(0)\in\Z$, a contradiction. 
 	
-	If $I=(h(X))$ for some $h(X)\in\Z[X]$, then $2=h(X)g(X)$ for some $g(X)\in\Z[X]$. This
-	implies that $\deg(h(X))=0$, so $h(X)=h(1)\in\Z$. In particular, $2=h(1)g(1)$ and hence
-	$h(1)\in\{-1,1,-2,2\}$. Since $I\ne\Z[X]$, it follows that $h(X)=h(1)\not\in\{-1,1\}$. Now      
-	$X=h(X)f(X)$ for some $f(X)\in\Z[X]$. In particular, $\deg(f(X))=1$, so
-	we may assume that $f(X)=a_0+a_1X$ for $a_0,a_1\in\Z$ and $a_1\ne 0$. 	
-	It follows that 
+  If $I=(h(X))$ for some $h(X)\in\Z[X]$, then $2=h(X)g(X)$ for some
+  $g(X)\in\Z[X]$. This implies that $\deg(h(X))=0$, so $h(X)=h(1)\in\Z$. In
+  particular, $2=h(1)g(1)$ and hence $h(1)\in\{-1,1,-2,2\}$. Since $I\ne\Z[X]$,
+  it follows that $h(X)=h(1)\not\in\{-1,1\}$. Now      $X=h(X)p(X)$ for some
+  $p(X)\in\Z[X]$. In particular, $\deg(p(X))=1$, so $p(X)=a_0+a_1X$ for
+  $a_0,a_1\in\Z$ and $a_1\ne 0$. 	It follows that 
 	\[
-	X=\pm 2f(X)=\pm2(a_0+a_1X)
+	X=\pm 2p(X)=\pm2(a_0+a_1X)
 	\]
 	and therefore $\pm1/2=a_1\in\Z$, a contradiction.
 \end{example}
@@ -106,13 +108,13 @@ The rings $\Z$ and $\R[X]$ are both principal ideal domains.
     \]
     a contradiction because $x+y+u-2v\in\Z$. 
 	
-	Now assume that $I=(\alpha)$ for some $\alpha$. Then $\alpha\mid 2$ and $\alpha\mid 1+\sqrt{-5}$. Then
-	$\norm(\alpha)\mid 4$ and $\norm(\alpha)\mid 6$, because $\norm(2)=4$ and $\norm(1+\sqrt{-5})=6$. 
-	Thus $\norm(\alpha)\in\{1,2\}$. If we write
-	$\alpha=a+b\sqrt{-5}$ for $a,b\in\Z$, then it follows that 
-	$a^2+5b^2=\norm(\alpha)$. Clearly, $\norm(\alpha)\ne 2$, as $a^2=2$ has no solution in $\Z$.
-	Now $\norm(\alpha)= 1$ implies that $\alpha\in\mathcal{U}(R)$ and hence 
-	$I=R$, a contradiction.   
+  Now assume that $I=(\alpha)$ for some $\alpha$. Then $\alpha\mid 2$ and
+  $\alpha\mid 1+\sqrt{-5}$. Then $\norm(\alpha)\mid 4$ and $\norm(\alpha)\mid
+  6$, because $\norm(2)=4$ and $\norm(1+\sqrt{-5})=6$.  Thus
+  $\norm(\alpha)\in\{1,2\}$. If we write $\alpha=a+b\sqrt{-5}$ for $a,b\in\Z$,
+  then it follows that $a^2+5b^2=\norm(\alpha)$. Clearly, $\norm(\alpha)\ne 2$,
+  as $a^2=2$ has no solution in $\Z$.  Now $\norm(\alpha)= 1$ implies that
+  $\alpha\in\mathcal{U}(R)$ and hence $I=R$, a contradiction.   
 \end{example}
 
 Sometimes primes and irreducibles coincide. 
@@ -144,16 +146,21 @@ because $\Z$ is a principal domain.
 \end{example}
 
 \begin{definition}
-	Let $R$ be an integral domain. We say that $R$ is an \emph{euclidean domain}
+  \index{Domain!euclidean}
+  \label{def:euclidean}
+	Let $R$ be an integral domain. We say that $R$ is a \emph{euclidean domain}
 	if there exists a map $\varphi\colon R\setminus\{0\}\to\Z_{\geq0}$ such that
 	for every $x,y\in R$ with $y\ne 0$ there exist $q,r\in R$ such that 
 	$x=qy+r$, where $r=0$ or $\varphi(r)<\varphi(y)$. 
 \end{definition}
 
-Note that in the definition of euclidean domains, we do not ask for the uniqueness 
-of the quotient and the remainder. In fact, 
-we will meet important examples of euclidean domains where uniqueness
-in the division algorithm is not achieved. 
+The map $\varphi$ of Definition~\ref{def:euclidean} is called the 
+\emph{euclidean function} of the euclidean domain. 
+
+Note that in Definition~\ref{def:euclidean}, we do not ask for the
+uniqueness of the quotient and the remainder. In fact, we will meet important
+examples of euclidean domains where uniqueness in the division algorithm is not
+achieved. 
 
 \begin{example}
 	$\Z$ is a euclidean domain with $\varphi(x)=|x|$.
@@ -231,8 +238,9 @@ consider a map $\varphi\colon R\setminus\{0\}\to\Z_{\geq0}$.
     as $z=\xi+\eta$, where $\xi\in\Z[i]$ and $\varphi(\eta)<1$. In fact, 
     this
 	follows from the fact that 
-	$\C$ is covered by open unit disks of radius one and 
-    centers $\Z[i]$, see the following figure:
+	$\C$ is covered by 
+  open disks of radius one centred at the Gaussian integers, 
+  see Figure~\ref{fig:covering}.
 
 	\begin{figure}[ht]
 		\centering
@@ -246,7 +254,7 @@ consider a map $\varphi\colon R\setminus\{0\}\to\Z_{\geq0}$.
 \draw[red,thick](1,2) circle (1);
 \draw[red,thick](2,2) circle (1);
 \end{tikzpicture}
-%\caption{$\C$ is covered by open unit disks of radius one and centers in $\Z[i]$.}
+\caption{$\C$ is covered by open unit disks of radius one and centers in $\Z[i]$.}
 \label{fig:covering}
 \end{figure}
 	
@@ -278,7 +286,7 @@ at most four pairs $\delta,\gamma\in\Z[i]$ satisfying
 \varphi(\gamma)<\varphi(\beta).
 \]
 Indeed, write $\alpha/\beta=r+is$ and $\delta=m+in$, where
-$r,s\in\R$ and $m,n\in\Z$. Then
+$r,s\in\Q$ and $m,n\in\Z$. Then
 \[
 \varphi\left(\frac{\alpha}{\beta}-\delta\right)
 =\frac{\varphi(\gamma)}{\varphi(\beta)}<1.
@@ -366,7 +374,8 @@ The following result takes advantage of this fact.
 	$I=(y)$. 
 \end{proof}
 
-\begin{example}\
+\begin{example}
+  \leavevmode
 	Since $\Z[i]$ is euclidean, it is principal.
 \end{example}
  
@@ -381,6 +390,7 @@ fact in these notes. For a proof
 see \cite{MR967349}, \cite{MR3665445} or \cite{MR314831}.
 
 \begin{definition}
+  \index{Domain!unique factorization}
 	Let $R$ be an integral domain. Then $R$ is a 
 	\emph{unique factorization domain}
 	if the following statements hold:
@@ -404,7 +414,7 @@ all of these rings are unique factorization domains.
 	\]	
 	Note that $\norm(a+b\sqrt{-6})=a^2+6b^2\ne 2$. This implies that $2$ is irreducible, as 
 	if $2=\alpha\beta$, then $4=\norm(2)=\norm(\alpha)\norm(\beta)$. 
-	Similarly, $5$ is irreducible.
+	Similarly, since $a^2+6b^2\ne 5$, it follows that $5$ is irreducible.
   It remains to verify that $2+\sqrt{-6}$ and $2-\sqrt{-6}$ are
   irreducible and that the two displayed factorizations are not equivalent
   up to associates and reordering. We leave these details as an exercise. 
@@ -466,8 +476,8 @@ that does not stabilize, a contradiction to the fact that $R$ is noetherian.
 		$R$ admits unique factorization.	
 	\end{claim}
 	
-	Let $x\in R$ be such that $x$ factorizes into irreducibles as 
-	$x=c_1\cdots c_n=d_1\cdots d_m$. 
+  Let $x\in R\setminus\mathcal{U}(R)$ be a non-zero element such that $x$
+  factorizes into irreducibles as $x=c_1\cdots c_n=d_1\cdots d_m$. 
 	Note that since $R$ is a principal domain, irreducibles and primes coincide by 
 	Proposition \ref{pro:PID:irreducible=prime}. 
 	We may assume that $n\leq m$. We proceed by 
@@ -490,8 +500,8 @@ that does not stabilize, a contradiction to the fact that $R$ is noetherian.
 	\[
 	d_1(uc_2\cdots c_n-d_2\cdots d_m)=0,
 	\]
-	which implies that $(uc_2)\cdots c_n=d_2\cdots d_m$ because $R$ is an integral domain.
-  Therefore $n\geq2$. Now
+  which implies that $(uc_2)\cdots c_n=d_2\cdots d_m$ because $R$ is an
+  integral domain. Now
   $uc_2$ is irreducible and hence the claim follows from the inductive
   hypothesis. 
 \end{proof}
@@ -508,6 +518,7 @@ Let us show that the converse of Theorem \ref{thm:PID=>UFD} does not hold.
 
 \begin{exercise}
 \label{xca:content}
+\index{Polynomial!primitive}
 	A polynomial $f\in\Z[X]$ is \emph{primitive} if
 	the greatest common divisor of its coefficients is equal to one. 
 	Let $f\in\Z[X]$ be a non-constant polynomial. If $f=af_1$ for some $a\in\Z$ and some
@@ -516,6 +527,7 @@ Let us show that the converse of Theorem \ref{thm:PID=>UFD} does not hold.
 
 \begin{exercise}
 \label{xca:Gauss}
+\index{Gauss' lemma}
 Prove the following statements:
 \begin{enumerate}
     \item Let $f,g\in\Z[X]$ be primitive polynomials. Prove that $fg$ is primitive.
@@ -525,9 +537,9 @@ $f$ is irreducible in $\Q[X]$.
 \end{enumerate}
 \end{exercise}
 
-The first item of Exercise \ref{xca:Gauss} is known as Gauss' lemma.
-The second one is Gauss' theorem. These results should be used to prove
-the following result: 
+The first item of Exercise \ref{xca:Gauss} is known as Gauss' lemma.  The
+second one is Gauss' criterion. These results should be used to prove the
+following result: 
 
 \begin{exercise}
 \label{xca:Z[X]_UFD}
