@@ -6,6 +6,7 @@ We finish the course with an algorithm that allows us to understand the
 structure of certain finitely generated modules.  We will discuss the case of
 modules over euclidean domains, as in this case the algorithm is constructive. 
 
+\index{Module!of relations}
 Let $R$ be a euclidean domain, 
 $M$ be a finitely generated $R$-module and $\{m_1,\dots,m_k\}$ be a set of
 generators.  There exists a surjective module homomorphism 
@@ -17,11 +18,11 @@ generators.  There exists a surjective module homomorphism
 and hence 
 $M\simeq R^k/\ker\varphi$. 
 The submodule $\ker\varphi$ of $R^k$ is the \emph{relations module} of $M$. 
-Since $R$ is an euclidean domain, $R$ is noetherian. Hence $R^k$ is a noetherian 
+Since $R$ is a euclidean domain, $R$ is noetherian. Hence $R^k$ is a noetherian 
 module, so 
 $\ker\varphi$ is finitely generated. Let 
 $\{e_1,\dots,e_l\}$ be a generating set of $\ker\varphi$. 
-The row matrix  
+The matrix  
 \[
 A=\begin{pmatrix}
 e_1\\
@@ -32,11 +33,12 @@ e_l
 \]
 has size $l\times k$ and 
 is the 
-\emph{relation matrix} of $M$ with respect to $\{m_1,\dots,m_k\}$ 
+\emph{relations matrix} of $M$ with respect to $\{m_1,\dots,m_k\}$ 
 and $\{e_1,\dots,e_l\}$. 
+\index{Matrix!of relations}
 
-Multiplying a relation matrix 
-on the left by an invertible matrix, changes the generators of the relation module: 
+Multiplying a relations matrix 
+on the left by an invertible matrix changes the generators of the relations module: 
 
 \begin{claim}
 		If $P\in R^{l\times l}$ is invertible, then the rows
@@ -93,8 +95,8 @@ f_l
 In particular, $PA$ is the relations matrix with respect to 
 $\{m_1,\dots,m_k\}$ and $\{f_1,\dots,f_l\}$.  
 
-Now multiplying a relation matrix on the right by an invertible matrix, 
-changes the original generating set of the module and the relation module: 
+Now multiplying a relations matrix on the right by an invertible matrix 
+changes the original generating set of the module and the relations module: 
 
 \begin{claim}
 	Let $Q\in R^{k\times k}$ be invertible and 
@@ -104,33 +106,38 @@ changes the original generating set of the module and the relation module:
     Then    
     the set
 	$\{n_1,\dots,n_k\}$ generates $M$ and the rows of $AQ$ generate
-	$\ker\psi$. Moreover, $AQ$ is the relation matrix with respect to
+	$\ker\psi$. Moreover, $AQ$ is the relations matrix with respect to
 	$\{n_1,\dots,n_k\}$.  
 \end{claim}
 
-Now we prove the claim. Since 
+Now we prove the claim. By definition, 
 \[
-\begin{pmatrix}
+Q\begin{pmatrix}
 n_1\\
 n_2\\
 \vdots\\
 n_k	
 \end{pmatrix}
-=Q^{-1}\begin{pmatrix}
+=\begin{pmatrix}
 m_1\\
 m_2\\
 \vdots\\
 m_k
 \end{pmatrix}.
 \]
-In particular, the elements 
+In particular, 
+each $m_i$ is a linear combination of $n_1,\dots,n_k$. Since 
+$\{m_1,\dots,m_k\}$ generates $M$, so does $\{n_1,\dots,n_k\}$; equivalently, 
+$\psi$ is surjective, as 
+%$n_j=\psi(0,\dots,0,1,0,\dots,0)$ for all $j$.
+%the elements 
 \begin{align*}
 &n_1=\psi(1,0,0,\dots,0),\\
 &n_2=\psi(0,1,0,\dots,0),\\
 &\quad\vdots\\
-&n_k=\psi(0,0,\dots,1) 
+&n_k=\psi(0,0,\dots,1).
 \end{align*}
-generate $M$. 
+%generate $M$. 
 
 We need to prove that the rows of $AQ$ generate $\ker\psi$. 
 Since $Q^{-1}$ is invertible, 
@@ -158,13 +165,13 @@ get a better description of our module $M$.
 	\[
 		PAQ=
 		\begin{pmatrix}
-			a_1 & 0 & \cdots & \cdot & \cdot & \cdots & 0\\
-			0 & a_2 & \cdots & \cdot & \cdot & \cdots & 0\\
+			a_1 & 0 & \cdots & 0 & 0 & \cdots & 0\\
+			0 & a_2 & \cdots & 0 & 0 & \cdots & 0\\
 			\vdots && \ddots &  & & & \vdots\\	
-			0 & \cdot & \cdots & a_r & \cdot & \cdots & 0\\	
-			0 & \cdot & \cdots & \cdot & 0 & \cdots & 0\\	
+			0 & 0 & \cdots & a_r & 0 & \cdots & 0\\	
+			0 & 0 & \cdots & 0 & 0 & \cdots & 0\\	
 			\vdots &&&&&\ddots &\vdots\\
-			0 & \cdot & \cdots & \cdot & \cdot & \cdots & 0
+			0 & 0 & \cdots & 0 & 0 & \cdots & 0
 		\end{pmatrix}
 	\]
 	where $a_i\ne0$ for all $i\in\{1,\dots,r\}$ and  $a_i\mid a_{i+1}$ for all
@@ -175,9 +182,8 @@ get a better description of our module $M$.
 \end{proposition}
 
 \begin{proof}
-Let $D=PAQ$. Then $D$ is a relation
-matrix for $M$ with respect to the generating set
-$\{n_1,\dots,n_k\}$ determined by $Q^{-1}$. Let
+Let $D=PAQ$. Then $D$ is a relations matrix for $M$ with respect to the
+generating set $\{n_1,\dots,n_k\}$ determined by $Q^{-1}$. Let
 \[
 \psi\colon R^k\to M,\qquad
 (r_1,\dots,r_k)\mapsto\sum_{i=1}^k r_i\cdot n_i.
@@ -193,9 +199,9 @@ Therefore
 \[
 M\simeq R^k/\ker\psi
 \simeq
-R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{k-r}.
-\qedhere
+R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{k-r},
 \]
+by Exercise~\ref{xca:easy_submodules}.
 \end{proof}
 
 %\begin{proof}
@@ -253,9 +259,11 @@ R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{k-r}.
 
 %The decomposition given in the previous proposition is known as 
 %the \emph{Smith normal form} of the matrix $A$. 
+\index{Smith normal form}
+\index{Invariant factors}
 The diagonal matrix $PAQ$ is a \emph{Smith normal form} of $A$.
 The decomposition in the previous proposition is the corresponding
-invariant-factor decomposition of $M$. 
+\emph{invariant-factor decomposition} of $M$. 
 How can we find the matrices $P$ and $Q$? 
 Consider the following matrix operations: 
 \begin{enumerate}
@@ -267,9 +275,9 @@ Consider the following matrix operations:
 	for some $\lambda\in\mathcal{U}(R)$. 
 \end{enumerate}
 These operations are invertible. For example, the first operation
-corresponds to multiply $A$ on the left by a permutation matrix. 
+corresponds to multiplying $A$ on the left by a permutation matrix. 
 The second
-operation corresponds to multiply $A$ by $I+\lambda E_{ij}$ on the left, 
+operation corresponds to multiplying $A$ by $I+\lambda E_{ij}$ on the left, 
 where 
 \[
 (E_{ij})_{kl}=\begin{cases}
@@ -279,7 +287,7 @@ where
 \]
 Concrete examples:
 \[
-E_{3,1}=
+E_{31}=
 \begin{pmatrix}
     0 & 0 & 0\\
     0 & 0 & 0\\
@@ -290,24 +298,24 @@ E_{23}=\begin{pmatrix}
     0 & 0 & 0\\
     0 & 0 & 1\\
     0 & 0 & 0
-\end{pmatrix},
+\end{pmatrix}.
 \]
-Similarly, column operations correspond to multiply on the right the matrix $A$
+Similarly, column operations correspond to multiplying the matrix $A$ on the right 
 either by a permutation matrix or a matrix of the form $I+\lambda E_{ij}$. 
 
-\begin{theorem}[Smith's normal form]
-\index{Smith's normal form}
-Let $R$ be an euclidean domain. If $A\in R^{l\times k}$,  
+\begin{theorem}[Smith normal form]
+\index{Smith normal form}
+Let $R$ be a euclidean domain. If $A\in R^{l\times k}$,  
 there exist invertible matrices $P\in R^{l\times l}$ and $Q\in R^{k\times k}$ such that 
 \[
 PAQ=\begin{pmatrix}
-a_1 & 0 & \cdots & \cdot & \cdot & \cdots & 0\\
-0 & a_2 & \cdots & \cdot & \cdot & \cdots & 0\\
+a_1 & 0 & \cdots & 0 & 0 & \cdots & 0\\
+0 & a_2 & \cdots & 0 & 0 & \cdots & 0\\
 \vdots && \ddots &  & & & \vdots\\	
-0 & \cdot & \cdots & a_r & \cdot & \cdots & 0\\	
-0 & \cdot & \cdots & \cdot & 0 & \cdots & 0\\	
+0 & 0 & \cdots & a_r & 0 & \cdots & 0\\	
+0 & 0 & \cdots & 0 & 0 & \cdots & 0\\	
 \vdots &&&&&\ddots &\vdots\\
-0 & \cdot & \cdots & \cdot & \cdot & \cdots & 0
+0 & 0 & \cdots & 0 & 0 & \cdots & 0
 \end{pmatrix}
 \]
 where $a_i\ne0$ for all $i\in\{1,\dots,r\}$ and $a_i\mid a_{i+1}$ for all $i\in\{1,\dots,r-1\}$.
@@ -316,26 +324,31 @@ units.
 \end{theorem}
 
 \begin{proof}[Sketch of the proof]
-	We only prove the existence. Let $(R,\varphi)$ be an euclidean domain.  
+	We only prove the existence. Let $(R,\varphi)$ be a euclidean domain.  
 	We need to show that $A$ can be turned into a matrix of the form 
 \begin{equation*}
 B=\begin{pmatrix}
 	b_{11} & 0 & \cdots & 0\\
-	0 & b_{22} & \cdots & b_{2m}\\
+	0 & b_{22} & \cdots & b_{2k}\\
 	\vdots & \vdots &&  \vdots\\
-	0 & b_{n2} & \cdots & b_{nm}
+	0 & b_{l2} & \cdots & b_{lk}
 \end{pmatrix}
 \end{equation*}
 where each  $b_{ij}$ is divisible by $b_{11}$. Then we apply the same procedure
 to the submatrix 
 \[
 \begin{pmatrix}
-	\frac{b_{22}}{b_{11}} & \cdots & \frac{b_{2m}}{b_{11}}\\
+	\frac{b_{22}}{b_{11}} & \cdots & \frac{b_{2k}}{b_{11}}\\
 	\vdots & &\vdots \\
-	\frac{b_{n2}}{b_{11}} & \cdots & \frac{b_{nm}}{b_{11}}
+	\frac{b_{l2}}{b_{11}} & \cdots & \frac{b_{lk}}{b_{11}}
 \end{pmatrix}
 \]
-and repeat the method until we cannot continue. 
+and repeat the method until we cannot continue. Note that row and column
+operations on the submatrix above correspond to the same operations on the
+submatrix of $B$; so if the former is reduced to the diagonal matrix with
+entries $c_2,c_3,\dots,c_r$ with $c_2\mid\cdots\mid c_r$, the original matrix
+is reduced to the diagonal matrix with entries
+$b_{11},b_{11}c_2,\dots,b_{11}c_r$, which has the required divisibility.
 
 Let us show how to get the matrix $B$. If $A=0$, there is nothing to prove. 
 Assume that $A\ne0$. By applying row and column operations we may assume that 
@@ -343,6 +356,7 @@ a non-zero entry of $A$ having minimal Euclidean value
 appears 
 in position
 $(1,1)$.  
+
 If some $a_{i1}$ is not divisible by $a_{11}$, we use the division algorithm to write   
 $a_{i1}=a_{11}u+r$ for some $u\in R$ and $r\in R$ with 
 $\varphi(r)<\varphi(a_{11})$. The transformation 
@@ -359,7 +373,8 @@ the entry in position $(1,1)$ strictly decreases.
 
 If every $a_{i1}$ with $i>1$ is divisible by $a_{11}$, say $a_{i1}=a_{11}\lambda_i$, then
 apply $R_i\leftarrow \lambda_i R_1-R_i$. Similarly, if 
-every $a_{1j}$ with $j>1$ is divisible by $a_{11}$, say $a_{1j}=a_{11}\mu_j$, then
+every $a_{1j}$ with $j>1$ is divisible by $a_{11}$, say 
+$a_{1j}=a_{11}\mu_j$ for some $\mu_j$, then
 apply $C_j\leftarrow C_j-\mu_j C_1$. In this way we replace our matrix by 
 a matrix of the form 
 \[
@@ -388,7 +403,7 @@ We refer to Artin's book \cite[\S14]{MR1129886} for
 a detailed exposition of the Smith normal form 
 when the base ring $R$ is $\Z$ or
 $K[X]$ for any field $K$. For an application 
-of the Smith's normal form to explicit calculations related to 
+of the Smith normal form to explicit calculations related to 
 homology groups, see \cite[\S11]{MR755006}. 
 Here we will explain the algorithm with examples. 
 
@@ -412,7 +427,7 @@ A=\begin{pmatrix}
 \end{pmatrix}.
 \]
 
-Let us compute the Smith's normal form of $A$.
+Let us compute the Smith normal form of $A$.
 Since the element with smallest positive norm appears in position $(3,2)$,
 we apply the operations $R_1\leftrightarrow R_3$ and 
 $C_1\leftrightarrow C_2$ to transform $A$ into 
@@ -466,7 +481,7 @@ $C_2\leftarrow C_2-3C_1$:
     0 & 22
 \end{pmatrix}.
 \]
-Hence we find the Smith's normal form of the matrix: 
+Hence we find the Smith normal form of the matrix: 
 \[
 \begin{pmatrix}
 	1 & 0 & 0\\
@@ -508,13 +523,13 @@ How to interpret the Smith normal form if the matrix is not a square matrix?
 %If 
 %$n<m$, then one only needs to ignore the $m-n$ last columns, which will all be 
 %zero columns. 
-Suppose that an $m\times n$ relation matrix has Smith normal form
+Suppose that an $m\times n$ relations matrix has Smith normal form
 with non-zero diagonal entries $a_1,\dots,a_r$. Then
 \[
 M\simeq
-\Z/(a_1)\oplus\cdots\oplus\Z/(a_r)\oplus\Z^{n-r}.
+R/(a_1)\oplus\cdots\oplus R/(a_r)\oplus R^{n-r}.
 \]
-Thus every zero column contributes a free factor $\Z$. If $m>n$,
+Thus every zero column contributes a free factor $R$. If $m>n$,
 the additional rows in the Smith normal form are zero rows and
 correspond to redundant relations.
 
@@ -576,7 +591,7 @@ the second one to right multiplication by the matrix
 I-E_{13}=\begin{pmatrix}1&0&-1\\0&1&0\\0&0&1\end{pmatrix}.
 \]
 Finally, interchange the first two rows to obtain
-the Smith's normal form of $A$: 
+the Smith normal form of $A$: 
 \[
 \begin{pmatrix}
 4 & 0 & 0\\
@@ -685,7 +700,7 @@ Apply $C_4\leftarrow C_4-C_2$ to get
 \end{pmatrix}. 
 \]
 Note that $4\nmid 22$. Apply $R_2\leftarrow R_2+R_3$, $C_3\leftarrow C_3-5C_2$,
-$C_2\leftarrow C_3$, $R_3\leftarrow R_3-11R_2$ and $C_3\leftarrow C_3-2C_2$ to
+$C_2\leftrightarrow C_3$, $R_3\leftarrow R_3-11R_2$ and $C_3\leftarrow C_3-2C_2$ to
 get 
 \[
 \begin{pmatrix}
@@ -709,7 +724,7 @@ $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)
 		1 & 0 & 2
 	\end{pmatrix}$ and $b=\begin{pmatrix} -1 \\ 5\end{pmatrix}$. Let us solve
 	the linear system $AX=b$ in the integers. We need to compute
-	Smith's normal form of $A$. For example, computer calculations show that
+	Smith normal form of $A$. For example, computer calculations show that
 	\[
 	P=\begin{pmatrix}
 		0 & 1\\
@@ -726,9 +741,9 @@ $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)
 		0 & 1 & 0
 	\end{pmatrix}.
 	\]
-	Note that the matrix $S$ is unique, but not the 
-	matrices $P$ and $Q$. To solve $AX=b$ we proceed as follows. Let 
-	$Y=Q^{-1}X$. Then $AX=b$ implies that 
+  Note that the matrix $S$ is unique up to units (up to signs over $\Z$), but
+  not the matrices $P$ and $Q$. To solve $AX=b$ we proceed as follows. Let
+  $Y=Q^{-1}X$. Then $AX=b$ implies that 
 	\[
 		SY=(PAQ)(Q^{-1}X)=Pb=\begin{pmatrix} 5 \\ 6\end{pmatrix}.
 	\]	
@@ -837,8 +852,9 @@ $2n_1=0$, $2n_2=0$ and $44n_3=0$. Thus $M/K\simeq\Z\times (\Z/2)^2\times (\Z/44)
 
 \begin{exercise}
 \label{xca:unimodular}
-    Let $G$ be an abelian group of rank $n$ with basis $\{x_1,\dots,x_n\}$. For
-    $i\in\{1,\dots,n\}$ let 
+\index{Matrix!unimodular}
+    Let $G$ be a free abelian group of rank $n$ with basis $\{x_1,\dots,x_n\}$.
+    For $i\in\{1,\dots,n\}$ let 
     \[
     y_i=\sum_{j=1}^n a_{ij}x_j,
     \]
