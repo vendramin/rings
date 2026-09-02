@@ -54,6 +54,7 @@ For example, $\Z=(1)=(2,3)$ and $\Z\ne (2)$.
     by $e_1=(1,0,0)$, $e_2=(0,1,0)$ and $e_3=(0,0,1)$. 
 \end{example}
 
+\index{Exact sequence}
 If $f\in\Hom_R(M,N)$ and $M$ is finitely generated, then 
 $f(M)$ is finitely generated. To prove this and other similar results, 
 we introduce exact sequences (of modules and module homomorphisms). 
@@ -147,6 +148,7 @@ that is not finitely generated.
     stabilizes, that is there exists an integer $n$ such that $M_n=M_{n+k}$ for all $k\geq0$. 	
 \end{definition}
 
+\index{Maximal element}
 Let $M$ be a module and $X$ be a non-empty 
 family of submodules of $M$. We say that $S\in X$ is a \emph{maximal 
 element} (with respect to the inclusion) 
@@ -166,18 +168,21 @@ Let $M$ be a module. The following statements are equivalent:
 \begin{proof}
 	We first prove $2)\implies1)$. If $S_1\subseteq S_2\subseteq\cdots$ is an increasing 
         sequence of submodules of $M$, 
-	it follows that $S=\cup_{i\geq 1}S_i$ is a submodule\footnote{In general, the union of submodules is not a submodule. Here $\cup_jS_j$ is a submodule because we have an increasing sequence $S_1\subseteq S_2\subseteq\cdots$ of submodules.} 
- of $M$. Since $S$ is finitely generated, 
-	$S=(x_1,\dots,x_n)$ for some $x_1,\dots,x_n\in M$. It follows that 
-	$x_1,\dots,x_n\in S_N$ for some positive integer $N$. Thus 
-	$S\subseteq S_N$ and hence $S_N=S_{N+k}$ for all $k$. 
+  it follows that $S=\bigcup_{i\geq 1}S_i$ is a submodule\footnote{In general,
+  the union of submodules is not a submodule. Here $\bigcup_jS_j$ is a
+submodule because we have an increasing sequence $S_1\subseteq
+S_2\subseteq\cdots$ of submodules.} of $M$. Since $S$ is finitely generated,
+$S=(x_1,\dots,x_n)$ for some $x_1,\dots,x_n\in M$. It follows that
+$x_1,\dots,x_n\in S_N$ for some positive integer $N$. Thus $S\subseteq S_N$ and
+hence $S_N=S_{N+k}$ for all $k$. 
 	
 	We now prove $1)\implies3)$. Let $F$ be a non-empty family of submodules of $M$ with no maximal elements. 
 	Let $S_1\in F$. Since $S_1$ is not maximal in $F$, there exists $S_2\in F$ such that $S_1\subsetneq S_2$. 
 	Having constructed with this method the submodules $S_1\subsetneq\dots\subsetneq S_k$, since $S_k$ is not
 	maximal in $F$, there exists $S_{k+1}\in F$ such that $S_k\subsetneq S_{k+1}$. 
 	This means that the sequence 
-	$S_1\subsetneq S_2\subsetneq\cdots$ does not stabilize. 
+	$S_1\subsetneq S_2\subsetneq\cdots$ does not stabilize, contradicting 
+  the fact that $M$ is noetherian.
 	
 	We finally prove $3)\implies2)$. Let $S$ be a submodule of $M$ and let 
 	\[
@@ -194,10 +199,11 @@ Let $M$ be a module. The following statements are equivalent:
 	to $x\not\in N$. 
 \end{proof}
 
-The previous theorem shows that every noetherian module is finitely generated. 
+The previous proposition shows that every noetherian module is finitely
+generated. 
 
 \begin{exercise}
-\label{xca:Pruffer}
+\label{xca:Prufer}
 Find a non-noetherian module such that every proper submodule is finitely generated. 	
 \end{exercise}
 
@@ -221,7 +227,7 @@ Find a non-noetherian module such that every proper submodule is finitely genera
 
 \begin{exercise}
 \label{xca:regular_noetheriano}
-A commutative ring $R$ is noetherian if and only if $\prescript{}{R}R$ is noetherian.	
+A commutative ring $R$ is noetherian if and only if $\prescript{}{R}{R}$ is noetherian.	
 \end{exercise}
 
 \begin{exercise}
@@ -250,6 +256,7 @@ $R^k=\bigoplus_{i=1}^k R$. Since $R$ is noetherian, $R^k$ is noetherian. Thus $M
 \section{Free modules}
 
 \begin{definition}
+  \index{Linearly independent}
     Let $R$ be a ring, $M$ be a module over $R$ and $X$ be a subset of $M$. We say that
     $X$ is \emph{linearly independent} if for each $k\in\Z_{>0}$, $r_1,\dots,r_k\in R$
     and distinct $m_1,\dots,m_k\in X$ such that $\sum_{i=1}^kr_i\cdot m_i=0$, then 
@@ -281,10 +288,12 @@ The previous exercise also holds for infinite sets of linearly independent eleme
      $m=\sum r_x\cdot x$. 
 \end{bonus}
 
+\index{Linearly dependent}
 A set is said to be 
 \emph{linearly dependent} if it is not linearly independent.
     
-\begin{example}\
+\begin{example}
+\leavevmode
 \begin{enumerate}
     \item $\{2,3\}$ is a linearly dependent subset of $\Z$.
     \item $\{2\}$ is a linearly dependent subset of $\Z/4$.
@@ -294,6 +303,7 @@ A set is said to be
 \end{enumerate}    
 \end{example}
 
+\index{Generating set!minimal}
 A generating set $X$ for a module $M$ is \emph{minimal} if 
 $X\setminus\{x\}$ is no longer a generating set of $M$ for all $x\in X$. 
 In vector spaces, a subset of the vector space is a basis
@@ -323,6 +333,8 @@ every basis of an $R$-module is a minimal generating set.
 \end{exercise}
 
 \begin{definition}
+\index{Basis}
+\index{Module!free}
     Let $M$ be a module and $B$ be a subset of $M$. Then $B$ is a \emph{basis} of $M$ if
     $B$ is linearly independent and $M=(B)$. A module $M$ is said to be \emph{free} if it admits a basis.   
 \end{definition}
@@ -330,16 +342,21 @@ every basis of an $R$-module is a minimal generating set.
 % check this!
 \begin{exercise}
     \label{xca:free_uniqueness}
-    Let $M$ be a module. Prove that $M$ is free if and only if there is a subset $B$ of $M$ 
-    such that, for every $m\in M$, there exist finitely 
-    many non-zero elements $r_1,\dots,r_k\in R$ and $b_1,\dots,b_k\in B$ such that 
-    $m=\sum_{i=1}^k r_i\cdot b_i$.
+%    Let $M$ be a module. Prove that $M$ is free if and only if there is a
+%    subset $B$ of $M$ such that, for every $m\in M$, there exist unique finitely many
+%    non-zero elements $r_1,\dots,r_k\in R$ and $b_1,\dots,b_k\in B$ such that
+%    $m=\sum_{i=1}^k r_i\cdot b_i$.
+    Let $M$ be a module. Prove that $M$ is free if and only if there is a
+    subset $B$ of $M$ such that every $m\in M$ can be written uniquely (up to
+    reordering) as $m=\sum_{i=1}^k r_i\cdot b_i$ for some $k\geq0$, distinct
+    $b_1,\dots,b_k\in B$ and non-zero $r_1,\dots,r_k\in R$.
 \end{exercise}
 
 As a consequence of Zorn's lemma, 
 vector spaces are free. 
 
-\begin{example}\
+\begin{example}
+\leavevmode
 \begin{enumerate}
     \item If $R$ is a ring, then $\{1\}$ is a basis of $\prescript{}{R}{R}$, so
       $\prescript{}{R}{R}$ is free.
@@ -383,20 +400,24 @@ such modules have dimensions.
 \end{exercise}
 
 \begin{example}
-If $u\in\mathcal{U}(R)$, then $\{u\}$ is a basis of $\prescript{}{R}R$. Conversely, if $R$ is a (not necessarily commutative) domain and 
-$\{z\}$ is a basis of $\prescript{}{R}R$, then $z\in\mathcal{U}(R)$. Since 
+If $u\in\mathcal{U}(R)$, then $\{u\}$ is a basis of $\prescript{}{R}R$.
+Conversely, 
+%if $R$ is a (not necessarily commutative) domain and 
+if $\{z\}$ is a basis of $\prescript{}{R}R$, then $z\in\mathcal{U}(R)$. Since
 $1=yz$ for some $y\in R$, then it follows that $zy=1$, as  
 \[
 (zy-1)z=z(yz)-z=z1-z=z-z=0.
 \]	
 \end{example}
 
+\index{Kronecker delta}
 If $R$ is a ring and $I$ is a set, 
 \[
 R^{(I)}=\{f\colon I\to R:f(x)=0\text{ for all but finitely many $x\in I$}\}
 \]
 is a module (over $R$) with 
-$(f+g)(x)=f(x)+g(x)$ and $(rf)(x)=rf(x)$ for all $f,g\in R^{(I)}$, $x\in I$ and $r\in R$. 
+$(f+g)(x)=f(x)+g(x)$ and $(rf)(x)=rf(x)$ for all $f,g\in R^{(I)}$, $x\in I$ and
+$r\in R$. 
 Note that 
 every element 
 of $R^{(I)}$ can be written uniquely as
@@ -408,9 +429,10 @@ where the $r_i$ are elements of $R$ and only finitely many of them are non-zero,
 \[
 \delta_i(j)=\begin{cases}
 1 & \text{if $i=j$},\\
-0 & \text{otherwise}.
-\end{cases}.
+0 & \text{otherwise},
+\end{cases}
 \]
+is the \emph{Kronecker delta}. 
 One proves
 that
 \[
@@ -419,13 +441,7 @@ R^{(I)}\simeq\bigoplus_{i\in I}R.
 
 \begin{example}
 If $I$ is a non-empty set, the module $R^{(I)}$ is free with basis 
-$\{\delta_i:i\in I\}$, where 
-\[
-\delta_i(j)=\begin{cases}
-	1 & \text{if $i=j$},\\
-	0 & \text{if $i\ne j$.}
-	\end{cases}	
-\]
+$\{\delta_i:i\in I\}$, where $\delta$ is the Kronecker delta. 
 \end{example}
 
 \begin{example}
@@ -461,8 +477,9 @@ $\beta\colon V\to V$, $e_n\mapsto f(e_{2n+1})$ for all $n$. In fact,
 &(\alpha r+\beta s)(e_{2n})=\alpha(r(e_{2n}))+\beta(s(e_{2n}))=f(e_{2n}),\\
 &(\alpha r+\beta s)(e_{2n+1})=\alpha(r(e_{2n+1}))+\beta(s(e_{2n+1}))=f(e_{2n+1}).
 \end{align*}
-Moreover, $\{r,s\}$ is linearly independent. Indeed, if $\alpha r+\beta s=0$ for some $\alpha,\beta\in R$,  
-Evaluation on $e_{2n}$ yields $\alpha=0$ and evaluation on $e_{2n+1}$ yields $\beta=0$.   
+Moreover, $\{r,s\}$ is linearly independent. Indeed, if $\alpha r+\beta s=0$
+for some $\alpha,\beta\in R$, then evaluation on $e_{2n}$ yields $\alpha=0$ and
+evaluation on $e_{2n+1}$ yields $\beta=0$.   
 \end{example} 
 
 \begin{example}
@@ -523,7 +540,7 @@ f(\sum r_i\cdot m_i)=\sum r_i\cdot n_i.\qedhere
 \]
 \end{proof}
 
-Another application:
+An application:
 
 \begin{example}
 There is no surjective homomorphism $\Z\to\Z\times\Z$ (of modules over $\Z$). 
@@ -535,8 +552,10 @@ $g$ is injective. Since
 \[
 g(lu-kv)=lg(u)-kg(v)=lk-kl=0,
 \]
-it follows that $lu-kv=0$ and thus $k=l=0$, as $\{u,v\}$ is linearly
-independent, a contradiction.
+it follows that $lu-kv=0$ and thus $k=l=0$. 
+Thus $u=f(k)=f(0)=0$, a contradiction since 
+$\{u,v\}$ is linearly
+independent. 
 \end{example}
 
 Another important property:
@@ -548,13 +567,7 @@ If $M$ is a free $R$-module, then $M\simeq R^{(I)}$ for some set $I$.
 \begin{proof}
 Suppose that $M$ has basis $\{m_i:i\in I\}$. Then there exists a unique homomorphism
 $f\in\Hom_R(M,R^{(I)})$ such that  
-$f(m_i)=\delta_i$ for all $i\in I$, where 
-\[
-\delta_i(j)=\begin{cases}
-	1 & \text{if $i=j$},\\
-	0 & \text{if $i\ne j$.}
-	\end{cases}	
-\]	
+$f(m_i)=\delta_i$ for all $i\in I$, where $\delta$ is the Kronecker delta.  
 
 We claim that $f$ is an isomorphism. We first prove that the map $f$ is surjective: if $(r_i)_{i\in I}\in R^{(I)}$, then
 $f(\sum r_i\cdot m_i)=(r_i)_{i\in I}$. Let us prove that $f$ is injective: 
@@ -644,7 +657,7 @@ The map $\varphi$ of Definition~\ref{def:projective} is not necessarily unique.
 	We need to find $(a,c)\in A\oplus C$ such that $\varphi(a,c)=b$. 
 	Let $c=g(b)\in C$. Since
 	\[
-		g(b-h(c))=g(b)-gh(c)=g(b)-c,
+		g(b-h(c))=g(b)-gh(c)=g(b)-c=0,
 	\]
 	it follows that $b-h(c)\in \ker g=f(A)$. This means
 	that $b-h(c)=f(a)$ for some $a\in A$. Now $b\in \varphi(A\oplus C)$, as
@@ -715,6 +728,7 @@ with the operations
 \end{equation}
 
 \begin{definition}
+  \index{Quotient field}
 $K(R)$ is known as the \emph{quotient field} of $R$. 
 \end{definition}
 
@@ -725,12 +739,12 @@ Let $R$ be an integral domain.
 Prove that $K(R)$ is a field. 
 \end{exercise}
 
-To prove that $K(R)$ is a field, one first needs to prove that 
-the operations~\eqref{eq:K(R)} are well-defined. For example, let us check that
-addition is well-defined. 
-If $r/s\sim r'/s'$ and $r_1/s_1\sim r_1'/s_1'$, then
-$r/s+r_1/s_1\sim r'/s'+r_1'/s_1'$. In fact, 
-since $r/s\sim r'/s'$, it follows that $rs'-r's=0$. Similarly, $r_1s_1'-r_1's_1=0$, as $r_1/s_1\sim r_1'/s_1'$. Thus 
+To prove that $K(R)$ is a field, one first needs to prove that the
+operations~\eqref{eq:K(R)} are well-defined. For example, let us check that
+addition is well-defined.  If $r/s\sim r'/s'$ and $r_1/s_1\sim r_1'/s_1'$, then
+$r/s+r_1/s_1\sim r'/s'+r_1'/s_1'$. In fact, since $r/s\sim r'/s'$, it follows
+that $rs'-r's=0$. Similarly, $r_1s_1'-r_1's_1=0$, as $r_1/s_1\sim r_1'/s_1'$.
+Thus 
 \begin{gather*}
 \frac{rs_1+r_1s}{ss_1}=\frac{r's_1'+r_1's'}{s's_1'}
 \shortintertext{as}
@@ -741,15 +755,24 @@ since $r/s\sim r'/s'$, it follows that $rs'-r's=0$. Similarly, $r_1s_1'-r_1's_1=
 
 \section{Rank of a module}
 
-What can we say about the number of elements of a basis? 
-If $M$ has a finite basis, then every basis of $M$ will be finite. To prove
-this, let $M$ be a module 
-and $E=\{e_i:i\in I\}$ be a basis of $M$. If $M$ is finitely generated, say 
-$M=(m_1,\dots,m_k)$, write each $m_j$ as a (finite) linear combination of elements
-of $E$. Then there exists 
-a finite set $\{e_1,\dots,e_m\}$ that generates $M$. Since 
-$E$ is a basis, it follows that
-$\{e_1,\dots,e_m\}=E$ and hence $E$ is finite.  
+What can we say about the number of elements of a basis? If $M$ has a finite
+basis, then $M$ is finitely generated and hence every basis of $M$ is finite,
+see Exercise~\ref{xca:fg+free}.
+
+%What can we say about the number of elements of a basis? 
+%If $M$ has a finite basis, then every basis of $M$ will be finite. To prove
+%this, let $M$ be a module 
+%and $E=\{e_i:i\in I\}$ be a basis of $M$. If $M$ is finitely generated, say 
+%$M=(m_1,\dots,m_k)$, write each $m_j$ as a (finite) linear combination of elements
+%of $E$. Then there exists 
+%a finite set $\{e_1,\dots,e_m\}$ that generates $M$. Since 
+%$E$ is a basis, it follows that
+%$\{e_1,\dots,e_m\}=E$. 
+%Indeed, if $e\in E\setminus\{e_1,\dots,e_m\}$, then 
+%writing $e=r_1\cdot e_1+\cdots+r_m\cdot e_m$, one gets
+%$1\cdot e-(r_1\cdot e_1+\cdots+r_m\cdot e_m)=0$, a contradiction 
+%to the linearly independence. 
+%and hence $E$ is finite.  
 
 \begin{exercise}
 \label{xca:cardinality}
@@ -767,8 +790,8 @@ any two bases of $M$ have the same number of elements.
 
 \begin{proof}
 Let $K=K(R)$ be the field of fractions of $R$. Note that 
-$V=\Hom_R(M,K)$ is an abelian group and hence it 
-is a vector space (over $K$) with 
+$V=\Hom_R(M,K)$ is an abelian group and also 
+a vector space (over $K$) with 
 \[
 (\lambda f)(m)=\lambda f(m),
 \]
@@ -789,7 +812,7 @@ if $f\in V$, then
 \[
 f=\sum_{i=1}^n f(e_i)f_i,
 \]
-as these homomorphisms coincide in the elements of a basis of $M$, that is 
+as these homomorphisms coincide on the elements of a basis of $M$, that is 
 \[
 f(e_j)=(\sum_{i=1}^n f(e_i)f_i)(e_j)
 \]
@@ -805,14 +828,20 @@ for all $j\in\{1,\dots,n\}$. Thus $n=\dim V$.
 The previous result can be proved for commutative rings. 
 
 \begin{definition}
-Let $R$ be an integral domain. If $M$ is a free 
-$R$-module, we define
-the \emph{rank} of $M$ as the cardinality of any basis of $M$.
+\index{Rank of a module}
+Let $R$ be an integral domain. If $M$ is a free $R$-module, we define the
+\emph{rank} of $M$ as the cardinality of any basis of $M$.
 \end{definition}
 
 The rank of a module $M$ will be denoted by $\rank(M)$.   
 
+%\begin{exercise}
+%    \label{xca:fg+free}
+%    Prove that every finitely generated free module has a finite basis. 
+%\end{exercise}
+
 \begin{exercise}
     \label{xca:fg+free}
-    Prove that every finitely generated free module has a finite basis. 
+    Let $M$ be a finitely generated free module. Prove that every basis of $M$
+    is finite.
 \end{exercise}
