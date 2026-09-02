@@ -568,8 +568,10 @@ In the following example, it is crucial to use a real representation.
 What happens in the previous example if we work over complex numbers?
 
 \begin{exercise}
+\label{xca:common_eigenvector}
     Let $\rho\colon G\to\GL(V)$ be a degree-two representation. Prove that
-    $\rho$ is irreducible if and only if there is no common eigenvector for the $\rho_g$, $g\in G$.
+    $\rho$ is irreducible if and only if there is no common eigenvector for the
+    $\rho_g$, $g\in G$.
 \end{exercise}
 
 The previous exercise can be used to show that the representation
@@ -641,7 +643,7 @@ is irreducible.
 \end{definition}
 
 Note that if $\rho\colon G\to\GL(V)$ is completely reducible and 
-$\rho=\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible representations 
+$\rho\simeq\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible representations 
 $\rho_i\colon G\to\GL(V_i)$, $i\in\{1,\dots,n\}$, then 
 each $V_i$ is an invariant subspace of $V$ and $V=V_1\oplus \cdots \oplus V_n$. 
 Moreover, on some basis of $V$, the matrix  
@@ -768,9 +770,9 @@ v^T=(v_1,\dots,v_n),\quad
 \end{definition}
 
 \begin{exercise}
-\index{Left regular representation}
+\index{Representation!left regular}
 Let $G$ be a finite group and $V=\C[G]$ be the complex vector space with basis
-$\{g:g\in G\}$. The \emph{Representation!left regular}
+$\{g:g\in G\}$. The \emph{Representation}
 of $G$ is the representation
 \[
 L\colon G\to\GL(V),
@@ -817,8 +819,7 @@ irreducible or decomposable.
 \section{Weyl's trick} 
 
 \begin{theorem}[Weyl]
-\index{Weyl's!trick}
-\index{Weyl's!theorem}
+\index{Weyl's trick}
     Every representation $\rho\colon G\to\GL(V)$ 
     of a finite group is unitarizable, that is 
     $V$ admits an inner
@@ -892,7 +893,7 @@ irreducible or decomposable.
     \]
 \end{example}
 
-\label{rho_diagonalizable}
+%\label{rho_diagonalizable}
 Weyl's trick has several interesting consequences:  
 
 \begin{corollary}
