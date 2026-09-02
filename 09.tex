@@ -6,6 +6,7 @@ The rest of the course will be devoted to studying modules over rings.
 We start with the main definitions and basic examples.
 
 \begin{definition}
+  \index{Module}
     Let $R$ be a ring. A \emph{module} (over $R$) is an abelian group (written additively) 
     $M$ with a map $R\times M\to M$, $(r,m)\mapsto r\cdot m$, such that
     the following conditions hold:
@@ -17,9 +18,10 @@ We start with the main definitions and basic examples.
     \end{enumerate}
 \end{definition}
 
-Our definition is that of a left module. Similarly, one defines right modules. We will always
-consider left modules (over $R$) 
-so that they will be referred to simply as $R$-modules (or just modules).
+Our definition is that of a left module. Similarly, one defines right modules.
+We will always consider left modules (over $R$) so we will refer to them 
+simply as 
+$R$-modules (or just modules).
 
 \begin{example}
 A module over a field is a vector space. 
@@ -31,6 +33,7 @@ Every abelian group is a module over $\Z$.
 
 \begin{example}
 \label{exa:left_regular}
+\index{Module!regular}
 Let $R$ be a ring. Then $R$ is a module (over $R$) with $x\cdot m=xm$. 
 This is the \emph{(left) regular module} over $R$, and it usually 
 is denoted by $\prescript{}{R}R$. 
@@ -44,13 +47,14 @@ The module $\prescript{}{R}R$ is also known as the (left) regular representation
     \[
     g\cdot v=\rho_g(v)
     \]
-    for $g\in G$ and $v\in V$ .More explicitly,
+    for $g\in G$ and $v\in V$. More explicitly,
     \[
       \left(\sum_{g\in G}\lambda_g g\right)\cdot v
       =\sum_{g\in G}\lambda_g\rho_g(v).
     \]
 
-    Conversely, if $V$ is a $\C[G]$-module, then 
+    Conversely, if $V$ is a non-zero finite-dimensional 
+    $\C[G]$-module, then 
     the map
     \[
     \rho\colon G\to\GL(V),\quad g\mapsto\rho_g,
@@ -77,17 +81,20 @@ the condition $1\mapsto 1$. The following example provides a good explanation.
 %%\label{exa:f(1)=1}
 If $f\colon R\to S$ is a ring homomorphism and $M$ is a module (over $S$) with 
 $(s,m)\mapsto sm$, then 
-$M$ is also a module (over $R$) with $r\cdot m=f(r)m$ for all $r\in R$ and $m\in M$. In fact, 
+$M$ is also a module (over $R$) with $r\cdot m=f(r)m$ for all $r\in R$ and
+$m\in M$. In fact, 
 \begin{align*}
 &1\cdot m=f(1)m=1m=m,\\
-&r_1\cdot (r_2\cdot m)=f(r_1)(r_2\cdot m)=f(r_1)(f(r_2)m)=(f(r_1)f(r_2))m=f(r_1r_2)m
+%&(r_1r_2)\cdot m=r_1\cdot (r_2\cdot m)=f(r_1)(r_2\cdot m)=f(r_1)(f(r_2)m)=(f(r_1)f(r_2))m=f(r_1r_2)m
+&r_1\cdot (r_2\cdot m)=f(r_1)(r_2\cdot m)=f(r_1)(f(r_2)m)=(f(r_1)f(r_2))m=f(r_1r_2)m=(r_1r_2)\cdot m
 \end{align*}
 for all $r_1,r_2\in R$ and $m\in M$.	  	
 \end{example}
 %
 \begin{example}
-Let $V$ be a finite-dimensional real vector space and $T\colon V\to V$ be a linear map.  
-Let $R=\R[X]$. Then $M=V$ with 
+\label{exa:RX-module}
+Let $V$ be a finite-dimensional real vector space and $T\colon V\to V$ be a
+linear map.  Let $R=\R[X]$. Then $M=V$ with 
 \[
 \left(\sum_{i=0}^na_iX^i\right)\cdot v=\sum_{i=0}^na_iT^i(v)
 \]	
@@ -100,6 +107,7 @@ is a module (over $R$), where we use the following notation: for $v\in V$, we wr
 \end{example}
 
 \begin{example}
+  \index{Module!direct product of}
 If $\{M_i:i\in I\}$ is a family of $R$-modules, then  	
 \[
 \prod_{i\in I}M_i=\{(m_i)_{i\in I}:m_i\in M_i\text{ for all $i\in I$}\}
@@ -109,11 +117,12 @@ $x\cdot (m_i)_{i\in I}=(x\cdot m_i)_{i\in I}$,
 where $(m_i)_{i\in I}$ denotes the map $I\to \bigcup_{i\in I}M_i$, $i\mapsto m_i\in M_i$.
 This module is the \emph{direct product} of the family $\{M_i:i\in I\}$.
 \end{example}
-%
+
 \begin{example}
+  \index{Module!direct sum of}
 If $\{M_i:i\in I\}$ is a family of $R$-modules, then   	
 \[
-\bigoplus_{i\in I}M_i=\{(m_i)_{i\in I}:m_i\in M_i\text{ for all $i\in I$ and $m_i=0$ except finitely many $i\in I$}\}
+\bigoplus_{i\in I}M_i=\{(m_i)_{i\in I}:m_i\in M_i\text{ for all $i\in I$ and $m_i=0$ except for finitely many $i\in I$}\}
 \]
 is an $R$-module with 
 $x\cdot (m_i)_{i\in I}=(x\cdot m_i)_{i\in I}$. 
@@ -135,7 +144,8 @@ $3\cdot 2=0$ but $3\ne 0$ (in $\Z$) and $2\ne 0$ (in $\Z/6$).
 \end{exercise}
 
 \begin{definition}
-	Let $M$ be a module. A subset $N$ of $M$ is a \emph{submodule} of $M$ if 
+  \index{Submodule}
+	Let $M$ be an $R$-module. A subset $N$ of $M$ is a \emph{submodule} of $M$ if 
 	$N$ is a subgroup of $M$ and $R\cdot N\subseteq N$, that is 
 	$x\cdot n\in N$ for all $x\in R$ and $n\in N$. 
 \end{definition}
@@ -158,12 +168,13 @@ of $M$ if and only if $N$ is a left ideal of $R$.
 \end{example}
 
 \begin{example}
-If $V$ is a finite-dimensional real vector space and $T\colon V\to V$ is a linear map, then
-$V$ is a module (over $\R[X]$) with  
-\[
-\left(\sum_{i=0}^na_iX^i\right)\cdot v=\sum_{i=0}^na_iT^i(v).
-\]
-A submodule is a subspace $W$ 
+%If $V$ is a finite-dimensional real vector space and $T\colon V\to V$ is a linear map, then
+%$V$ is a module (over $\R[X]$) with  
+%\[
+%\left(\sum_{i=0}^na_iX^i\right)\cdot v=\sum_{i=0}^na_iT^i(v).
+%\]
+In the module of Example~\ref{exa:RX-module}, 
+a submodule is a subspace $W$ 
 of $V$ such that $T(W)\subseteq W$. 
 \end{example}
 
@@ -180,6 +191,7 @@ is a submodule of $M$.
 \end{exercise}
 
 \begin{definition}
+  \index{Module!homomorphism}
 Let $M$ and $N$ be modules over $R$. 
 A map $f\colon M\to N$ is a \emph{module homomorphism} if $f(x+y)=f(x)+f(y)$ and 
 $f(r\cdot x)=r\cdot f(x)$ for all $x,y\in M$ and $r\in R$. 
@@ -195,6 +207,10 @@ Let $f\in\Hom_R(M,N)$.
 \end{enumerate}
 \end{exercise}
 
+\index{Module!homomorphism!kernel}
+\index{Module!monomorphism}
+\index{Module!epimorphism}
+\index{Module!isomorphism}
 If $f\in\Hom_R(M,N)$, the \emph{kernel} of $f$ is the submodule  
 \[
 \ker f=f^{-1}(\{0\})=\{m\in M:f(m)=0\}
@@ -276,6 +292,8 @@ Later we will see a similar exercise for surjective module homomorphisms.
 	a contradiction, as $f$ is injective.    
 \end{example}
 
+\index{Direct summand}
+\index{Complement of a submodule}
 If $N$ and $N_1$ are submodules of $M$, we say that $M$ is the \emph{direct
 sum} of $N$ and $N_1$ if $M=N+N_1$ and $N\cap N_1=\{0\}$. In this case, we
 write $M=N\oplus N_1$. Note that if $M=N\oplus N_1$, then each $m\in M$ can be
@@ -284,7 +302,7 @@ decomposition exists because $M=N+N_1$. If $m\in M$ can be written as
 $m=n+n_1=n'+n_1'$ for some $n,n'\in N$ and $n_1,n_1'\in N_1$, then
 $-n'+n=n_1'-n_1\in N\cap N_1=\{0\}$ and hence $n=n'$ and $n_1=n_1'$. If
 $M=N\oplus N_1$, the submodule $N$ (resp. $N_1$) is a \emph{direct summand} of
-$M$ and the submodule $N_1$ (resp. $N$) is a \emph{complement} of $N$ in $M$.   	
+$M$ and the submodule $N_1$ (resp. $N$) is a \emph{complement} of $N$ (resp. $N_1$) in $M$.   	
 
 \begin{example}
 If $M=\R^2$ is a vector space, then every subspace of $M$ is a direct summand of $M$.
@@ -317,21 +335,22 @@ there are module homomorphisms $i\colon N\to M$ and $p\colon M\to N$
 such that $pi=\id_N$. In this case, $M=\ker p\oplus i(N)$.  
 \end{exercise}
 
-The \emph{direct sum} of submodules can be defined for finitely many summands. 
-If $V_1,\dots,V_n$ are submodules of $M$, we say that $M=V_1\oplus\cdots\oplus V_n$ 
-if every $m\in M$ can be written uniquely as $m=v_1+\cdots+v_n$ for some $v_1\in V_1,\dots,v_n\in V_n$. 
+The \emph{direct sum} of submodules can be defined for finitely many summands.
+If $V_1,\dots,V_n$ are submodules of $M$, we say that $M=V_1\oplus\cdots\oplus
+V_n$ if every $m\in M$ can be written uniquely as $m=v_1+\cdots+v_n$ for some
+$v_1\in V_1,\dots,v_n\in V_n$. 
 
 \begin{exercise}
 Prove that $M=V_1\oplus\cdots\oplus V_n$ if and only if 
 $M=V_1+\cdots+V_n$ and 
 \[
-V_i\cap\left(\sum_{j\ne i}V_j\right)=\{0\}
+V_i\bigcap\left(\sum_{j\ne i}V_j\right)=\{0\}
 \]	
 for all $i\in\{1,\dots,n\}$.
 \end{exercise}
 
 If $\{N_i:i\in I\}$ is a family of submodules of a module $M$, then the intersection  
-$\cap_{i\in I}N_i$ is also a submodule of $M$.
+$\bigcap_{i\in I}N_i$ is also a submodule of $M$.
 
 \begin{exercise}
 \label{xca:submodules}
@@ -371,6 +390,7 @@ If $r\in Z(R)$ and
 $f\in\Hom_R(M,N)$, then $r\cdot f\colon M\to N$, $m\mapsto f(r\cdot m)$. 
 \end{exercise}
 
+\index{Module!quotient}
 Let $M$ be a module, and $N$ be a submodule of $M$. In particular, $M/N$ is an abelian group, and the map $\pi\colon M\to M/N$, $m\mapsto m+N$, is a surjective group homomorphism with kernel equal to $N$. We claim
 that the \emph{quotient} $M/N$ is a module with  
 \[
@@ -455,6 +475,7 @@ is commutative, that is
 $\varphi\pi =f$.  
 \end{enumerate}
 
+\index{Isomorphism theorems!for modules}
 Recall that if $S$ and $T$ are submodules of a module $M$, then 
 both $S\cap T$ and 
 \[
@@ -464,21 +485,21 @@ are submodules of $M$.
 The \emph{isomorphism theorems} hold:
 \begin{enumerate}
 	\item If $f\in\Hom_R(M,N)$, then $M/\ker f\simeq f(M)$.
-	\item If $T\subseteq N\subseteq M$ are submodules, then  
-	\[
-	\frac{M/T}{N/T}\simeq M/N.
-	\]
 	\item If $S$ and $T$ are submodules of $M$, then 
     \[
     (S+T)/S\simeq T/(S\cap T).
     \]
+	\item If $T\subseteq N\subseteq M$ are submodules, then  
+	\[
+	\frac{M/T}{N/T}\simeq M/N.
+	\]
 \end{enumerate}
 
 \begin{example}
 If $K$ is a field and $V$ is a finite-dimensional 
 module over $K$, then $V$ is, by definition, a vector space over $K$. 
 If $S$ and $T$ are subspaces of $V$, then they are submodules of $V$. 
-By the isomorphism theorem, $(S+T)/S\simeq T/(S\cap T)$ 
+By the second isomorphism theorem, $(S+T)/S\simeq T/(S\cap T)$ 
 as vector spaces. By applying dimension,  
 \[
 \dim(S+T)-\dim S=\dim T-\dim(S\cap T).
@@ -509,8 +530,8 @@ Let $f\in\Hom_R(M,N)$. Prove that the following statements are equivalent:
 
 \begin{exercise}
 \label{xca:mod_iso_max}
-    Let $R$ be a ring and $M_1$ and $M_2$ be maximal ideals of $R$. Prove that
-    $R/M_1\simeq R/M_2$ as modules over $R$ if and only if there exists
+    Let $R$ be a ring and $M_1$ and $M_2$ be maximal left ideals of $R$. Prove
+    that $R/M_1\simeq R/M_2$ as modules over $R$ if and only if there exists
     $r\in R\setminus M_2$ such that $rM_1\subseteq M_2$. 
 \end{exercise}
 
