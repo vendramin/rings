@@ -1,7 +1,7 @@
 % ============================================================
 % Usage in the main file:
 %   \documentclass[12pt]{amsproc}
-%   \usepackage{lecturenotes}
+%   \usepackage{mynotes}
 %   \renewcommand{\course}{Ring and module theory}
 %   \title{\course}
 %   \author{...}
@@ -32,6 +32,7 @@
 \RequirePackage[margin=1in,footskip=.25in]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage[english.nosectiondot]{babel}
+\RequirePackage{marginnote}
 
 % ------------------------------------------------------------
 % Hyperref setup
@@ -272,6 +273,34 @@ colframe=yellow!45!black]\begin{bxca}}{\end{bxca}\end{tcolorbox}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}%
   \normalparindent\z@{-.5em}%
   {\color{green!50!blue}\normalfont\itshape}}
+\makeatother
+
+% ------------------------------------------------------------
+% Lectures
+% ------------------------------------------------------------
+\makeatletter
+\newcommand{\listoflectures}{%
+  \par\addvspace{3.5ex \@plus 1ex \@minus .2ex}%
+  {\centering\normalfont\bfseries List of lectures\par}%
+  \nobreak\vspace{2.3ex \@plus .2ex}%
+  \@afterindentfalse\@afterheading
+  \begingroup
+    \makeatletter
+    \IfFileExists{\jobname.lec}{\@input{\jobname.lec}}{}%
+    \if@filesw
+      \expandafter\newwrite\csname tf@lec\endcsname
+      \immediate\openout\csname tf@lec\endcsname\jobname.lec\relax
+    \fi
+  \endgroup}
+\newcommand{\lecturebubble}[1]{\tikz[baseline]{\node[rounded corners=7pt,
+ draw=gray!15!white,line width=.7pt,fill=gray!5!white,inner xsep=7pt,inner ysep=3.5pt,
+ font=\sffamily\footnotesize\color{blue!50!red}]{Lecture~#1};}}
+\newcounter{lecture}
+\newcommand{\lecture}{%
+  \refstepcounter{lecture}%
+  \addcontentsline{lec}{section}{Lecture~\thelecture}%
+  \marginnote{\lecturebubble{\thelecture}}[-1.9\baselineskip]%
+  \ignorespaces}
 \makeatother
 
 % ------------------------------------------------------------

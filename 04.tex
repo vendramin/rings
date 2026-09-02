@@ -1,4 +1,4 @@
-%\section{Lecture -- Week 4}
+\lecture\label{lec:MoreFactorization}
 
 \begin{example}
 	Let $R=\Z[\sqrt{-3}]$ and $x=1+\sqrt{-3}$. 
@@ -570,3 +570,29 @@ for example, \cite[Chapter III, Theorem 6.14]{MR600654}.
 % for some $p(X,Y)\in\R[X,Y]$ and $q(X,Y)\in\R[X,Y]$, it 
 % follows from comparing degrees that $f(X,Y)$ is constant. Thus $I=\R[X,Y]$,
 % a contradiction
+
+The following picture shows 
+the relationships between 
+different classes of commutative domains:
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=4mm, >=latex',
+block/.style = {draw, rectangle, minimum height=10mm, minimum width=28mm,align=center}]
+    \node [block]                      (E)     {Euclidean};
+    \node [block, right=of E]       (P)   {Principal};
+    \node [block, right=of P]     (UF)  {Unique factorization};
+    \node [block, below=of UF]    (F) {Factorization};
+    \node [block, below=of P]     (N)  {Noetherian};
+    \path[draw,->] (E)      edge (P)
+                   (P)    edge (UF)
+                   (UF)   edge (F)
+                   (P)       edge (N)
+                   (N)   edge (F)
+                    ;
+    \end{tikzpicture}
+\end{figure}
+
+We also know that the  
+reverse implications do not hold. 
+
+

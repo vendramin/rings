@@ -1,191 +1,680 @@
-%\section{Lecture -- Week 7}
-%\label{7}
+\section{Group algebras}
+\lecture\label{lec:GroupAlgebra}
+\index{Group algebra}
 
-\section{Maschke's theorem} 
-
-Recall that, by convention, we only consider complex 
-finite-dimensional representations of finite groups.
-
-\begin{theorem}[Maschke]
-\index{Maschke's theorem}
-    Every representation of a finite group is completely reducible.
-\end{theorem}
-
-\begin{proof}
-    Let $G$ be a finite group and $\rho\colon G\to\GL(V)$ be a representation of $G$. We proceed
-    by induction on $\dim V$.
-    If $\dim V=1$, the result is trivial, as degree-one representations are irreducible. Assume that
-    the result holds for representations of degree $\leq n$. Suppose that $\rho$ has degree $n+1$. 
-    If $\rho$ is irreducible, we are done. If not, use 
-    Corollary~\ref{cor:consequences} to 
-    write $V=S\oplus T$, where $S$ and $T$
-    are non-zero invariant subspaces of $V$. Since $\dim S<\dim V$ and $\dim T<\dim V$, it follows from
-    the inductive hypothesis that
-    $\rho|_S$ and $\rho|_T$ are completely reducible. Since
-    \[
-    \rho\simeq\rho|_S\oplus\rho|_T,
-    \]
-    it follows that $\rho$ is completely reducible.
-    %both $S$ and $T$ are spaces of completely reducible representations. 
-    %Thus $\rho$ is completely reducible.
-\end{proof}
+Fix a field $K$ (for example, $K=\C$). 
+For a finite group $G$, let $K[G]$ be the vector space (over $K$)
+with basis $\{g:g\in G\}$. 
+Thus $K[G]$ is a vector space of dimension $\dim K[G]=|G|$.
+Moreover, $K[G]$ is a ring
+with
+\[
+\left(\sum_{g\in G}\lambda_gg\right)\left(\sum_{h\in G}\mu_hh\right)
+=\sum_{g,h\in G}\lambda_g\mu_h(gh).
+\] 
+Note that $K[G]$ is commutative if and only if $G$ is abelian. 
 
 \begin{example}
-    Let $G=\Sym_3$ and $\rho\colon G\to\GL_3(\C)$ be the representation given by
+    Let 
     \[
-    (12)\mapsto\begin{pmatrix}
-    0&1&0\\
-    1&0&0\\
-    0&0&1
-    \end{pmatrix},\quad
-    (123)\mapsto\begin{pmatrix}
-    0&0&1\\
-    1&0&0\\
-    0&1&0
-    \end{pmatrix}.
+    \Sym_3=\{\id,(12),(13),(23),(123),(132)\}
     \]
-    Then $\rho_g$ is unitary for all $g\in G$ (because $\rho_{(12)}$ and $\rho_{(123)}$ are both
-    unitary). Moreover,
+    be the symmetric group in three letters. Every element of $\C[\Sym_3]$
+    is of the form 
     \[
-    S=\left\langle \begin{pmatrix}
-    1\\1\\1
-    \end{pmatrix}
-    \right\rangle,
-    \quad
-    T=S^{\perp}=\left\langle
-    \begin{pmatrix}
-    -1\\1\\0
-    \end{pmatrix},
-    \begin{pmatrix}
-    0\\-1\\1
-    \end{pmatrix}
-    \right\rangle,
+    a\id+b(12)+c(13)+d(23)+e(123)+f(132)
     \]
-    are invariant subspaces of $V=\C^3$, and the restricted representations on
-    $S$ and $T$ are irreducible (see Exercise~\ref{xca:common_eigenvector}). A
-    direct calculation shows that in the basis 
+    for some $a,b,c,d,e,f\in\C$. For example, 
     \[
-      \left\{\begin{pmatrix}
-    1\\1\\1
-    \end{pmatrix},
-    \begin{pmatrix}
-    -1\\1\\0
-    \end{pmatrix},
-    \begin{pmatrix}
-    0\\-1\\1
-    \end{pmatrix}
-    \right\}
-  \]
-    the matrices $\rho_{(12)}$ and $\rho_{(123)}$ can be written as
-    \[
-    \rho_{(12)}=\begin{pmatrix}
-        1&0&0\\
-        0&-1&1\\
-        0&0&1
-    \end{pmatrix},
-    \quad
-    \rho_{(123)}=
-    \begin{pmatrix}
-        1&0&0\\
-        0&0&-1\\
-        0&1&-1
-    \end{pmatrix}.
+    \alpha=5\id +3(123)\quad\text{ and }\quad 
+    \beta=-4\id+(132)
     \]
+    are elements of
+    $\C[\Sym_3]$. We compute
+    \begin{align*}
+    \alpha+\beta &=1\id+3(123)+(132)
+    \shortintertext{and}
+    \alpha\beta &=(5\id +3(123))(-4\id+(132))\\
+    &=-20\id +5(132)-12(123)+3(123)(132)\\
+    &=-20\id +5(132)-12(123)+3\id\\
+    &=-17\id+ 5(132)-12(123).
+    \end{align*}
+    Another example:
+    \begin{align*}
+    (\id+5(13))(2\id-(12))
+    &=2\id-(12)+10(13)-5(13)(12)\\
+    &=2\id-(12)+10(13)-5(123),
+    \end{align*}
+    as $(13)(12)=(123)$. 
 \end{example}
 
-\section{Schur's lemma}
-
-The following result is simple and crucial. 
-
-\begin{lemma}[Schur]
-\index{Schur's lemma}
-    Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be irreducible
-    representations. If $T\colon V\to W$ is a non-zero invariant map, then $T$
-    is bijective.  
-\end{lemma}
-
-\begin{proof}
-    Since $T$ is non-zero and $\ker T$ is an invariant subspace of $V$, it
-    follows that $\ker T=\{0\}$, as $\rho$ is irreducible. Thus $T$ is
-    injective. Since $T(V)$ is a non-zero invariant subspace of $W$ and $\psi$
-    is irreducible, it follows that $T$ is surjective. Therefore $T$ is
-    bijective.  
-\end{proof}
-
-Two applications:
-
-\begin{proposition}
-\label{pro:Schur_consequence}
-    If $\rho\colon G\to\GL(V)$ is an irreducible representation and $T\colon
-    V\to V$ is invariant, then $T=\lambda\id$ for some $\lambda\in\C$. 
-\end{proposition}
-
-\begin{proof}
-    Let $\lambda$ be an eigenvalue of $T$. Then $T-\lambda\id$ is invariant, as 
-    \[
-    (T-\lambda\id)\rho_g=T\rho_g-\lambda\rho_g=\rho_g(T-\lambda\id)
-    \]
-    for all $g\in G$ since $T$ is invariant. By definition, 
-    $T-\lambda\id$ is not bijective. Thus $T-\lambda\id=0$ by Schur's lemma.
-\end{proof}
-
-\begin{proposition}
-    Let $G$ be a finite abelian group. 
-    If $\rho\colon G\to\GL(V)$ is an irreducible representation, then
-    $\dim V=1$. 
-\end{proposition}
-
-\begin{proof}
-    Let $h\in G$. Note that since $G$ is abelian, $T=\rho_h$ is invariant:
-    \[
-    T\rho_g=\rho_h\rho_g=\rho_{hg}=\rho_{gh}=\rho_g\rho_h=\rho_gT.
-    \]
-    By the previous proposition, there exists $\lambda_h\in\C$ such that
-    $\rho_h=\lambda_h\id$. 
-    %If $v\in V\setminus\{0\}$, then $V=\langle
-    %v\rangle$. In fact, since every $\rho_h$ acts on $V$ by a scalar, $\langle
-    %v\rangle$ is a non-zero invariant subspace of $V$ and $\rho$ is
-    %irreducible, it follows that $V=\langle v\rangle$. Hence $\dim V=1$. 
-    Let $v\in V\setminus\{0\}$. Since every $\rho_h$ acts on $V$ by a scalar,
-    $\langle v\rangle$ is a non-zero invariant subspace of $V$. As $\rho$ is
-    irreducible, $V=\langle v\rangle$ and hence $\dim V=1$.
-\end{proof}
-
-\begin{optional}
-\section{Degree-one representations}
-
-\index{Commutator subgroup}
-The \emph{commutator subgroup} of a group $G$ is defined as the subgroup
-$[G,G]$ generated by the commutators $[x,y]=xyx^{-1}y^{-1}$, that is  
- \[
-        [G,G]=\langle[x,y]: x,y\in G\rangle.
-\]
-
-Routine calculations show that $[G,G]$ is always a normal subgroup of $G$. 
-For example, the commutator subgroup of $\Z$ is the trivial subgroup $\{0\}$, 
-as 
+Note that $K[G]$ is a ring and also a vector space (over $K$) and these structures
+are somewhat compatible, as the formulas 
 \[
-[x,y]=x+y-x-y=0
+(\lambda a+\mu b)c=\lambda (ac)+\mu (bc),\quad
+a(\lambda b+\mu c)=\lambda (ab)+\mu (ac)
 \]
-for all $x,y\in\Z$. As an exercise, one can also prove that 
-$[\Sym_3,\Sym_3]=\{\id,(123),(132)\}$.
+hold for all $\lambda,\mu\in K$ and $a,b,c\in K[G]$. 
 
-\begin{xca}
-\label{xca:commutator}
-Let $H$ be a normal subgroup of $G$. Prove that
-$G/H$ is abelian if and only if $[G,G]\subseteq H$.
-\end{xca}
+\begin{definition}
+\index{Algebra}
+Let $A$ be a ring and $K$ be a field. Then $A$ is a \emph{$K$-algebra} (or an \emph{algebra} 
+over the field $K$) if $A$ is a vector space (over $K$)
+such that $\lambda(ab)=(\lambda a)b=a(\lambda b)$ for all $\lambda\in K$ and $a,b\in A$. 
+\end{definition}
 
-\index{Abelianization}
-The previous exercise demonstrates, in particular, that for any group 
-$G$, the quotient $G/[G,G]$ is always an abelian group. 
-This quotient is known as the \emph{abelianization} of 
-$G$. 
+The fields $\R$ and $\C$ are examples of $\R$-algebras. 
+Other examples of $\R$-algebras are the 
+polynomial rings $\R[X]$ and $\R[X,Y]$ and the matrix rings $M_n(\R)$.  
 
-\begin{xca}
-Let $G$ be a finite group.
-Prove that there is a bijection between degree-one representations of $G$ and
-degree-one representations of $G/[G,G]$.
-\end{xca}
-\end{optional}
+\begin{example}
+	If $A$ is an algebra, then $M_n(A)$ is an algebra.	
+\end{example}
+
+\begin{example}
+    Let $G$ be a finite group and $K$ be a field. Then $K[G]$ is a $K$-algebra. 
+\end{example}
+
+\index{Algebra!homomorphism}
+\index{Algebra!isomorphism}
+An \emph{algebra homomorphism} is a ring homomorphism that is $K$-linear. An
+\emph{algebra isomorphism} is a bijective algebra homomorphism; we use the
+symbol $\simeq$ for isomorphisms, as we did for rings.
+
+\begin{example}
+	Let $G=\langle g:g^3=1\rangle=\{1,g,g^2\}\simeq C_3$ be the cyclic group of order three. 
+	If $\alpha=a_11+a_2g+a_3g^2$ and $\beta=b_11+b_2g+b_3g^2$, then
+	\[
+		\alpha\beta=(a_1b_1+a_2b_3+a_3b_2)1+(a_1b_2+a_2b_1+a_3b_3)g+(a_1b_3+a_2b_2+a_3b_1)g^2.
+	\]
+	One can check that $\C[G]\simeq\C[X]/(X^3-1)$. 
+\end{example}
+
+In general, one proves that the group algebra of $C_n$, the cyclic group of order $n\geq2$, 
+is isomorphic to $\C[X]/(X^n-1)$.
+
+\begin{exercise}
+\label{xca:RC3}
+	Prove that $\R[C_3]\simeq\R\times\C$. 	
+\end{exercise}
+
+\begin{exercise}
+	Let $G=\{1,g\}\simeq C_2$ be the cyclic group of order two. The product
+	of $\C[G]$ is 
+	\[
+	(a1+bg)(c1+dg)=(ac+bd)1+(ad+bc)g.
+	\]
+	Prove that the map 
+ \[
+ \C[G]\to \C\times \C,\quad a1+bg\mapsto (a+b,a-b),
+ \]
+	is an isomorphism of $\C$-algebras. 
+\end{exercise}
+
+\begin{exercise}
+	Let $K=\Z/2$ and $G=\{1,g\}\simeq C_2$ be the cyclic group of order two. 
+	Prove that the map 
+\[
+K[G]\longrightarrow
+\left\{
+\begin{pmatrix}
+x&y\\
+0&x
+\end{pmatrix}
+:x,y\in K
+\right\},
+\qquad
+a1+bg\longmapsto
+\begin{pmatrix}
+a+b&b\\
+0&a+b
+\end{pmatrix},
+\]
+% \[
+% K[G]\to\begin{pmatrix}
+%		K&K\\
+%		0&K
+%	\end{pmatrix},\quad 
+% a1+bg\mapsto\begin{pmatrix}
+%		a+b&b\\
+%		0&a+b		
+%	\end{pmatrix},
+%    \]
+    is an isomorphism of $K$-algebras. 
+\end{exercise}
+
+The group algebra has the following property, which is left as an exercise.
+Let $A$ be a $K$-algebra and $G$ be a finite group. If $f\colon
+G\to\mathcal{U}(A)$ is a group homomorphism, then there exists a unique
+$K$-algebra homomorphism $\varphi\colon K[G]\to A$ such that $\varphi|_G=f$. 
+
+\begin{example}
+	Let $\D_3=\langle r,s:r^3=s^2=1,\,srs^{-1}=r^{-1}\rangle$ be the dihedral
+	group of six elements. We claim that 
+	\[
+	\C[\D_3]\simeq\C\times\C\times M_2(\C).
+	\]
+  Let 	
+  $\omega$ be a primitive cubic root of unity. Let 
+  $A=\C\times\C\times M_2(\C)$ and  
+	\[
+	R=\begin{pmatrix}
+		\omega&0\\
+		0&\omega^2	
+	\end{pmatrix},
+	\quad
+	S=\begin{pmatrix}
+		0&1\\
+		1&0
+	\end{pmatrix}.
+ 	\]
+ 	One easily checks that $SRS^{-1}=R^{-1}$ and $R^3=S^2=\begin{pmatrix}
+		1&0\\
+		0&1	
+	\end{pmatrix}$. It follows that there exists a group homomorphism
+  $\D_3\to\mathcal{U}(A)$ such that 
+	$r\mapsto (1,1,R)$ and $s\mapsto (1,-1,S)$. This homomorphism
+  extends uniquely to an algebra homomorphism $\C[\D_3]\to A$.  
+  A direct calculation shows that the images of
+  \[
+  1,r,r^2,s,rs,r^2s
+  \]
+  are linearly independent. Since both algebras have dimension six,
+  $\C[\D_3]\simeq A$. 
+%	Let $\D_3=\langle r,s:r^3=s^2=1,\,srs^{-1}=r^{-1}\rangle$ be the dihedral
+%	group of six elements. We claim that 
+%	\[
+%	\C[\D_3]\simeq\C\times\C\times M_2(\C).
+%	\]
+%	Let $\omega$ be a primitive cubic root of one. Let 
+%	\[
+%	R=\begin{pmatrix}
+%		\omega&0\\
+%		0&\omega^2	
+%	\end{pmatrix},
+%	\quad
+%	S=\begin{pmatrix}
+%		0&1\\
+%		1&0
+%	\end{pmatrix}.
+% 	\]
+% 	One easily checks that $SRS^{-1}=R^{-1}$ and $R^3=S^2=\begin{pmatrix}
+%		1&0\\
+%		0&1	
+%	\end{pmatrix}$. It follows that there exists a group homomorphism
+%	$G\to\C\times\C\times M_2(\C)$ such that
+%	$r\mapsto (1,1,R)$ and $s\mapsto (1,-1,S)$. This group homomorphism
+%	is a ring isomorphism.  
+\end{example}
+
+
+\section{Group representations}
+
+\begin{definition}
+	\index{Representation}
+	A \emph{representation} (over the field $K$) of a group $G$ is a group homomorphism
+	$\rho\colon G\to\GL(V)$, $g\mapsto\rho_g$, for some non-zero finite-dimensional 
+        vector space $V$ (over $K$).
+\end{definition}
+
+\index{Representation!degree}
+The \emph{degree} of the representation $\rho\colon G\to\GL(V)$ is the dimension of $V$. 
+
+Note that a representation $\rho\colon G\to\GL(V)$
+satisfies the following properties:
+\begin{enumerate}
+    \item $\rho_{1_G}=\id$.
+    \item $\rho_{gh}=\rho_g\rho_h$ for all $g,h\in G$.
+    \item $\rho_g(v+w)=\rho_g(v)+\rho_g(w)$ for all $v,w\in V$.
+    \item $\rho_g(\lambda v)=\lambda \rho_g(v)$ for all $v\in V$ and $\lambda\in K$. 
+\end{enumerate}
+
+\index{Representation!matrix}
+Since by assumption
+$V$ is finite-dimensional, say $\dim V=n$, after fixing a basis of $V$ we get a \emph{matrix representation} 
+$\rho\colon G\to\GL(V)\simeq\GL_n(K)$ of $G$. Depending on the context, we will use either representations on vector spaces or matrix representations.  
+
+\begin{example}
+	We use group representations to show that the group 
+	\[
+    G=\langle x,y:x^2=y^2=1\rangle
+    \]
+    is infinite. Note that
+	\[
+	\rho\colon G\to\GL_2(\C),
+	\quad
+	x\mapsto\begin{pmatrix}
+		1&0\\
+		0&-1	
+	\end{pmatrix},\quad
+ 	y\mapsto\begin{pmatrix}
+		1&1\\
+		0&-1	
+	\end{pmatrix},
+ 	\]
+ 	is a group homomorphism, as 
+ 	$\rho_x^2=\rho_y^2=\begin{pmatrix}
+		1&0\\
+		0&1	
+	\end{pmatrix}$. We claim that the elements of the form $(xy)^n$ are
+	different for all $n$. It is enough to show that if 
+	$(xy)^n=(xy)^m$, then $n=m$. Note that
+	\[
+	\rho_{xy}=\rho_x\rho_y=\begin{pmatrix}
+		1&0\\
+		0&-1	
+	\end{pmatrix}
+	\begin{pmatrix}
+		1&1\\
+		0&-1	
+	\end{pmatrix}
+	=\begin{pmatrix}
+		1&1\\
+		0&1	
+	\end{pmatrix}.
+	\]
+	Thus $\rho_{xy}^n=\begin{pmatrix}
+		1&n\\
+		0&1	
+	\end{pmatrix}$ and 
+	$\rho_{xy}^m=\begin{pmatrix}
+		1&m\\
+		0&1	
+	\end{pmatrix}$. Then 
+	\[
+	(xy)^n=(xy)^m\implies\rho_{xy}^n=\rho_{xy}^m\implies n=m.
+	\] 
+\end{example}
+
+The previous example demonstrates the power of group representations, even for infinite groups. 
+However, in this course, we will focus on complex finite-dimensional representations of finite groups.
+
+\begin{convention}
+    When studying representations of groups, 
+    we will focus on complex representations of finite groups, unless stated otherwise.
+\end{convention}
+
+\begin{example}
+\index{Representation!trivial}
+	If $G$ is a group, then $\rho\colon G\to\GL_1(\C)=\C^\times$, $g\mapsto 1$, 
+	is a representation. This representation is known as the \emph{trivial (complex) representation} of $G$. 	
+\end{example}
+
+\begin{example}
+	The sign of permutations yields a representation of $\Sym_n$. It is the group homomorphism
+	$\Sym_n\to\C^\times$, $\sigma\mapsto\sgn(\sigma)$.  	
+\end{example}
+
+\begin{example}
+	Let $G=\langle g:g^6=1\rangle$ be the cyclic group of order six. Then
+	\[
+	\rho\colon G\to\GL_2(\C),
+	\quad 
+	g\mapsto\begin{pmatrix}1&1\\-1&0\end{pmatrix}
+	\] 
+	is a group representation of degree two. 
+\end{example}
+
+%To prove the following result we need
+%the \emph{minimal polynomial characterization of diagonazability",  
+%see for example, \cite[Corollary 2.5.12]{zbMATH06049469}.
+%
+%\begin{proposition}
+%    Let $G$ be a finite group and $\rho\colon G\to\GL_n(\C)$ 
+%    be a representation. Then
+%    each $\rho_g$ is diagonalizable.
+%\end{proposition}
+%
+%\begin{proof}
+%    Since $g$ is finite, $g^m=1$ for some $m\in\Z_{>0}$. This means that $\rho_g$ is a root of $X^m-1\in\C[X]$. Since
+%    the roots of the polynomial $X^m-1$ are all different and $X^m-1$ factorizes linearly on $\C[X]$, it follows
+%    that the minimal polynomial of $\rho_g$ also factorizes linearly in $\C[X]$. Hence $\rho_g$ is diagonalizable.
+%\end{proof}
+%
+%In page \pageref{rho_diagonalizable} we will see an alternative  
+%proof of the previous proposition. 
+%
+\begin{definition}
+	\index{Invariant map}
+    Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be
+    representations. A linear map $T\colon V\to W$ is said to be \emph{invariant} 
+    if the diagram
+    \[\begin{tikzcd}
+	V & V \\
+	W & W
+	\arrow["{\rho_g}", from=1-1, to=1-2]
+	\arrow["T"', from=1-1, to=2-1]
+	\arrow["{\psi_g}"', from=2-1, to=2-2]
+	\arrow["T", from=1-2, to=2-2]
+\end{tikzcd}
+\]
+    commutes for all $g\in G$, this means that 
+    $\psi_gT=T\rho_g$ for all $g\in G$.
+\end{definition}
+
+It is convenient to introduce an alternative
+notation for group representations. 
+Let 
+\[ 
+\rho\colon G\to\GL(V),\quad g\mapsto \rho_g,
+\]
+be a representation. For
+$g\in G$ and $v\in V$ write $g\cdot v=\rho_g(v)$. Then the following properties hold: 
+\begin{enumerate}
+	\item $1\cdot v=v$ for all $v\in V$, 
+	\item $g\cdot (h\cdot v)=(gh)\cdot v$ for all $g,h\in G$ and $v\in V$, 
+	\item $g\cdot (v+w)=g\cdot v+g\cdot w$ for all $g\in G$ and $v,w\in V$, and 
+	\item $g\cdot (\lambda v)=\lambda (g\cdot v)$ for all $g\in G$, $\lambda\in\C$ and $v\in V$.  	
+\end{enumerate}
+Using this notation for the representations $\rho\colon G\to\GL(V)$ 
+and $\psi\colon G\to\GL(W)$, a linear
+map $T\colon V\to W$ is invariant if and only if
+\[
+T(g\cdot v)=g\cdot T(v)
+\]
+for all $v\in V$ and $g\in G$. 
+%Although we use the same notation for different representations, there is no risk of confusion. 
+
+\begin{definition}
+	\index{Representation!equivalence}
+    The representations $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ are \emph{equivalent}
+    if there exists a bijective invariant linear 
+    map $T\colon V\to W$. 
+\end{definition}
+
+If the representations $\rho$ and 
+$\psi$ are equivalent, we write 
+$\rho\simeq\psi$. 
+
+\begin{example}
+    Let $G=\Z/n$. The representations
+    \begin{align*}
+    &\rho\colon G\to\GL_2(\C),\quad
+    m\mapsto
+    \begin{pmatrix}
+        \cos(2\pi m/n) & -\sin(2\pi m/n)\\
+        \sin(2\pi m/n) & \cos(2\pi m/n)
+    \end{pmatrix},
+    \shortintertext{and}
+    &\psi\colon G\to\GL_2(\C),\quad
+    m\mapsto
+    \begin{pmatrix}
+        e^{2\pi im/n} & 0\\
+        0 & e^{-2\pi im/n}
+    \end{pmatrix},
+    \end{align*}
+    are equivalent, as $\rho_mT=T\psi_m$ for all $m\in G$ if $T=\begin{pmatrix}
+        i&-i\\
+        1&1
+    \end{pmatrix}$.
+    Thus $T$ is an invariant isomorphism from $\psi$ to $\rho$;
+    equivalently, $T^{-1}$ is an invariant isomorphism from $\rho$
+    to $\psi$.
+\end{example}
+
+The following example explains why we can alternatively use
+representations or matrix representations. 
+
+\begin{example}
+\label{exa:change_of_basis}
+Let $\rho\colon G\to\GL(V)$ be a representation, say, of degree 
+$n=\dim V$. Choose a basis 
+$B=\{v_1,\dots,v_n\}$ of $V$ and let 
+\[
+T\colon V\to\C^n,
+\quad
+\sum_{i=1}^n\lambda_iv_i\mapsto (\lambda_1,\dots,\lambda_n),
+\]
+be the coordinate isomorphism determined by 
+the basis $B$. For each $g\in G$, 
+the composition of linear maps 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXENebiJdLFsyLDAsIlYiXSxbMSwwLCJWIl0sWzMsMCwiXFxDXm4iXSxbMCwyLCJUXnstMX0iXSxbMiwxLCJcXHJob19nIl0sWzEsMywiVCJdLFswLDMsIiIsMix7ImN1cnZlIjozfV1d
+\[\begin{tikzcd}
+	{\C^n} & V & V & {\C^n}
+	\arrow["{T^{-1}}", from=1-1, to=1-2]
+	\arrow["{\rho_g}", from=1-2, to=1-3]
+	\arrow["T", from=1-3, to=1-4]
+\end{tikzcd}
+\]
+produces a representation 
+$\psi\colon G\to\GL(\C^n)$
+of $G$ equivalent to $\rho$.   
+\end{example}
+
+
+
+\begin{definition}
+	\index{Invariant subspace}
+    Let $\rho\colon G\to\GL(V)$ be a representation. 
+    A subspace $W$ of $V$ is said to be \emph{invariant} (with respect to $\rho$)
+    if $\rho_g(W)\subseteq W$ for all $g\in G$.
+\end{definition}
+
+\index{Representation!restriction}
+Let $\rho\colon G\to\GL(V)$ be a representation. Then $\{0\}$ and $V$ are always   
+invariant subspaces of~$V$. Moreover, if $W\subseteq V$ is non-zero and 
+invariant, then
+the map $\rho|_W\colon G\to\GL(W)$, $g\mapsto (\rho_g)|_W$, is a representation. The
+map $\rho|_W$ is the \emph{restriction} of $\rho$ to $W$. 
+
+\begin{exercise}
+\index{Invariant map!kernel}
+\index{Invariant map!image}
+	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be representations of a given group $G$ 
+	and 
+ $T\colon V\to W$ be an invariant map. Prove that the \emph{kernel} 
+	\[
+	\ker T=\{v\in V:T(v)=0\}
+	\]
+	is an invariant subspace of $V$ and that the \emph{image} 
+	\[
+		T(V)=\{T(v):v\in V\}
+	\]
+	is an invariant subspace of $W$. 
+\end{exercise}
+
+
+\begin{definition}
+\index{Subrepresentation}
+    Let $\rho\colon G\to\GL(V)$
+    be a representation. A \emph{subrepresentation} of $\rho$ is a restricted representation 
+    of the form $\rho|_W\colon G\to\GL(W)$ for some invariant subspace $W$ of~$V$.
+\end{definition}
+
+%\begin{example}
+%    Let $G=\langle g:g^3=1\rangle$ be the
+%    cyclic group of order three
+%    and
+%    \[
+%    \rho\colon G\to\GL_3(\R),
+%    \quad
+%    g\mapsto\begin{pmatrix}
+%        0&1&0\\
+%        0&0&1\\
+%        1&0&0
+%    \end{pmatrix}.
+%    \]
+%    The subspace
+%    \[
+%    W=\left\{
+%    \begin{pmatrix}
+%    x\\
+%    y\\
+%    z
+%    \end{pmatrix}\in\R^3:x+y+z=0\right\}
+%    \]
+%    is a invariant subspace of $\R^3$.
+%\end{example}
+
+\begin{definition}
+    \index{Representation!irreducible}
+    A representation $\rho\colon G\to\GL(V)$ is \emph{irreducible} if
+    $\{0\}$ and $V$ are the only invariant subspaces of $V$.
+\end{definition}
+
+Degree-one representations are irreducible. 
+
+The irreducibility 
+of a representation, of course, depends on the base field. 
+In the following example, it is crucial to use a real representation.
+
+\begin{example}
+    Let $G=\langle g:g^3=1\rangle$ be the
+    cyclic group of order three
+    and
+    \[
+    \rho\colon G\to\GL_3(\R),
+    \quad
+    g\mapsto\begin{pmatrix}
+        0&1&0\\
+        0&0&1\\
+        1&0&0
+    \end{pmatrix}.
+    \]
+    Note that in this example we work with a real representation! 
+    It is a routine calculation to prove that 
+    \[
+    W=\left\{
+    \begin{pmatrix}
+    x\\
+    y\\
+    z
+    \end{pmatrix}\in\R^3:x+y+z=0\right\}
+    \]
+    is an invariant subspace of $\R^3$. We claim that the restricted representation 
+    \[
+      \rho|_W\colon G\to\GL(W)
+    \]
+    is irreducible. Let $S$ be a non-zero invariant subspace of 
+    $W$ and let $s=\begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}\in S$ be a non-zero element. Then
+    \[
+    t=\begin{pmatrix}y_0\\z_0\\x_0\end{pmatrix}
+    =\begin{pmatrix}
+        0&1&0\\
+        0&0&1\\
+        1&0&0
+    \end{pmatrix}
+    \begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}\in S.
+    \]
+    We claim that $\{s,t\}$ is linearly independent. If not, there exists $\lambda\in\R$ such that
+    $\lambda s=t$. Thus $\lambda x_0=y_0$, $\lambda y_0=z_0$ and $\lambda z_0=x_0$. This implies that
+    $\lambda^3x_0=x_0$. Since $x_0\ne 0$ (because if $x_0=0$, then $y_0=z_0=0$, a contradiction), it follows that
+    $\lambda=1$ and hence $x_0=y_0=z_0$, a contradiction because $x_0+y_0+z_0=0$.
+    Therefore $\dim S=2$ and hence $S=W$.
+\end{example}
+
+What happens in the previous example if we work over complex numbers?
+
+\begin{exercise}
+\label{xca:common_eigenvector}
+    Let $\rho\colon G\to\GL(V)$ be a degree-two representation. Prove that
+    $\rho$ is irreducible if and only if there is no common eigenvector for the
+    $\rho_g$, $g\in G$.
+\end{exercise}
+
+The previous exercise can be used to show that the representation
+$\Sym_3\to\GL_2(\C)$
+of the symmetric group $\Sym_3$
+given by
+\[
+(12)\mapsto\begin{pmatrix}
+-1&-1\\0&1
+\end{pmatrix},
+\quad
+(123)\mapsto\begin{pmatrix}
+-1&-1\\
+1&0
+\end{pmatrix},
+\]
+is irreducible.
+
+\begin{example}
+\label{exa:direct_sum_reps}
+\index{Representation!direct sum of}
+Let $\rho\colon G\to\GL_n(\C)$ and $\psi\colon G\to\GL_m(\C)$ be representations. One defines
+the \emph{direct sum} $\rho\oplus\psi$ of $\rho$ and $\psi$ as 
+\[
+\rho\oplus\psi\colon G\to\GL_{n+m}(\C),\quad
+g\mapsto 
+\begin{pmatrix}
+\rho_g & 0\\
+0 & \psi_g	
+\end{pmatrix}.
+\]
+\end{example}
+
+Let us describe the previous example without using matrix representations. If $V$ and 
+$W$ are complex vector spaces, the (external) direct sum of $V$ and $W$ is defined
+as the set $V\times W$ with the complex vector space structure given by
+\[
+(v,w)+(v_1,w_1)=(v+v_1,w+w_1),\quad
+\lambda (v,w)=(\lambda v,\lambda w)
+\]
+for all $v,v_1\in V$, $w,w_1\in W$ and $\lambda\in\C$. 
+If $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ are representations, 
+the \emph{direct sum} $\rho\oplus\psi$ of $\rho$ and $\psi$ is then 
+\[
+\rho\oplus\psi\colon G\to\GL(V\oplus W),\quad
+g\mapsto (\rho\oplus\psi)_g,
+\]
+where $(\rho\oplus\psi)_g\colon V\oplus W\to V\oplus W$, $(v,w)\mapsto
+(\rho_g(v),\psi_g(w))$. Note that both $V\oplus\{0\}$ and $\{0\}\oplus W$ are
+invariant subspaces of $V\oplus W$. 
+
+\begin{definition}
+    \index{Representation!completely reducible}
+    A representation $\rho\colon G\to\GL(V)$ is said to be 
+    \emph{completely reducible}
+    if $\rho$ can be decomposed as
+    $\rho\simeq\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible
+    representations $\rho_1,\dots,\rho_n$ of $G$.
+Equivalently, 
+there exist invariant subspaces $V_1,\dots,V_n$ such that
+\[
+V=V_1\oplus\cdots\oplus V_n
+\]
+and every restricted representation
+\[
+\rho|_{V_i}\colon G\to\GL(V_i)
+\]
+is irreducible.
+\end{definition}
+
+Note that if $\rho\colon G\to\GL(V)$ is completely reducible and 
+$\rho\simeq\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible representations 
+$\rho_i\colon G\to\GL(V_i)$, $i\in\{1,\dots,n\}$, then 
+each $V_i$ is an invariant subspace of $V$ and $V=V_1\oplus \cdots \oplus V_n$. 
+Moreover, on some basis of $V$, the matrix  
+$\rho_g$ can be written as 
+\[
+\rho_g=\begin{pmatrix}
+(\rho_1)_g &  \\
+& (\rho_2)_g  \\
+&&\ddots\\
+&&&(\rho_n)_g	
+\end{pmatrix}.
+\]
+
+\begin{definition}
+\index{Representation!decomposable}
+\index{Representation!indecomposable}
+A representation
+$\rho\colon G\to\GL(V)$ is \emph{decomposable} if $V$ can be decomposed as $V=S\oplus T$
+where $S$ and $T$ are non-zero invariant subspaces of $V$. 
+\end{definition}
+
+A representation is 
+\emph{indecomposable} if it is not decomposable. 
+
+\begin{exercise}
+\label{xca:equivalence}
+	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be equivalent representations.
+	Prove the following facts:
+	\begin{enumerate}
+		\item If $\rho$ is irreducible, then $\psi$ is irreducible.
+		\item If $\rho$ is decomposable, then $\psi$ is decomposable.
+		\item If $\rho$ is completely reducible, then $\psi$ is completely reducible. 
+	\end{enumerate}	
+\end{exercise}
+
 

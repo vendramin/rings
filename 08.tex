@@ -1,1144 +1,436 @@
-\section{Lecture -- Week 8}
-\label{8}
+\section{Tensor product of representations}
+\lecture\label{lec:7}
 
-\subsection{Proof of the orthogonality relations}
-\label{subsection:Schur_proof}
+\index{Representation!tensor product of}
+Let $V$ be a vector space with basis $\{v_1,\dots,v_k\}$ and 
+$W$ be a vector space with basis $\{w_1,\dots,w_l\}$. A 
+\emph{tensor product} of $V$ and $W$ is a vector space $X$ 
+together with a bilinear map 
+\[
+V\times W\to X,
+\quad
+(v,w)\mapsto v\otimes w,
+\]
+such that $\{v_i\otimes w_j:1\leq i\leq k,\,1\leq j\leq l\}$ is a  
+basis of $X$. The tensor product of $V$ and $W$ is unique up to isomorphism 
+and is denoted by $V\otimes W$. Note that
+\[
+\dim(V\otimes W)=(\dim V)(\dim W).
+\]
+Moreover, every element of $V\otimes W$ is a finite sum 
+of the form
+\[
+\sum_{i,j}\lambda_{ij}v_i\otimes w_j
+\]
+for some scalars $\lambda_{ij}\in\C$. It is important to remark that elements 
+of $V\otimes W$ are not always of the form $v\otimes w$ for $v\in V$ and $w\in W$. 
 
-For a finite group $G$, let 
-\[
-\rho\colon G\to\GL(V)\text{ and }\psi\colon G\to\GL(W)
-\]
-be representations. We know that
-these representations are equivalent to matrix representations, say 
-$\rho\colon G\to\GL_n(\C)$
-and $\psi\colon G\to\GL_m(\C)$. Hence 
-we have well-defined matrices
-$(\rho_{ij})_{1\leq i,j\leq n}$ and 
-$(\psi_{kl})_{1\leq k,l\leq m}$, where 
-each $\rho_{ij}$ and $\psi_{kl}$ are
-functions $G\to\C$. Theorem~\ref{thm:Schur_technical} 
-states that 
-\[
-\langle\rho_{ij},\psi_{kl}\rangle=0, 
-\quad 
-1\leq i,j\leq n\text{ and }1\leq k,l\leq m, 
-\]
-if $\rho\not\simeq\psi$, and 
-\[
-\langle\rho_{ij},\rho_{kl}\rangle=\frac{1}{n}\delta_{ik}\delta_{lj},\quad 1\leq i,j,k,l\leq n.  
-\]
-
-Since $V$ and $W$ are complex 
-vector spaces, the set 
-\[
-\Hom(V,W)=\{T\colon V\to W:\text{$T$ is linear}\}
-\]
-is a vector space with 
+The bilinearity of tensor products is crucial. 
+For example,
 \begin{align*}
-&(\lambda T)(v)=\lambda T(v) && \text{for all $\lambda\in\C$ and all $v\in V$,}\\ 
-&(T+T_1)(v)=T(v)+T_1(v) &&\text{for all $v\in V$.}
+    (v_1+v_3)\otimes (3w_1+w_2) 
+    &=v_1\otimes (3w_1+w_2)+v_3\otimes (3w_1+w_2)\\
+    &=v_1\otimes (3w_1)+v_1\otimes w_2+v_3\otimes (3w_1)+v_3\otimes w_2\\
+    &=3v_1\otimes w_1+v_1\otimes w_2+3v_3\otimes w_1+v_3\otimes w_2.
 \end{align*}
-We claim that the set $\Hom_G(V,W)$ of invariant maps
-is a subspace of $\Hom(V,W)$. Indeed, the zero map is clearly invariant. If $T,T_1\in\Hom_G(V,W)$ 
-and $\lambda\in\C$, then
+
+\begin{definition}
+	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be representations, and 
+    let $\{v_1,\dots,v_k\}$ be a basis of $V$ and $\{w_1,\dots,w_l\}$ a basis of $W$. 
+    The \emph{tensor product} of $\rho$ and $\psi$ is the representation of $G$ given by 
+	\begin{gather*}
+	\rho\otimes\psi\colon G\to\GL(V\otimes W),
+	\quad 
+	g\mapsto (\rho\otimes\psi)_g,
+	\shortintertext{where}
+	(\rho\otimes\psi)_g\left (\sum_{i,j}\lambda_{ij} v_i\otimes w_j\right)=\sum_{i,j}\lambda_{ij} \rho_g(v_i)\otimes \psi_g(w_j).
+	\end{gather*} 	
+\end{definition}
+
+\begin{exercise}
+\label{xca:tensor}
+Prove that the tensor product of representations 
+is a representation.     
+\end{exercise}
+
+
+
+\section{Unitary representations}
+
+\index{Inner product}
+Since we are considering finite-dimensional vector spaces, our vector spaces admit 
+an \emph{inner product}, that is a map $V\times V\to\C$, $(v,w)\mapsto\langle v,w\rangle$, 
+that satisfies the following properties:
+\begin{enumerate}
+    \item $\langle y,x\rangle=\overline{\langle x,y\rangle}$ for all $x,y\in V$, where $\overline{a+bi}=a-bi$ denotes the complex conjugate.
+    \item $\langle ax+by,z\rangle=a\langle x,z\rangle+b\langle y,z\rangle$ for all $x,y,z\in V$ and $a,b\in\C$.
+    \item $\langle x,x\rangle\geq0$ for all $x\in V$, and 
+      $\langle x,x\rangle=0$ if and only if $x=0$.
+\end{enumerate}
+
+\index{Inner product!usual}
+For example, if $V=\C^n$, $v=\colvec{3}{v_1}{\vdots}{v_n}\in V$ and $w=\colvec{3}{w_1}{\vdots}{w_n}\in V$, 
+then the \emph{usual inner product} between $v$ and $w$ 
+is given by
+\begin{equation}
+    \label{eq:inner_product}
+V\times V\to\C,\quad 
+(v,w)\mapsto v_1\overline{w_1}+\cdots+v_n\overline{w_n}=v^T\overline{w},
+\end{equation}
+where 
 \[
-(T+\lambda T_1)(\rho_g v)
-=T(\rho_gv)+\lambda T_1(\rho_gv)
-=\psi_gT(v)+\lambda \psi_gT_1(v)
-=\psi_g((T+\lambda T_1)(v))
+v^T=(v_1,\dots,v_n),\quad 
+\overline{w}=\colvec{3}{\overline{w_1}}{\vdots}{\overline{w_n}}.
 \]
-for all $v\in V$. 
- 
+
+\begin{definition}
+    \index{Representation!unitary}
+    Let $V$ be a finite-dimensional complex vector space with inner product $(v,w)\mapsto\langle v,w\rangle$. 
+    A representation $\rho\colon G\to\GL(V)$ is \emph{unitary} if
+    $\langle \rho_gv,\rho_gw\rangle=\langle v,w\rangle$ for all $g\in G$ and $v,w\in V$.
+\end{definition}
+
+\begin{exercise}
+\index{Representation!left regular}
+Let $G$ be a finite group and $V=\C[G]$ be the complex vector space with basis
+$\{g:g\in G\}$. The \emph{left regular representation}
+of $G$ is the representation
+\[
+L\colon G\to\GL(V),
+\quad
+g\mapsto L_g,
+\]
+where $L_g(h)=gh$. With respect to the inner product
+\[
+\left\langle\sum_{g\in G}\lambda_gg,\sum_{g\in G}\mu_gg\right\rangle=\sum_{g\in G}\lambda_g\overline{\mu_g},
+\]
+the representation $L$ is unitary. Prove it! 
+\end{exercise}
+
+\index{Orthogonal complement}
+If $V$ is an inner-product vector space and $W$ is a subspace of $V$, 
+\[
+W^\perp = \{v\in V:\langle v,w\rangle=0\text{ for all $w\in W$}\}, 
+\]
+is called the 
+\emph{orthogonal complement} of $W$. The following result is extremely important: 
+
 \begin{proposition}
-\label{pro:T_invariant}
-	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be representations
-	and $T\colon V\to W$ be a linear map. Then
-	\[
-	T^{\#}=\frac{1}{|G|}\sum_{g\in G}\psi_{g^{-1}}T\rho_g\in\Hom_G(V,W).
-	\]
-	Moreover, the map $\Hom(V,W)\to\Hom_G(V,W)$, $T\mapsto T^{\#}$, is linear and surjective.  
+\label{pro:irr_or_dec}
+Let $\rho\colon G\to\GL(V)$ be a unitary representation. Then $\rho$ is either
+irreducible or decomposable.
 \end{proposition}
 
 \begin{proof}
-  Let $h\in G$ and $v\in V$. Then 
-  \begin{align*}
-	T^{\#}\rho_h(v)
-	&=\frac{1}{|G|}\sum_{g\in G}\psi_{g^{-1}}T\rho_g\rho_h(v)
-	=\frac{1}{|G|}\sum_{g\in G}\psi_{g^{-1}}T\rho_{gh}(v)\\
-	&=\frac{1}{|G|}\sum_{x\in G}\psi_{hx^{-1}}T\rho_x(v)
-	=\frac{1}{|G|}\sum_{x\in G}\psi_h\psi_{x^{-1}}T\rho_x(v)
-	=\psi_hT^{\#}(v).
-      \end{align*}
-
-    It is a routine calculation to show that $T\mapsto T^{\#}$ is a linear map. The map
-    $T\mapsto T^{\#}$ is surjective since 
-    if $T\in\Hom_G(V,W)$, then  
+	If $\rho$ is not irreducible, there exists an invariant subspace $W$ of $V$ such that
+	$\{0\}\subsetneq W\subsetneq V$. Can we find an invariant complement? Yes, and this is because 
+        our representation is unitary.  
+	We know that $V=W\oplus W^{\perp}$ as complex vector spaces, where 
+	$W^\perp\ne\{0\}$. So $\rho$ will be decomposable if we can prove that
+	$W^\perp$ is an invariant subspace of $V$. 
+	Let $v\in W^\perp$, $w\in W$ and $g\in G$. Then  
 	\[
-	T^{\#}(v)=\frac{1}{|G|}\sum_{g\in G}\psi_{g^{-1}}T\rho_g(v)
-	=\frac{1}{|G|}\sum_{g\in G}\psi_{g^{-1}}\psi_gT(v)
-	=T(v)
-      \]
-    holds for all $v\in V$, so $T^{\#}=T$.  
+	\langle \rho_g(v),w\rangle=\langle v,\rho_g^{-1}(w)\rangle=0   
+	\]
+	since $\rho_g^{-1}(w)\in W$, as $W$ is an invariant subspace of $V$. This means that 
+	$\rho_g(v)\in W^\perp$ and hence $\rho$ is decomposable. 
+  %$V=W\oplus W^{\perp}$ is decomposable.  
 \end{proof}
 
-If $\rho\colon G\to\GL(V)$ and $\psi\colon
-	G\to\GL(W)$ are non-equivalent irreducible representations and $T\colon
-	V\to W$ is a linear map, then $T^{\#}=0$, as 
-	$T^{\#}\in\Hom_{G}(V,W)=\{0\}$ by the previous proposition and Schur's lemma. We will use this
- fact later in the proof of Schur's theorem  \ref{thm:Schur_technical}. 
+\section{Weyl's trick} 
 
-\begin{theorem}[Ergodic theorem]
-\index{Ergodic theorem}
-\label{thm:ergodic}
-  Let $\rho\colon G\to\GL(V)$ be an irreducible representation. 
-  If $T\colon V\to V$ is linear, then 
-  $T^{\#}=(\dim V)^{-1}\trace(T)\id$.
+\begin{theorem}[Weyl]
+\index{Weyl's trick}
+    Every representation $\rho\colon G\to\GL(V)$ 
+    of a finite group is unitarizable, that is 
+    $V$ admits an inner
+    product such that
+    \[
+    \langle\rho_gv,\rho_gw\rangle=\langle v,w\rangle
+    \]
+    for all $g\in G$ and $v,w\in V$.
 \end{theorem}
 
 \begin{proof}
-  Since $T^{\#}\in\Hom_G(V,V)$ by Proposition~\ref{pro:T_invariant}, it follows
-  from Proposition~\ref{pro:Schur_consequence} that
-  $T^{\#}=\lambda\id$ for some $\lambda\in\C$.
-  We now compute the trace of $T^{\#}$. On the one hand, 
-  \[
-	\trace(T^{\#})=\trace(\lambda\id)=(\dim V)\lambda.
-  \]
-  On the other hand.  
-  \[
-	\trace(T^{\#})
-	=\frac{1}{|G|}\sum_{g\in G}\trace(\rho_{g^{-1}}T\rho_g)
-	=\frac{1}{|G|}\sum_{g\in G}\trace(T)
-	=\trace(T),
-  \]
-  as $\trace(ABA^{-1})=\trace(B)$ for all $A$ and $B$. 
-  Hence 
-  \[
-  \trace(T^{\#})=(\dim V)^{-1}\trace(T)\id.\qedhere 
-  \]
+    Let $V\times V\to\C$, $(v,w)\mapsto v\cdot w$, be an\footnote{It does not
+    matter which inner product we have chosen, we can safely use, for example,
+  the usual inner product of \eqref{eq:inner_product}.} inner product on $V$. 
+   
+    A straightforward calculation shows that
+    \[
+    \langle v,w\rangle=\sum_{g\in G}(\rho_gv)\cdot (\rho_gw)
+    \]
+    is an inner product of $V$. For example, 
+    \begin{align*}
+    \langle v,w+w_1\rangle&=\sum_{g\in G}\rho_gv\cdot\rho_g(w+w_1)\\
+    &=\sum_{g\in G}\rho_gv\cdot \left(\rho_gw+\rho_gw_1\right)\\
+    &=\sum_{g\in G}\left(\rho_gv\cdot \rho_gw+\rho_gv\cdot\rho_gw_1\right)\\
+    &=\sum_{g\in G}\rho_gv\cdot \rho_gw+\sum_{g\in G}\rho_gv\cdot \rho_gw_1\\
+    &=\langle v,w\rangle+\langle v,w_1\rangle 
+    \end{align*}
+    holds for all $v,w,w_1\in V$. 
+    
+    Since
+    \begin{align*}
+    \langle\rho_gv,\rho_gw\rangle&=\sum_{h\in G}(\rho_h\rho_gv)\cdot(\rho_h\rho_gw)\\
+    &=\sum_{h\in G}(\rho_{hg}v)\cdot(\rho_{hg}w)=\sum_{x\in G}(\rho_xv)\cdot(\rho_xw)=\langle v,w\rangle,
+    \end{align*}
+    the representation $\rho$ is unitary with respect to the newly 
+    constructed inner product. 
 \end{proof}
 
+\begin{example}
+    Let $A=\begin{pmatrix}
+        -1 & -1\\
+        1 & 0
+    \end{pmatrix}$. Since $A^3=I$, we can use this matrix to 
+    represent the (multiplicative) cyclic group 
+    \[
+    C_3=\langle g:g^3=1\rangle
+    \]
+    of order three. Note that the map $1\mapsto g$ yields an isomorphism 
+    $\Z/3\simeq C_3$. 
+        
+    The map $C_3\to\GL_2(\C)$, $g\mapsto A$, is a group homomorphism. In particular, we have a representation $\rho\colon C_3\to\GL(V)$, where $V=\C^2$ with the usual inner product given by \eqref{eq:inner_product}, that is 
+    \[
+    v\cdot w=v^T\overline{w}
+    \]
+    for $v,w\in V$. 
+    For example, the inner product between the vectors $\colvec{2}{1}{i}$ and $\colvec{2}{1}{2}$
+    is 
+    \[
+    (1,i)\colvec{2}{1}{2}=1+2i.
+    \]
+    Since $A\in M_2(\R)$, we compute 
+    \[
+    \langle v,w\rangle=v^T\overline{w}+(Av)^T\overline{(Aw)}+(A^2v)^T\overline{(A^2w)}=v^T\left (I+A^TA+(A^2)^TA^2\right)\overline{w}
+    \]
+    and this is an invariant inner product on $V$. Note that 
+    \[
+        B=I+A^TA+(A^2)^TA^2=\begin{pmatrix}
+            4&2\\
+            2&4
+        \end{pmatrix}.
+    \]
+\end{example}
 
+%\label{rho_diagonalizable}
+Weyl's trick has several interesting consequences:  
 
-We now prove Schur's orthogonality relations. We need some preliminary material. First, recall that 
-the matrix $E_{ij}$ is given by 
-\[
-(E_{ij})_{kl}=\delta_{ik}\delta_{jl},
-\qquad
-\delta_{xy}=\begin{cases}
-    1 & \text{if $x=y$},\\
-    0 & \text{otherwise}.
-\end{cases}
-\]
-For example, in $\C^{3\times4}$, 
-\[
-E_{12}=\begin{pmatrix}
-    0&1&0&0\\
-    0&0&0&0\\
-    0&0&0&0
-\end{pmatrix},
-\quad 
-E_{32}=\begin{pmatrix}
-    0&0&0&0\\
-    0&0&0&0\\
-    0&1&0&0
-\end{pmatrix}.
-\]
-Note that each matrix $E_{ij}$ can be though as 
-a linear map, for example:
-\[
-E_{12}\colon\C^4\to\C^3,\quad 
-\colvec{4}{x_1}{x_2}{x_3}{x_4}\mapsto 
-E_{12}\colvec{4}{x_1}{x_2}{x_3}{x_4}
-=\colvec{3}{x_2}{0}{0}.
-\]
+\begin{corollary}
+\label{cor:consequences}
+	Let $\rho\colon G\to\GL(V)$ be a representation of a finite group $G$. 
+ The following properties
+	hold:
+	\begin{enumerate}
+		\item $\rho$ is equivalent to a unitary representation.
+		\item $\rho$ is either irreducible or decomposable.
+		\item Each $\rho_g$ is diagonalizable. 
+	\end{enumerate}
+\end{corollary}
 
-Recall the rule for multiplying matrices. 
-Let $A=(a_{ij})\in\C^{r\times s}$ and $B=(b_{ij})\in\C^{s\times t}$. Then $AB\in\C^{r\times t}$ is given by 
-\[
-(AB)_{ij}=\sum_{k=1}^sa_{ik}b_{kj}.
-\]
+\begin{proof}
+  The first assertion follows by choosing an orthonormal basis for the
+  invariant inner product supplied by Weyl's unitary trick.  The second follows
+  from 1), Proposition \ref{pro:irr_or_dec}, and Exercise
+  \ref{xca:equivalence}.  Finally, with respect to an orthonormal basis for the
+  invariant inner product, every $\rho_g$ is unitary and hence diagonalizable.
+\end{proof}
 
-\begin{lemma}
-Let $\rho\colon G\to\GL_n(\C)$ and $\psi\colon G\to\GL_m(\C)$ be irreducible unitary representations. Then
-$(E_{ki}^\#)_{lj}=\langle\rho_{ij},\psi_{kl}\rangle$
-for all $1\leq k,l\leq m$ and $1\leq i,j\leq n$. 
+\begin{exercise}
+\label{xca:not_decomposable}
+    If $G$ is an infinite group, it is no longer true that every non-zero representation
+    is either irreducible or decomposable. Find an example.
+\end{exercise}
+
+For the previous exercise, consider the representation $\Z\to\GL_2(\C)$, 
+$1\mapsto\begin{pmatrix}1&1\\0&1\end{pmatrix}$. 
+\section{Maschke's theorem} 
+
+Recall that, by convention, we only consider complex 
+finite-dimensional representations of finite groups.
+
+\begin{theorem}[Maschke]
+\index{Maschke's theorem}
+    Every representation of a finite group is completely reducible.
+\end{theorem}
+
+\begin{proof}
+    Let $G$ be a finite group and $\rho\colon G\to\GL(V)$ be a representation of $G$. We proceed
+    by induction on $\dim V$.
+    If $\dim V=1$, the result is trivial, as degree-one representations are irreducible. Assume that
+    the result holds for representations of degree $\leq n$. Suppose that $\rho$ has degree $n+1$. 
+    If $\rho$ is irreducible, we are done. If not, use 
+    Corollary~\ref{cor:consequences} to 
+    write $V=S\oplus T$, where $S$ and $T$
+    are non-zero invariant subspaces of $V$. Since $\dim S<\dim V$ and $\dim T<\dim V$, it follows from
+    the inductive hypothesis that
+    $\rho|_S$ and $\rho|_T$ are completely reducible. Since
+    \[
+    \rho\simeq\rho|_S\oplus\rho|_T,
+    \]
+    it follows that $\rho$ is completely reducible.
+    %both $S$ and $T$ are spaces of completely reducible representations. 
+    %Thus $\rho$ is completely reducible.
+\end{proof}
+
+\begin{example}
+    Let $G=\Sym_3$ and $\rho\colon G\to\GL_3(\C)$ be the representation given by
+    \[
+    (12)\mapsto\begin{pmatrix}
+    0&1&0\\
+    1&0&0\\
+    0&0&1
+    \end{pmatrix},\quad
+    (123)\mapsto\begin{pmatrix}
+    0&0&1\\
+    1&0&0\\
+    0&1&0
+    \end{pmatrix}.
+    \]
+    Then $\rho_g$ is unitary for all $g\in G$ (because $\rho_{(12)}$ and $\rho_{(123)}$ are both
+    unitary). Moreover,
+    \[
+    S=\left\langle \begin{pmatrix}
+    1\\1\\1
+    \end{pmatrix}
+    \right\rangle,
+    \quad
+    T=S^{\perp}=\left\langle
+    \begin{pmatrix}
+    -1\\1\\0
+    \end{pmatrix},
+    \begin{pmatrix}
+    0\\-1\\1
+    \end{pmatrix}
+    \right\rangle,
+    \]
+    are invariant subspaces of $V=\C^3$, and the restricted representations on
+    $S$ and $T$ are irreducible (see Exercise~\ref{xca:common_eigenvector}). A
+    direct calculation shows that in the basis 
+    \[
+      \left\{\begin{pmatrix}
+    1\\1\\1
+    \end{pmatrix},
+    \begin{pmatrix}
+    -1\\1\\0
+    \end{pmatrix},
+    \begin{pmatrix}
+    0\\-1\\1
+    \end{pmatrix}
+    \right\}
+  \]
+    the matrices $\rho_{(12)}$ and $\rho_{(123)}$ can be written as
+    \[
+    \rho_{(12)}=\begin{pmatrix}
+        1&0&0\\
+        0&-1&1\\
+        0&0&1
+    \end{pmatrix},
+    \quad
+    \rho_{(123)}=
+    \begin{pmatrix}
+        1&0&0\\
+        0&0&-1\\
+        0&1&-1
+    \end{pmatrix}.
+    \]
+\end{example}
+
+\section{Schur's lemma}
+
+The following result is simple and crucial. 
+
+\begin{lemma}[Schur]
+\index{Schur's lemma}
+    Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be irreducible
+    representations. If $T\colon V\to W$ is a non-zero invariant map, then $T$
+    is bijective.  
 \end{lemma}
 
 \begin{proof}
-  Assume that $\rho$ is unitary. Then $\rho^{-1}_g=\rho_{g^{-1}}=\rho^*_g=\overline{\rho}_g^T$ for all $g\in G$. 
-  Thus  
-  \begin{align*}
-      (E_{ki}^\#)_{lj} &= \frac{1}{|G|}\sum_{g\in G}(\psi_{g^{-1}}E_{ki}\rho_g)_{lj}\\
-      &=\frac{1}{|G|}\sum_{g\in G}\sum_{p,q}\psi_{lq}(g^{-1})(E_{ki})_{qp}\rho_{pj}(g)\\
-      &=\frac{1}{|G|}\sum_{g\in G}\psi_{lk}(g^{-1})\rho_{ij}(g)\\
-      &=\frac{1}{|G|}\sum_{g\in G}\overline{\psi_{kl}(g)}\rho_{ij}(g)=\langle \rho_{ij},\psi_{kl}\rangle.\qedhere
-  \end{align*}
+    Since $T$ is non-zero and $\ker T$ is an invariant subspace of $V$, it
+    follows that $\ker T=\{0\}$, as $\rho$ is irreducible. Thus $T$ is
+    injective. Since $T(V)$ is a non-zero invariant subspace of $W$ and $\psi$
+    is irreducible, it follows that $T$ is surjective. Therefore $T$ is
+    bijective.  
 \end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:Schur_technical}]
-    Let us prove the first claim. Since 
-    $\rho$ and $\psi$ 
-    are not equivalent, it follows from Schur's lemma that $\Hom_G(V,W)=\{0\}$.
-    Thus $E_{ki}^\#\in\Hom_G(V,W)=\{0\}$ (see the comment 
-    before the ergodic theorem \ref{thm:ergodic}). 
-    
-    To prove the second claim, we use the previous lemma:
-    \[
-    (E_{ki}^\#)_{lj}=\langle\rho_{ij},\rho_{kl}\rangle
-    =\frac{1}{\dim V}(\trace E_{ki})\delta_{lj}
-    =\frac{1}{\dim V}\delta_{ki}\delta_{lj}.\qedhere
-    \]
-\end{proof}
-
-
-\subsection{Examples}
-
-Let $G$ be a finite group and $\chi_1,\dots,\chi_r$ be the irreducible characters of $G$. Without loss of generality
-we may assume that $\chi_1$ is the trivial character, i.e. $\chi_1(g)=1$ for all $g\in G$. 
-Recall that $r$ is the number of conjugacy classes of $G$. Each $\chi_j$ is constant on conjugacy classes. 
-The \emph{character table} of 
-$G$ is given by 
-\begin{center}
-\begin{tabular}{|c|cccc|}
-\hline 
- & $1$ & $k_{2}$ & $\cdots$ & $k_{r}$\tabularnewline
- & $1$ & $g_{2}$ & $\cdots$ & $g_{r}$\tabularnewline
-\hline 
-$\chi_{1}$ & $1$ & $1$ & $\cdots$ & $1$\tabularnewline
-$\chi_{2}$ & $n_{2}$ & $\chi_{2}(g_{2})$ & $\cdots$ & $\chi_{2}(g_{r})$\tabularnewline
-$\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$\tabularnewline
-$\chi_{r}$ & $n_{r}$ & $\chi_{r}(g_{2})$ & $\cdots$ & $\chi_{r}(g_{r})$\tabularnewline
-\hline
-\end{tabular}
-\end{center}
-where the $n_j$ are the degrees of the irreducible representations of $G$ and each $k_j$ is 
-the size of the conjugacy class of the element $g_j$. By convention, the character table
-contains not only the values of the irreducible characters of the group. 
-
-\begin{example}
-	Let $G=\langle g:g^4=1\rangle$ 
-	be the cyclic group of order four. The character table of $G$ is given by
-	\begin{center}
-		\begin{tabular}{|c|cccc|}
-			\hline 
-			& 1 & 1 & 1 & 1\tabularnewline
-			& $1$ & $g$ & $g^2$ & $g^{3}$\tabularnewline
-			\hline 
-			$\chi_{1}$ & $1$ & $1$ & $1$ & $1$\tabularnewline
-			$\chi_{2}$ & $1$ & $\lambda$ & $\lambda^2$ & $\lambda^{3}$\tabularnewline
-			$\chi_{3}$ & $1$ & $\lambda^2$ & $\lambda^4$ & $\lambda^{2}$\tabularnewline
-			$\chi_{4}$ & $1$ & $\lambda^{3}$ & $\lambda^{2}$ & $\lambda$\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-% Let us see how to see this calculation in the computer:
-% \begin{lstlisting}
-% gap> C4 := CyclicGroup(4);;                       
-% gap> T := CharacterTable(C4);;
-% gap> Display(T);
-% CT1
-
-%      2  2  2  2  2
-
-%       1a 4a 2a 4b
-
-% X.1     1  1  1  1
-% X.2     1 -1  1 -1
-% X.3     1  A -1 -A
-% X.4     1 -A -1  A
-
-% A = E(4)
-%   = Sqrt(-1) = i
-% \end{lstlisting}
-% We need some remarks
-% \begin{enumerate}
-%     \item The symbol \lstinline{E(4)} denotes a primitive fourth root of 1.
-%     \item The function \lstinline{CharacterTable} computes some more information, not only the character table of the group. 
-%     esta función calcula algunas otras cosas. Por ejemplo:
-% \end{enumerate}
-% \begin{lstlisting}
-% gap> OrdersClassRepresentatives(T);
-% [ 1, 4, 2, 4 ]
-% gap> SizesCentralizers(T);
-% [ 4, 4, 4, 4 ]
-% gap> SizesConjugacyClasses(T);
-% [ 1, 1, 1, 1 ]
-% \end{lstlisting}
-\end{example}
-
-\begin{exercise}
-	Let $n\in\Z_{>0}$ be such that $n\geq2$. Let 
-$C_n=\langle g:g^n=1\rangle$ be the cyclic group of order $n$.
-\begin{enumerate}
-    \item Prove that the maps  
-        $\chi_j\colon C_n\to\C^\times$, $g^k\mapsto e^{2\pi ijk/n}$, where $j\in\{0,1,\dots,n-1\}$, 
-        are the irreducible representations of $C_n$. 
-    \item Let $\lambda$ be a primitive root of 1 of order $n$. Prove that 
-        the character table of $C_n$ of order $n$ is given by 
-	\begin{center}
-		\begin{tabular}{|c|ccccc|}
-			\hline 
-			& 1 & 1 & 1 & $\cdots$ & 1\tabularnewline
-			& $1$ & $g$ & $g^2$ & $\cdots$ & $g^{n-1}$\tabularnewline
-			\hline 
-			$\chi_{1}$ & $1$ & $1$ & $1$ & $\cdots$ & $1$\tabularnewline
-			$\chi_{2}$ & $1$ & $\lambda$ & $\lambda^2$ & $\cdots$ & $\lambda^{n-1}$\tabularnewline
-			$\chi_{3}$ & $1$ & $\lambda^2$ & $\lambda^4$ & $\cdots$ & $\lambda^{n-2}$\tabularnewline
-			$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$\tabularnewline
-			$\chi_{n}$ & $1$ & $\lambda^{n-1}$ & $\lambda^{n-2}$ & $\cdots$ & $\lambda$\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-    Let $A$ and $B$ be finite abelian groups. We write $\Irr(A)=\{\rho_1,\dots,\rho_r\}$ and 
-    $\Irr(B)=\{\phi_1,\dots,\phi_s\}$. Prove
-    that the maps 
-    \[
-    \varphi_{ij}\colon A\times B\to\C^\times,\quad
-    (a,b)\mapsto\rho_i(a)\phi_j(b),
-    \]
-    where $i\in\{1,\dots,r\}$ and $j\in\{1,\dots,s\}$, are the irreducible representations of $A\times B$. 
-\end{exercise}
-
-Let us show a particular example of the previous exercise. 
-
-\begin{example}
-	The character table of the group $C_2\times C_2=\{1,a,b,ab\}$ is 
-	\begin{center}
-		\begin{tabular}{|c|rrrr|}
-			\hline 
-			& 1 & 1 & 1 & 1\tabularnewline
-			& $1$ & $a$ & $b$ & $ab$\tabularnewline
-			\hline 
-			$\chi_{1}$ & $1$ & $1$ & $1$ & $1$\tabularnewline
-			$\chi_{2}$ & $1$ & $1$ & $-1$ & $-1$\tabularnewline
-			$\chi_{3}$ & $1$ & $-1$ & $1$ & $-1$\tabularnewline
-			$\chi_{4}$ & $1$ & $-1$ & $-1$ & $1$\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-% 	Let us do this by computer:
-% \begin{lstlisting}
-% gap> Display(CharacterTable(AbelianGroup([2,2])));
-% CT2
-
-%      2  2  2  2  2
-
-%       1a 2a 2b 2c
-
-% X.1     1  1  1  1
-% X.2     1 -1  1 -1
-% X.3     1  1 -1 -1
-% X.4     1 -1 -1  1
-% \end{lstlisting}
-\end{example}
-
-%Clearly, the order in which the computer returns the irreducible characters is not %necessarily the same we used! 
-
-\begin{example}
-	The symmetric group $\Sym_3$ has three conjugacy classes. The representatives are 
-	$\id$, $(12)$ and $(123)$. There are three irreducible representations. We already found all the irreducible characters! 
-	The character table of $\Sym_3$ is given by 
-	\begin{center}
-		\begin{tabular}{|c|rrr|}
-			\hline
-			& $1$ & $3$ & $2$\tabularnewline
-			& $1$ & $(12)$ & $(123)$ \tabularnewline
-			\hline 
-			$\chi_{1}$ & $1$ & $1$ & $1$\tabularnewline
-			$\chi_{2}$ & $1$ & $-1$ & $1$ \tabularnewline
-			$\chi_{3}$ & $2$ & $0$ & $-1$ \tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-	Let us recall how this table was computed. Degree-one irreducibles were easy to compute. 
-	To compute the third row of the table one possible approach is to use
-	the irreducible representation  
-	\[
-	(12)\mapsto \begin{pmatrix}-1&1\\0&1\end{pmatrix},
-	\quad
-	(123)\mapsto \begin{pmatrix}0&-1\\1&-1\end{pmatrix}.
-	\]
-    Then	
-    \begin{align*}
-		&\chi_3\left( (12) \right)=\trace\begin{pmatrix}-1&1\\0&1\end{pmatrix}=0,\\
-		&\chi_3\left( (123) \right)=\chi_3\left( (12)(23)\right)=\trace\begin{pmatrix}0&-1\\1&-1\end{pmatrix}=-1.
-	\end{align*}
-
-	We should remark that the irreducible representation mentioned is not really needed to
-	compute the third row of the character table. We can, for example, use the regular
-	representation $L$. The character of $L$ is given by 
-	\[
-		\chi_L(g)=\begin{cases}
-			6 & \text{if $g=\id$},\\
-			0 & \text{if $g\ne\id$}.
-		\end{cases}
-	\]
-	The equality $0=\chi_L\left( (12) \right)=1-1+2\chi_3( (12))$ implies that 
-	$\chi_3( (12))=0$ and the equality 
-    \[ 
-    0=\chi_L( (123))=1+1+2\chi_3( (123))
-    \]
-	implies that $\chi_3\left( (123) \right)=-1$. 
-
-	Another approach uses the orthogonality relations. We need to compute $\chi_3( (12) )$ and $\chi_3( (123))$. 
-	Let $a=\chi_3( (12) )$ and $b=\chi_3( (123))$. Then 
-    we get that $a=0$ and $b=-1$. We just need to solve  
-	\begin{align*}
-		0&=\langle \chi_3,\chi_1\rangle=\frac16(2+3a+2b),\\
-		0&=\langle \chi_3,\chi_2\rangle=\frac16(2-3a+2b).
-	\end{align*}
-	
-% 	Let us use the computer:
-% 	\begin{lstlisting}
-% gap> S3 := SymmetricGroup(3);;
-% gap> T := CharacterTable(S3);;
-% gap> Display(T);
-% CT3
-
-%      2  1  1  .
-%      3  1  .  1
-
-%       1a 2a 3a
-%     2P 1a 1a 3a
-%     3P 1a 2a 1a
-
-% X.1     1 -1  1
-% X.2     2  . -1
-% X.3     1  1  1
-% \end{lstlisting}
-% As we did before, some extra information was computed:
-% \begin{lstlisting}
-% gap> SizesConjugacyClasses(T);
-% [ 1, 3, 2 ]
-% gap> SizesCentralizers(T);
-% [ 6, 2, 3 ]
-% gap> SizesConjugacyClasses(T);
-% [ 1, 3, 2 ]
-% gap> OrdersClassRepresentatives(T);
-% [ 1, 2, 3 ]
-% \end{lstlisting}
-\end{example}
-
-%A challenging exercise: 
-\begin{exercise}
-Compute the character table of $\Sym_4$. 
-\end{exercise}
-
-\begin{example}
-	We now compute the character table of the alternating group $\Alt_4$. This group has $12$ 
-	elements and four conjugacy classes.
-	\begin{center}
-		\begin{tabular}{c|cccc}
-			representative & $\id$ & $(123)$ & $(132)$ & $(123)$\tabularnewline
-			\hline
-			size & $1$ & $4$ & $4$ & $3$ 
-		\end{tabular}
-	\end{center}
-	Since 
- \[
- [\Alt_4,\Alt_4]=\{\id,(12)(34),(13)(24),(14)(23)\},
- \]
-	the quotient $\Alt_4/[\Alt_4,\Alt_4]$ has three elements. Thus $\Alt_4$ has three degree-one irreducibles and
-	an irreducible character of degree three. Let 
-	$\omega=\exp(2\pi i/3)$ be a primitive cubic root of 1. If $\chi$
-	is a non-trivial degree-one character, then 
-	$\chi\left( (123) \right)=\omega^j$
-	for some $j\in\{1,2\}$ and $\chi\left( (132) \right)=\omega^{2j}$. Since 
-	$(132)(134)=(12)(34)$ and 
-	the permutations $(134)$ and $(123)$ are conjugate,  
-	\[
-	\chi_i((12)(34))=\chi_i((132)(134))=\chi_i((132))\chi_i((134))=\omega^3=1
-	\]
-	for all $i\in\{1,2\}$. 
-	
-	To compute $\chi_4$ we use the regular representation. 
-	\begin{align*}
-		0&=\chi_L\left( (12)(34) \right)=1+1+1+3\chi_4\left( (12)(34) \right),\\
-		0&=\chi_L\left( (123) \right)=1+\omega+\omega^2+3\chi_4\left( (123) \right),\\
-		0&=\chi_L\left( (132) \right)=1+\omega+\omega^2+3\chi_4\left( (132) \right).
-	\end{align*}
-	Then we obtain that $\chi_4\left( (123) \right)=\chi_4\left( (132)
-	\right)=0$ and $\chi_4\left( (12)(34) \right)=-1$. Therefore, the character table of $\Alt_4$
-	is given by
-	\begin{center}
-		\begin{tabular}{|c|rrrr|}
-			\hline
-			& $\id$ & $(123)$ & $(132)$ & $(12)(34)$\tabularnewline
-			\hline
-			$\chi_1$ & $1$ & $1$ & $1$ & $1$\tabularnewline
-			$\chi_2$ & $1$ & $\omega$ & $\omega^2$ & $1$\tabularnewline
-			$\chi_3$ & $1$ & $\omega^2$ & $\omega$ & $1$\tabularnewline
-			$\chi_4$ & $3$ & $0$ & $0$ & $-1$\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-% 	Let us use the computer:
-% \begin{lstlisting}
-% gap> A4 := AlternatingGroup(4);;
-% gap> T := CharacterTable(A4);;
-% gap> Display(T);
-% CT5
-
-%      2  2  2  .  .
-%      3  1  .  1  1
-
-%       1a 2a 3a 3b
-%     2P 1a 1a 3b 3a
-%     3P 1a 2a 1a 1a
-
-% X.1     1  1  1  1
-% X.2     1  1  A /A
-% X.3     1  1 /A  A
-% X.4     3 -1  .  .
-
-% A = E(3)^2
-%   = (-1-Sqrt(-3))/2 = -1-b3
-% \end{lstlisting}
-% The symbol \lstinline{E(3)} denotes a primitive cubic root of 1, say our $\omega$. 
-% To save some space, the compute uses the symbol \lstinline{A} to denote the complex number $\omega^2$ (it is the same as \lstinline{E(3)^2}) and
-% the symbol \lstinline{/A} to denote the complex number $\omega$, the multiplicative inverse of $\omega^2$. 
-\end{example}
-
-\begin{example}
-    Let $Q_8=\{-1,1,i,-i,j,-j,k,-k\}$ be the quaternion group. 
-    The group $Q_8$ is generated by $\{i,j\}$ and the map $\rho\colon Q_8\to\GL_2(\C)$, 
-    \[
-    i\mapsto\begin{pmatrix}
-    \sqrt{-1}&0\\0&-\sqrt{-1}
-    \end{pmatrix},
-    \quad
-    j\mapsto\begin{pmatrix}
-    0&1\\-1&0
-    \end{pmatrix},
-    \]
-    is a representation.
-    The conjugacy classes of $Q_8$ are $\{1\}$, $\{-1\}$, $\{-i,i\}$, $\{-j,j\}$ and $\{-k,k\}$. 
-    So there are five irreducible representations. 
-    We can compute the character of $\rho$:
-    	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|}
-		    \hline
-			& $1$ & $-1$ & $i$ & $j$ & $k$\tabularnewline
-			\hline
-			$\chi_\rho$ & 2 & 2 & 0 & 0 & 0\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-	Then $\rho$ is irreducible, as $\langle\chi_\rho,\chi_\rho\rangle=1$. 
-	
-	Since $[Q_8,Q_8]=\{-1,1\}=Z(Q_8)$, the quotient group $Q_8/[Q_8,Q_8]$ has four elements and
-	hence there are four irreducible degree-one representations. Since 
-	$Q_8$ is non-abelian, $Q_8/Z(Q_8)$ cannot be cyclic. 
-	This implies that 
-	$Q_8/[Q_8,Q_8]\simeq C_2\times C_2$. This allows us
-	to compute almost all the character table of $Q_8$. 
-		\begin{center}
-		\begin{tabular}{|c|rrrrr|}
-			\hline
-			& $1$ & $-1$ & $i$ & $j$ & $k$\tabularnewline
-			\hline
-			$\chi_1$ & $1$ & $1$ & $1$ & $1$ & $1$\tabularnewline
-			$\chi_2$ & $1$ & \cellcolor{gray!30}{$1$} & $-1$ & $1$ & $-1$\tabularnewline
-			$\chi_3$ & $1$ & \cellcolor{gray!30}{$1$} & $1$ & $-1$ & $-1$\tabularnewline
-			$\chi_4$ & $1$ & \cellcolor{gray!30}{$1$} & $-1$ & $-1$ & $1$\tabularnewline
-			$\chi_5$ & $2$ & $-2$ & $0$ & $0$ & $0$\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-	It remains to compute $\chi_j(-1)$ for $j\in\{2,3,4\}$, these missing values are presented in shaded
-    cells. To compute these values that $\langle\chi_i,\chi_j\rangle=0$ whenever $i\ne j$. The calculations
-    are left as an exercise. 
-% 	To check our character table we can use the computer. 
-% \begin{lstlisting}
-% gap> Q8 := QuaternionGroup(8);;
-% gap> Display(CharacterTable(Q8));
-% CT6
-
-%      2  3  2  2  3  2
-
-%       1a 4a 4b 2a 4c
-%     2P 1a 2a 2a 1a 2a
-%     3P 1a 4a 4b 2a 4c
-
-% X.1     1  1  1  1  1
-% X.2     1 -1 -1  1  1
-% X.3     1 -1  1  1 -1
-% X.4     1  1 -1  1 -1
-% X.5     2  .  . -2  .
-% \end{lstlisting}
-\end{example}
-
-\begin{exercise}
-    Compute the character table of the dihedral group of eight elements. 
-\end{exercise}
-
-%\subsection{An application (optional)}
-%
-%Let $N$ be a normal subgroup of $G$ 
-%and $\pi\colon G\to G/N$, $g\mapsto gN$, be the canonical map. 
-%If $\widetilde{\rho}\colon G/N\to\GL(V)$ 
-%is a representation of $G/N$ with 
-%character
-%$\widetilde{\chi}$, the composition 
-%$\rho=\widetilde{\rho}\circ\pi\colon G\to \GL(V)$, $\rho(g)=\widetilde{\rho}(gN)$, 
-%is a representation of $G$. 
-%Thus
-%\[
-%\chi(g)=\trace{\rho_g}=\trace(\widetilde{\chi}(gN))=\widetilde{\chi}(gN).
-%\]
-%In particular, $\chi(1)=\widetilde{\chi}(1)$. The character $\chi$ 
-%is the \emph{lifting} to $G$ of the character 
-%$\widetilde{\chi}$ of $G/N$. 
-%
-%\begin{proposition}
-%If $\chi\in\Irr(G)$, then 
-%\[
-%\ker\chi=\{g\in G:\chi(g)=\chi(1)\}
-%\]
-%is a normal subgroup of $G$. 
-%\end{proposition}
-%
-%\begin{proof}
-%Let $\rho\colon G\to\GL_n(\C)$ be a representation with character $\chi$. Then 
-%$\ker\rho\subseteq\ker\chi$, as $\rho_g=\id$ implies 
-%$\chi(g)=\trace(\rho_g)=n=\chi(1)$. We claim that  
-%$\ker\chi\subseteq\ker\rho$. If $g\in G$ is such that $\chi(g)=\chi(1)$, since 
-%$\rho_g$ is diagonalizable, there exist eigenvalues $\lambda_1,\dots,\lambda_n\in\C$ such that
-%\[
-%n=\chi(1)=\chi(g)=\sum_{i=1}^n\lambda_i.
-%\]
-%Since each $\lambda_i$ is a root of one,  
-%$\lambda_1=\cdots=\lambda_n=1$. Hence $\rho_g=\id$. 
-%\end{proof}
-%
-%\index{Kernel!of a character}
-%If $\chi$ is an irreducible character, the subgroup $\ker\chi$ 
-%is the \emph{kernel} of $\chi$. 
-%
-%\begin{theorem}[Correspondence theorem]
-%\index{Correspondence theorem!for characters}
-%Let $N$ be a normal subgroup of a finite group $G$. There exists
-%a bijective correspondence 
-%\[
-%\Char(G/N) \longleftrightarrow \{\chi\in\Char(G): 
-%N\subseteq\ker\chi\}
-%\]
-%that maps irreducible characters to irreducible characters.
-%\end{theorem}
-%
-%\begin{proof}
-%If $\widetilde{\chi}\in\Char(G/N)$, let $\chi$ be the lifting of $\widetilde{\chi}$ to $G$. If $n\in N$, 
-%then
-%\[
-%\chi(n)=\widetilde{\chi}(nN)=\widetilde{\chi}(N)=\chi(1)
-%\]
-%and thus $N\subseteq\ker\chi$. 
-%
-%If $\chi\in\Char(G)$ is such that $N\subseteq\ker\chi$, let $\rho\colon G\to\GL(V)$ be a representation
-%with character $\chi$. 
-%Let $\widetilde{\rho}\colon G/N\to\GL(V)$, $gN\mapsto \rho(g)$. We claim that $\widetilde{\rho}$
-%is well-defined: 
-%\[
-%gN=hN\Longleftrightarrow h^{-1}g\in N\Longleftrightarrow\rho(h^{-1}g)=\id\Longleftrightarrow \rho(h)=\rho(g).
-%\]
-%Moreover, $\widetilde{\rho}$ is a representation, as 
-%\[
-%\widetilde{\rho}((gN)(hN))=\widetilde{\rho}(ghN)=\rho(gh)=\rho(g)\rho(h)=\widetilde{\rho}(gN)\widetilde{\rho}(hN).
-%\]
-%If $\widetilde{\chi}$ is the character of $\widetilde{\rho}$, then 
-%$\widetilde{\chi}(gN)=\chi(g)$.
-%
-%We now prove that $\chi$ is irreducible if and only if 
-%$\widetilde{\chi}$ is irreducible. If $U$ is a subspace of $V$, then 
-%\begin{align*}
-%\text{$U$ is invariant}
-%%&\Longleftrightarrow g\cdot U\subseteq U\text{ for all $g\in G$}\\
-%&\Longleftrightarrow \rho(g)(U)\subseteq U\text{ for all $g\in U$}\\
-%&\Longleftrightarrow \widetilde{\rho}(gN)(U)\subseteq U\text{ for all $g\in U$}.
-%\shortintertext{Thus}
-%\chi\text{ is irreducible }&\Longleftrightarrow
-%\rho\text{ is irreducible }\\
-%&\Longleftrightarrow\widetilde{\rho}\text{ is irreducible }\Longleftrightarrow
-%\widetilde{\chi}\text{ is irreducible }\qedhere.
-%\end{align*}
-%\end{proof}
-%
-%\begin{example}
-%    Let $G=\Sym_4$ and $N=\{\id,(12)(34),(13)(24),(14)(23)\}$. We know that $N$ is normal in $G$ 
-%    and that $G/N=\langle a,b\rangle\simeq\Sym_3$, where 
-%    $a=(123)N$ and $b=(12)N$. 
-%    The character table of $G/N$ is 
-%    \begin{center}
-%		\begin{tabular}{|c|rrr|}
-%			\hline
-%			%& $1$ & $3$ & $2$\tabularnewline
-%			& $1$ & $(12)N$ & $(123)N$ \tabularnewline
-%			\hline 
-%			$\widetilde{\chi}_{1}$ & $1$ & $1$ & $1$\tabularnewline
-%			$\widetilde{\chi}_{2}$ & $1$ & $-1$ & $1$ \tabularnewline
-%			$\widetilde{\chi}_{3}$ & $2$ & $0$ & $-1$ \tabularnewline
-%			\hline
-%		\end{tabular}
-%	\end{center}
-%    For each $i\in\{1,2,3\}$ we compute the lifting $\chi_i$ to $G$ of the character  
-%    $\widetilde{\chi}_i$ of $G/N$. 
-%    Since $(12)(34)\in N$ and $(13)(1234)=(12)(34)\in N$, 
-%    \begin{align*}
-%        \chi( (12)(34) )=\widetilde{\chi}(N),\quad
-%        \chi( (1234) )=\widetilde{\chi}((13)N)=\widetilde{\chi}((12)N).
-%    \end{align*}
-%    Since the characters $\widetilde{\chi_i}$ are irreducibles, 
-%    the liftings $\chi_i$ are also irreducibles. With this process
-%    we obtain the following irreducible characters of $G$:
-%    	\begin{center}
-%		\begin{tabular}{|c|rrrrr|}
-%			\hline
-%			& $1$ & $(12)$ & $(123)$ & $(12)(34)$ & $(1234)$ \tabularnewline
-%			\hline 
-%			$\chi_{1}$ & $1$ & $1$ & $1$ & 1 & 1\tabularnewline
-%			$\chi_{2}$ & $1$ & $-1$ & $1$ & 1 & -1 \tabularnewline
-%			$\chi_{3}$ & $2$ & $0$ & $-1$ & 2 & 0\tabularnewline
-%			\hline
-%		\end{tabular}
-%	\end{center}
-%\end{example}
-%
-%The character table of a group can be used to find the lattice 
-%of normal subgroups. In particular, the character table detect simple groups. 
-%
-%\begin{lemma}
-%    Let $G$ be a finite group and 
-%    let $g,h\in G$. Then $g$ and $h$ 
-%    are conjugate if and only if 
-%    $\chi(g)=\chi(h)$ for all
-%    $\chi\in\Char(G)$. 
-%\end{lemma}
-%
-%\begin{proof}
-%    If $g$ and $h$ are conjugate, then $\chi(g)=\chi(h)$, as characters are class functions
-%    of $G$.
-%    Conversely, if $\chi(g)=\chi(h)$ for all $\chi\in\Char(G)$, then 
-%    $f(g)=f(h)$ for all class function $f$ of $G$, 
-%    as characters $G$ generate the space of class functions of $G$. In particular, 
-%    $\delta(g)=\delta(h)$, where
-%    \[
-%    \delta(x)=\begin{cases}
-%    1 & \text{if $x$ and $g$ are conjugate},\\
-%    0 & \text{otherwise}.
-%    \end{cases}
-%    \]
-%    This implies that $g$ and $h$ are conjugate.
-%\end{proof}
-%
-%As a consequence, we get that 
-%\begin{equation}
-%\label{eq:kernels}
-%\bigcap_{\chi\in\Irr(G)}\ker\chi=\{1\}.
-%\end{equation}
-%Indeed, if $g\in\ker\chi$ for all $\chi\in\Irr(G)$, then $g=1$ since 
-%the lemma implies that $g$ and $1$ are conjugate
-%because 
-%$\chi(g)=\chi(1)$ for all $\chi\in\Irr(G)$.
-%
-%\begin{proposition}
-%\label{pro:normal}
-%    Let $G$ be a finite group. 
-%    If $N$ is a normal subgroup of $G$, 
-%    then there exist characters
-%    $\chi_1,\dots,\chi_k\in\Irr(G)$ 
-%    such that
-%    \[
-%    N=\bigcap_{i=1}^k\ker\chi_i.
-%    \]
-%\end{proposition}
-%
-%\begin{proof}
-%    Apply the previous remark to the group $G/N$ to obtain that 
-%    \[
-%    \bigcap_{\widetilde{\chi}\in\Irr(G/N)}\ker\widetilde{\chi}=\{N\}.
-%    \]
-%    Assume that $\Irr(G/N)=\{\widetilde{\chi}_1,\dots,\widetilde{\chi}_k\}$. 
-%    We lift the irreducible characters of $G/N$ to $G$ 
-%    to obtain (some) irreducible characters $\chi_1,\dots,\chi_k$ 
-%    of $G$ such that 
-%    $N\subseteq\ker\chi_1\cap\cdots\cap\ker\chi_k$. 
-%    If $g\in\ker\chi_i$ for all $i\in\{1,\dots,k\}$, then 
-%    \[
-%    \widetilde{\chi}_i(N)=\chi_i(1)=\chi_i(g)=\widetilde{\chi}_i(gN)
-%    \]
-%    for all $i\in\{1,\dots,k\}$. This implies that
-%    \[
-%    gN\in\bigcap_{i=1}^k\ker\widetilde{\chi}_i=\{N\},
-%    \]
-%    that is $g\in N$. 
-%\end{proof}
-%
-%\index{Group!simple}
-%Recall that a non-trivial group is \emph{simple} if it contains no non-trivial normal 
-%proper subgroups. Examples of simple groups are cyclic groups of prime order
-%and the alternating groups $\Alt_n$ for $n\geq5$. 
-%As a corollary of Proposition \ref{pro:normal}, 
-%we can use the character table to detect simple groups.
-%
-%\begin{proposition}
-%    Let $G$ be a finite group. Then $G$ is not simple if and only if 
-%    there exists a non-trivial irreducible character $\chi$ such that
-%    $\chi(g)=\chi(1)$ 
-%    for some $g\in G\setminus\{1\}$. 
-%\end{proposition}
-%
-%\begin{proof}
-%    If $G$ is not simple, there exists a normal subgroup $N$ of $G$ such that
-%    $N\ne G$ and $N\ne\{1\}$. 
-%    By Proposition \ref{pro:normal}, there exist characters 
-%    $\chi_1,\dots,\chi_k\in\Irr(G)$
-%    such that 
-%    $N=\ker\chi_1\cap\cdots\cap\ker\chi_k$.
-%    In particular, there exists a non-trivial character
-%    $\chi_i$ such that $\ker\chi_i\ne\{1\}$. Thus 
-%    there exists $g\in G\setminus\{1\}$ such that
-%    $\chi_i(g)=\chi_i(1)$. 
-%    
-%    Assume now that there exists a non-trivial character $\chi$ 
-%    such that $\chi(g)=\chi(1)$ for some $g\in G\setminus\{1\}$. In particular, $g\in\ker\chi$ 
-%    and hence $\ker\chi\ne\{1\}$. Since $\chi$ is non-trivial, $\ker\chi\ne G$. 
-%    Thus $\ker\chi$ is a proper non-trivial normal subgroup of $G$.
-%\end{proof}
-%
-%\begin{example}
-%\index{Mathieu's group $M_9$}
-%    If there exists a group $G$ with
-%    a character table 
-%    of the form
-%    \begin{center}
-%		\begin{tabular}{|c|rrrrrr|}
-%			\hline
-%			$\chi_{1}$ & 1 & 1 & 1 & 1 & 1 & 1\tabularnewline
-%			$\chi_{2}$ & 1 & 1 & 1 & -1 & 1 & -1 \tabularnewline
-%			$\chi_{3}$ & 1 & 1 & 1 & 1 & -1 & -1\tabularnewline
-%		    $\chi_{4}$ & 1 & 1 & 1 & -1 & -1 & 1\tabularnewline
-%			$\chi_{5}$ & 2 & -2 & 2 & 0 & 0 & 0\tabularnewline
-%			$\chi_{6}$ & 8 & 0 & -1 & 0 & 0 & 0\tabularnewline
-%			\hline
-%		\end{tabular}
-%	\end{center}
-%	then $G$ cannot be simple. Note that such a group $G$ would have order $\sum_{i=1}^6\chi_i(1)^2=72$. 
-%	Mathieu's group $M_{9}$ has precisely this character table! 
-%\end{example}
-%
-%\begin{example}
-%    Let $\alpha=\frac{1}{2}(-1+\sqrt{7}i)$. 
-%    If there exists a group $G$ with a character table
-%    of the form
-%    \begin{center}
-%		\begin{tabular}{|c|rrrrrr|}
-%			\hline
-%			$\chi_{1}$ & 1 & 1 & 1 & 1 & 1 & 1\tabularnewline
-%			$\chi_{2}$ & 7 & -1 & -1 & 1 & 0 & 0 \tabularnewline
-%			$\chi_{3}$ & 8 & 0 & 0 & -1 & 1 & 1\tabularnewline
-%		    $\chi_{4}$ & 3 & -1 & 1 & 0 & $\alpha$ & $\overline{\alpha}$ \tabularnewline
-%			$\chi_{5}$ & 3 & -1 & 1 & 0 & $\overline{\alpha}$ & $\alpha$\tabularnewline
-%			$\chi_{6}$ & 6 & 2 & 0 & 0 & 0 & 0\tabularnewline
-%			\hline
-%		\end{tabular}
-%	\end{center}    
-%	then $G$ is simple. Note that such a group $G$ would have order 
-%	$\sum_{i=1}^6\chi_i(1)^2=168$. 
-%	The group  
-%	\[
-%	\PSL_2(7)=\SL_2(7)/Z(\SL_2(7))
-%	\]
-%	is a simple group that has precisely this character table!  
-%\end{example}
-%
-\subsection{Finite simple groups (optional)}
-
-\index{Group!simple}
-Recall that a non-trivial group is \emph{simple} if it contains no non-trivial normal 
-proper subgroups. Examples of simple groups are cyclic groups of prime order
-and the alternating groups $\Alt_n$ for $n\geq5$. 
-We can use the character table to detect simple groups:
+Two applications:
 
 \begin{proposition}
-    Let $G$ be a finite group. Then $G$ is not simple if and only if 
-    there exists a non-trivial irreducible character $\chi$ such that
-    $\chi(g)=\chi(1)$ 
-    for some $g\in G\setminus\{1\}$. 
+\label{pro:Schur_consequence}
+    If $\rho\colon G\to\GL(V)$ is an irreducible representation and $T\colon
+    V\to V$ is invariant, then $T=\lambda\id$ for some $\lambda\in\C$. 
 \end{proposition}
 
-The proof is out of the scope of this course. 
+\begin{proof}
+    Let $\lambda$ be an eigenvalue of $T$. Then $T-\lambda\id$ is invariant, as 
+    \[
+    (T-\lambda\id)\rho_g=T\rho_g-\lambda\rho_g=\rho_g(T-\lambda\id)
+    \]
+    for all $g\in G$ since $T$ is invariant. By definition, 
+    $T-\lambda\id$ is not bijective. Thus $T-\lambda\id=0$ by Schur's lemma.
+\end{proof}
 
-\begin{example}
-\index{Mathieu's group $M_9$}
-    If there exists a group $G$ with
-    a character table 
-    of the form
-    \begin{center}
-		\begin{tabular}{|c|rrrrrr|}
-			\hline
-			$\chi_{1}$ & 1 & 1 & 1 & 1 & 1 & 1\tabularnewline
-			$\chi_{2}$ & 1 & 1 & 1 & -1 & 1 & -1 \tabularnewline
-			$\chi_{3}$ & 1 & 1 & 1 & 1 & -1 & -1\tabularnewline
-		    $\chi_{4}$ & 1 & 1 & 1 & -1 & -1 & 1\tabularnewline
-			$\chi_{5}$ & 2 & -2 & 2 & 0 & 0 & 0\tabularnewline
-			$\chi_{6}$ & 8 & 0 & -1 & 0 & 0 & 0\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}
-	then $G$ cannot be simple. Note that such a group $G$ would have order $\sum_{i=1}^6\chi_i(1)^2=72$. 
-	Mathieu's group $M_{9}$ has this character table! 
-\end{example}
+\begin{proposition}
+    Let $G$ be a finite abelian group. 
+    If $\rho\colon G\to\GL(V)$ is an irreducible representation, then
+    $\dim V=1$. 
+\end{proposition}
 
-\begin{example}
-    Let $\alpha=\frac{1}{2}(-1+\sqrt{7}i)$. 
-    If there exists a group $G$ with a character table
-    of the form
-    \begin{center}
-		\begin{tabular}{|c|rrrrrr|}
-			\hline
-			$\chi_{1}$ & 1 & 1 & 1 & 1 & 1 & 1\tabularnewline
-			$\chi_{2}$ & 7 & -1 & -1 & 1 & 0 & 0 \tabularnewline
-			$\chi_{3}$ & 8 & 0 & 0 & -1 & 1 & 1\tabularnewline
-		    $\chi_{4}$ & 3 & -1 & 1 & 0 & $\alpha$ & $\overline{\alpha}$ \tabularnewline
-			$\chi_{5}$ & 3 & -1 & 1 & 0 & $\overline{\alpha}$ & $\alpha$\tabularnewline
-			$\chi_{6}$ & 6 & 2 & 0 & 0 & 0 & 0\tabularnewline
-			\hline
-		\end{tabular}
-	\end{center}    
-	then $G$ is simple. Note that such a 
-        group $G$ would have order 
-	$\sum_{i=1}^6\chi_i(1)^2=168$. 
-	The group  
-	\[
-	\PSL_2(7)=\SL_2(7)/Z(\SL_2(7))
-	\]
-	is a simple group that has this character table!  
-\end{example}
+\begin{proof}
+    Let $h\in G$. Note that since $G$ is abelian, $T=\rho_h$ is invariant:
+    \[
+    T\rho_g=\rho_h\rho_g=\rho_{hg}=\rho_{gh}=\rho_g\rho_h=\rho_gT.
+    \]
+    By the previous proposition, there exists $\lambda_h\in\C$ such that
+    $\rho_h=\lambda_h\id$. 
+    %If $v\in V\setminus\{0\}$, then $V=\langle
+    %v\rangle$. In fact, since every $\rho_h$ acts on $V$ by a scalar, $\langle
+    %v\rangle$ is a non-zero invariant subspace of $V$ and $\rho$ is
+    %irreducible, it follows that $V=\langle v\rangle$. Hence $\dim V=1$. 
+    Let $v\in V\setminus\{0\}$. Since every $\rho_h$ acts on $V$ by a scalar,
+    $\langle v\rangle$ is a non-zero invariant subspace of $V$. As $\rho$ is
+    irreducible, $V=\langle v\rangle$ and hence $\dim V=1$.
+\end{proof}
 
-Character theory is one of the tools in the 
-classification of finite simple groups. 
-One of the first non-trivial applications
-one finds of character theory is 
-the following result:
+\begin{optional}
+\section{Degree-one representations}
 
-\begin{theorem}[Burnside]
-\index{Burnside's theorem}
-    Let $G$ be a finite simple group of order $p^aq^b$ for some
-    prime numbers $p$ and $q$. Then $G$ is cyclic. 
-\end{theorem}
-
-The proof uses character theory. 
-It is not hard, but it is out of the scope of this course. 
-Burnside's theorem
-is essential and generalizes in many different directions. 
-
-\begin{theorem}[Feit--Thompson]
-\index{Feit--Thompson theorem}
-Let $G$ be a finite simple group of odd order. Then $G$ is cyclic. 
-\end{theorem}
-
-The proof is hard and occupies a full volume~\cite{MR166261} of 
-the \emph{Pacific Journal of Mathematics} (see Figure~\ref{fig:FeitThompson}).   
-The theorem was formally verified 
-by the computer proof assistant \lstinline{Coq}, 
-see~\cite{MR3111271} for the announcement. 
-
-The proof of the Feit--Thompson theorem suggests the following conjecture:
-
-\begin{problem}[Feit--Thompson]
-\index{The Feit--Thompson conjecture}
-Are there distinct prime numbers $p$ and $q$ such that
-$\frac {p^{q}-1}{p-1}$ divides $\frac{q^{p} - 1}{q - 1}$? 
-\end{problem}
-
-The conjecture states that there are no such prime numbers. 
-The problem is still open; see \cite{MR297686} for some partial results. 
-
-\begin{figure}[h]
-    \includegraphics[scale=0.2]{FeitThompson.pdf}
-    \caption{The proof of the Feit--Thompson theorem occupies a full volume of 
-the Pacific Journal of Mathematics.}
-    \label{fig:FeitThompson}
-\end{figure}
-
-The Feit--Thompson theorem is one of the starting points
-of the classification of finite simple groups (CFSG). 
-This classification is one
-of the deepest theorems 
-of the 20th century. The proof consists of tens of thousands 
-of pages in several hundred journal articles written 
-by about 100 authors, published mostly between 1955 and 2004.
-
-\begin{theorem}[CFSG]
-\index{Classification of simple groups}
-\label{thm:CFSG}
-Let $G$ be a finite simple group. Then $G$ lies in one (or more) 
-of the following families:
-\begin{enumerate}
-    \item Cyclic groups of prime order.
-    \item $\Alt_n$ for $n\geq5$.
-    \item Finite groups of Lie type.
-    \item 26 sporadic simple groups.
-\end{enumerate}
-\end{theorem}
-
-Groups of Lie type are finite analogs of simple Lie groups, such as 
-$\SL_n(\C)$. A typical example
-of a finite simple group of Lie type is
-$\PSL_n(p)$ for some prime number $p$, which is defined
-as $\SL_n(p)$ over its center. 
-
-The \emph{sporadic simple groups} are 26 groups that do not follow a systematic pattern. 
-The first five of the sporadic groups were discovered by Mathieu in the 1860s, and the other 21 
-were found between 1965 and 1975.
-Several of these groups were predicted to exist before they were constructed, sometimes
-just knowing their character tables! 
-The full list of sporadic simple groups is as follows:
-\begin{itemize}
-\item Mathieu groups $M_{11}$, $M_{12}$, $M_{22}$, $M_{23}$ and $M_{24}$.
-\item Janko groups $J_1$, $J_2$, $J_3$ and $J_4$.
-\item Conway groups $Co_1$, $Co_2$ and $Co_3$.
-\item Fischer groups $Fi_{22}$, $Fi_{23}$ and $Fi_{24}$. 
-\item Higman–Sims group $HS$.
-\item McLaughlin group $McL$.
-\item Held group $He$.
-\item Rudvalis group $Ru$.
-\item Suzuki group $Suz$.
-\item O'Nan group $ON$.
-\item Harada–Norton group $HN$.
-\item Lyons group $Ly$.
-\item Thompson group $Th$.
-\item Baby Monster group $B$.
-\item Monster group $M$.
-\end{itemize}
-
-Mathieu groups can be realized 
-as automorphism groups of certain very complicated
-combinatorial structures known as \emph{Steiner systems}. 
-A concrete example: 
-\[
-M_{11}=\langle (123456789\,10\,11), (37\,11\,8)(4\,10\,56)\rangle,
+\index{Commutator subgroup}
+The \emph{commutator subgroup} of a group $G$ is defined as the subgroup
+$[G,G]$ generated by the commutators $[x,y]=xyx^{-1}y^{-1}$, that is  
+ \[
+        [G,G]=\langle[x,y]: x,y\in G\rangle.
 \]
-which is a subgroup of $\Sym_{11}$ of order 7920. The group
-$M_{11}$ contains ten irreducible characters, so the
-character table of $M_{11}$ is essentially a $10\times 10$ matrix. Let us
-use the computer software \lstinline{GAP} 
-to see the character table:
 
-\begin{lstlisting}
-> CharacterTable("M11");
-
-Character Table
----------------
-
-
-----------------------------------------------------
-Class |    1   2   3   4    5    6   7   8    9   10
-Size  |    1 165 440 990 1584 1320 990 990  720  720
-Order |    1   2   3   4    5    6   8   8   11   11
-----------------------------------------------------
-p  =  2    1   1   3   2    5    3   4   4   10    9
-p  =  3    1   2   1   4    5    2   7   8    9   10
-p  =  5    1   2   3   4    1    6   8   7    9   10
-p  = 11    1   2   3   4    5    6   7   8    1    1
-----------------------------------------------------
-X.1   +    1   1   1   1    1    1   1   1    1    1
-X.2   +   10   2   1   2    0   -1   0   0   -1   -1
-X.3   0   10  -2   1   0    0    1  Z1 -Z1   -1   -1
-X.4   0   10  -2   1   0    0    1 -Z1  Z1   -1   -1
-X.5   +   11   3   2  -1    1    0  -1  -1    0    0
-X.6   0   16   0  -2   0    1    0   0   0   Z2 Z2#2
-X.7   0   16   0  -2   0    1    0   0   0 Z2#2   Z2
-X.8   +   44   4  -1   0   -1    1   0   0    0    0
-X.9   +   45  -3   0   1    0    0  -1  -1    1    1
-X.10  +   55  -1   1  -1    0   -1   1   1    0    0
-
-
-Explanation of Character Value Symbols
---------------------------------------
-
-# denotes algebraic conjugation, that is,
-#k indicates replacing the root of unity w by w^k
-
-Z1     = (CyclotomicField(8: Sparse := true)) ! 
-[ RationalField() | 0, 1, 0, 1 ]
-
-Z2     = (CyclotomicField(11: Sparse := true)) ! 
-[ RationalField() | 0, 1, 0, 1,
-1, 1, 0, 0, 0, 1 ]    
-\end{lstlisting}
-% \begin{lstlisting}
-% gap> Display(CharacterTable("M11"));
-% M11
-
-%       2  4  4  1  3  .  1  3  3   .   .
-%       3  2  1  2  .  .  1  .  .   .   .
-%       5  1  .  .  .  1  .  .  .   .   .
-%      11  1  .  .  .  .  .  .  .   1   1
-
-%         1a 2a 3a 4a 5a 6a 8a 8b 11a 11b
-%      2P 1a 1a 3a 2a 5a 3a 4a 4a 11b 11a
-%      3P 1a 2a 1a 4a 5a 2a 8a 8b 11a 11b
-%      5P 1a 2a 3a 4a 1a 6a 8b 8a 11a 11b
-%     11P 1a 2a 3a 4a 5a 6a 8a 8b  1a  1a
-
-% X.1      1  1  1  1  1  1  1  1   1   1
-% X.2     10  2  1  2  . -1  .  .  -1  -1
-% X.3     10 -2  1  .  .  1  A -A  -1  -1
-% X.4     10 -2  1  .  .  1 -A  A  -1  -1
-% X.5     11  3  2 -1  1  . -1 -1   .   .
-% X.6     16  . -2  .  1  .  .  .   B  /B
-% X.7     16  . -2  .  1  .  .  .  /B   B
-% X.8     44  4 -1  . -1  1  .  .   .   .
-% X.9     45 -3  .  1  .  . -1 -1   1   1
-% X.10    55 -1  1 -1  . -1  1  1   .   .
-
-% A = E(8)+E(8)^3
-%   = Sqrt(-2) = i2
-% B = E(11)+E(11)^3+E(11)^4+E(11)^5+E(11)^9
-%   = (-1+Sqrt(-11))/2 = b11
-% \end{lstlisting}
-
-Thus the character table of the Mathieu group $M_{11}$ is
-given by
-\begin{center}
-		\begin{tabular}{|c|cccccccccc|}
-			\hline
-			$\chi_{1}$ & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\tabularnewline
-			$\chi_{2}$ & 10 & 2 & 1 & 2 & 0 & -1 & 0 & 0 & -1 & -1 \tabularnewline
-			$\chi_{3}$ & 10 & -2 & 1 & 0 & 0 & 1 & $\alpha$ & $-\alpha$ & -1 & -1\tabularnewline
-		    $\chi_{4}$ & 10 & -2 & 1 & 0 & 0 & 1 & $-\alpha$ & $\alpha$ & -1 & -1\tabularnewline
-		    $\chi_{5}$ & 11 & 3 & 2 &-1 & 1 & 0 & -1 & -1 & 0 & 0\tabularnewline
-			$\chi_{6}$ & 16 & 0 & -2 & 0 & 1 & 0 & 0 & 0 & $\beta$ & $1/\beta$\tabularnewline
-			$\chi_{7}$ & 16 & 0 & -2 & 0 & 1 & 0 & 0 & 0 & $1/\beta$ & $\beta$\tabularnewline
-			$\chi_{8}$ & 44 & 4 &-1 & 0 &-1 & 1 & 0 & 0 & 0 & 0\tabularnewline
-			$\chi_{9}$ & 45 & -3 & 0 & 1 & 0 & 0 &-1 &-1 &  1 & 1\tabularnewline
-			$\chi_{10}$ & 55 & -1 & 1 & -1 & 0 & -1 & 1 & 1 & 0 & 0\tabularnewline
-			\hline
-		\end{tabular}    
-\end{center}
-where $\alpha=\sqrt{-2}$ and $\beta=\frac{-1-\sqrt{-11}}{2}$. 
-
-The largest sporadic simple group is the \emph{Monster group} $M$ and has order
+Routine calculations show that $[G,G]$ is always a normal subgroup of $G$. 
+For example, the commutator subgroup of $\Z$ is the trivial subgroup $\{0\}$, 
+as 
 \[
-808017424794512875886459904961710757005754368000000000, 
+[x,y]=x+y-x-y=0
 \]
-which is roughly $8\times 10^{53}$. 
-The monster group was predicted by Fischer and Griess. 
-Griess proved the existence of the Monster group, realizing it as
-the automorphism group of a certain space of dimension 196884. 
-The group $M$ can be represented as
-a subgroup of $\GL_{196883}(\C)$. It has 194 conjugacy classes, so 
-the character table is a $194\times 194$ array. 
+for all $x,y\in\Z$. As an exercise, one can also prove that 
+$[\Sym_3,\Sym_3]=\{\id,(123),(132)\}$.
 
-\begin{problem}
-    Formalize the proof of Theorem \ref{thm:CFSG} in a proof assistant. 
-\end{problem}
+\begin{xca}
+\label{xca:commutator}
+Let $H$ be a normal subgroup of $G$. Prove that
+$G/H$ is abelian if and only if $[G,G]\subseteq H$.
+\end{xca}
 
-It is precisely due to the vastness of the theorem’s proof, that it is very suitable for formalization. Currently, only mathematicians with an extremely deep understanding of the subject can understand parts of the proof. 
-By formalizing the proof in a proof assistant such as \lstinline{Coq} or \lstinline{Lean}, 
-the complete proof could be verified at once. 
+\index{Abelianization}
+The previous exercise demonstrates, in particular, that for any group 
+$G$, the quotient $G/[G,G]$ is always an abelian group. 
+This quotient is known as the \emph{abelianization} of 
+$G$. 
+
+\begin{xca}
+Let $G$ be a finite group.
+Prove that there is a bijection between degree-one representations of $G$ and
+degree-one representations of $G/[G,G]$.
+\end{xca}
+\end{optional}
+
+

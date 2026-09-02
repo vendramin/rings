@@ -1,7 +1,8 @@
-\documentclass[12pt]{amsproc}
+\documentclass[12pt,oneside]{amsproc}
 \usepackage{mynotes}
 
 \renewcommand{\course}{Ring and module theory}
+\reversemarginpar
 
 \title{\course}
 \author{Leandro Vendramin}
@@ -21,9 +22,12 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 
 \maketitle
 
-%\begin{figure}[h]
-%    \includegraphics[scale=0.5]{hungerford.png}
-%\end{figure}
+\listoflectures
+
+\vspace{5cm}
+\begin{figure}[h]
+    \includegraphics[scale=0.2]{VUB.jpg}
+\end{figure}
 
 \thispagestyle{empty}
 
@@ -36,22 +40,21 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \newpage
 \pagenumbering{arabic}
 
-\include{introduction}
-%\addtocontents{toc}{\bigskip}
+\input{introduction}
 
 % Rings 
 \TOC{Part 1. Rings}
-\input{01}
+\include{01}
 \input{02}
 \input{03}
 \input{04}
 \input{05}
+\input{06}
 
 % Representations 
 \TOC{Part 2. Representations of groups}
-\include{06}
-\input{07}
-%\input{08}
+\include{07}
+\input{08}
 
 % Modules 
 \TOC{Part 3. Modules over rings}

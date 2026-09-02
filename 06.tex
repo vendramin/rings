@@ -1,926 +1,397 @@
-%\section{Lecture -- Week 6}
-%\label{6}
-
-\section{Group algebras}
-\index{Group algebra}
-
-Fix a field $K$ (for example, $K=\C$). 
-For a finite group $G$, let $K[G]$ be the vector space (over $K$)
-with basis $\{g:g\in G\}$. 
-Thus $K[G]$ is a vector space of dimension $\dim K[G]=|G|$.
-Moreover, $K[G]$ is a ring
-with
-\[
-\left(\sum_{g\in G}\lambda_gg\right)\left(\sum_{h\in G}\mu_hh\right)
-=\sum_{g,h\in G}\lambda_g\mu_h(gh).
-\] 
-Note that $K[G]$ is commutative if and only if $G$ is abelian. 
-
-\begin{example}
-    Let 
-    \[
-    \Sym_3=\{\id,(12),(13),(23),(123),(132)\}
-    \]
-    be the symmetric group in three letters. Every element of $\C[\Sym_3]$
-    is of the form 
-    \[
-    a\id+b(12)+c(13)+d(23)+e(123)+f(132)
-    \]
-    for some $a,b,c,d,e,f\in\C$. For example, 
-    \[
-    \alpha=5\id +3(123)\quad\text{ and }\quad 
-    \beta=-4\id+(132)
-    \]
-    are elements of
-    $\C[\Sym_3]$. We compute
-    \begin{align*}
-    \alpha+\beta &=1\id+3(123)+(132)
-    \shortintertext{and}
-    \alpha\beta &=(5\id +3(123))(-4\id+(132))\\
-    &=-20\id +5(132)-12(123)+3(123)(132)\\
-    &=-20\id +5(132)-12(123)+3\id\\
-    &=-17\id+ 5(132)-12(123).
-    \end{align*}
-    Another example:
-    \begin{align*}
-    (\id+5(13))(2\id-(12))
-    &=2\id-(12)+10(13)-5(13)(12)\\
-    &=2\id-(12)+10(13)-5(123),
-    \end{align*}
-    as $(13)(12)=(123)$. 
-\end{example}
-
-Note that $K[G]$ is a ring and also a vector space (over $K$) and these structures
-are somewhat compatible, as the formulas 
-\[
-(\lambda a+\mu b)c=\lambda (ac)+\mu (bc),\quad
-a(\lambda b+\mu c)=\lambda (ab)+\mu (ac)
-\]
-hold for all $\lambda,\mu\in K$ and $a,b,c\in K[G]$. 
+\section{Zorn's lemma}
+\lecture\label{lec:Zorn}
 
 \begin{definition}
-\index{Algebra}
-Let $A$ be a ring and $K$ be a field. Then $A$ is a \emph{$K$-algebra} (or an \emph{algebra} 
-over the field $K$) if $A$ is a vector space (over $K$)
-such that $\lambda(ab)=(\lambda a)b=a(\lambda b)$ for all $\lambda\in K$ and $a,b\in A$. 
-\end{definition}
-
-The fields $\R$ and $\C$ are examples of $\R$-algebras. 
-Other examples of $\R$-algebras are the 
-polynomial rings $\R[X]$ and $\R[X,Y]$ and the matrix rings $M_n(\R)$.  
-
-\begin{example}
-	If $A$ is an algebra, then $M_n(A)$ is an algebra.	
-\end{example}
-
-\begin{example}
-    Let $G$ be a finite group and $K$ be a field. Then $K[G]$ is a $K$-algebra. 
-\end{example}
-
-\index{Algebra!homomorphism}
-\index{Algebra!isomorphism}
-An \emph{algebra homomorphism} is a ring homomorphism that is $K$-linear. An
-\emph{algebra isomorphism} is a bijective algebra homomorphism; we use the
-symbol $\simeq$ for isomorphisms, as we did for rings.
-
-\begin{example}
-	Let $G=\langle g:g^3=1\rangle=\{1,g,g^2\}\simeq C_3$ be the cyclic group of order three. 
-	If $\alpha=a_11+a_2g+a_3g^2$ and $\beta=b_11+b_2g+b_3g^2$, then
-	\[
-		\alpha\beta=(a_1b_1+a_2b_3+a_3b_2)1+(a_1b_2+a_2b_1+a_3b_3)g+(a_1b_3+a_2b_2+a_3b_1)g^2.
-	\]
-	One can check that $\C[G]\simeq\C[X]/(X^3-1)$. 
-\end{example}
-
-In general, one proves that the group algebra of $C_n$, the cyclic group of order $n\geq2$, 
-is isomorphic to $\C[X]/(X^n-1)$.
-
-\begin{exercise}
-\label{xca:RC3}
-	Prove that $\R[C_3]\simeq\R\times\C$. 	
-\end{exercise}
-
-\begin{exercise}
-	Let $G=\{1,g\}\simeq C_2$ be the cyclic group of order two. The product
-	of $\C[G]$ is 
-	\[
-	(a1+bg)(c1+dg)=(ac+bd)1+(ad+bc)g.
-	\]
-	Prove that the map 
- \[
- \C[G]\to \C\times \C,\quad a1+bg\mapsto (a+b,a-b),
- \]
-	is an isomorphism of $\C$-algebras. 
-\end{exercise}
-
-\begin{exercise}
-	Let $K=\Z/2$ and $G=\{1,g\}\simeq C_2$ be the cyclic group of order two. 
-	Prove that the map 
-\[
-K[G]\longrightarrow
-\left\{
-\begin{pmatrix}
-x&y\\
-0&x
-\end{pmatrix}
-:x,y\in K
-\right\},
-\qquad
-a1+bg\longmapsto
-\begin{pmatrix}
-a+b&b\\
-0&a+b
-\end{pmatrix},
-\]
-% \[
-% K[G]\to\begin{pmatrix}
-%		K&K\\
-%		0&K
-%	\end{pmatrix},\quad 
-% a1+bg\mapsto\begin{pmatrix}
-%		a+b&b\\
-%		0&a+b		
-%	\end{pmatrix},
-%    \]
-    is an isomorphism of $K$-algebras. 
-\end{exercise}
-
-The group algebra has the following property, which is left as an exercise.
-Let $A$ be a $K$-algebra and $G$ be a finite group. If $f\colon
-G\to\mathcal{U}(A)$ is a group homomorphism, then there exists a unique
-$K$-algebra homomorphism $\varphi\colon K[G]\to A$ such that $\varphi|_G=f$. 
-
-\begin{example}
-	Let $\D_3=\langle r,s:r^3=s^2=1,\,srs^{-1}=r^{-1}\rangle$ be the dihedral
-	group of six elements. We claim that 
-	\[
-	\C[\D_3]\simeq\C\times\C\times M_2(\C).
-	\]
-  Let 	
-  $\omega$ be a primitive cubic root of unity. Let 
-  $A=\C\times\C\times M_2(\C)$ and  
-	\[
-	R=\begin{pmatrix}
-		\omega&0\\
-		0&\omega^2	
-	\end{pmatrix},
-	\quad
-	S=\begin{pmatrix}
-		0&1\\
-		1&0
-	\end{pmatrix}.
- 	\]
- 	One easily checks that $SRS^{-1}=R^{-1}$ and $R^3=S^2=\begin{pmatrix}
-		1&0\\
-		0&1	
-	\end{pmatrix}$. It follows that there exists a group homomorphism
-  $\D_3\to\mathcal{U}(A)$ such that 
-	$r\mapsto (1,1,R)$ and $s\mapsto (1,-1,S)$. This homomorphism
-  extends uniquely to an algebra homomorphism $\C[\D_3]\to A$.  
-  A direct calculation shows that the images of
-  \[
-  1,r,r^2,s,rs,r^2s
-  \]
-  are linearly independent. Since both algebras have dimension six,
-  $\C[\D_3]\simeq A$. 
-%	Let $\D_3=\langle r,s:r^3=s^2=1,\,srs^{-1}=r^{-1}\rangle$ be the dihedral
-%	group of six elements. We claim that 
-%	\[
-%	\C[\D_3]\simeq\C\times\C\times M_2(\C).
-%	\]
-%	Let $\omega$ be a primitive cubic root of one. Let 
-%	\[
-%	R=\begin{pmatrix}
-%		\omega&0\\
-%		0&\omega^2	
-%	\end{pmatrix},
-%	\quad
-%	S=\begin{pmatrix}
-%		0&1\\
-%		1&0
-%	\end{pmatrix}.
-% 	\]
-% 	One easily checks that $SRS^{-1}=R^{-1}$ and $R^3=S^2=\begin{pmatrix}
-%		1&0\\
-%		0&1	
-%	\end{pmatrix}$. It follows that there exists a group homomorphism
-%	$G\to\C\times\C\times M_2(\C)$ such that
-%	$r\mapsto (1,1,R)$ and $s\mapsto (1,-1,S)$. This group homomorphism
-%	is a ring isomorphism.  
-\end{example}
-
-
-\section{Group representations}
-
-\begin{definition}
-	\index{Representation}
-	A \emph{representation} (over the field $K$) of a group $G$ is a group homomorphism
-	$\rho\colon G\to\GL(V)$, $g\mapsto\rho_g$, for some non-zero finite-dimensional 
-        vector space $V$ (over $K$).
-\end{definition}
-
-\index{Representation!degree}
-The \emph{degree} of the representation $\rho\colon G\to\GL(V)$ is the dimension of $V$. 
-
-Note that a representation $\rho\colon G\to\GL(V)$
-satisfies the following properties:
+  \index{Partially ordered set}
+  \index{Poset|see{Partially ordered set}}
+A non-empty set $R$ is said to be a \emph{partially ordered set} (or \emph{poset}, for short) 
+if there is a subset $X\subseteq R\times R$ such that
 \begin{enumerate}
-    \item $\rho_{1_G}=\id$.
-    \item $\rho_{gh}=\rho_g\rho_h$ for all $g,h\in G$.
-    \item $\rho_g(v+w)=\rho_g(v)+\rho_g(w)$ for all $v,w\in V$.
-    \item $\rho_g(\lambda v)=\lambda \rho_g(v)$ for all $v\in V$ and $\lambda\in K$. 
+    \item $(r,r)\in X$ for all $r\in R$, 
+    \item if $(r,s)\in X$ and $(s,t)\in X$, then $(r,t)\in X$, and 
+    \item if $(r,s)\in X$ and $(s,r)\in X$, then $r=s$. 
+\end{enumerate}
+\end{definition}
+
+The set $X$ is a partial order relation on $R$.  
+We will use the following notation: $(r,s)\in X$ if and only if $r\leq s$. Moreover, 
+$r<s$ if and only if $r\leq s$ and $r\ne s$. When we say that $R$ is a poset, we implicitly denote the partial order relation on $R$ by the symbol $\leq$. With this notation, the conditions
+needed to define a poset are the following:
+\begin{enumerate}
+    \item $r\leq r$ for all $r\in R$,
+    \item if $r\leq s$ and $s\leq t$, then $r\leq t$, and 
+    \item if $r\leq s$ and $s\leq r$, then $r=s$. 
 \end{enumerate}
 
-\index{Representation!matrix}
-Since by assumption
-$V$ is finite-dimensional, say $\dim V=n$, after fixing a basis of $V$ we get a \emph{matrix representation} 
-$\rho\colon G\to\GL(V)\simeq\GL_n(K)$ of $G$. Depending on the context, we will use either representations on vector spaces or matrix representations.  
-
-\begin{example}
-	We use group representations to show that the group 
-	\[
-    G=\langle x,y:x^2=y^2=1\rangle
-    \]
-    is infinite. Note that
-	\[
-	\rho\colon G\to\GL_2(\C),
-	\quad
-	x\mapsto\begin{pmatrix}
-		1&0\\
-		0&-1	
-	\end{pmatrix},\quad
- 	y\mapsto\begin{pmatrix}
-		1&1\\
-		0&-1	
-	\end{pmatrix},
- 	\]
- 	is a group homomorphism, as 
- 	$\rho_x^2=\rho_y^2=\begin{pmatrix}
-		1&0\\
-		0&1	
-	\end{pmatrix}$. We claim that the elements of the form $(xy)^n$ are
-	different for all $n$. It is enough to show that if 
-	$(xy)^n=(xy)^m$, then $n=m$. Note that
-	\[
-	\rho_{xy}=\rho_x\rho_y=\begin{pmatrix}
-		1&0\\
-		0&-1	
-	\end{pmatrix}
-	\begin{pmatrix}
-		1&1\\
-		0&-1	
-	\end{pmatrix}
-	=\begin{pmatrix}
-		1&1\\
-		0&1	
-	\end{pmatrix}.
-	\]
-	Thus $\rho_{xy}^n=\begin{pmatrix}
-		1&n\\
-		0&1	
-	\end{pmatrix}$ and 
-	$\rho_{xy}^m=\begin{pmatrix}
-		1&m\\
-		0&1	
-	\end{pmatrix}$. Then 
-	\[
-	(xy)^n=(xy)^m\implies\rho_{xy}^n=\rho_{xy}^m\implies n=m.
-	\] 
-\end{example}
-
-The previous example demonstrates the power of group representations, even for infinite groups. 
-However, in this course, we will focus on complex finite-dimensional representations of finite groups.
-
-\begin{convention}
-    When studying representations of groups, 
-    we will focus on complex representations of finite groups, unless stated otherwise.
-\end{convention}
-
-\begin{example}
-\index{Representation!trivial}
-	If $G$ is a group, then $\rho\colon G\to\GL_1(\C)=\C^\times$, $g\mapsto 1$, 
-	is a representation. This representation is known as the \emph{trivial (complex) representation} of $G$. 	
-\end{example}
-
-\begin{example}
-	The sign of permutations yields a representation of $\Sym_n$. It is the group homomorphism
-	$\Sym_n\to\C^\times$, $\sigma\mapsto\sgn(\sigma)$.  	
-\end{example}
-
-\begin{example}
-	Let $G=\langle g:g^6=1\rangle$ be the cyclic group of order six. Then
-	\[
-	\rho\colon G\to\GL_2(\C),
-	\quad 
-	g\mapsto\begin{pmatrix}1&1\\-1&0\end{pmatrix}
-	\] 
-	is a group representation of degree two. 
-\end{example}
-
-%To prove the following result we need
-%the \emph{minimal polynomial characterization of diagonazability",  
-%see for example, \cite[Corollary 2.5.12]{zbMATH06049469}.
-%
-%\begin{proposition}
-%    Let $G$ be a finite group and $\rho\colon G\to\GL_n(\C)$ 
-%    be a representation. Then
-%    each $\rho_g$ is diagonalizable.
-%\end{proposition}
-%
-%\begin{proof}
-%    Since $g$ is finite, $g^m=1$ for some $m\in\Z_{>0}$. This means that $\rho_g$ is a root of $X^m-1\in\C[X]$. Since
-%    the roots of the polynomial $X^m-1$ are all different and $X^m-1$ factorizes linearly on $\C[X]$, it follows
-%    that the minimal polynomial of $\rho_g$ also factorizes linearly in $\C[X]$. Hence $\rho_g$ is diagonalizable.
-%\end{proof}
-%
-%In page \pageref{rho_diagonalizable} we will see an alternative  
-%proof of the previous proposition. 
-%
 \begin{definition}
-	\index{Invariant map}
-    Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be
-    representations. A linear map $T\colon V\to W$ is said to be \emph{invariant} 
-    if the diagram
-    \[\begin{tikzcd}
-	V & V \\
-	W & W
-	\arrow["{\rho_g}", from=1-1, to=1-2]
-	\arrow["T"', from=1-1, to=2-1]
-	\arrow["{\psi_g}"', from=2-1, to=2-2]
-	\arrow["T", from=1-2, to=2-2]
-\end{tikzcd}
-\]
-    commutes for all $g\in G$, this means that 
-    $\psi_gT=T\rho_g$ for all $g\in G$.
+Let $R$ be a poset and $r,s\in R$. Then $r$ and $s$ are \emph{comparable}
+if either $r\leq s$ or $s\leq r$.
 \end{definition}
 
-It is convenient to introduce an alternative
-notation for group representations. 
-Let 
-\[ 
-\rho\colon G\to\GL(V),\quad g\mapsto \rho_g,
-\]
-be a representation. For
-$g\in G$ and $v\in V$ write $g\cdot v=\rho_g(v)$. Then the following properties hold: 
-\begin{enumerate}
-	\item $1\cdot v=v$ for all $v\in V$, 
-	\item $g\cdot (h\cdot v)=(gh)\cdot v$ for all $g,h\in G$ and $v\in V$, 
-	\item $g\cdot (v+w)=g\cdot v+g\cdot w$ for all $g\in G$ and $v,w\in V$, and 
-	\item $g\cdot (\lambda v)=\lambda (g\cdot v)$ for all $g\in G$, $\lambda\in\C$ and $v\in V$.  	
-\end{enumerate}
-Using this notation for the representations $\rho\colon G\to\GL(V)$ 
-and $\psi\colon G\to\GL(W)$, a linear
-map $T\colon V\to W$ is invariant if and only if
-\[
-T(g\cdot v)=g\cdot T(v)
-\]
-for all $v\in V$ and $g\in G$. 
-%Although we use the same notation for different representations, there is no risk of confusion. 
-
-\begin{definition}
-	\index{Representation!equivalence}
-    The representations $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ are \emph{equivalent}
-    if there exists a bijective invariant linear 
-    map $T\colon V\to W$. 
-\end{definition}
-
-If the representations $\rho$ and 
-$\psi$ are equivalent, we write 
-$\rho\simeq\psi$. 
-
 \begin{example}
-    Let $G=\Z/n$. The representations
-    \begin{align*}
-    &\rho\colon G\to\GL_2(\C),\quad
-    m\mapsto
-    \begin{pmatrix}
-        \cos(2\pi m/n) & -\sin(2\pi m/n)\\
-        \sin(2\pi m/n) & \cos(2\pi m/n)
-    \end{pmatrix},
-    \shortintertext{and}
-    &\psi\colon G\to\GL_2(\C),\quad
-    m\mapsto
-    \begin{pmatrix}
-        e^{2\pi im/n} & 0\\
-        0 & e^{-2\pi im/n}
-    \end{pmatrix},
-    \end{align*}
-    are equivalent, as $\rho_mT=T\psi_m$ for all $m\in G$ if $T=\begin{pmatrix}
-        i&-i\\
-        1&1
-    \end{pmatrix}$.
-    Thus $T$ is an invariant isomorphism from $\psi$ to $\rho$;
-    equivalently, $T^{-1}$ is an invariant isomorphism from $\rho$
-    to $\psi$.
+    Let $U=\{1,2,3,4,5\}$ and $T$ be the set of subsets of $U$. Then $T$ is a poset
+    with the usual inclusion, that is $C\leq D$ if and only if $C\subseteq D$. The subsets
+    $\{1,2\}$ and $\{3,4\}$ of $U$ are elements of $T$ that are not comparable. 
 \end{example}
 
-The following example explains why we can alternatively use
-representations or matrix representations. 
+\index{Hasse diagram}
+Is there a good pictorial representation of a poset? A \emph{Hasse diagram} is
+a common way to represent one. It is a graph in which the vertices represent
+the elements of the poset. If $x$ and $y$ are elements of the poset, we draw an
+arrow from $x$ to $y$ when
+\[
+x<y
+\]
+and there is no $z$ such that $x<z<y$. 
 
 \begin{example}
-\label{exa:change_of_basis}
-Let $\rho\colon G\to\GL(V)$ be a representation, say, of degree 
-$n=\dim V$. Choose a basis 
-$B=\{v_1,\dots,v_n\}$ of $V$ and let 
-\[
-T\colon V\to\C^n,
-\quad
-\sum_{i=1}^n\lambda_iv_i\mapsto (\lambda_1,\dots,\lambda_n),
-\]
-be the coordinate isomorphism determined by 
-the basis $B$. For each $g\in G$, 
-the composition of linear maps 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXENebiJdLFsyLDAsIlYiXSxbMSwwLCJWIl0sWzMsMCwiXFxDXm4iXSxbMCwyLCJUXnstMX0iXSxbMiwxLCJcXHJob19nIl0sWzEsMywiVCJdLFswLDMsIiIsMix7ImN1cnZlIjozfV1d
+   The \emph{Hasse diagram} of the set of all subsets of $\{a,b,c\}$, 
+   ordered by inclusion, is the following:
 \[\begin{tikzcd}
-	{\C^n} & V & V & {\C^n}
-	\arrow["{T^{-1}}", from=1-1, to=1-2]
-	\arrow["{\rho_g}", from=1-2, to=1-3]
-	\arrow["T", from=1-3, to=1-4]
-\end{tikzcd}
-\]
-produces a representation 
-$\psi\colon G\to\GL(\C^n)$
-of $G$ equivalent to $\rho$.   
+	& {\{a,b,c\}} \\
+	{\{a,b\}} & {\{a,c\}} & {\{b,c\}} \\
+	{\{a\}} & {\{b\}} & {\{c\}} \\
+	& \emptyset
+	\arrow[from=2-1, to=1-2]
+	\arrow[from=2-2, to=1-2]
+	\arrow[from=2-3, to=1-2]
+	\arrow[from=3-1, to=2-1]
+	\arrow[from=3-1, to=2-2]
+	\arrow[from=3-2, to=2-1]
+	\arrow[from=3-2, to=2-3]
+	\arrow[from=3-3, to=2-2]
+	\arrow[from=3-3, to=2-3]
+	\arrow[from=4-2, to=3-1]
+	\arrow[from=4-2, to=3-2]
+	\arrow[from=4-2, to=3-3]
+\end{tikzcd}\]
 \end{example}
 
-
-
 \begin{definition}
-	\index{Invariant subspace}
-    Let $\rho\colon G\to\GL(V)$ be a representation. 
-    A subspace $W$ of $V$ is said to be \emph{invariant} (with respect to $\rho$)
-    if $\rho_g(W)\subseteq W$ for all $g\in G$.
+\index{Maximal element}
+    Let $R$ be a poset and $r\in R$. Then $r$ is \emph{maximal} in $R$ if 
+    $r\leq t$ implies $r=t$. 
 \end{definition}
-
-\index{Representation!restriction}
-Let $\rho\colon G\to\GL(V)$ be a representation. Then $\{0\}$ and $V$ are always   
-invariant subspaces of~$V$. Moreover, if $W\subseteq V$ is non-zero and 
-invariant, then
-the map $\rho|_W\colon G\to\GL(W)$, $g\mapsto (\rho_g)|_W$, is a representation. The
-map $\rho|_W$ is the \emph{restriction} of $\rho$ to $W$. 
-
-\begin{exercise}
-\index{Invariant map!kernel}
-\index{Invariant map!image}
-	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be representations of a given group $G$ 
-	and 
- $T\colon V\to W$ be an invariant map. Prove that the \emph{kernel} 
-	\[
-	\ker T=\{v\in V:T(v)=0\}
-	\]
-	is an invariant subspace of $V$ and that the \emph{image} 
-	\[
-		T(V)=\{T(v):v\in V\}
-	\]
-	is an invariant subspace of $W$. 
-\end{exercise}
-
-
-\begin{definition}
-\index{Subrepresentation}
-    Let $\rho\colon G\to\GL(V)$
-    be a representation. A \emph{subrepresentation} of $\rho$ is a restricted representation 
-    of the form $\rho|_W\colon G\to\GL(W)$ for some invariant subspace $W$ of~$V$.
-\end{definition}
-
-%\begin{example}
-%    Let $G=\langle g:g^3=1\rangle$ be the
-%    cyclic group of order three
-%    and
-%    \[
-%    \rho\colon G\to\GL_3(\R),
-%    \quad
-%    g\mapsto\begin{pmatrix}
-%        0&1&0\\
-%        0&0&1\\
-%        1&0&0
-%    \end{pmatrix}.
-%    \]
-%    The subspace
-%    \[
-%    W=\left\{
-%    \begin{pmatrix}
-%    x\\
-%    y\\
-%    z
-%    \end{pmatrix}\in\R^3:x+y+z=0\right\}
-%    \]
-%    is a invariant subspace of $\R^3$.
-%\end{example}
-
-\begin{definition}
-    \index{Representation!irreducible}
-    A representation $\rho\colon G\to\GL(V)$ is \emph{irreducible} if
-    $\{0\}$ and $V$ are the only invariant subspaces of $V$.
-\end{definition}
-
-Degree-one representations are irreducible. 
-
-The irreducibility 
-of a representation, of course, depends on the base field. 
-In the following example, it is crucial to use a real representation.
 
 \begin{example}
-    Let $G=\langle g:g^3=1\rangle$ be the
-    cyclic group of order three
-    and
-    \[
-    \rho\colon G\to\GL_3(\R),
-    \quad
-    g\mapsto\begin{pmatrix}
-        0&1&0\\
-        0&0&1\\
-        1&0&0
-    \end{pmatrix}.
-    \]
-    Note that in this example we work with a real representation! 
-    It is a routine calculation to prove that 
-    \[
-    W=\left\{
-    \begin{pmatrix}
-    x\\
-    y\\
-    z
-    \end{pmatrix}\in\R^3:x+y+z=0\right\}
-    \]
-    is an invariant subspace of $\R^3$. We claim that the restricted representation 
-    \[
-      \rho|_W\colon G\to\GL(W)
-    \]
-    is irreducible. Let $S$ be a non-zero invariant subspace of 
-    $W$ and let $s=\begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}\in S$ be a non-zero element. Then
-    \[
-    t=\begin{pmatrix}y_0\\z_0\\x_0\end{pmatrix}
-    =\begin{pmatrix}
-        0&1&0\\
-        0&0&1\\
-        1&0&0
-    \end{pmatrix}
-    \begin{pmatrix}x_0\\y_0\\z_0\end{pmatrix}\in S.
-    \]
-    We claim that $\{s,t\}$ is linearly independent. If not, there exists $\lambda\in\R$ such that
-    $\lambda s=t$. Thus $\lambda x_0=y_0$, $\lambda y_0=z_0$ and $\lambda z_0=x_0$. This implies that
-    $\lambda^3x_0=x_0$. Since $x_0\ne 0$ (because if $x_0=0$, then $y_0=z_0=0$, a contradiction), it follows that
-    $\lambda=1$ and hence $x_0=y_0=z_0$, a contradiction because $x_0+y_0+z_0=0$.
-    Therefore $\dim S=2$ and hence $S=W$.
+    $\Z$ with the poset structure given by the usual ordering, has no maximal elements. 
 \end{example}
-
-What happens in the previous example if we work over complex numbers?
-
-\begin{exercise}
-\label{xca:common_eigenvector}
-    Let $\rho\colon G\to\GL(V)$ be a degree-two representation. Prove that
-    $\rho$ is irreducible if and only if there is no common eigenvector for the
-    $\rho_g$, $g\in G$.
-\end{exercise}
-
-The previous exercise can be used to show that the representation
-$\Sym_3\to\GL_2(\C)$
-of the symmetric group $\Sym_3$
-given by
-\[
-(12)\mapsto\begin{pmatrix}
--1&-1\\0&1
-\end{pmatrix},
-\quad
-(123)\mapsto\begin{pmatrix}
--1&-1\\
-1&0
-\end{pmatrix},
-\]
-is irreducible.
 
 \begin{example}
-\label{exa:direct_sum_reps}
-\index{Representation!direct sum of}
-Let $\rho\colon G\to\GL_n(\C)$ and $\psi\colon G\to\GL_m(\C)$ be representations. One defines
-the \emph{direct sum} $\rho\oplus\psi$ of $\rho$ and $\psi$ as 
-\[
-\rho\oplus\psi\colon G\to\GL_{n+m}(\C),\quad
-g\mapsto 
-\begin{pmatrix}
-\rho_g & 0\\
-0 & \psi_g	
-\end{pmatrix}.
-\]
+Let $R=\{(x,y)\in\R^2:y\leq0\}$ with $(x_1,y_1)\leq(x_2,y_2)$ if and only if $x_1=x_2$ and $y_1\leq y_2$. Then
+$R$ is a poset and each $(x,0)$ is maximal. Thus $R$ has infinitely many maximal elements.
 \end{example}
 
-Let us describe the previous example without using matrix representations. If $V$ and 
-$W$ are complex vector spaces, the (external) direct sum of $V$ and $W$ is defined
-as the set $V\times W$ with the complex vector space structure given by
-\[
-(v,w)+(v_1,w_1)=(v+v_1,w+w_1),\quad
-\lambda (v,w)=(\lambda v,\lambda w)
-\]
-for all $v,v_1\in V$, $w,w_1\in W$ and $\lambda\in\C$. 
-If $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ are representations, 
-the \emph{direct sum} $\rho\oplus\psi$ of $\rho$ and $\psi$ is then 
-\[
-\rho\oplus\psi\colon G\to\GL(V\oplus W),\quad
-g\mapsto (\rho\oplus\psi)_g,
-\]
-where $(\rho\oplus\psi)_g\colon V\oplus W\to V\oplus W$, $(v,w)\mapsto
-(\rho_g(v),\psi_g(w))$. Note that both $V\oplus\{0\}$ and $\{0\}\oplus W$ are
-invariant subspaces of $V\oplus W$. 
-
 \begin{definition}
-    \index{Representation!completely reducible}
-    A representation $\rho\colon G\to\GL(V)$ is said to be 
-    \emph{completely reducible}
-    if $\rho$ can be decomposed as
-    $\rho\simeq\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible
-    representations $\rho_1,\dots,\rho_n$ of $G$.
-Equivalently, 
-there exist invariant subspaces $V_1,\dots,V_n$ such that
-\[
-V=V_1\oplus\cdots\oplus V_n
-\]
-and every restricted representation
-\[
-\rho|_{V_i}\colon G\to\GL(V_i)
-\]
-is irreducible.
+  \index{Upper bound}
+    Let $R$ be a poset and $S$ be a non-empty subset of $R$. An \emph{upper bound}
+    for $S$ is an element $u\in R$ such that $s\leq u$ for all $s\in S$. 
 \end{definition}
 
-Note that if $\rho\colon G\to\GL(V)$ is completely reducible and 
-$\rho\simeq\rho_1\oplus\cdots\oplus \rho_n$ for some irreducible representations 
-$\rho_i\colon G\to\GL(V_i)$, $i\in\{1,\dots,n\}$, then 
-each $V_i$ is an invariant subspace of $V$ and $V=V_1\oplus \cdots \oplus V_n$. 
-Moreover, on some basis of $V$, the matrix  
-$\rho_g$ can be written as 
-\[
-\rho_g=\begin{pmatrix}
-(\rho_1)_g &  \\
-& (\rho_2)_g  \\
-&&\ddots\\
-&&&(\rho_n)_g	
-\end{pmatrix}.
-\]
+An upper bound for $S$ might not be an element of $S$. 
+
+\begin{example}
+    Let $S=\{6\Z,12\Z,24\Z\}$ be a subset of the set $X$ 
+    of subgroups of $\Z$ partially ordered by 
+    inclusion. Then 
+    $6\Z=6\Z\cup 12\Z\cup 24\Z$ is an upper bound for the subset~$S$ 
+    that is not maximal in $X$. 
+\end{example}
+
+\begin{example}
+    Let $R=\{\emptyset, \{1\},\{2\},\{3\},\{1,2\}\}$ partially ordered by
+    inclusion, where $R$ is considered as a subset
+    of the power set $P$ of $X=\{1,2,3\}$. 
+    Then $\{3\}$ and $\{1,2\}$ are maximal elements of the subposet $R$. Moreover, 
+    $X$ is an upper bound for $R$ in the ambient poset $P$. 
+\end{example}
+
 
 \begin{definition}
-\index{Representation!decomposable}
-\index{Representation!indecomposable}
-A representation
-$\rho\colon G\to\GL(V)$ is \emph{decomposable} if $V$ can be decomposed as $V=S\oplus T$
-where $S$ and $T$ are non-zero invariant subspaces of $V$. 
+  \index{Chain}
+    Let $R$ be a poset. A \emph{chain} is a non-empty subset $S$ of $R$ such that
+    any two elements of $S$ are comparable. 
 \end{definition}
 
-A representation is 
-\emph{indecomposable} if it is not decomposable. 
+We now state \emph{Zorn's lemma}:
+
+\begin{quote}
+\index{Zorn's lemma}
+\textcolor{blue!50!black}{\textit{Let $R$ be a poset such that 
+every chain in $R$ admits an upper bound in $R$. 
+Then $R$ contains a maximal element.}}
+\end{quote}
+
+% It is not intuitive\footnote{The mathematician
+% Jerry L. Bona has a nice joke about Zorn's lemma: 
+% \textit{The Axiom of Choice is obviously true, 
+% the well-ordering principle obviously false, and who can tell about Zorn's lemma?}}
+% but it is logically equivalent to a more 
+% intuitive statement in set theory, the Axiom of Choice, 
+% which says every Cartesian product of non-empty sets is non-empty. 
+% It is more an axiom than a lemma. 
+% The reason for calling Zorn’s lemma a lemma rather 
+% than an axiom is purely historical. 
+
+\index{Axiom of Choice}
+It may not be intuitive\footnote{The mathematician Jerry L. Bona has a nice
+joke about Zorn's lemma: \textit{The Axiom of Choice is obviously true, the
+well-ordering principle obviously false, and who can tell about Zorn's
+lemma?}}, but it is logically equivalent to a more intuitive statement in set
+theory: the \emph{Axiom of Choice}, which states that the Cartesian product of
+a collection of non-empty sets is non-empty. Calling it a lemma rather than an
+axiom is purely historical.
+
+\begin{definition}
+	\index{Ideal!maximal}
+	Let $R$ be a ring. An ideal $I$ of $R$ is said to be \emph{maximal}
+	if $I\ne R$ and if $J$ is an ideal of $R$ such that $I\subseteq J$, then 
+	either $I=J$ or $J=R$. 
+\end{definition}
+
+If $p$ is a prime number, then $p\Z$ is a maximal ideal of $\Z$.
 
 \begin{exercise}
-\label{xca:equivalence}
-	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be equivalent representations.
-	Prove the following facts:
-	\begin{enumerate}
-		\item If $\rho$ is irreducible, then $\psi$ is irreducible.
-		\item If $\rho$ is decomposable, then $\psi$ is decomposable.
-		\item If $\rho$ is completely reducible, then $\psi$ is completely reducible. 
-	\end{enumerate}	
+Let $R$ be a commutative ring. Prove that $R$ is a 
+field if and only if $\{0\}$ is a maximal ideal of $R$. 	
 \end{exercise}
-
-\section{Tensor product of representations}
-\index{Representation!tensor product of}
-Let $V$ be a vector space with basis $\{v_1,\dots,v_k\}$ and 
-$W$ be a vector space with basis $\{w_1,\dots,w_l\}$. A 
-\emph{tensor product} of $V$ and $W$ is a vector space $X$ 
-together with a bilinear map 
-\[
-V\times W\to X,
-\quad
-(v,w)\mapsto v\otimes w,
-\]
-such that $\{v_i\otimes w_j:1\leq i\leq k,\,1\leq j\leq l\}$ is a  
-basis of $X$. The tensor product of $V$ and $W$ is unique up to isomorphism 
-and is denoted by $V\otimes W$. Note that
-\[
-\dim(V\otimes W)=(\dim V)(\dim W).
-\]
-Moreover, every element of $V\otimes W$ is a finite sum 
-of the form
-\[
-\sum_{i,j}\lambda_{ij}v_i\otimes w_j
-\]
-for some scalars $\lambda_{ij}\in\C$. It is important to remark that elements 
-of $V\otimes W$ are not always of the form $v\otimes w$ for $v\in V$ and $w\in W$. 
-
-The bilinearity of tensor products is crucial. 
-For example,
-\begin{align*}
-    (v_1+v_3)\otimes (3w_1+w_2) 
-    &=v_1\otimes (3w_1+w_2)+v_3\otimes (3w_1+w_2)\\
-    &=v_1\otimes (3w_1)+v_1\otimes w_2+v_3\otimes (3w_1)+v_3\otimes w_2\\
-    &=3v_1\otimes w_1+v_1\otimes w_2+3v_3\otimes w_1+v_3\otimes w_2.
-\end{align*}
-
-\begin{definition}
-	Let $\rho\colon G\to\GL(V)$ and $\psi\colon G\to\GL(W)$ be representations, and 
-    let $\{v_1,\dots,v_k\}$ be a basis of $V$ and $\{w_1,\dots,w_l\}$ a basis of $W$. 
-    The \emph{tensor product} of $\rho$ and $\psi$ is the representation of $G$ given by 
-	\begin{gather*}
-	\rho\otimes\psi\colon G\to\GL(V\otimes W),
-	\quad 
-	g\mapsto (\rho\otimes\psi)_g,
-	\shortintertext{where}
-	(\rho\otimes\psi)_g\left (\sum_{i,j}\lambda_{ij} v_i\otimes w_j\right)=\sum_{i,j}\lambda_{ij} \rho_g(v_i)\otimes \psi_g(w_j).
-	\end{gather*} 	
-\end{definition}
 
 \begin{exercise}
-\label{xca:tensor}
-Prove that the tensor product of representations 
-is a representation.     
+\label{xca:maximal<=>field}
+Let $R$ be a commutative ring and $I$ be an ideal of $R$. Prove that $I$ is maximal
+if and only if $R/I$ is a field.  	
 \end{exercise}
 
+\index{Ideal!proper}
+An ideal $I$ of a ring $R$ is said to be \emph{proper}
+if $I\ne R$. 
 
-
-\section{Unitary representations}
-
-\index{Inner product}
-Since we are considering finite-dimensional vector spaces, our vector spaces admit 
-an \emph{inner product}, that is a map $V\times V\to\C$, $(v,w)\mapsto\langle v,w\rangle$, 
-that satisfies the following properties:
-\begin{enumerate}
-    \item $\langle y,x\rangle=\overline{\langle x,y\rangle}$ for all $x,y\in V$, where $\overline{a+bi}=a-bi$ denotes the complex conjugate.
-    \item $\langle ax+by,z\rangle=a\langle x,z\rangle+b\langle y,z\rangle$ for all $x,y,z\in V$ and $a,b\in\C$.
-    \item $\langle x,x\rangle\geq0$ for all $x\in V$, and 
-      $\langle x,x\rangle=0$ if and only if $x=0$.
-\end{enumerate}
-
-\index{Inner product!usual}
-For example, if $V=\C^n$, $v=\colvec{3}{v_1}{\vdots}{v_n}\in V$ and $w=\colvec{3}{w_1}{\vdots}{w_n}\in V$, 
-then the \emph{usual inner product} between $v$ and $w$ 
-is given by
-\begin{equation}
-    \label{eq:inner_product}
-V\times V\to\C,\quad 
-(v,w)\mapsto v_1\overline{w_1}+\cdots+v_n\overline{w_n}=v^T\overline{w},
-\end{equation}
-where 
-\[
-v^T=(v_1,\dots,v_n),\quad 
-\overline{w}=\colvec{3}{\overline{w_1}}{\vdots}{\overline{w_n}}.
-\]
-
-\begin{definition}
-    \index{Representation!unitary}
-    Let $V$ be a finite-dimensional complex vector space with inner product $(v,w)\mapsto\langle v,w\rangle$. 
-    A representation $\rho\colon G\to\GL(V)$ is \emph{unitary} if
-    $\langle \rho_gv,\rho_gw\rangle=\langle v,w\rangle$ for all $g\in G$ and $v,w\in V$.
-\end{definition}
-
-\begin{exercise}
-\index{Representation!left regular}
-Let $G$ be a finite group and $V=\C[G]$ be the complex vector space with basis
-$\{g:g\in G\}$. The \emph{left regular representation}
-of $G$ is the representation
-\[
-L\colon G\to\GL(V),
-\quad
-g\mapsto L_g,
-\]
-where $L_g(h)=gh$. With respect to the inner product
-\[
-\left\langle\sum_{g\in G}\lambda_gg,\sum_{g\in G}\mu_gg\right\rangle=\sum_{g\in G}\lambda_g\overline{\mu_g},
-\]
-the representation $L$ is unitary. Prove it! 
-\end{exercise}
-
-\index{Orthogonal complement}
-If $V$ is an inner-product vector space and $W$ is a subspace of $V$, 
-\[
-W^\perp = \{v\in V:\langle v,w\rangle=0\text{ for all $w\in W$}\}, 
-\]
-is called the 
-\emph{orthogonal complement} of $W$. The following result is extremely important: 
-
-\begin{proposition}
-\label{pro:irr_or_dec}
-Let $\rho\colon G\to\GL(V)$ be a unitary representation. Then $\rho$ is either
-irreducible or decomposable.
-\end{proposition}
-
-\begin{proof}
-	If $\rho$ is not irreducible, there exists an invariant subspace $W$ of $V$ such that
-	$\{0\}\subsetneq W\subsetneq V$. Can we find an invariant complement? Yes, and this is because 
-        our representation is unitary.  
-	We know that $V=W\oplus W^{\perp}$ as complex vector spaces, where 
-	$W^\perp\ne\{0\}$. So $\rho$ will be decomposable if we can prove that
-	$W^\perp$ is an invariant subspace of $V$. 
-	Let $v\in W^\perp$, $w\in W$ and $g\in G$. Then  
-	\[
-	\langle \rho_g(v),w\rangle=\langle v,\rho_g^{-1}(w)\rangle=0   
-	\]
-	since $\rho_g^{-1}(w)\in W$, as $W$ is an invariant subspace of $V$. This means that 
-	$\rho_g(v)\in W^\perp$ and hence $\rho$ is decomposable. 
-  %$V=W\oplus W^{\perp}$ is decomposable.  
-\end{proof}
-
-\section{Weyl's trick} 
-
-\begin{theorem}[Weyl]
-\index{Weyl's trick}
-    Every representation $\rho\colon G\to\GL(V)$ 
-    of a finite group is unitarizable, that is 
-    $V$ admits an inner
-    product such that
-    \[
-    \langle\rho_gv,\rho_gw\rangle=\langle v,w\rangle
-    \]
-    for all $g\in G$ and $v,w\in V$.
+\begin{theorem}[Krull]
+\index{Krull's theorem}
+	Let $R$ be a ring. Each proper ideal $I$ of $R$ 
+	is contained in a maximal ideal. 
+	In particular, all non-zero rings have maximal ideals. 	
 \end{theorem}
 
 \begin{proof}
-    Let $V\times V\to\C$, $(v,w)\mapsto v\cdot w$, be an\footnote{It does not
-    matter which inner product we have chosen, we can safely use, for example,
-  the usual inner product of \eqref{eq:inner_product}.} inner product on $V$. 
-   
-    A straightforward calculation shows that
-    \[
-    \langle v,w\rangle=\sum_{g\in G}(\rho_gv)\cdot (\rho_gw)
-    \]
-    is an inner product of $V$. For example, 
-    \begin{align*}
-    \langle v,w+w_1\rangle&=\sum_{g\in G}\rho_gv\cdot\rho_g(w+w_1)\\
-    &=\sum_{g\in G}\rho_gv\cdot \left(\rho_gw+\rho_gw_1\right)\\
-    &=\sum_{g\in G}\left(\rho_gv\cdot \rho_gw+\rho_gv\cdot\rho_gw_1\right)\\
-    &=\sum_{g\in G}\rho_gv\cdot \rho_gw+\sum_{g\in G}\rho_gv\cdot \rho_gw_1\\
-    &=\langle v,w\rangle+\langle v,w_1\rangle 
-    \end{align*}
-    holds for all $v,w,w_1\in V$. 
-    
-    Since
-    \begin{align*}
-    \langle\rho_gv,\rho_gw\rangle&=\sum_{h\in G}(\rho_h\rho_gv)\cdot(\rho_h\rho_gw)\\
-    &=\sum_{h\in G}(\rho_{hg}v)\cdot(\rho_{hg}w)=\sum_{x\in G}(\rho_xv)\cdot(\rho_xw)=\langle v,w\rangle,
-    \end{align*}
-    the representation $\rho$ is unitary with respect to the newly 
-    constructed inner product. 
+	Let $X=\{J:J\text{ is an ideal of $R$ such that }I\subseteq J\subsetneq R\}$.
+	Since $I\in X$, it follows that $X$ is non-empty. Moreover, $X$ is a poset
+	with respect to inclusion. If $C$ is a chain in $X$ (for example, $C$ could be   
+	an increasing sequence
+	\[
+	I_1\subseteq I_2\subseteq\cdots
+	\]
+  of proper ideals of $R$ containing $I$), then $\bigcup_{J\in C}J$ is an upper
+  bound for $C$, as $\bigcup_{J\in C}J$ is an ideal and $\bigcup_{J\in C}J\ne
+  R$ because $1\not\in\bigcup_{J\in C}J$. 	Zorn's lemma implies that there
+  exists a maximal element $M\in X$. We claim that $M$ is a maximal ideal of
+  $R$. The definition of $X$ implies that $M$ is a proper ideal of $R$ that
+  contains $I$. If $M_1$ is a proper ideal of $R$ such that $M\subseteq M_1$,
+  it follows that $I\subseteq M_1$ and hence $M_1\in X$. The maximality of $M$
+  implies that $M=M_1$.  
 \end{proof}
 
+In the proof of the previous theorem, we see that it is crucial to consider rings with 
+identity. 
+
+\begin{exercise}
+	Compute the maximal ideals of $\R[X]$ and $\C[X]$. 	
+\end{exercise}
+
+One can also compute the maximal ideals of $K[X]$ for any field $K$. 
+
+\begin{exercise}
+	Let $R$ be a principal domain and $p\in R\setminus\{0\}$. 
+	Then $p$ is irreducible 
+	if and only if $(p)$ is maximal.	
+\end{exercise}
+
+\begin{definition}
+\index{Ideal!prime}
+Let $R$ be a commutative ring. A proper ideal $I$ of $R$ is said to be
+\emph{prime} if $xy\in I$ implies that $x\in I$ or $y\in I$. 
+\end{definition}
+
+If $p$ is a prime number, then $p\Z$ is a prime ideal of $\Z$.
+
+\begin{exercise}
+\label{xca:prime<=>domain}
+    Let $R$ be a commutative ring. 
+    Prove that an ideal $I$ of $R$ is prime if and only if $R/I$ is a domain. 
+\end{exercise}
+
+\begin{exercise}
+Let $R$ be a commutative ring. 
+\label{xca:maximal=>prime}
+\begin{enumerate}
+    \item Prove that maximal ideals are prime. 
+    \item Let $R=\Z[X]$. Prove that $(X)$ is a prime ideal that is not maximal.
+    \item Let $R$ be a principal domain. Prove that non-zero 
+    prime ideals are maximal. 
+\end{enumerate}
+\end{exercise}
+
 \begin{example}
-    Let $A=\begin{pmatrix}
-        -1 & -1\\
-        1 & 0
-    \end{pmatrix}$. Since $A^3=I$, we can use this matrix to 
-    represent the (multiplicative) cyclic group 
-    \[
-    C_3=\langle g:g^3=1\rangle
-    \]
-    of order three. Note that the map $1\mapsto g$ yields an isomorphism 
-    $\Z/3\simeq C_3$. 
-        
-    The map $C_3\to\GL_2(\C)$, $g\mapsto A$, is a group homomorphism. In particular, we have a representation $\rho\colon C_3\to\GL(V)$, where $V=\C^2$ with the usual inner product given by \eqref{eq:inner_product}, that is 
-    \[
-    v\cdot w=v^T\overline{w}
-    \]
-    for $v,w\in V$. 
-    For example, the inner product between the vectors $\colvec{2}{1}{i}$ and $\colvec{2}{1}{2}$
-    is 
-    \[
-    (1,i)\colvec{2}{1}{2}=1+2i.
-    \]
-    Since $A\in M_2(\R)$, we compute 
-    \[
-    \langle v,w\rangle=v^T\overline{w}+(Av)^T\overline{(Aw)}+(A^2v)^T\overline{(A^2w)}=v^T\left (I+A^TA+(A^2)^TA^2\right)\overline{w}
-    \]
-    and this is an invariant inner product on $V$. Note that 
-    \[
-        B=I+A^TA+(A^2)^TA^2=\begin{pmatrix}
-            4&2\\
-            2&4
-        \end{pmatrix}.
-    \]
+	The ideal $(X^2+2X+2)$ is maximal in $\Q[X]$ because
+	\[
+	X^2+2X+2=(X+1)^2+1
+	\]
+	has degree two and no rational roots. 
+	Hence $X^2+2X+2$ is irreducible in $\Q[X]$ and it generates 
+	a maximal ideal. 	
 \end{example}
 
-%\label{rho_diagonalizable}
-Weyl's trick has several interesting consequences:  
+% \begin{exercise}
+% 	Let $R$ be a commutative ring and $I$ be an ideal of $R$. Then 
+% 	$I$ is maximal if and only if $R/I$ is a field. 
+% \end{exercise}
 
-\begin{corollary}
-\label{cor:consequences}
-	Let $\rho\colon G\to\GL(V)$ be a representation of a finite group $G$. 
- The following properties
-	hold:
-	\begin{enumerate}
-		\item $\rho$ is equivalent to a unitary representation.
-		\item $\rho$ is either irreducible or decomposable.
-		\item Each $\rho_g$ is diagonalizable. 
-	\end{enumerate}
-\end{corollary}
+\begin{example}
+  Let $R=(\Z/2)[X]$ and $f(X)=X^2+X+1$. Since $f(X)$ is irreducible (because
+  $\deg f(X)=2$ and $f(X)$ has no roots in $\Z/2$), it follows that $(f(X))$ is
+  a maximal ideal.  Thus $R/(f(X))$ is a field. 
+\end{example}
+
+\begin{exercise}
+	Compute the maximal ideals of $\Z/n$. 	
+\end{exercise}
+
+\begin{exercise}
+\label{xca:Jacobson}
+\index{Jacobson radical}
+	Let $R$ be a non-zero commutative ring and $J(R)$ be the intersection of all maximal ideals 
+	of $R$. Prove that $x\in J(R)$ 
+	if and only if $1-xy\in\mathcal{U}(R)$ for all $y\in R$. The ideal $J(R)$ is known
+	as the \emph{Jacobson radical} of $R$. Note that $J(R)\ne R$.   
+\end{exercise}
+
+We conclude the lecture with a different application of Zorn's lemma.  
+
+\begin{bonus}
+	Prove that every non-zero vector space has a basis.
+\end{bonus}
+
+The previous exercise can be used to solve the following exercises:
+
+\begin{bonus}
+\label{xca:extend}
+    Every linearly independent subset of a non-zero vector space
+    $V$ can be extended to a basis of $V$.
+\end{bonus} 
+
+Hint: If $X$ is a linearly independent set, a basis 
+of $V$ that contains $X$ will be found as a maximal linearly independent set 
+containing $X$. 
+
+\begin{bonus}
+    Let $V$ be a vector space. Prove that every subspace $U$ of $V$ is a direct summand of $V$, that is
+    $V=U\oplus W$ for some subspace $W$ of $V$. 
+\end{bonus}
+
+\begin{bonus}
+    Prove that every spanning set of a non-zero vector space
+    contains a basis. 
+\end{bonus}
+
+\begin{bonus}
+\label{xca:fx=cx}
+    Prove that there exists a group homomorphism $f\colon\R\to\R$ that 
+    is not of the form $f(x)=\lambda x$ for some $\lambda\in\R$. 
+\end{bonus}
+
+
+\begin{bonus}
+\label{xca:Rn=R}
+    Let $n\geq1$. Prove that the abelian groups $\R^n$ and $\R$ are isomorphic.
+\end{bonus}
+
+\begin{bonus}
+\label{xca:aut}
+    Let $G$ be a group such that $|G|>2$. Prove that $|\Aut(G)|>1$.
+\end{bonus}
+
+\section{The characteristic of a ring}
+
+\begin{definition}
+\index{Characteristic of a ring}
+Let $R$ be a ring. If there is a least positive integer $n$ such that 
+$nx=0$ for all $x\in R$, then $R$ has \emph{characteristic} $n$, i.e. $\ch R=n$. If no such $n$ exists, 
+then $R$ is of characteristic zero. 
+\end{definition}
+
+Easy examples: $\ch\Z=0$ and $\ch\Z/n=n$.
+
+\begin{proposition}
+    Let $R$ be a ring such that $\ch R=n>0$.
+    \begin{enumerate}
+        \item The map $f\colon \Z\to R$, $m\mapsto m1$, is a ring homomorphism and $\ker f=n\Z$.  
+        \item $n=\min\{k\in\Z_{>0}:k1=0\}$.
+        \item If $R$ is a domain, then $n$ is a prime number.
+    \end{enumerate}
+\end{proposition}
 
 \begin{proof}
-  The first assertion follows by choosing an orthonormal basis for the
-  invariant inner product supplied by Weyl's unitary trick.  The second follows
-  from 1), Proposition \ref{pro:irr_or_dec}, and Exercise
-  \ref{xca:equivalence}.  Finally, with respect to an orthonormal basis for the
-  invariant inner product, every $\rho_g$ is unitary and hence diagonalizable.
+    We leave 1) as an exercise. 
+    
+    Let us prove 2). Let $n_1=\min\{k\in\Z_{>0}:k1=0\}$. Clearly 
+    $n\geq n_1$. For $x\in R$,
+    \[ 
+    n_1x=n_1(1x)=(n_11)x=0x=0
+    \]
+    and hence $n_1\geq n$. 
+    
+    Finally, we prove 3). 
+    Since $R$ is a domain, $R\ne\{0\}$, and
+    therefore $n\ne1$. 
+    If $n$ is not prime, say
+    $n=rs$ with $1<r,s<n$. Then 
+    \[
+    0=n1=(rs)1=(r1)(s1)
+    \]
+    and hence $r1=0$ or $s1=0$, a contradiction. 
 \end{proof}
 
 \begin{exercise}
-\label{xca:not_decomposable}
-    If $G$ is an infinite group, it is no longer true that every non-zero representation
-    is either irreducible or decomposable. Find an example.
+    Let $p$ be a prime number and 
+    $R=\Z/p\times\Z/p$ be a ring with the usual pointwise operations. 
+    Prove that $\ch R=p$ and that $R$ has zero divisors. 
 \end{exercise}
 
-For the previous exercise, consider the representation $\Z\to\GL_2(\C)$, 
-$1\mapsto\begin{pmatrix}1&1\\0&1\end{pmatrix}$. 
+\begin{exercise}[binomial theorem]
+\index{Binomial theorem}
+    Let $R$ be a commutative ring and $n\geq1$. Prove that
+    if $a,b\in R$, then 
+    \[
+    (a+b)^n=\sum_{k=0}^n\binom{n}{k}a^kb^{n-k}.
+    \]
+\end{exercise}    
+
+\begin{exercise}
+\label{xca:freshman_dream}
+\index{Freshman's dream}
+    Let $R$ be a commutative ring of prime characteristic $p$. 
+    \begin{enumerate}
+        \item If $x,y\in R$, then $(x+y)^{p^n}=x^{p^n}+y^{p^n}$ for all $n\geq0$. 
+        \item The map $R\to R$, $x\mapsto x^{p^n}$, is a ring homomorphism for all $n\geq0$.
+    \end{enumerate}
+\end{exercise}
+
+Hint: Proceed by induction on $n$ and use the fact that the prime number $p$ divides 
+$\binom{p}{k}$ for all $k\in\{1,2,\dots,p-1\}$. Alternatively, one could use
+that the prime number $p$ divides $\binom{p^n}{k}$ for all 
+$k\in\{1,2,\dots,p^n-1\}$. 
+
+\begin{bonus}
+\index{Non-commutative binomial theorem}
+    Let $R$ be a ring and $n\geq1$. 
+    For $a,b\in R$, let $A\colon R\to R$, $A(x)=(a+b)x-xb$. 
+    Prove that
+    \[
+    (a+b)^n=\sum_{k=0}^n\binom{n}{k}A^k(1)b^{n-k}.
+    \] 
+\end{bonus}
+
+The previous exercise was taken from Yaghoub Sharifi's 
+\href{https://ysharifi.wordpress.com}{blog}.
+
+
