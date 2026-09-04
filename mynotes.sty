@@ -44,6 +44,24 @@
 \RequirePackage{xparse}
 
 % ------------------------------------------------------------
+% Project bubble
+% ------------------------------------------------------------
+% Project marker: green pill in the RIGHT margin
+\setlength{\marginparwidth}{.85in}
+\setlength{\marginparsep}{7pt}
+\makeatletter
+\newcommand{\projectbubble}{\tikz[baseline]{\node[rounded corners=7pt,
+ draw=blue!25!white,line width=.7pt,fill=blue!8!white,inner xsep=7pt,inner ysep=3.5pt,
+ font=\normalfont\sffamily\footnotesize\color{blue!45!black}]{Project};}}
+\NewDocumentCommand{\project}{O{0pt}}{%
+  \begingroup
+  \normalmarginpar \@twosidefalse
+  \marginnote{\projectbubble}[#1]%
+  \endgroup
+  \ignorespaces}
+\makeatother
+
+% ------------------------------------------------------------
 % Hyperref setup
 % ------------------------------------------------------------
 \hypersetup{
@@ -88,10 +106,19 @@ boxrule=0pt,frame hidden,colback=red!5!white,
   left=.3em, right=.3em, top=.3em, bottom=.3em,
   beforeafter skip balanced=.4\baselineskip plus 2pt,
   before upper={\parindent4mm},breakable,
-colframe=blue!55!white
+  colframe=blue!55!white,#1
 }
 \newenvironment{optional}[1][]{
 \begin{eqbox}
+}{
+\end{eqbox}
+}
+
+% ------------------------------------------------------------
+% Gray box for other type of optional comments
+% ------------------------------------------------------------
+\newenvironment{graybox}[1][]{
+\begin{eqbox}[colback=gray!5!white]
 }{
 \end{eqbox}
 }
@@ -323,14 +350,19 @@ colframe=yellow!45!black]\begin{bxca}}{\end{bxca}\end{tcolorbox}}
     \fi
   \endgroup}
 \newcommand{\lecturebubble}[1]{\tikz[baseline]{\node[rounded corners=7pt,
- draw=gray!15!white,line width=.7pt,fill=gray!5!white,inner xsep=7pt,inner ysep=3.5pt,
- font=\sffamily\footnotesize\color{blue!50!red}]{Lecture~#1};}}
+ draw=green!15!white,line width=.7pt,fill=gray!5!white,inner xsep=7pt,inner ysep=3.5pt,
+ font=\sffamily\footnotesize\color{green!30!black}]{Lecture~#1};}}
 \newcounter{lecture}
 \newcommand{\lecture}{%
   \refstepcounter{lecture}%
   \addcontentsline{lec}{section}{Lecture~\thelecture}%
   \marginnote{\lecturebubble{\thelecture}}[-1.9\baselineskip]%
   \ignorespaces}
+
+\newcommand{\graybubble}[1]{\tikz[baseline]{\node[rounded corners=7pt,
+ draw=gray!15!white,line width=.7pt,fill=gray!5!white,inner xsep=7pt,inner ysep=3.5pt,
+ font=\sffamily\footnotesize\color{blue!50!red}]{#1};}}
+
 \makeatother
 
 % ------------------------------------------------------------
