@@ -3,13 +3,19 @@
 
 \renewcommand{\course}{Ring and module theory}
 
-\RequirePackage{fontspec}
-\setmainfont{OpenDyslexic}
-\usepackage{amsmath}
+% This is the special dyslexic-friendly configuration
+\overfullrule=0mm
+\geometry{margin=1.2in}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage{sfmath}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{setspace}
+\onehalfspacing
 \usepackage{ragged2e}
 \RaggedRight
-\linespread{1.3}
-\setlength{\parskip}{0.6em}
+\thickmuskip=6mu plus 3mu
+\medmuskip=5mu plus 2mu minus 1mu
 
 \title{\course}
 \author{Leandro Vendramin}
