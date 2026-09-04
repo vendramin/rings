@@ -115,12 +115,28 @@ An upper bound for $S$ might not be an element of $S$.
 
 We now state \emph{Zorn's lemma}:
 
-\begin{quote}
+\begin{lemma}[Zorn]
 \index{Zorn's lemma}
-\textcolor{blue!50!black}{\textit{Let $R$ be a poset such that 
+\index{Kuratowski--Zorn lemma}
+Let $R$ be a poset such that 
 every chain in $R$ admits an upper bound in $R$. 
-Then $R$ contains a maximal element.}}
-\end{quote}
+Then $R$ contains a maximal element.
+\end{lemma}
+
+We will use Zorn's lemma without proof; we take it as an axiom.
+
+\index{Axiom of Choice}
+It may not be intuitive\footnote{The mathematician Jerry L. Bona has a nice
+joke about Zorn's lemma: \textit{The Axiom of Choice is obviously true, the
+well-ordering principle obviously false, and who can tell about Zorn's
+lemma?}}, but Zorn's lemma is logically equivalent to a more intuitive
+statement in set theory: the \emph{Axiom of Choice}, which states that the
+Cartesian product of a collection of non-empty sets is non-empty. Calling it a
+lemma rather than an axiom is purely historical.
+
+Zorn's lemma is also known as the Kuratowski--Zorn lemma, as Kuratowski proved
+a version of it in 1922 and Zorn stated it independently in 1935.  For the
+history, see~\cite{zbMATH03586974}.
 
 % It is not intuitive\footnote{The mathematician
 % Jerry L. Bona has a nice joke about Zorn's lemma: 
@@ -132,15 +148,6 @@ Then $R$ contains a maximal element.}}
 % It is more an axiom than a lemma. 
 % The reason for calling Zorn’s lemma a lemma rather 
 % than an axiom is purely historical. 
-
-\index{Axiom of Choice}
-It may not be intuitive\footnote{The mathematician Jerry L. Bona has a nice
-joke about Zorn's lemma: \textit{The Axiom of Choice is obviously true, the
-well-ordering principle obviously false, and who can tell about Zorn's
-lemma?}}, but it is logically equivalent to a more intuitive statement in set
-theory: the \emph{Axiom of Choice}, which states that the Cartesian product of
-a collection of non-empty sets is non-empty. Calling it a lemma rather than an
-axiom is purely historical.
 
 \begin{definition}
 	\index{Ideal!maximal}
