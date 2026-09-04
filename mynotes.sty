@@ -51,8 +51,8 @@
 \setlength{\marginparsep}{7pt}
 \makeatletter
 \newcommand{\projectbubble}{\tikz[baseline]{\node[rounded corners=7pt,
- draw=blue!25!white,line width=.7pt,fill=blue!8!white,inner xsep=7pt,inner ysep=3.5pt,
- font=\normalfont\sffamily\footnotesize\color{blue!45!black}]{Project};}}
+ draw=gray!50!white,line width=.7pt,fill=gray!5!white,inner xsep=7pt,inner ysep=3.5pt,
+ font=\normalfont\sffamily\footnotesize\color{green!30!black}]{Project};}}
 \NewDocumentCommand{\project}{O{0pt}}{%
   \begingroup
   \normalmarginpar \@twosidefalse
@@ -365,21 +365,98 @@ colframe=yellow!45!black]\begin{bxca}}{\end{bxca}\end{tcolorbox}}
 
 \makeatother
 
+%% ------------------------------------------------------------
+%% Page style: running header/footer
+%% ------------------------------------------------------------
+%\pagestyle{plain}
+%\fancyhf{}
+%\fancyfoot[R]{\thepage}
+%%\fancyhead[L]{\course}
+%%\setlength{\headheight}{14pt}
+%
+%% \theindex (and a few other LaTeX internals, e.g. \maketitle) switch to
+%% the "plain" page style for their first page. Left at its default, plain
+%% puts the page number centered at the bottom instead of on the right, so
+%% that one page looks different from the rest of the document. Redefine
+%% plain to match.
+%%\fancypagestyle{plain}{%
+%%  \fancyhf{}
+%%  \fancyfoot[R]{\thepage}
+%%  \renewcommand{\headrulewidth}{0pt}
+%%}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyfoot[R]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+%\setlength{\headheight}{14pt}
+%
+%\makeatletter
+%\newcommand{\mynotes@plainblock}[1]{%
+%  \clearpage
+%  \begingroup
+%    \pagestyle{plain}\thispagestyle{plain}%
+%    #1%
+%    \clearpage
+%  \endgroup}
+%\let\mynotes@tableofcontents\tableofcontents
+%\renewcommand{\tableofcontents}{\mynotes@plainblock{\mynotes@tableofcontents}}
+%\let\mynotes@listoflectures\listoflectures
+%\renewcommand{\listoflectures}{\mynotes@plainblock{\mynotes@listoflectures}}
+%\makeatother
+%
+%\endinput
+
 % ------------------------------------------------------------
 % Page style: running header/footer
 % ------------------------------------------------------------
+% amsproc's \@sect never sets a running mark (\sectionmark is \@gobble),
+% so we hook \@tocwrite -- it is called by \@sect for every heading,
+% at a point where \@secnumber holds the section number -- and set the
+% mark ourselves for sections only.  The number must be expanded now,
+% otherwise every header would show the number of the last section.
+\makeatletter
+\newcommand{\mynotes@sectionmark}[2]{% #1 = number (may be empty), #2 = title
+  \begingroup
+    %\protected@xdef\mynotes@mark{%
+    %  \@ifempty{#1}{#2}{\noexpand\sectionname\space#1.\space#2}}%
+    \protected@xdef\mynotes@mark{%
+      \@ifempty{#1}{}{\noexpand\sectionname\space#1.\space#2}}%
+  \endgroup
+  \expandafter\mynotes@markboth\expandafter{\mynotes@mark}%
+}
+\newcommand{\mynotes@markboth}[1]{\markboth{#1}{#1}}
+% \maketitle sets a mark of its own (short title / authors); clear it so
+% that the front matter carries no running head at all.
+\let\mynotes@maketitle\maketitle
+\renewcommand{\maketitle}{\mynotes@maketitle\markboth{}{}}
+\let\mynotes@tocwrite\@tocwrite
+\def\@tocwrite#1#2{%
+  \def\mynotes@a{#1}\def\mynotes@b{section}%
+  \ifx\mynotes@a\mynotes@b
+    \expandafter\mynotes@sectionmark\expandafter{\@secnumber}{#2}%
+  \fi
+  \mynotes@tocwrite{#1}{#2}}
+\makeatother
+ 
 \pagestyle{fancy}
 \fancyhf{}
+\fancyhead[L]{\nouppercase{\rightmark}}
 \fancyfoot[R]{\thepage}
-\fancyhead[L]{\course}
+\renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{14pt}
-
-% \theindex (and a few other LaTeX internals, e.g. \maketitle) switch to
-% the "plain" page style for their first page. Left at its default, plain
-% puts the page number centered at the bottom instead of on the right, so
-% that one page looks different from the rest of the document. Redefine
-% plain to match.
+ 
+% LaTeX internals (\maketitle, \theindex, ...) switch to the "plain"
+% page style on their first page.  Make it identical, so that every
+% page of the document looks the same: nothing on top, page number
+% alone in the lower right corner.
 \fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[R]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+% amsproc's \maketitle uses its own "firstpage" style (page number
+% centred, series logo on top).  Same treatment.
+\fancypagestyle{firstpage}{%
   \fancyhf{}
   \fancyfoot[R]{\thepage}
   \renewcommand{\headrulewidth}{0pt}
