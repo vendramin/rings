@@ -1,7 +1,15 @@
-\documentclass[12pt]{amsproc}
-\usepackage{mynotes-dyslexic}
+\documentclass[12pt,oneside]{amsproc}
+\usepackage{mynotes}
 
 \renewcommand{\course}{Ring and module theory}
+
+\RequirePackage{fontspec}
+\setmainfont{OpenDyslexic}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\RaggedRight
+\linespread{1.3}
+\setlength{\parskip}{0.6em}
 
 \title{\course}
 \author{Leandro Vendramin}
@@ -14,18 +22,19 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \begin{document}
 
 \begin{abstract}
-    The notes correspond to the bachelor
-    course \textbf{Ring and Module Theory} of the
-    Vrije Universiteit Brussel,
-    Faculty of Sciences,
-    Department of Mathematics and Data Sciences.
+    The notes correspond to the bachelor course \textbf{Ring and Module Theory}
+    of the Vrije Universiteit Brussel, Faculty of Sciences, Department of
+    Mathematics and Data Sciences.
 \end{abstract}
 
 \maketitle
 
-%\begin{figure}[h]
-%    \includegraphics[scale=0.5]{hungerford.png}
-%\end{figure}
+\listoflectures
+
+\vspace{5cm}
+\begin{figure}[h]
+    \includegraphics[scale=0.2]{VUB.jpg}
+\end{figure}
 
 \thispagestyle{empty}
 
@@ -38,27 +47,34 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \newpage
 \pagenumbering{arabic}
 
-\include{introduction}
+\input{introduction}
 
 % Rings 
-\input{01}
+\TOC{Part 1. Rings}
+\include{01}
 \input{02}
 \input{03}
 \input{04}
 \input{05}
+\input{06}
 
 % Representations 
-\input{06}
-\input{07}
-%\input{08}
+\TOC{Part 2. Representations of groups}
+\include{07}
+\input{08}
 
 % Modules 
-\input{09}
+\TOC{Part 3. Modules over rings}
+\include{09}
 \input{10}
 \input{11}
 \input{12}
 
-\input{solutions}
+\addtocontents{toc}{\bigskip}
+
+%\include{solutions}
+
+\newpage 
 \bibliographystyle{abbrv}
 \bibliography{refs}
 
