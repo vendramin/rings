@@ -42,8 +42,20 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \input{introduction}
 
 % Rings 
-\TOC{Part 1. Rings}
-\include{01}
+\part{Rings}
+
+The objective of the next five lectures is to extract certain properties
+inherent to integers and adapt them for broader applications. Initially, we
+will identify similarities between the ring of integers and the ring of real
+polynomials, followed by a more in-depth exploration of these specific
+attributes in more general contexts. A pivotal similarity between integers and
+real polynomials lies in the existence of the division algorithm. Nevertheless,
+it is essential to emphasize that $\Z$ and $\R[X]$ are fundamentally distinct
+entities, like apples and oranges. For instance, in $\R[X]$, the presence of
+the variable $X$ allows us to utilize formal derivatives (with respect to $X$),
+a feature absent in the ring of integers. 
+
+\input{01}
 \input{02}
 \input{03}
 \input{04}
@@ -51,12 +63,27 @@ Science, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussel}
 \input{06}
 
 % Representations 
-\TOC{Part 2. Representations of groups}
+\part{Representations of groups}
+
+Historically, there were two approaches to studying groups. One involved
+studying how groups act on finite sets (i.e., permutation groups). Another
+approach, more geometric in nature, involved groups of matrices acting on
+vectors. With Cayley's theorem and the abstract definition of a group, these
+perspectives were somewhat unified. But where has linear algebra gone?  This is
+representation theory: using linear algebra to study groups.
+
 \input{07}
 \input{08}
 
 % Modules 
-\TOC{Part 3. Modules over rings}
+\part{Modules over rings}
+
+The rest of the course will be devoted to studying modules over rings. This
+builds on representations of finite groups, which we studied in the second part
+of the course.  Just as group representations provide tools to study group
+structure, can we use ring actions to study ring structure? The answer is the
+theory of modules.
+
 \input{09}
 \input{10}
 \input{11}

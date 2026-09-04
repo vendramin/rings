@@ -233,6 +233,56 @@ boxrule=0pt,frame hidden,colback=red!5!white,
   \addtocontents{toc}{\textcolor{red!70!black}{\hspace{-0.6cm}\textbf{#1}}}
 }
 
+% ------------------------------------------------------------
+% Parts:  \part{Title}  ->  "Part <n>. Title", in the TOC and
+% centered in the text.
+% ------------------------------------------------------------
+%\makeatletter
+%%\renewcommand{\part}[1]{%
+%%  \par
+%%  \refstepcounter{part}%
+%%  \protected@edef\mynotes@part{Part \thepart. \unexpanded{#1}}%
+%%  \expandafter\TOC\expandafter{\mynotes@part}%
+%%  \newpage
+%%  \thispagestyle{plain}\markboth{}{}%
+%%  \begin{center}
+%%    \textbf{\textcolor{red!70!black}{\mynotes@part}}
+%%  \end{center}
+%%  \par}
+%
+%\renewcommand{\part}[1]{%
+%  \clearpage 
+%  \refstepcounter{part}%
+%  \protected@edef\mynotes@part{Part \thepart. \unexpanded{#1}}%
+%  \expandafter\TOC\expandafter{\mynotes@part}%
+%  \thispagestyle{plain}\markboth{}{}%
+%  \begin{center}
+%    \textbf{\textcolor{red!70!black}{\mynotes@part}}
+%  \end{center}
+%  \par}
+%\makeatother
+
+% ------------------------------------------------------------
+% Parts:  \part{Title}  ->  "Part <n>. Title" centred in the
+% header of its own page; TOC entry via \TOC.
+% ------------------------------------------------------------
+\renewcommand{\thepart}{\arabic{part}}
+\makeatletter
+\fancypagestyle{mypartpage}{%
+  \fancyhf{}%
+  \fancyhead[C]{\textbf{\textcolor{red!70!black}{\mynotes@part}}}%
+  \fancyfoot[R]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\renewcommand{\part}[1]{%
+  \clearpage
+  \refstepcounter{part}%
+  \protected@xdef\mynotes@part{Part \thepart. \unexpanded{#1}}%
+  \expandafter\TOC\expandafter{\mynotes@part}%
+  \thispagestyle{mypartpage}\markboth{}{}%
+  \ignorespaces}
+\makeatother
+
 % column vector
 \newcount\colveccount
 \newcommand*\colvec[1]{
@@ -311,7 +361,7 @@ colframe=green!55!black]\begin{xca}}{\end{xca}\end{tcolorbox}}
 {\begin{tcolorbox}[boxrule=0pt,frame hidden,colback=yellow!15!white,
   left=.3em, right=.3em, top=-.2em, bottom=.3em,
   beforeafter skip balanced=.4\baselineskip plus 2pt,
-  before upper={\parindent4mm\noindent},
+  before upper={\parindent4mm\noindent},breakable,
 colframe=yellow!45!black]\begin{bxca}}{\end{bxca}\end{tcolorbox}}
 
 \numberwithin{figure}{section}
